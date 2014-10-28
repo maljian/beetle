@@ -3,7 +3,7 @@ package Beetle.Haggis.Client;
 import Beetle.Haggis.Client.GameFieldModel.NewGameModel;
 
 /**
- * @author Nadine
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:34
  */

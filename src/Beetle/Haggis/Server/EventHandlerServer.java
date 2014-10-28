@@ -2,11 +2,9 @@ package Beetle.Haggis.Server;
 import java.util.ArrayList;
 
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Rest.GameServer;
-import Beetle.Haggis.Rest.Listener;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:32
  */
@@ -36,8 +34,9 @@ public class EventHandlerServer {
 	/**
 	 * 
 	 * @param messeg
+	 * @return 
 	 */
-	public broadcast(Message message){
+	public void broadcast(Message message){
 
 	}
 

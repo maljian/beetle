@@ -1,10 +1,10 @@
 package Beetle.Haggis.Client;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Rest.GameServer;
+import Beetle.Haggis.Server.GameServer;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */

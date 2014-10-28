@@ -1,8 +1,9 @@
 package Beetle.Haggis.Message;
 import Beetle.Haggis.Server.Card;
+import Beetle.Haggis.Server.Player;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
@@ -12,7 +13,7 @@ public class GameState {
 	/**
 	 * player [0,1,2], cards[Card]
 	 */
-	private [int, cards] player;
+	private Player player [];
 	private int playerTurns;
 	/**
 	 * after distributing cards.

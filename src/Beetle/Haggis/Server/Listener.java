@@ -1,10 +1,8 @@
-package Beetle.Haggis.Rest;
+package Beetle.Haggis.Server;
 import java.net.ServerSocket;
 
-import Beetle.Haggis.Server.EventHandlerServer;
-
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */

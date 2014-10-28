@@ -1,12 +1,15 @@
 package Beetle.Haggis.Server;
-import Beetle.Haggis.Rest.Colour;
+
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:31
  */
 public class Card {
+	public enum Colour {
+		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+	}
 
 	private Colour colour;
 	private char image;

@@ -1,40 +1,26 @@
 package Beetle.Haggis.Message;
+
+import java.net.Socket;
+
 import Beetle.Haggis.Server.Card;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
 public class Message {
+	public enum MessageType {
+		CHAT, CONFIRM, ERROR, REGISTER
+	}
 
-	/**
-	 * @author Nadine
-	 * @version 1.0
-	 * @created 25-Okt-2014 19:32:33
-	 */
-	public class MessageType {
-
-		public MessageTyp Chat;
-		public MessageTyp Confirm;
-		public MessageTyp Error;
-		public MessageTyp Register;
-		public Message m_Message;
-
-
-
-		public void finalize() throws Throwable {
-
-		}
-		public MessageType(){
-
-		}
-	}//end MessageType
+	
+	
 
 	/**
 	 * Array
 	 */
-	private Card card;
+	private Card card[];
 	/**
 	 * Pass, State, Cards
 	 */
@@ -42,7 +28,7 @@ public class Message {
 	/**
 	 * Register,Confirm,Error, Update
 	 */
-	public MessageTyp messageType;
+	public MessageType messageType;
 	private char name;
 	private PlaydAction PlayedAction;
 	private int playersTurn;
@@ -50,20 +36,19 @@ public class Message {
 	public PlaydAction m_PlaydAction;
 	public GameState m_GameState;
 
-
-
 	public void finalize() throws Throwable {
 
 	}
-	public MessageTyp Message(){
+
+	public MessageType Message() {
 		return null;
 	}
 
-	public Message receive(Socket)(){
+	public Message receive(Socket s) {
 		return null;
 	}
 
-	public void send(Socket)(){
+	public void send(Socket s) {
 
 	}
-}//end Message
+}// end Message

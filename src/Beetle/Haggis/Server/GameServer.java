@@ -1,12 +1,8 @@
-package Beetle.Haggis.Rest;
+package Beetle.Haggis.Server;
 import Beetle.Haggis.Message.GameState;
-import Beetle.Haggis.Server.Card;
-import Beetle.Haggis.Server.ClientConnection;
-import Beetle.Haggis.Server.EventHandlerServer;
-import Beetle.Haggis.Server.Player;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */

@@ -1,7 +1,7 @@
 package Beetle.Haggis.Client;
 
 /**
- * @author Loïc
+ * @author 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
@@ -25,7 +25,9 @@ public class MainFrameGui {
 	public void finalize() throws Throwable {
 
 	}
-	public ActionPerformed(){
+	
+	//TODO event handler
+	public void ActionPerformed(){
 
 	}
 }//end MainFrameGui
