@@ -1,4 +1,4 @@
-package Client;
+package Beetle.Haggis.Client;
 
 /**
  * @author Loïc
@@ -10,7 +10,7 @@ public class MainFrameGui {
 	private MainFrameGui mainFrameGui;
 	private MainFrameModel mainFrameModel;
 	/**
-	 * Depanding on wher the player ist he pannel contains eather: Startscrean,
+	 * Depending on where the player is the panel contains either: Startscrean,
 	 * NewGame, GameFeald, JoinGam
 	 */
 	private Panel mainPanel;

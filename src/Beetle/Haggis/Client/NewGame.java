@@ -1,6 +1,6 @@
-package Client;
+package Beetle.Haggis.Client;
 
-import Client.GameFieldModel.NewGameModel;
+import Beetle.Haggis.Client.GameFieldModel.NewGameModel;
 
 /**
  * @author Nadine

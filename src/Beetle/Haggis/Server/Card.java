@@ -1,5 +1,5 @@
-package Server;
-import Rest.Colour;
+package Beetle.Haggis.Server;
+import Beetle.Haggis.Rest.Colour;
 
 /**
  * @author Loïc

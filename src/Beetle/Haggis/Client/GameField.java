@@ -1,5 +1,5 @@
-package Client;
-import Server.Card;
+package Beetle.Haggis.Client;
+import Beetle.Haggis.Server.Card;
 
 /**
  * @author Nadine

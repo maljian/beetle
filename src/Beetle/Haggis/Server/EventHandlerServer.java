@@ -1,9 +1,9 @@
-package Server;
+package Beetle.Haggis.Server;
 import java.util.ArrayList;
 
-import Rest.GameServer;
-import Rest.Listener;
-import Message.Message;
+import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Rest.GameServer;
+import Beetle.Haggis.Rest.Listener;
 
 /**
  * @author Loïc
@@ -37,7 +37,7 @@ public class EventHandlerServer {
 	 * 
 	 * @param messeg
 	 */
-	public broadcast(Message messeg){
+	public broadcast(Message message){
 
 	}
 

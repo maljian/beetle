@@ -1,7 +1,7 @@
-package Server;
+package Beetle.Haggis.Server;
 import java.net.Socket;
 
-import Rest.GameServer;
+import Beetle.Haggis.Rest.GameServer;
 
 /**
  * @author Loïc

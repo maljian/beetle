@@ -1,4 +1,4 @@
-package Rest;
+package Beetle.Haggis.Rest;
 
 /**
  * @author Nadine

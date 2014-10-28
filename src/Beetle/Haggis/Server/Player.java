@@ -1,4 +1,4 @@
-package Server;
+package Beetle.Haggis.Server;
 
 /**
  * @author Nadine

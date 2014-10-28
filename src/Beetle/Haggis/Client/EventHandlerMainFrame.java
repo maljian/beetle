@@ -1,4 +1,4 @@
-package Client;
+package Beetle.Haggis.Client;
 
 /**
  * @author Loïc

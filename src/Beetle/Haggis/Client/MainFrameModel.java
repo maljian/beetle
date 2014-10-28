@@ -1,7 +1,7 @@
-package Client;
-import Message.Message;
-import Rest.GameServer;
-import Message.GameState;
+package Beetle.Haggis.Client;
+import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Rest.GameServer;
 
 /**
  * @author Loïc

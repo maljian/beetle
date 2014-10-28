@@ -1,20 +1,17 @@
-package Client;
-import Rest.Colour;
+package Beetle.Haggis.Message;
 
 /**
  * @author Loïc
  * @version 1.0
  * @created 25-Okt-2014 19:32:34
  */
-public class Panel {
+public class MessageTyp {
 
-	private Colour background;
-
-	public Panel(){
+	public MessageTyp(){
 
 	}
 
 	public void finalize() throws Throwable {
 
 	}
-}//end Panel
+}//end MessageTyp

@@ -1,5 +1,5 @@
-package Message;
-import System.Server.Card;
+package Beetle.Haggis.Message;
+import Beetle.Haggis.Server.Card;
 
 /**
  * @author Loïc

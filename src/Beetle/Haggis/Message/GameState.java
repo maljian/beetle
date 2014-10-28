@@ -1,5 +1,5 @@
-package Message;
-import System.Server.Card;
+package Beetle.Haggis.Message;
+import Beetle.Haggis.Server.Card;
 
 /**
  * @author Loïc
@@ -15,8 +15,8 @@ public class GameState {
 	private [int, cards] player;
 	private int playerTurns;
 	/**
-	 * after ditrtibuting cards.
-	 * player first finisch get this point, next gets 0 point.
+	 * after distributing cards.
+	 * player first finish get this point, next gets 0 point.
 	 */
 	private int restCardValue;
 
@@ -29,8 +29,8 @@ public class GameState {
 	}
 	/**
 	 * >0 false
-	 * 1== posible
-	 * 2 === higer bomb
+	 * 1== possible
+	 * 2 === higher bomb
 	 */
 	public int chekKombination(){
 		return 0;
