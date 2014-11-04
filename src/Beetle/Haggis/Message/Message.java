@@ -14,7 +14,9 @@ public class Message {
 		CHAT, CONFIRM, ERROR, REGISTER
 	}
 
-	
+	public enum PlayedAction {
+		CARDS, PASS, STATE
+	}
 	
 
 	/**
@@ -30,10 +32,10 @@ public class Message {
 	 */
 	public MessageType messageType;
 	private char name;
-	private PlaydAction PlayedAction;
+	private PlayedAction PlayedAction;
 	private int playersTurn;
 	private int points;
-	public PlaydAction m_PlaydAction;
+	public PlayedAction m_PlayedAction;
 	public GameState m_GameState;
 
 	public void finalize() throws Throwable {

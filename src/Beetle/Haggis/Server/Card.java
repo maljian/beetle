@@ -24,4 +24,25 @@ public class Card {
 	public void finalize() throws Throwable {
 
 	}
+
+	public Colour getColour() {
+		return colour;
+	}
+
+	public char getImage() {
+		return image;
+	}
+
+	public char getImageBack() {
+		return imageBack;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public int getValue() {
+		return value;
+	}
+	
 }//end Card
