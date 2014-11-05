@@ -10,29 +10,37 @@ import javax.swing.JMenuItem;
 public class HaggisMenu extends JMenuBar{
 	private Background background = null;
 	private JCheckBoxMenuItem menuItemM;
-	private JMenuItem menuItemR;
 
 	public HaggisMenu(){
 		createMenuBar();
-		menuItemR.setEnabled(false);
+		
 	}
 	
 	void createMenuBar(){
+		JMenuBar menuBar = new JMenuBar();
+		
 		JMenu menu = new JMenu("Menü");
-		add(menu);
+		menuBar.add(menu);
 		
-		JMenu setting = new JMenu("Einstellungen");
-		add(setting);
-		
-		JMenu rules = new JMenu("Regeln");
+		JMenuItem rules = new JMenuItem("Regeln");
 		menu.add(rules);
 		
-		JMenu information = new JMenu("Spielinformation");
-		menu.add(information);
+		JMenuItem info = new JMenuItem("Spielinformation");
+		menu.add(info);
 		
-		JMenu background = new JMenu("Hintergrund");
-		setting.add(background);
+		JMenu setting = new JMenu("Einstellungen");
+		menuBar.add(setting);
 	}
 	
+	
+//	JMenuItem getRules(){
+//		JMenuItem rules = new JMenuItem("Regeln");
+//		rules.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent arg0){
+//				Image image = ImageIO.read(new File(".jpg"));
+//			}
+//		});
+//	}
 	
 }

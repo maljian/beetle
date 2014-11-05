@@ -1,22 +1,13 @@
 package Beetle.Haggis.Client;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import java.awt.Toolkit;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.prism.Image;
 
 import Beetle.Haggis.Client.MainView.HaggisMenu;
 
@@ -29,6 +20,45 @@ public class MainFrameGui extends JFrame{
 	
 	private JPanel contentPane;
 
+	private MainFrameModel mainFrameModel;
+	/**
+	 * Depending on where the player is the panel contains either: Startscreen,
+	 * NewGame, GameFeald, JoinGam
+	 */
+	public EventHandlerMainFrame m_EventHandlerMainFrame;
+	public MainFrameModel m_MainFrameModel;
+	public final HaggisMenu menuBar;
+	
+
+	public MainFrameGui(){
+		super("Haggis");
+		menuBar = new HaggisMenu();
+		
+		createFrame();
+	}
+	
+	void createFrame(){
+		setJMenuBar(menuBar);
+		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();	// get size of the screen
+		setBounds(0, 0, dim.width, dim.height);							// set window to the right size for the screen
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(new BorderLayout(0, 0));
+        setContentPane(contentPane);
+	}
+
+
+	public void finalize() throws Throwable {
+
+	}
+	
+	//TODO event handler
+	public void ActionPerformed(){
+
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -43,58 +73,5 @@ public class MainFrameGui extends JFrame{
 				}
 			}
 		});
-	}
-
-	private MainFrameModel mainFrameModel;
-	/**
-	 * Depending on where the player is the panel contains either: Startscreen,
-	 * NewGame, GameFeald, JoinGam
-	 */
-	public EventHandlerMainFrame m_EventHandlerMainFrame;
-	public MainFrameModel m_MainFrameModel;
-
-	public MainFrameGui(){
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(200, 200, 900, 600);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu menu = new JMenu("Menü");
-		menuBar.add(menu);
-		
-		JMenuItem rules = new JMenuItem("Regeln");
-		menu.add(rules);
-		
-		JMenuItem info = new JMenuItem("Spielinformation");
-		menu.add(info);
-		
-		JMenu setting = new JMenu("Einstellungen");
-		menuBar.add(setting);
-		
-		contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BorderLayout(0, 0));
-        setContentPane(contentPane);
-	}
-//	
-//	JMenuItem getRules(){
-//		JMenuItem rules = new JMenuItem("Regeln");
-//		rules.addActionListener(new ActionListener(){
-//			@Override
-//			public void actionPerformed(ActionEvent arg0){
-//				Image image = ImageIO.read(new File(".jpg"));
-//			}
-//		});
-//	}
-
-
-	public void finalize() throws Throwable {
-
-	}
-	
-	//TODO event handler
-	public void ActionPerformed(){
-
 	}
 }//end MainFrameGui
