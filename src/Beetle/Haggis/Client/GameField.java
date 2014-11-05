@@ -6,7 +6,7 @@ import Beetle.Haggis.Server.Card;
  * @version 1.0
  * @created 25-Okt-2014 19:32:32
  */
-public class GameField extends Panel {
+public class GameField{
 
 	/**
 	 * Array, Joker

@@ -4,12 +4,13 @@ import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Server.GameServer;
 
 /**
- * @author 
+ * @author Nadine Töpfer
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
 public class MainFrameModel {
 
+	
 	/**
 	 * Gets from server
 	 */

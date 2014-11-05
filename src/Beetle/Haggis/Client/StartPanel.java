@@ -5,7 +5,7 @@ package Beetle.Haggis.Client;
  * @version 1.0
  * @created 25-Okt-2014 19:32:34
  */
-public class StartPanel extends Panel {
+public class StartPanel{
 
 	private int btnJoinGame;
 	private int btnNewGame;

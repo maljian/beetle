@@ -33,4 +33,6 @@ public class HaggisMenu extends JMenuBar{
 		JMenu background = new JMenu("Hintergrund");
 		setting.add(background);
 	}
+	
+	
 }

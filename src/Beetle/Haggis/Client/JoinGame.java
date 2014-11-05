@@ -5,7 +5,7 @@ package Beetle.Haggis.Client;
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
-public class JoinGame extends Panel {
+public class JoinGame {
 
 	private int btnPlay;
 	private int lblIPAdress;
