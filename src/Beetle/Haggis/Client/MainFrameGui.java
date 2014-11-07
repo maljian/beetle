@@ -18,17 +18,16 @@ import Beetle.Haggis.Client.MainView.HaggisMenu;
  */
 public class MainFrameGui extends JFrame{
 	
-	private JPanel contentPane;
-
-	private MainFrameModel mainFrameModel;
 	/**
 	 * Depending on where the player is the panel contains either: Startscreen,
 	 * NewGame, GameFeald, JoinGam
 	 */
 	public EventHandlerMainFrame m_EventHandlerMainFrame;
 	public MainFrameModel m_MainFrameModel;
-	public final HaggisMenu menuBar;
+	private MainFrameModel mainFrameModel;
 	
+	
+	public final HaggisMenu menuBar;
 
 	public MainFrameGui(){
 		super("Haggis");
@@ -38,16 +37,13 @@ public class MainFrameGui extends JFrame{
 	}
 	
 	void createFrame(){
-		setJMenuBar(menuBar);
 		
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();	// get size of the screen
+		setJMenuBar(menuBar);
+        
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();	// get size of the screen
 		setBounds(0, 0, dim.width, dim.height);							// set window to the right size for the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BorderLayout(0, 0));
-        setContentPane(contentPane);
+	
 	}
 
 

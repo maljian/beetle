@@ -1,26 +1,26 @@
 package Beetle.Haggis.Client.MainView;
 
-import javafx.scene.layout.Background;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import Beetle.Haggis.Client.MainView.*;
 
-public class HaggisMenu extends JMenuBar{
-	private Background background = null;
-	private JCheckBoxMenuItem menuItemM;
+public class HaggisMenu extends JMenuBar {
 
+	
+	
 	public HaggisMenu(){
 		createMenuBar();
 		
 	}
 	
-	void createMenuBar(){
-		JMenuBar menuBar = new JMenuBar();
-		
+	void createMenuBar(){		
 		JMenu menu = new JMenu("Menü");
-		menuBar.add(menu);
+		add(menu);
 		
 		JMenuItem rules = new JMenuItem("Regeln");
 		menu.add(rules);
@@ -29,18 +29,22 @@ public class HaggisMenu extends JMenuBar{
 		menu.add(info);
 		
 		JMenu setting = new JMenu("Einstellungen");
-		menuBar.add(setting);
+		add(setting);
 	}
 	
-	
-//	JMenuItem getRules(){
+//	JMenuItem getRules() {
 //		JMenuItem rules = new JMenuItem("Regeln");
-//		rules.addActionListener(new ActionListener(){
+//		rules.addActionListener(new ActionListener() {
 //			@Override
-//			public void actionPerformed(ActionEvent arg0){
-//				Image image = ImageIO.read(new File(".jpg"));
+//			public void actionPerformed(ActionEvent arg0) {
+//				getRules();
 //			}
 //		});
+//		return rules;
 //	}
+	
+	
+
+
 	
 }
