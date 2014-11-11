@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import Beetle.Haggis.Client.MainView.*;
 
 public class HaggisMenu extends JMenuBar {
@@ -24,6 +26,11 @@ public class HaggisMenu extends JMenuBar {
 		
 		JMenuItem rules = new JMenuItem("Regeln");
 		menu.add(rules);
+		rules.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+			
+			}
+		});
 		
 		JMenuItem info = new JMenuItem("Spielinformation");
 		menu.add(info);
@@ -32,19 +39,6 @@ public class HaggisMenu extends JMenuBar {
 		add(setting);
 	}
 	
-//	JMenuItem getRules() {
-//		JMenuItem rules = new JMenuItem("Regeln");
-//		rules.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent arg0) {
-//				getRules();
-//			}
-//		});
-//		return rules;
-//	}
-	
-	
-
 
 	
 }

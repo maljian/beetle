@@ -18,7 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
-
+/**
+ * 
+ * @author Nadine Töpfer
+ *
+ */
 public class RulesWindow extends JFrame {
 
 	/**
@@ -29,24 +33,27 @@ public class RulesWindow extends JFrame {
 
 	}
 
+	JLabel lblRules = new JLabel();
+	
 	/**
 	 * Create the frame.
 	 */
 	public RulesWindow() {
 		super("Spielregeln");
-		JLabel lblRules = new JLabel();
 		setLayout(new BorderLayout());
 		JScrollBar vBar = new JScrollBar(JScrollBar.VERTICAL, 30, 40, 0, 300);
+
 		add(vBar, BorderLayout.EAST);
+		 
 
 		try {
 			ClassLoader classLoader = Thread.currentThread()
 					.getContextClassLoader();
-			InputStream input = classLoader
+			InputStream inputRules = classLoader
 					.getResourceAsStream("Beetle/Resources/Spielregeln.png");
-			Image rules = ImageIO.read(input);
+			Image rules = ImageIO.read(inputRules);
 			lblRules = new JLabel(new ImageIcon(rules));
-			lblRules.setBounds(100, 100, 100, 100);
+			lblRules.setBounds(300, 300, 300, 300);
 			getContentPane().add(lblRules);
 		} catch (IOException e) {
 
@@ -54,8 +61,7 @@ public class RulesWindow extends JFrame {
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
-		setVisible(true);
+		
 	}
-
 
 }
