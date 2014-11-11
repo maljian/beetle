@@ -13,7 +13,8 @@ import Beetle.Haggis.Server.Player;
 public class GameState {
 	// TODO LL Gamestate
 	/**
-	 * chek kombination getter ( Setter)
+	 * sortcards
+	 * run of pairs.... ???
 	 */
 	public enum Combination {
 		NEWTURN, SINGLE, PAIR, RUN
@@ -33,9 +34,7 @@ public class GameState {
 	 */
 	private int restCardValue = 0;
 
-	public GameState() {
 
-	}
 
 	/**
 	 * Chek if it is allowed to played the selected cards. At this state of the game. 
@@ -45,6 +44,7 @@ public class GameState {
 	public boolean chekKombination(ArrayList<Card> cards) {
 		// TODO Sort Cards
 		boolean ansver = false;
+		actualCombination= lastPlayedCards==null? Combination.NEWTURN: actualCombination; //Avoid a crash in the case starting with single 
 		switch (actualCombination) {
 		case NEWTURN:
 			ansver = run(cards) ||pair(cards)||cards.size() ==1;
@@ -136,9 +136,19 @@ public class GameState {
 	
 	
 	// Geter & Setter
+	
 
 	public void setActualCombination(Combination actualCombination) {
 		this.actualCombination = actualCombination;
+	}
+
+	public GameState(ArrayList<Card> lastPlayedCards, Player[] player,
+			int playerTurns, int restCardValue) {
+		super();
+		this.lastPlayedCards = lastPlayedCards;
+		this.player = player;
+		this.playerTurns = playerTurns;
+		this.restCardValue = restCardValue;
 	}
 
 	public ArrayList<Card> getLastPlayedCards() {
@@ -157,14 +167,30 @@ public class GameState {
 		this.playerTurns = playerTurns;
 	}
 
-	public int getRestCardValue() {
-		return restCardValue;
+	/**
+	 * 
+	 * @param reset Set the value of rest cards to 0 if the user get the point of the Haggis
+	 * @return
+	 */
+	public int getRestCardValue(boolean reset) {
+		int restV = restCardValue;
+		restCardValue = reset ? 0 : restCardValue;
+		return restV;
 	}
 
 	public void setRestCardValue(int restCardValue) {
 		this.restCardValue = restCardValue;
 	}
 
-
+	public void setPlayer(Player p, int id){
+		player[id]= p;
+	}
+	public void setPlayerS(Player[] p){
+		player= p;
+	}
+	
+	public Player[] getPlayers(){
+		return player;
+	}
 
 }// end GameState
