@@ -3,6 +3,8 @@ package Beetle.Haggis.Client;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
@@ -127,6 +129,18 @@ public class NewGame extends JoinGame {
 		txtIpAdress.setColumns(10);
 		txtIpAdress.setBounds(582, 143, 133, 20);
 		contentPane.add(txtIpAdress);
+		
+		JButton btnNewButton = new JButton("kopieren");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+					        new StringSelection(txtIpAdress.getText() ), null
+					    );
+					}
+		});
+		btnNewButton.setBackground(Color.ORANGE);
+		btnNewButton.setBounds(582, 168, 133, 23);
+		contentPane.add(btnNewButton);
 		
 		
 	}
