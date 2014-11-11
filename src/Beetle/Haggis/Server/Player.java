@@ -1,5 +1,7 @@
 package Beetle.Haggis.Server;
 
+import java.util.ArrayList;
+
 /**
  * @author Marco Mancuso
  * @version 1.0
@@ -10,7 +12,7 @@ public class Player {
 	private int id;
 	private char name;
 	private int points;
-	private Card cards[];
+	private ArrayList<Card> cards = new ArrayList<Card> ();
 
 	public Player(){
 
@@ -20,18 +22,15 @@ public class Player {
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public char getName() {
 		return name;
 	}
 
-	public void setName(char name) {
-		this.name = name;
-	}
-
+/**
+ * 
+ * @return 
+ */
 	public int getPoints() {
 		return points;
 	}
@@ -39,16 +38,16 @@ public class Player {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-
-	public Card[] getCards() {
-		return cards;
-	}
-
-	public void setCards(Card[] cards) {
-		this.cards = cards;
-	}
 	
 	public void finalize() throws Throwable {
 
+	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
 	}
 }//end Player
