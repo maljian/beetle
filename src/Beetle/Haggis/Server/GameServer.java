@@ -1,30 +1,30 @@
 package Beetle.Haggis.Server;
+import java.util.ArrayList;
+
 import Beetle.Haggis.Message.GameState;
 
 /**
- * @author 
+ * @author  Loïc Lavanchy
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
 public class GameServer {
 
-	private Card cardStack;
+	private ArrayList<Card> cardStack;
 	private EventHandlerServer eventHandler;
-	private Player player;
+	private Player[] player;
 	private GameState state;
 	public ClientConnection m_ClientConnection;
 	public EventHandlerServer m_EventHandlerServer;
 	public Listener m_Listener;
-	public Player m_Player;
-	public Card m_Card;
+//	public Player m_Player;
+//	public Card m_Card;
 
 	public GameServer(){
 
 	}
 
-	public void finalize() throws Throwable {
 
-	}
 	/**
 	 * Punkte Karten zuweisen
 	 */
@@ -66,10 +66,11 @@ public class GameServer {
 
 	}
 
-	private void mixCards(){
 
+	public boolean createTable(int amountPlayer, int targetPoint){
+		return true;
 	}
-
+	
 	private void newCards(){
 
 	}
