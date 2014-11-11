@@ -29,13 +29,13 @@ public class StartWindow extends JFrame implements ActionListener {
   * Create the frame.
   */
  public StartWindow(String title) {
-	 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 500);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(178, 34, 34));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  setBounds(100, 100, 800, 500);
+  contentPane = new JPanel();
+  contentPane.setBackground(new Color(178, 34, 34));
+  contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+  setContentPane(contentPane);
+  contentPane.setLayout(null);
   
   // Button 1 
   btnNewGame = new JButton("Neues Spiel");

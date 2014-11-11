@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @author Faruk 
+ * @author 	Faruk 
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
