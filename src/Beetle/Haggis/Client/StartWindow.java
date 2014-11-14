@@ -29,6 +29,7 @@ public class StartWindow extends JFrame implements ActionListener {
   * Create the frame.
   */
  public StartWindow(String title) {
+	 setTitle("Haggis");
   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   setBounds(100, 100, 800, 500);
   contentPane = new JPanel();
@@ -59,24 +60,17 @@ public class StartWindow extends JFrame implements ActionListener {
   // TODO Auto-generated method stub
   if (e.getSource() == btnNewGame){
    Object[] options = { "OK"};
-//   JOptionPane.showOptionDialog(null, "Hier kommt Neues Spiel - Fenster", "Neues Spiel",
-//   
-//          JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-//   
-//           null, options, options[0]);
+
    new NewGame().setVisible(true);
-  //hier sollte noch exit StartWindow kommen
+   dispose();
+
   }
   
   if (e.getSource() == btnJoinGame){
    Object[] options = { "OK"};
-//   JOptionPane.showOptionDialog(null, "Hier kommt Spiel Beitreten - Fenster", "Neues Spiel",
-//
-//           JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-//
-//           null, options, options[0]);
-//  }
+
    new JoinGame().setVisible(true);
+   dispose();
    }
  }
  /**
