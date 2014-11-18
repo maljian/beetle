@@ -32,7 +32,7 @@ public class NewGame extends JoinGame {
 	private JPanel contentPane;
 	private JTextField txtPlayerName;
 	private JButton btnPlay;
-	private JTextField txtIpAdress;
+	public JTextField txtIpAdress;
 
 	/**
 	 * Launch the application.
@@ -116,14 +116,7 @@ public class NewGame extends JoinGame {
 		txtIpAdress = new JTextField();
 		txtIpAdress.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		try {
-			String ipv4 = InetAddress.getLocalHost().toString();
-			String [] ip = ipv4.split("/");
-			txtIpAdress.setText(ip[1]);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 
 		txtIpAdress.setEditable(false);
 		txtIpAdress.setColumns(10);

@@ -62,6 +62,7 @@ public class RulesWindow extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		
+		
 	}
 
 }
