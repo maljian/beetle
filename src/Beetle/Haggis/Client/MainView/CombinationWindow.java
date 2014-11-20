@@ -46,9 +46,10 @@ public class CombinationWindow extends JFrame {
 
 		}
 
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(CombinationWindow.DISPOSE_ON_CLOSE);
 		pack();
 		setVisible(true);
+		setResizable(false);
 	}
 	
 }

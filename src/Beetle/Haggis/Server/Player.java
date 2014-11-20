@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Player {
 
 	private int id;
-	private char name;
+	private String name;
 	private int points;
 	private ArrayList<Card> cards = new ArrayList<Card> ();
 
@@ -23,7 +23,7 @@ public class Player {
 	}
 	
 
-	public char getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -37,10 +37,6 @@ public class Player {
 
 	public void setPoints(int points) {
 		this.points = points;
-	}
-	
-	public void finalize() throws Throwable {
-
 	}
 
 	public ArrayList<Card> getCards() {

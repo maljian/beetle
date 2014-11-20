@@ -46,11 +46,6 @@ public class MainFrameGui extends JFrame{
 	
 	}
 
-
-	public void finalize() throws Throwable {
-
-	}
-	
 	//TODO event handler
 	public void ActionPerformed(){
 
