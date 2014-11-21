@@ -83,9 +83,13 @@ public class JoinGame extends JFrame {
 		btnPlay = new JButton("Spielen");
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+			
+					 if (e.getSource() == btnPlay){
+						   new GameField().setVisible(true);
+						   dispose();
 			}
-		});
+		}});
 		btnPlay.setBounds(626, 391, 89, 30);
 		contentPane.add(btnPlay);
 		

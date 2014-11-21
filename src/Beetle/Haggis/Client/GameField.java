@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.Toolkit;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -24,8 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.swing.SwingConstants;
 
 /**
  * @author
@@ -219,11 +215,9 @@ public class GameField extends JFrame {
 	void createFrame() {
 
 		setJMenuBar(menuBar);
-
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); // get size of the screen
-		setBounds(0, 0, dim.width, dim.height); // set window to the right size
-												// for the screen
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(1200, 700));
 
 	}
 
