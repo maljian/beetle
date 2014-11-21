@@ -28,6 +28,7 @@ public class GameState {
 	 */
 	private Player player[];
 	private int playerTurns;
+	private boolean[] playerPlayed;
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
 	 * point.
@@ -142,13 +143,21 @@ public class GameState {
 		this.actualCombination = actualCombination;
 	}
 
-	public GameState(ArrayList<Card> lastPlayedCards, Player[] player,
-			int playerTurns, int restCardValue) {
-		super();
-		this.lastPlayedCards = lastPlayedCards;
-		this.player = player;
+	public void newRound(int playerTurns) {
 		this.playerTurns = playerTurns;
-		this.restCardValue = restCardValue;
+				
+		for (boolean pP : playerPlayed) {
+			pP=true;
+		}
+		
+	}
+	public GameState( Player[] player) {
+		super();
+		this.player = player;
+		for (int i=0; i< player.length;i++){
+			playerPlayed[i]= true;
+		}
+		
 	}
 
 	public ArrayList<Card> getLastPlayedCards() {
@@ -192,5 +201,16 @@ public class GameState {
 	public Player[] getPlayers(){
 		return player;
 	}
+
+	public boolean[] getPlayerPlayed() {
+		return playerPlayed;
+	}
+
+	public void setPlayerPlayed(boolean[] playerPlayed) {
+		this.playerPlayed = playerPlayed;
+	}
+	
+	
+	
 
 }// end GameState

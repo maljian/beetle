@@ -1,6 +1,7 @@
 package Beetle.Haggis.Server;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * @author Marco Mancuso
@@ -12,7 +13,7 @@ public class Player {
 	private int id;
 	private char name;
 	private int points;
-	private ArrayList<Card> cards = new ArrayList<Card> ();
+	private Stack<Card> cards = new Stack<Card> ();
 
 	public Player(){
 
@@ -43,11 +44,11 @@ public class Player {
 
 	}
 
-	public ArrayList<Card> getCards() {
-		return cards;
+	public Stack<Card> getCards() {
+		return  cards;
 	}
 
-	public void setCards(ArrayList<Card> cards) {
-		this.cards = cards;
+	public void setCards(Stack<Card> playerCard) {
+		this.cards = playerCard;
 	}
 }//end Player
