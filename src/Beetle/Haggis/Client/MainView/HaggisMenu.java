@@ -37,8 +37,9 @@ public class HaggisMenu extends JMenuBar {
 		menuItemR.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				new RulesWindow().setVisible(true);
+				new RulesWindow().setVisible(true);{
 				
+				}
 			}
 		});
 		return menuItemR;
