@@ -28,9 +28,9 @@ public class StartWindow extends JFrame implements ActionListener {
  /**
   * Create the frame.
   */
- public StartWindow(String title) {
-	 setTitle("Haggis");
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ public StartWindow() {
+	super("Haggis");
+  setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   setBounds(100, 100, 800, 500);
   contentPane = new JPanel();
   contentPane.setBackground(new Color(178, 34, 34));
@@ -76,7 +76,7 @@ public class StartWindow extends JFrame implements ActionListener {
  public static void main(String[] args) {
   
   
-  StartWindow frame = new StartWindow("Haggis");
+  StartWindow frame = new StartWindow();
   frame.setVisible(true);
    }
 }

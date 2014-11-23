@@ -50,7 +50,7 @@ public class JoinGame extends JFrame {
 	public JoinGame() {
 		setResizable(false);
 		setTitle("Haggis - Spiel beitreten");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(178, 34, 34));
@@ -97,7 +97,7 @@ public class JoinGame extends JFrame {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (e.getSource() == btnZurck){
-					   new StartWindow("Haggis").setVisible(true);
+					   new StartWindow().setVisible(true);
 					   dispose();
 			}
 		}});
