@@ -218,6 +218,11 @@ public class GameState {
 	public void setGamePot(int gamePot) {
 		this.gamePot = gamePot;
 	}
+
+	public void setPlayerPlayed(boolean b, int playerTurns2) {
+		playerPlayed[playerTurns2]= b;
+		
+	}
 	
 	
 	
