@@ -36,8 +36,12 @@ public class Player {
 		return points;
 	}
 
-	public void setPoints(int points) {
-		this.points = points;
+//	public void setPoints(int points) {
+//		this.points = points;
+//	}
+	
+	public void addPoint(int newPoints){
+		points += newPoints;
 	}
 
 	public Stack<Card> getCards() {
