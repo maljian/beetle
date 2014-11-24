@@ -34,6 +34,7 @@ public class GameState {
 	 * point.
 	 */
 	private int restCardValue = 0;
+	private int gamePot=0;
 
 
 
@@ -43,7 +44,7 @@ public class GameState {
 	 * @return True if the combination is correct and higher 
 	 */
 	public boolean chekKombination(ArrayList<Card> cards) {
-		// TODO Sort Cards
+		// TODO LL Sort Cards
 		boolean ansver = false;
 		actualCombination= lastPlayedCards==null? Combination.NEWTURN: actualCombination; //Avoid a crash in the case starting with single 
 		switch (actualCombination) {
@@ -208,6 +209,14 @@ public class GameState {
 
 	public void setPlayerPlayed(boolean[] playerPlayed) {
 		this.playerPlayed = playerPlayed;
+	}
+
+	public int getGamePot() {
+		return gamePot;
+	}
+
+	public void setGamePot(int gamePot) {
+		this.gamePot = gamePot;
 	}
 	
 	
