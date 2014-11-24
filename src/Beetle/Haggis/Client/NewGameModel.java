@@ -37,9 +37,6 @@ public class NewGameModel {
 		
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 
 	public void newGame(){
 		GameServer server = new GameServer();

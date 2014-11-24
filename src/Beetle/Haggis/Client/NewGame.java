@@ -135,6 +135,18 @@ public class NewGame extends JoinGame {
 		btnNewButton.setBounds(582, 168, 133, 23);
 		contentPane.add(btnNewButton);
 		
+		final JButton btnZurck = new JButton("Zur\u00FCck");
+		btnZurck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 if (e.getSource() == btnZurck){
+					   new StartWindow("Haggis").setVisible(true);
+					   dispose();
+			}
+		}});
+		btnZurck.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnZurck.setBounds(475, 392, 89, 30);
+		contentPane.add(btnZurck);
+		
 		
 	}
 }

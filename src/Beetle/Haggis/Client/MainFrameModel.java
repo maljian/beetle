@@ -15,7 +15,6 @@ public class MainFrameModel {
 	 * Gets from server
 	 */
 	private int id;
-	private MainFrameGui mainFrameGui;
 	private Message messsage;
 	/**
 	 * 
@@ -26,15 +25,12 @@ public class MainFrameModel {
 	private int socket;
 	private GameState state;
 	public EventHandlerMainFrame m_EventHandlerMainFrame;
-	public MainFrameGui m_MainFrameGui;
+
 
 	public MainFrameModel(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	public void connect(){
 
 	}

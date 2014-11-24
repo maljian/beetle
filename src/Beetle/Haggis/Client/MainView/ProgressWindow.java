@@ -41,9 +41,10 @@ public class ProgressWindow extends JFrame {
 
 		}
 
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(ProgressWindow.DISPOSE_ON_CLOSE);
 		pack();
 		setVisible(true);
+		setResizable(false);
 	}
 
 

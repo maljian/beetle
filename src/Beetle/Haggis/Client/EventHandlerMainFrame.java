@@ -7,9 +7,7 @@ package Beetle.Haggis.Client;
  */
 public class EventHandlerMainFrame {
 
-	private MainFrameGui mainFrameGui;
 	private MainFrameModel mainFrameModel;
-	public MainFrameGui m_MainFrameGui;
 	public MainFrameModel m_MainFrameModel;
 
 	public EventHandlerMainFrame(){
