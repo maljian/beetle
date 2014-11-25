@@ -22,7 +22,7 @@ public class NewGameModel {
 						String [] ip = ipv4.split("/");
 						m_NewGame.txtIpAdress.setText(ip[1]);
 					} catch (UnknownHostException e) {
-						// TODO Auto-generated catch block
+						// TODO Auto-generated catch block Löschen verändern!!!
 						e.printStackTrace();
 					}
 				} catch (Exception e) {

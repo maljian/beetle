@@ -3,23 +3,26 @@ package Beetle.Haggis.Server;
 /**
  * @author Marco Mancuso
  * @version 1.0
- * @created 25-Okt-2014 19:32:31
+ * @created 25-Nov-2014 16:51
  */
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Comparator;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
-public class Card {
+public class Card implements Comparator<Card>{
 
 	public enum Colour {
 		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
 	}
 
-	
 	// image und imageBack von Datentyp: char --> String
 	private Colour colour;
 	private BufferedImage image;
@@ -29,7 +32,7 @@ public class Card {
 
 	/**
 	 * KONSTRUKTOR
-	 * Bsp. Card Karte01 = new Card(8, RED);
+	 * Bsp. Card Karte01 = new Card(8, colour.RED);
 	 * 
 	 */
 	public Card(int number, Colour colour) throws IOException {
@@ -39,106 +42,72 @@ public class Card {
 	this.value = number%2;
 	
 	// Maximale Kartenmengen
-	final int MAXnormaleKarten = 10;
-	final int MAXjokerKarten =  3;
+	final int MAXnormaleKarten = 9;
 	
 	//StandardPfade
-	String StandardPfad = "Beetle/Resources/";
-	
-	//Pfade für die Farben
-	String RoterPfad = StandardPfad + "Red/rot/";
-	String GelberPfad = StandardPfad + "Yellow/gelb/";
-	String OrangePfad = StandardPfad + "Orange/orange/";
-	String GrauerPfad = StandardPfad + "Grey/grau/";
-	String GruenerPfad = StandardPfad + "Green/gruen/";
+	final String standardPfad = "/Beetle/Resources/";
+	String aktuellerPfad = standardPfad;
 	
 	// Pfade für Joker und Rückseite
-	String RueckseitePfad = StandardPfad + "rueckseite.jpg";
-	String KoenigPfad = StandardPfad + "König.jpg";
-	String DamePfad = StandardPfad + "Dame.jpg";
-	String BubePfad = StandardPfad + "Bube.jpg";
-	
-	// Pfad für die Kartennummer
-	String Kartennummer0 = "0" + number + ".jpg";
-	String Kartennummer = number + ".jpg";
+	String rueckseitePfad = standardPfad + "rueckseite.jpg";
+	String koenigPfad = standardPfad + "König.jpg";
+	String damePfad = standardPfad + "Dame.jpg";
+	String bubePfad = standardPfad + "Bube.jpg";
 	
 	// Rueckseite Bild
-	this.imageBack = ImageIO.read(new File(RueckseitePfad));
-	
+	this.imageBack = ImageIO.read(new File(rueckseitePfad));
 	
 	// Zuweisung der Bilder auf den Karten
 	// RED, YELLOW, ORANGE, GREY, GREEN, JOKER
 	
 	switch(colour){
-	case RED:
-		
-		
-		if (number<MAXnormaleKarten){
-		this.image = ImageIO.read(new File(RoterPfad + Kartennummer0));
-		}else if (number==MAXnormaleKarten){
-			this.image = ImageIO.read(new File(RoterPfad + Kartennummer));
-		}
+	case RED:		
+		aktuellerPfad +="Red/rot";
 		break;
-		
 		
 	case YELLOW:
-		if (number<MAXnormaleKarten){
-			this.image = ImageIO.read(new File(GelberPfad + Kartennummer0));
-			}else if (number==MAXnormaleKarten){
-				this.image = ImageIO.read(new File(GelberPfad + Kartennummer));
-			}
+		aktuellerPfad  += "Yellow/gelb"; 
 		break;
-		
-		
+	
 	case ORANGE:
-		if (number<MAXnormaleKarten){
-			this.image = ImageIO.read(new File(OrangePfad + Kartennummer0));
-			}else if (number==MAXnormaleKarten){
-				this.image = ImageIO.read(new File(OrangePfad + Kartennummer));
-			}
+		aktuellerPfad  += "Orange/orange";
 		break;
-		
 		
 	case GREY:
-		if (number<MAXnormaleKarten){
-			this.image = ImageIO.read(new File(GrauerPfad + Kartennummer0));
-			}else if (number==MAXnormaleKarten){
-				this.image = ImageIO.read(new File(GrauerPfad + Kartennummer));
-			}
+		aktuellerPfad  += "Grey/grau";
 		break;
-		
 		
 	case GREEN:
-		if (number<MAXnormaleKarten){
-			this.image = ImageIO.read(new File(GruenerPfad + Kartennummer0));
-			}else if (number==MAXnormaleKarten){
-				this.image = ImageIO.read(new File(GruenerPfad + Kartennummer));
-			}
+		aktuellerPfad  += "Green/gruen";
 		break;
-		
 		
 	case JOKER:
-		break;
+		break;	
 	}	
+	
+	if (number<= MAXnormaleKarten){
+		aktuellerPfad += "0";
+	}
+
+	aktuellerPfad += number + ".jpg";
+	this.image = ImageIO.read(new File(aktuellerPfad));
 	
 	// Value Zuweisung der Karten B,D,K;	
 	
 		switch(number){
-		
 		case 11:
 			value = 2;
-			this.image = ImageIO.read(new File(BubePfad));
+			this.image = ImageIO.read(new File(bubePfad));
 			break;
 		case 12:
 			value = 3;
-			this.image = ImageIO.read(new File(DamePfad));
+			this.image = ImageIO.read(new File(damePfad));
 			break;
 		case 13:
 			value = 5;
-			this.image = ImageIO.read(new File(KoenigPfad));
+			this.image = ImageIO.read(new File(koenigPfad));
 			break;
 			}
-	
 	}
 
 	/**
@@ -148,8 +117,6 @@ public class Card {
 	public Colour getColour() {
 		return colour;
 	}
-
-	
 	/**
 	 * 
 	 * 
@@ -181,6 +148,17 @@ public class Card {
 		return value;
 	}
 
+	
+	//Comparator
+	@Override
+	public int compare(Card arg0, Card arg1) {
+		int answer = arg0.getNumber() - arg1.getNumber();
+		
+		if (answer == 0){
+				answer = arg0.getColour().compareTo(arg1.getColour());
+		}
+		return answer;
+	}
 }// end Card
 
 
