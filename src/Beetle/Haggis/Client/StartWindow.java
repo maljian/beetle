@@ -23,13 +23,13 @@ public class StartWindow extends JFrame implements ActionListener {
  private JPanel contentPane;
  private JButton btnNewGame;
  private JButton btnJoinGame;
- 
 
  /**
   * Create the frame.
   */
  public StartWindow() {
 	super("Haggis");
+  setResizable(false);
   setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   setBounds(100, 100, 800, 500);
   contentPane = new JPanel();
@@ -53,8 +53,6 @@ public class StartWindow extends JFrame implements ActionListener {
   getContentPane().add(btnJoinGame);
  }
 
- 
- // MOMENTAN NUR MIT TEXTAUSGABE, WEITERLEITUNG AUF ANDERE FRAMES KOMMT SPAETER
  @Override
  public void actionPerformed(ActionEvent e) {
   // TODO Auto-generated method stub
@@ -74,7 +72,6 @@ public class StartWindow extends JFrame implements ActionListener {
   * MAIN METHODE NUR ZUM TESTEN IN DER KLASSE
   */
  public static void main(String[] args) {
-  
   
   StartWindow frame = new StartWindow();
   frame.setVisible(true);
