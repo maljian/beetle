@@ -11,22 +11,19 @@ public class ClientConnection {
 	private EventHandlerServer controller;
 	private int id;
 	private Socket socket;
-	public EventHandlerServer m_EventHandlerServer;
-	public GameServer m_GameServer;
+//	public EventHandlerServer m_EventHandlerServer;
+//	public GameServer m_GameServer;
 
 	public ClientConnection(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	/**
 	 * 
 	 * @param socket
 	 * @param handler
 	 */
-	public void ClientConnection(Socket socket, EventHandlerServer handler){
+	public void ClientConnection(Socket socket, EventHandlerServer controller){
 
 	}
 
