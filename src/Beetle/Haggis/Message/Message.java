@@ -1,56 +1,44 @@
 package Beetle.Haggis.Message;
 
+import java.io.Serializable;
 import java.net.Socket;
 
-import Beetle.Haggis.Server.Card;
 
 /**
- * @author 
+ * @author Nadine Töpfer
  * @version 1.0
  * @created 25-Okt-2014 19:32:33
  */
-public class Message {
+public class Message implements Serializable {
 	public enum MessageType {
-		CHAT, CONFIRM, ERROR, REGISTER
+		CONFIRM, ERROR, REGISTER
 	}
 
 	public enum PlayedAction {
 		CARDS, PASS, STATE
 	}
 	
+	private static final long serialVersionUID = 1L;
+	private GameState gameState;
+	private MessageType messageType;
+	private PlayedAction playedAction;
 
-	/**
-	 * Array
-	 */
-	private Card card[];
-	/**
-	 * Pass, State, Cards
-	 */
-	public GameState gameState;
-	/**
-	 * Register,Confirm,Error, Update
-	 */
-	public MessageType messageType;
-	private char name;
-	private PlayedAction PlayedAction;
-	private int playersTurn;
-	private int points;
-	public PlayedAction m_PlayedAction;
-	public GameState m_GameState;
-
-	public void finalize() throws Throwable {
-
+	public Message(GameState gameState, MessageType messageType, PlayedAction playedAction){
+		this.gameState = gameState;
+		this.messageType = messageType;
+		this.playedAction = playedAction; 
 	}
 
-	public MessageType Message() {
-		return null;
+	public GameState getGameState() {
+		return gameState;
 	}
 
-	public Message receive(Socket s) {
-		return null;
+	public MessageType getMessageType() {
+		return messageType;
 	}
 
-	public void send(Socket s) {
-
+	public PlayedAction getPlayedAction() {
+		return playedAction;
 	}
+	
 }// end Message
