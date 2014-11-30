@@ -13,8 +13,7 @@ import Beetle.Haggis.Server.Player;
 public class GameState {
 	// TODO LL Gamestate
 	/**
-	 * sortcards
-	 * run of pairs.... ???
+	 * sortcards run of pairs.... ???
 	 */
 	public enum Combination {
 		NEWTURN, SINGLE, PAIR, RUN
@@ -22,34 +21,36 @@ public class GameState {
 
 	Combination actualCombination = Combination.NEWTURN;
 	private ArrayList<Card> lastPlayedCards;
-	
+
 	/**
 	 * player [0,1,2], cards[Card]
 	 */
 	private Player player[];
-	private int playerTurns;
+	private int playerTurns=0;
 	private boolean[] playerPlayed;
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
 	 * point.
 	 */
-	private int restCardValue = 0;
-	private int gamePot=0;
-
-
+	private int gamePot = 0;
 
 	/**
-	 * Chek if it is allowed to played the selected cards. At this state of the game. 
-	 * @param cards List of selected cards
-	 * @return True if the combination is correct and higher 
+	 * Chek if it is allowed to played the selected cards. At this state of the
+	 * game.
+	 * 
+	 * @param cards
+	 *            List of selected cards
+	 * @return True if the combination is correct and higher
 	 */
 	public boolean chekKombination(ArrayList<Card> cards) {
 		// TODO LL Sort Cards
 		boolean ansver = false;
-		actualCombination= lastPlayedCards==null? Combination.NEWTURN: actualCombination; //Avoid a crash in the case starting with single 
+		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
+				: actualCombination; // Avoid a crash in the case starting with
+										// single
 		switch (actualCombination) {
 		case NEWTURN:
-			ansver = run(cards) ||pair(cards)||cards.size() ==1;
+			ansver = run(cards) || pair(cards) || cards.size() == 1;
 			break;
 
 		case SINGLE:
@@ -71,7 +72,7 @@ public class GameState {
 				ansver = run(cards);
 			}
 			break;
-		
+
 		}
 		return ansver;
 	}
@@ -135,35 +136,38 @@ public class GameState {
 	public Combination getActualCombination() {
 		return actualCombination;
 	}
-	
-	
+
 	// Geter & Setter
-	
 
 	public void setActualCombination(Combination actualCombination) {
 		this.actualCombination = actualCombination;
 	}
 
-	public void newRound(int playerTurns) {
-		setPlayerTurns(playerTurns);			
-		for (int i=0; i< playerPlayed.length; i++) {
-			playerPlayed[i]= true;
+	/**
+	 * Reset the array player played and gives the point to the player with played last.
+	 * @param playerTurns
+	 */
+	public void newRound() {
+		for (int i = 0; i < playerPlayed.length; i++) {
+			
+			if (playerPlayed[i] == true){
+				playerTurns=i;
+				player[i].addPoint(gamePot);
+				gamePot=0;
+			}else{
+			playerPlayed[i] = true;
+			}
 		}
-		
+
 	}
-	
-	public void nextPlayer(){
-		
-	}
-	
-	
-	public GameState( Player[] player) {
+
+	public GameState(Player[] player) {
 		super();
 		this.player = player;
-		for (int i=0; i< player.length;i++){
-			playerPlayed[i]= true;
+		for (int i = 0; i < player.length; i++) {
+			playerPlayed[i] = true;
 		}
-		
+
 	}
 
 	public ArrayList<Card> getLastPlayedCards() {
@@ -179,36 +183,26 @@ public class GameState {
 	}
 
 	/**
-	 * Chek the value isn’t higher as the amount of player. If it is, the first player is set as actual player. 
-	 * @param playerTurns Next player 1, 2 [3]
-	 */
-	public void setPlayerTurns(int playerTurns) {
-		this.playerTurns = playerTurns>= player.length? 0: playerTurns;
-	}
-
-	/**
+	 * Chek the value isn’t higher as the amount of player. If it is, the first
+	 * player is set as actual player.
 	 * 
-	 * @param reset Set the value of rest cards to 0 if the user get the point of the Haggis
-	 * @return
+	 * @param playerTurns
+	 *            Next player 1, 2 [3]
 	 */
-	public int getRestCardValue(boolean reset) {
-		int restV = restCardValue;
-		restCardValue = reset ? 0 : restCardValue;
-		return restV;
-	}
-
-	public void setRestCardValue(int restCardValue) {
-		this.restCardValue = restCardValue;
-	}
-
-	public void setPlayer(Player p, int id){
-		player[id]= p;
-	}
-	public void setPlayerS(Player[] p){
-		player= p;
+	public int setPlayerTurns(int playerTurns) {
+		this.playerTurns = playerTurns >= player.length ? 0 : playerTurns;
+		return playerTurns;
 	}
 	
-	public Player[] getPlayers(){
+	public void setPlayer(Player p, int id) {
+		player[id] = p;
+	}
+
+	public void setPlayerS(Player[] p) {
+		player = p;
+	}
+
+	public Player[] getPlayers() {
 		return player;
 	}
 
@@ -229,11 +223,8 @@ public class GameState {
 	}
 
 	public void setPlayerPlayed(boolean b, int playerTurns2) {
-		playerPlayed[playerTurns2]= b;
-		
+		playerPlayed[playerTurns2] = b;
+
 	}
-	
-	
-	
 
 }// end GameState
