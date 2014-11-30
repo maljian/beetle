@@ -17,8 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class Card implements Comparator<Card>{
-
+public class Card implements Comparable<Card> {
 	public enum Colour {
 		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
 	}
@@ -31,70 +30,69 @@ public class Card implements Comparator<Card>{
 	private int value;
 
 	/**
-	 * KONSTRUKTOR
-	 * Bsp. Card Karte01 = new Card(8, colour.RED);
+	 * KONSTRUKTOR Bsp. Card Karte01 = new Card(8, colour.RED);
 	 * 
 	 */
 	public Card(int number, Colour colour) throws IOException {
-		
-	this.number = number;	
-	this.colour = colour;
-	this.value = number%2;
-	
-	// Maximale Kartenmengen
-	final int MAXnormaleKarten = 9;
-	
-	//StandardPfade
-	final String standardPfad = "/Beetle/Resources/";
-	String aktuellerPfad = standardPfad;
-	
-	// Pfade für Joker und Rückseite
-	String rueckseitePfad = standardPfad + "rueckseite.jpg";
-	String koenigPfad = standardPfad + "König.jpg";
-	String damePfad = standardPfad + "Dame.jpg";
-	String bubePfad = standardPfad + "Bube.jpg";
-	
-	// Rueckseite Bild
-	this.imageBack = ImageIO.read(new File(rueckseitePfad));
-	
-	// Zuweisung der Bilder auf den Karten
-	// RED, YELLOW, ORANGE, GREY, GREEN, JOKER
-	
-	switch(colour){
-	case RED:		
-		aktuellerPfad +="Red/rot";
-		break;
-		
-	case YELLOW:
-		aktuellerPfad  += "Yellow/gelb"; 
-		break;
-	
-	case ORANGE:
-		aktuellerPfad  += "Orange/orange";
-		break;
-		
-	case GREY:
-		aktuellerPfad  += "Grey/grau";
-		break;
-		
-	case GREEN:
-		aktuellerPfad  += "Green/gruen";
-		break;
-		
-	case JOKER:
-		break;	
-	}	
-	
-	if (number<= MAXnormaleKarten){
-		aktuellerPfad += "0";
-	}
 
-	aktuellerPfad += number + ".jpg";
-	this.image = ImageIO.read(new File(aktuellerPfad));
-	
-	// Value Zuweisung der Karten B,D,K;	
-	
-		switch(number){
+		this.number = number;
+		this.colour = colour;
+		this.value = number % 2;
+
+		// Maximale Kartenmengen
+		final int MAXnormaleKarten = 9;
+
+		// StandardPfade
+		final String standardPfad = "/Beetle/Resources/";
+		String aktuellerPfad = standardPfad;
+
+		// Pfade für Joker und Rückseite
+		String rueckseitePfad = standardPfad + "rueckseite.jpg";
+		String koenigPfad = standardPfad + "König.jpg";
+		String damePfad = standardPfad + "Dame.jpg";
+		String bubePfad = standardPfad + "Bube.jpg";
+
+		// Rueckseite Bild
+		this.imageBack = ImageIO.read(new File(rueckseitePfad));
+
+		// Zuweisung der Bilder auf den Karten
+		// RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+
+		switch (colour) {
+		case RED:
+			aktuellerPfad += "Red/rot";
+			break;
+
+		case YELLOW:
+			aktuellerPfad += "Yellow/gelb";
+			break;
+
+		case ORANGE:
+			aktuellerPfad += "Orange/orange";
+			break;
+
+		case GREY:
+			aktuellerPfad += "Grey/grau";
+			break;
+
+		case GREEN:
+			aktuellerPfad += "Green/gruen";
+			break;
+
+		case JOKER:
+			break;
+		}
+
+		if (number <= MAXnormaleKarten) {
+			aktuellerPfad += "0";
+		}
+
+		aktuellerPfad += number + ".jpg";
+		this.image = ImageIO.read(new File(aktuellerPfad));
+
+		// Value Zuweisung der Karten B,D,K;
+
+		switch (number) {
 		case 11:
 			value = 2;
 			this.image = ImageIO.read(new File(bubePfad));
@@ -107,23 +105,25 @@ public class Card implements Comparator<Card>{
 			value = 5;
 			this.image = ImageIO.read(new File(koenigPfad));
 			break;
-			}
+		}
 	}
 
 	/**
 	 * RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+	 * 
 	 * @return
 	 */
 	public Colour getColour() {
 		return colour;
 	}
+
 	/**
 	 * 
 	 * 
 	 * @return
 	 */
-	public BufferedImage getImage() {		
-		return image; 
+	public BufferedImage getImage() {
+		return image;
 	}
 
 	public BufferedImage getImageBack() {
@@ -148,17 +148,14 @@ public class Card implements Comparator<Card>{
 		return value;
 	}
 
-	
-	//Comparator
-	@Override
-	public int compare(Card arg0, Card arg1) {
-		int answer = arg0.getNumber() - arg1.getNumber();
-		
-		if (answer == 0){
-				answer = arg0.getColour().compareTo(arg1.getColour());
+	// Comparator
+	public int compareTo(Card c) {
+		int answer = number - c.getNumber();
+
+		if (answer == 0) {
+			answer = colour.compareTo(c.getColour());
 		}
 		return answer;
 	}
-}// end Card
-
+}
 
