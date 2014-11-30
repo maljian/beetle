@@ -178,6 +178,10 @@ public class GameState {
 		return playerTurns;
 	}
 
+	/**
+	 * Chek the value isn’t higher as the amount of player. If it is, the first player is set as actual player. 
+	 * @param playerTurns Next player 1, 2 [3]
+	 */
 	public void setPlayerTurns(int playerTurns) {
 		this.playerTurns = playerTurns>= player.length? 0: playerTurns;
 	}
