@@ -1,6 +1,8 @@
 package Beetle.Haggis.Message;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Player;
@@ -11,7 +13,7 @@ import Beetle.Haggis.Server.Player;
  * @created 09-Nov-2014
  */
 public class GameState {
-	// TODO LL Gamestate
+	
 	/**
 	 * sortcards run of pairs.... ???
 	 */
@@ -26,11 +28,11 @@ public class GameState {
 	 * player [0,1,2], cards[Card]
 	 */
 	private Player player[];
-	private int playerTurns=0;
+	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
-	 * point.
+	 * point. "Haggis"
 	 */
 	private int gamePot = 0;
 
@@ -43,7 +45,8 @@ public class GameState {
 	 * @return True if the combination is correct and higher
 	 */
 	public boolean chekKombination(ArrayList<Card> cards) {
-		// TODO LL Sort Cards
+	
+		Collections.sort(cards);
 		boolean ansver = false;
 		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
 				: actualCombination; // Avoid a crash in the case starting with
@@ -144,18 +147,20 @@ public class GameState {
 	}
 
 	/**
-	 * Reset the array player played and gives the point to the player with played last.
+	 * Reset the array player played and gives the point to the player with
+	 * played last.
+	 * 
 	 * @param playerTurns
 	 */
 	public void newRound() {
 		for (int i = 0; i < playerPlayed.length; i++) {
-			
-			if (playerPlayed[i] == true){
-				playerTurns=i;
+
+			if (playerPlayed[i] == true) {
+				playerTurns = i;
 				player[i].addPoint(gamePot);
-				gamePot=0;
-			}else{
-			playerPlayed[i] = true;
+				gamePot = 0;
+			} else {
+				playerPlayed[i] = true;
 			}
 		}
 
@@ -193,7 +198,7 @@ public class GameState {
 		this.playerTurns = playerTurns >= player.length ? 0 : playerTurns;
 		return playerTurns;
 	}
-	
+
 	public void setPlayer(Player p, int id) {
 		player[id] = p;
 	}
@@ -214,10 +219,19 @@ public class GameState {
 		this.playerPlayed = playerPlayed;
 	}
 
+	/**
+	 * Haggis
+	 * 
+	 * @return
+	 */
 	public int getGamePot() {
 		return gamePot;
 	}
 
+	/**
+	 * Hggis
+	 * @param gamePot
+	 */
 	public void setGamePot(int gamePot) {
 		this.gamePot = gamePot;
 	}
