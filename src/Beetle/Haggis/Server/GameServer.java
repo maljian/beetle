@@ -6,12 +6,17 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 
+import javafx.collections.SetChangeListener;
+
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
+
+import org.junit.experimental.max.MaxCore;
 
 import com.sun.org.apache.xml.internal.utils.StylesheetPIHandler;
 
 import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card.Colour;
 
@@ -23,12 +28,13 @@ import Beetle.Haggis.Server.Card.Colour;
 public class GameServer {
 
 	private EventHandlerServer eventHandler;
-	
+
 	private GameState state;
 	private int targetPoint;
-//	public ClientConnection m_ClientConnection;
-//	public EventHandlerServer m_EventHandlerServer;
-//	public Listener m_Listener;
+
+	// public ClientConnection m_ClientConnection;
+	// public EventHandlerServer m_EventHandlerServer;
+	// public Listener m_Listener;
 
 	// private Player[] players;
 	// private int targetPoint = 0;
@@ -99,6 +105,7 @@ public class GameServer {
 		Collections.shuffle(cardStack);
 		Player[] players = state.getPlayers();
 		for (Player p : players) {
+		
 			Stack<Card> playerCard = new Stack<Card>();
 			for (int i = 0; i < 14; i++) {
 				playerCard.push(cardStack.pop());
@@ -116,6 +123,7 @@ public class GameServer {
 					;
 				}// TODO LL dose it crusch?
 			}
+			Collections.sort(playerCard);
 			p.setCards(playerCard);
 		}
 		state.setPlayerS(players);
@@ -123,66 +131,79 @@ public class GameServer {
 		return state;
 	}
 
-	
 	/**
 	 * Reihenfolge Spieler
 	 */
 	public GameState logic(GameState playerState, PlayedAction action) {
-		//TOTO LL 1. logick definiren; 2. programieren
-		GameState ansver = state;
+		// TOTO LL 1. logick definiren; 2. programieren
 		int playerTurns = playerState.getPlayerTurns();
-		
+
 		switch (action) {
 		case PASS:
 			playerState.setPlayerPlayed(false, playerState.getPlayerTurns());
-			int stilPlayingPlayer=0;
-			for( boolean plyed :playerState.getPlayerPlayed()){
-				stilPlayingPlayer += plyed? 1: 0;
+			int stilPlayingPlayer = 0;
+			for (boolean plyed : playerState.getPlayerPlayed()) {
+				stilPlayingPlayer += plyed ? 1 : 0;
 			}
-			if (stilPlayingPlayer>1){
-				playerState.setPlayerTurns(playerTurns+1);
-				ansver= playerState;
-			}else{
+			if (stilPlayingPlayer > 1) {
+				playerState.setPlayerTurns(playerTurns + 1);
+
+			} else {
 				playerState.newRound();
 			}
-			
-					
+
 			break;
 
 		case CARDS:
-			//TODO  LL nice to double-check the cards on the server
+			Player aktuelPlayer = playerState.getPlayers()[playerTurns];
+			if (aktuelPlayer.getCards().size() == 0) {
+				int maxHandcards = 0;
+				int remainingPlayer = 0;
+				for (Player p : playerState.getPlayers()) {
+					maxHandcards = maxHandcards < p.getCards().size() ? p
+							.getCards().size() : maxHandcards;
+					remainingPlayer += 0 < p.getCards().size() ? 1 : 0;
+				}
+				aktuelPlayer.addPoint(maxHandcards * 5
+						+ playerState.getGamePot());
+				playerState.setGamePot(0);
+
+				if  (aktuelPlayer.getPoints()>= targetPoint){
+					//TODO LL Beetles:  Inform game winn, end game
+				}
+				
+				if (remainingPlayer > 1) {
+					playerState.setPlayerTurns(playerTurns++);
+					return playerState; // Replace the ells part to avoid having to many steps in.
+				}
+				Stack<Card> cards = newCards(1);
+				playerState= distributeCards(cards, playerState);
+				playerState.setActualCombination(Combination.NEWTURN);
+				int minPoint= targetPoint;
+				Player[] players = playerState.getPlayers();
+					
+				//Set the player with the les points as the next player.
+				for ( int i=0; i< players.length; i++){
+					if (players[i].getPoints()<= minPoint){
+						minPoint= players[i].getPoints();
+						playerState.setPlayerTurns(i);
+					}
+				}
+						
+
+			} else {
+				playerState.setPlayerTurns(playerTurns + 1);
+			}
+			// TODO LL nice to double-check the cards on the server
 			break;
 		}
-		
-//		if (action == PlayedAction.PASS) {
-//			playerState.setPlayerPlayed(false, playerTurns);
-//			if (stitchEnd(playerState)) {
-////				Player p = playerState.getPlayers()[playerTurns];
-////				p.addPoint(playerState.getGamePot());
-//			} else {
-//			}
-//			ansver= playerState; // Hack. Replace an else part over the rest.
-//		}
 
-		playerTurns++;
-		playerTurns = playerTurns == playerState.getPlayers().length ? 0
-				: playerTurns;
-		playerState.setPlayerTurns(playerTurns);
+		//playerState.setPlayerTurns(playerTurns++);
 
-		return ansver;
+		return playerState;
 
 	}
 
-	private boolean stitchEnd(GameState gState) {
-		//TODO Javadoc
-		int amountOfPased = 0;
-		for (boolean played : gState.getPlayerPlayed()) {
-			amountOfPased = !played ? amountOfPased++ : amountOfPased;
-		}
-		boolean ansver = amountOfPased == gState.getPlayers().length - 1 ? true
-				: false;
-		return ansver;
-	}
 
 	/**
 	 * 
