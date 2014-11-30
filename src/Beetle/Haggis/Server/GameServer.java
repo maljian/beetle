@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import com.sun.org.apache.xml.internal.utils.StylesheetPIHandler;
 
@@ -24,6 +25,7 @@ public class GameServer {
 	private EventHandlerServer eventHandler;
 	
 	private GameState state;
+	private int targetPoint;
 //	public ClientConnection m_ClientConnection;
 //	public EventHandlerServer m_EventHandlerServer;
 //	public Listener m_Listener;
@@ -81,7 +83,7 @@ public class GameServer {
 	private void startNewRound(int payerTurn) {
 		Stack<Card> cardStack = newCards(state.getPlayers().length);
 		state = distributeCards(cardStack, state);
-		state.newRound(payerTurn);
+		state.newRound();
 	}
 
 	/**
@@ -117,7 +119,7 @@ public class GameServer {
 			p.setCards(playerCard);
 		}
 		state.setPlayerS(players);
-		state.setRestCardValue(CalculateStackValue(cardStack));
+		state.setGamePot(CalculateStackValue(cardStack));
 		return state;
 	}
 
@@ -127,23 +129,47 @@ public class GameServer {
 	 */
 	public GameState logic(GameState playerState, PlayedAction action) {
 		//TOTO LL 1. logick definiren; 2. programieren
+		GameState ansver = state;
 		int playerTurns = playerState.getPlayerTurns();
-		if (action == PlayedAction.PASS) {
-			playerState.setPlayerPlayed(false, playerTurns);
-			if (stitchEnd(playerState)) {
-//				Player p = playerState.getPlayers()[playerTurns];
-//				p.addPoint(playerState.getGamePot());
-			} else {
+		
+		switch (action) {
+		case PASS:
+			playerState.setPlayerPlayed(false, playerState.getPlayerTurns());
+			int stilPlayingPlayer=0;
+			for( boolean plyed :playerState.getPlayerPlayed()){
+				stilPlayingPlayer += plyed? 1: 0;
 			}
-			return playerState; // Hack. Replace an else part over the rest.
+			if (stilPlayingPlayer>1){
+				playerState.setPlayerTurns(playerTurns+1);
+				ansver= playerState;
+			}else{
+				playerState.newRound();
+			}
+			
+					
+			break;
+
+		case CARDS:
+			//TODO  LL nice to double-check the cards on the server
+			break;
 		}
+		
+//		if (action == PlayedAction.PASS) {
+//			playerState.setPlayerPlayed(false, playerTurns);
+//			if (stitchEnd(playerState)) {
+////				Player p = playerState.getPlayers()[playerTurns];
+////				p.addPoint(playerState.getGamePot());
+//			} else {
+//			}
+//			ansver= playerState; // Hack. Replace an else part over the rest.
+//		}
 
 		playerTurns++;
 		playerTurns = playerTurns == playerState.getPlayers().length ? 0
 				: playerTurns;
 		playerState.setPlayerTurns(playerTurns);
 
-		return null;
+		return ansver;
 
 	}
 
