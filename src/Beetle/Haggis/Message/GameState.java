@@ -145,13 +145,18 @@ public class GameState {
 	}
 
 	public void newRound(int playerTurns) {
-		this.playerTurns = playerTurns;
-				
-		for (boolean pP : playerPlayed) {
-			pP=true;
+		setPlayerTurns(playerTurns);			
+		for (int i=0; i< playerPlayed.length; i++) {
+			playerPlayed[i]= true;
 		}
 		
 	}
+	
+	public void nextPlayer(){
+		
+	}
+	
+	
 	public GameState( Player[] player) {
 		super();
 		this.player = player;
@@ -174,7 +179,7 @@ public class GameState {
 	}
 
 	public void setPlayerTurns(int playerTurns) {
-		this.playerTurns = playerTurns;
+		this.playerTurns = playerTurns>= player.length? 0: playerTurns;
 	}
 
 	/**
