@@ -15,15 +15,6 @@ import javax.swing.JLabel;
  *
  */
 public class CombinationWindow extends JFrame {
-	
-
-	/**
-	 * Launch the application. MAIN METHODE NUR ZUM TESTEN IN DER KLASSE
-	 */
-	public static void main(String[] args) {
-		new CombinationWindow();
-
-	}
 
 	/**
 	 * Create the frame.
@@ -40,7 +31,6 @@ public class CombinationWindow extends JFrame {
 					.getResourceAsStream("Beetle/Resources/Kombinationen.jpg");
 			Image progress = ImageIO.read(inputCombination);
 			lblCombination = new JLabel(new ImageIcon(progress));
-			lblCombination.setBounds(50, 50, 50, 50);
 			getContentPane().add(lblCombination);
 		} catch (IOException e) {
 

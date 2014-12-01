@@ -26,14 +26,6 @@ import javax.swing.ScrollPaneLayout;
  */
 public class RulesWindow extends JFrame {
 
-	/**
-	 * Launch the application. MAIN METHODE NUR ZUM TESTEN IN DER KLASSE
-	 */
-	public static void main(String[] args) {
-		new RulesWindow();
-
-	}
-
 	JLabel lblRules = new JLabel();
 	
 	/**

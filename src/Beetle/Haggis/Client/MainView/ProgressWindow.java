@@ -13,14 +13,6 @@ import javax.swing.JLabel;
 public class ProgressWindow extends JFrame {
 	
 	/**
-	 * Launch the application. MAIN METHODE NUR ZUM TESTEN IN DER KLASSE
-	 */
-	public static void main(String[] args) {
-		new ProgressWindow();
-
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public ProgressWindow() {
@@ -35,7 +27,6 @@ public class ProgressWindow extends JFrame {
 					.getResourceAsStream("Beetle/Resources/Ablauf.jpg");
 			Image progress = ImageIO.read(inputProgress);
 			lblProgress = new JLabel(new ImageIcon(progress));
-			lblProgress.setBounds(50, 50, 50, 50);
 			getContentPane().add(lblProgress);
 		} catch (IOException e) {
 
