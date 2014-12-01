@@ -28,6 +28,10 @@ public class Message implements Serializable {
 		this.messageType = messageType;
 		this.playedAction = playedAction; 
 	}
+	
+	public Message(){
+		
+	}
 
 	public GameState getGameState() {
 		return gameState;
