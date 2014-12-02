@@ -34,7 +34,7 @@ public class NewGameModel {
 
 
 	public void newGame(){
-		GameServer server = new GameServer(targetPoint, false, false, playerNr);
+		GameServer server = new GameServer(targetPoint, false, false, numberPlayer);
 		
 	}
 }//end NewGameModel
