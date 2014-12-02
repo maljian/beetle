@@ -21,15 +21,6 @@ public class EventHandlerServer {
 		
 	}
 
-	/**
-	 * 
-	 * @param message
-	 * @return 
-	 */
-	public void broadcast(Message message){
-
-	}
-
 	private void startServer(SynchronousQueue<Message> queue){
 		try{
 			Server obj = new Server();
