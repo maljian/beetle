@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
+
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Beetle.Haggis.Client.MainView.CombinationWindow;
 import Beetle.Haggis.Client.MainView.HaggisMenu;
@@ -15,6 +19,10 @@ import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 
 import javax.swing.JButton;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,12 +32,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @author
+ * @author Faruk
  * @version 1.0
  * @created 25-Okt-2014 19:32:32
  */
 public class GameField extends JFrame {
+	
+	/**
+	 * JButton Selected
+	 */
 
+	
+	
 	/**
 	 * Array, Joker
 	 */
@@ -85,8 +99,53 @@ public class GameField extends JFrame {
 		JButton btnLegen = new JButton("legen");
 		ButtonsPlace.add(btnLegen);
 
-		JButton btnBube = new JButton();
+		final JButton btnBube = new JButton();
+		Border empty = BorderFactory.createEmptyBorder(1, 1, 1, 1); 
+		final Border compound;
+	     Color crl = (Color.blue);
+	     compound = BorderFactory.createCompoundBorder(empty, new OldRoundedBorderLine(crl));
+	     Color crl1 = (Color.red);
+	     final Border compound1;
+	     compound1 = BorderFactory.createCompoundBorder(empty, new OldRoundedBorderLine(crl1));
+	     Color crl2 = (Color.black);
+	     final Border compound2;
+	     compound2 = BorderFactory.createCompoundBorder(empty, new OldRoundedBorderLine(crl2));
+	     
 		btnBube.setPreferredSize(new Dimension(widthCard, heightCard));
+		btnBube.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource() == btnBube){
+			
+			        btnBube.setBorderPainted(true);
+			        btnBube.setFocusPainted(false);
+			        btnBube.setBorder(compound);
+			        btnBube.setHorizontalTextPosition(SwingConstants.CENTER);
+			        btnBube.setVerticalTextPosition(SwingConstants.BOTTOM);
+
+			        btnBube.getModel().addChangeListener(new ChangeListener() {
+
+			            @Override
+			            public void stateChanged(ChangeEvent e) {
+			                ButtonModel model = (ButtonModel) e.getSource();
+			                if (model.isRollover()) {
+			                    btnBube.setBorder(compound1);
+			                } else {
+			                    btnBube.setBorder(compound);
+			                }
+			                if (model.isPressed()) {
+			                    btnBube.setBorder(compound2);
+			                   
+			                    }
+			            
+						}
+			        });
+				}
+			}
+			
+		});
+
 		try {
 			Image img = ImageIO.read(getClass().getResource(
 					"/Beetle/Resources/Bube.jpg"));
@@ -224,4 +283,13 @@ public class GameField extends JFrame {
 	public void EventHandler() {
 
 	}
+	class OldRoundedBorderLine extends AbstractBorder {
+
+	    private final static int MARGIN = 5;
+	    private static final long serialVersionUID = 1L;
+	    private Color color;
+
+	    OldRoundedBorderLine(Color clr) {
+	        color = clr;
+	    }}
 }// end GameField
