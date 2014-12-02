@@ -105,7 +105,7 @@ public class NewGame extends JoinGame {
 		contentPane.add(lblTargetPoint);
 		
 		JComboBox TargetPoint = new JComboBox();
-		TargetPoint.setModel(new DefaultComboBoxModel(new String[] {"250", "350"}));
+		TargetPoint.setModel(new DefaultComboBoxModel(new String[] {"10","250", "350"}));
 		TargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 		TargetPoint.setBounds(660, 112, 57, 20);
 		contentPane.add(TargetPoint);

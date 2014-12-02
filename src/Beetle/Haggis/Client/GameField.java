@@ -225,35 +225,33 @@ public class GameField extends JFrame {
 		for (int i = 1; i != 15; i++) {
 			cardHand[i] = new JButton("card " + i);
 			CardsPlace.add(cardHand[i]);
-			// cardHand[i].setIcon(new
-			// ImageIcon("/Beetle/Resources/Grey/grau02.jpg"));
-			// getIconImage();{
-			// ImageIcon card[i]Image = new
-			// ImageIcon("Resources/Grey/grau02.jpg");
-			// try {
-			// Image img =
-			// ImageIO.read(getClass().getResource("Resources/Grey"));
-			// card[i].setIcon(new ImageIcon(img));
-			// } catch (IOException ex) {
-			// }
+
+			/**
+			 * Tisch (MITTE)
+			 */
 
 			JPanel centerField = new JPanel();
 			getContentPane().add(centerField, BorderLayout.CENTER);
 			centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			
+			JButton tableCard[] = new JButton[15];
+			for (int j = 1; i != 15; j++) {
+				cardHand[i] = new JButton("card " + i);
+				CardsPlace.add(cardHand[j]);
 
-			JPanel cardField_1 = new JPanel();
-			FlowLayout flowLayout_1 = (FlowLayout) cardField_1.getLayout();
-			centerField.add(cardField_1);
-
-			JPanel cardField_2 = new JPanel();
-			centerField.add(cardField_2);
-
-			JPanel cardField_3 = new JPanel();
-			centerField.add(cardField_3);
-
-			JPanel cardField_4 = new JPanel();
-			centerField.add(cardField_4);
-
+//			JPanel cardField_1 = new JPanel();
+//			FlowLayout flowLayout_1 = (FlowLayout) cardField_1.getLayout();
+//			centerField.add(cardField_1);
+//
+//			JPanel cardField_2 = new JPanel();
+//			centerField.add(cardField_2);
+//
+//			JPanel cardField_3 = new JPanel();
+//			centerField.add(cardField_3);
+//
+//			JPanel cardField_4 = new JPanel();
+//			centerField.add(cardField_4);
+//
 			JPanel opponentField = new JPanel();
 			getContentPane().add(opponentField, BorderLayout.NORTH);
 			opponentField.setLayout(new BorderLayout(0, 0));
@@ -267,6 +265,7 @@ public class GameField extends JFrame {
 			JPanel opponent_2 = new JPanel();
 			opponent_2.setBackground(Color.BLACK);
 			opponentField.add(opponent_2, BorderLayout.EAST);
+		}
 		}
 
 	}

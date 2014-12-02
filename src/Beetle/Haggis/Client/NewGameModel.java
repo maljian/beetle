@@ -31,15 +31,10 @@ public class NewGameModel {
 			}
 		});
 	}
-	
-	public void blaView(){
-		//m_NewGame = new NewGame();
-		
-	}
 
 
 	public void newGame(){
-		GameServer server = new GameServer();
-		//hier kommt noch GameServer.create bla bla
+		GameServer server = new GameServer(targetPoint, false, false, playerNr);
+		
 	}
 }//end NewGameModel

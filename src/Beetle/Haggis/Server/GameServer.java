@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
 
-import javafx.collections.SetChangeListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
@@ -69,7 +68,7 @@ public class GameServer {
 	 * @param playerNr
 	 *            Amount of players in the game, 2 or 3. Default are 2
 	 */
-	public void GamServer(int targetPoint, boolean bet, boolean bombs,
+	public  GameServer(int targetPoint, boolean bet, boolean bombs,
 			int playerNr) {
 		targetPoint = targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
