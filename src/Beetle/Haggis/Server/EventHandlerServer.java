@@ -3,6 +3,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.concurrent.SynchronousQueue;
 
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
@@ -14,20 +15,10 @@ import Beetle.Haggis.Message.MessageInterface;
  */
 public class EventHandlerServer {
 
-	private ArrayList<ClientConnection> clientList;
-	private Listener listener;
 	private GameServer main;
 
 	public EventHandlerServer(){
-		startServer();
-	}
-
-	/**
-	 * 
-	 * @param clientConection
-	 */
-	public void addClientConnection(ClientConnection clientConection){
-
+		
 	}
 
 	/**
@@ -39,18 +30,11 @@ public class EventHandlerServer {
 
 	}
 
-	/**
-	 * 
-	 * @param client
-	 */
-	public void removeClient(ClientConnection client){
-
-	}
-
-	private void startServer(){
+	private void startServer(SynchronousQueue<Message> queue){
 		try{
 			Server obj = new Server();
-			MessageInterface stub = (MessageInterface) UnicastRemoteObject.exportObject(obj, 0);
+			MessageInterface stub = (MessageInterface) UnicastRemoteObject
+					.exportObject(obj, 0);
 			
 			//Bind the remote object's stub in the registry
 			Registry registry = LocateRegistry.getRegistry();

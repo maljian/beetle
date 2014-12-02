@@ -11,8 +11,6 @@ import javafx.collections.SetChangeListener;
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
 
-import org.junit.experimental.max.MaxCore;
-
 import com.sun.org.apache.xml.internal.utils.StylesheetPIHandler;
 
 import Beetle.Haggis.Message.GameState;

@@ -78,6 +78,8 @@ public class GameFieldModel {
 			host = ip[1];
 			registry = LocateRegistry.getRegistry(host);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
+			// TODO
+			mi.setUserName(null);
 		} catch (UnknownHostException | RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
