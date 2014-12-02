@@ -105,8 +105,7 @@ public class Card implements Comparable<Card> {
 			break;
 		}
 		
-		this.image = ImageIO.read(getClass().getResource(
-		aktuellerPfad));
+		this.image = ImageIO.read(getClass().getResource(aktuellerPfad));
 	}
 
 	/**
