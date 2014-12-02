@@ -88,24 +88,25 @@ public class Card implements Comparable<Card> {
 		}
 
 		aktuellerPfad += number + ".jpg";
-		this.image = ImageIO.read(new File(aktuellerPfad));
-
 		// Value Zuweisung der Karten B,D,K;
 
 		switch (number) {
 		case 11:
 			value = 2;
-			this.image = ImageIO.read(new File(bubePfad));
+			 aktuellerPfad = bubePfad;
 			break;
 		case 12:
 			value = 3;
-			this.image = ImageIO.read(new File(damePfad));
+			aktuellerPfad = damePfad;
 			break;
 		case 13:
 			value = 5;
-			this.image = ImageIO.read(new File(koenigPfad));
+			aktuellerPfad = koenigPfad;
 			break;
 		}
+		
+		this.image = ImageIO.read(getClass().getResource(
+		aktuellerPfad));
 	}
 
 	/**
