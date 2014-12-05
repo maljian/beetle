@@ -88,7 +88,8 @@ public class JoinGame extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 
 				if (e.getSource() == btnPlay) {
-					new GameServer();
+					//TODO (LL) korekter konstruktor verwenden
+					//new GameServer();
 					dispose();
 				}
 			}

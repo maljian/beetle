@@ -143,7 +143,8 @@ public class NewGame extends JoinGame {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (e.getSource() == btnZurck){
-					   new GameServer();
+					 //TODO (LL) korekter konstruktor verwenden
+					   //new GameServer();
 					   dispose();
 			}
 		}});
