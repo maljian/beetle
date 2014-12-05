@@ -38,9 +38,9 @@ public class GameServer {
 	// public Player m_Player;
 	// public Card m_Card;
 
-	public GameServer() {
-
-	}
+//	public GameServer() {
+//
+//	}
 
 	/**
 	 * Get the value of the cards and addition them.
