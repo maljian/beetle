@@ -30,6 +30,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 /**
  * @author Faruk
@@ -215,11 +216,14 @@ public class GameField extends JFrame {
 		});
 		HelpButtons.add(btnProgress, BorderLayout.EAST);
 		
-				JPanel panel = new JPanel();
-				BottomLine.add(panel, BorderLayout.EAST);
-				FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-				flowLayout.setAlignment(FlowLayout.RIGHT);
-				panel.setBackground(Color.BLACK);
+				JPanel playerpanel1 = new JPanel();
+				BottomLine.add(playerpanel1, BorderLayout.EAST);
+				FlowLayout fl_playerpanel1 = (FlowLayout) playerpanel1.getLayout();
+				fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
+				playerpanel1.setBackground(Color.BLACK);
+				
+				JLabel Player1 = new JLabel("SPIELERNAME");
+				playerpanel1.add(Player1);
 
 		JButton cardHand[] = new JButton[15];
 		for (int i = 1; i != 15; i++) {
@@ -235,23 +239,13 @@ public class GameField extends JFrame {
 			centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			
 			JButton tableCard[] = new JButton[15];
-			for (int j = 1; i != 15; j++) {
-				cardHand[i] = new JButton("card " + i);
-				CardsPlace.add(cardHand[j]);
-
-//			JPanel cardField_1 = new JPanel();
-//			FlowLayout flowLayout_1 = (FlowLayout) cardField_1.getLayout();
-//			centerField.add(cardField_1);
-//
-//			JPanel cardField_2 = new JPanel();
-//			centerField.add(cardField_2);
-//
-//			JPanel cardField_3 = new JPanel();
-//			centerField.add(cardField_3);
-//
-//			JPanel cardField_4 = new JPanel();
-//			centerField.add(cardField_4);
-//
+			for (int j = 1; j != 15; j++) {
+				cardHand[j] = new JButton("card " + j);
+				centerField.add(cardHand[j]);
+/**
+ * Tisch (MITTE) beendet
+ * Gegner Label
+ */
 			JPanel opponentField = new JPanel();
 			getContentPane().add(opponentField, BorderLayout.NORTH);
 			opponentField.setLayout(new BorderLayout(0, 0));
@@ -261,10 +255,16 @@ public class GameField extends JFrame {
 			FlowLayout fl_opponent_1 = (FlowLayout) opponent_1.getLayout();
 			fl_opponent_1.setAlignment(FlowLayout.RIGHT);
 			opponentField.add(opponent_1, BorderLayout.WEST);
+			
+			JLabel Player2 = new JLabel("SPIELERNAME2");
+			opponent_1.add(Player2);
 
 			JPanel opponent_2 = new JPanel();
 			opponent_2.setBackground(Color.BLACK);
 			opponentField.add(opponent_2, BorderLayout.EAST);
+			
+			JLabel Player3 = new JLabel("SPIELERNAME3");
+			opponent_2.add(Player3);
 		}
 		}
 
