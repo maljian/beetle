@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Beetle.Haggis.Client.NewGameModel;
+import Beetle.Haggis.Server.GameServer;
 
 /**
  * @author Faruk
@@ -142,7 +143,7 @@ public class NewGame extends JoinGame {
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 if (e.getSource() == btnZurck){
-					   new StartWindow().setVisible(true);
+					   new GameServer();
 					   dispose();
 			}
 		}});
