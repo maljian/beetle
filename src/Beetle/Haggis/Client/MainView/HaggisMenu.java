@@ -28,11 +28,6 @@ public class HaggisMenu extends JMenuBar {
 		menu.add(getStart());
 		menu.add(getRules());
 		
-		JMenuItem info = new JMenuItem("Spielinformation");
-		menu.add(info);
-		
-		JMenu setting = new JMenu("Einstellungen");
-		add(setting);
 	}
 	
 	private JMenuItem getRules(){

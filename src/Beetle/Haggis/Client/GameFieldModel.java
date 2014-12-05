@@ -34,8 +34,9 @@ public class GameFieldModel {
 	 */
 	
 	// Teil Nadine
-	private int id;
-	// private Message messsage;
+	private int id; //PlayerID starting 0 
+	private String playerName;
+	private String serverIP;
 	/**
 	 * 
 	 * Start the Server in a new Thread Only one of the player gets the server
@@ -55,48 +56,58 @@ public class GameFieldModel {
 	/**
 	 * GameServer
 	 */
-	public void checkCard(){
+	public void checkCard(){	
+		//TODO (NT) Karten hinzufügen → Funktion checkKombination (im GameState) → true - Knopf legen aktivieren → false deaktivieren
 
 	}
 
 	public void layCards(){
-
+		//TODO Karten übergeben (im GameState speichern) und an Message weitergeleitet zum senden
+		// mi.sendMessage(m); m = Message
 	}
 
 	public void pass(){
-
+		//TODO Message absenden → keine Parameter(View) noetig, aber Message sagen ueberspringen
+		// mi.sendMessage(m); m = Message
 	}
 	
+	//TODO neue Private) funktion knoepfe deaktivieren (passen legen, alenfals cards) 
+	
 	/**
-	 * @author Nadine T�pfer
+	 * @author Nadine Töpfer
 	 */
 	public void run() {
 		String host = "127.0.0.1";
+		stillRunning= true;
 		try {
-			String ipv4 = InetAddress.getLocalHost().toString();
-			String[] ip = ipv4.split("/");
-			host = ip[1];
+//			String ipv4 = InetAddress.getLocalHost().toString();
+//			String[] ip = ipv4.split("/");
+//			host = ip[1];
+			host = serverIP;
 			registry = LocateRegistry.getRegistry(host);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
 			// TODO
 			mi.setUserName(null);
-		} catch (UnknownHostException | RemoteException | NotBoundException e) {
+		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
+			stillRunning= false; 
+			//TODO JoinGame Fenster neu aufrufen (+Fehlermeldung) IPAdresse, Spielername und ServerID uebergeben
 		}
+		
+		
 		while (stillRunning) {
 			Message m;
 			try {
 				m = mi.receiveMessage();
+				//TODO GUI aktualisieren
+				//btn Pass Aktivieren
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-// TODO NT in "eventhandler"	mi.sendMessage(m);
+ 
 		}
 
 	}
 
-	// public void sendMessage(){
-	//
-	// }
 }//end GameFieldModel
