@@ -1,5 +1,6 @@
 package Beetle.Haggis.Client;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -34,6 +36,8 @@ public class NewGame extends JoinGame {
 	private JTextField txtPlayerName;
 	private JButton btnPlay;
 	public JTextField txtIpAdress;
+	private JPanel logopanel;
+	private JLabel logolabel;
 
 	/**
 	 * Launch the application.
@@ -68,6 +72,8 @@ public class NewGame extends JoinGame {
 		txtPlayerName.setBounds(582, 50, 133, 20);
 		contentPane.add(txtPlayerName);
 		txtPlayerName.setColumns(10);
+		
+		
 		
 		JLabel lblPlayerName = new JLabel("Spielername:");
 		lblPlayerName.setForeground(new Color(255, 255, 255));
@@ -126,6 +132,17 @@ public class NewGame extends JoinGame {
 		txtIpAdress.setColumns(10);
 		txtIpAdress.setBounds(582, 143, 133, 20);
 		contentPane.add(txtIpAdress);
+		
+		 logopanel = new JPanel();
+		  logopanel.setBounds(100, 81, 300, 300);
+		  contentPane.add(logopanel);
+		  logopanel.setLayout(new BorderLayout(0, 0));
+		  
+		  logolabel = new JLabel("");
+		  logolabel.setIcon(new ImageIcon(getClass().getResource("/Beetle/Resources/Haggis_Logo_v6.jpg")));
+		 
+		  
+		  logopanel.add(logolabel, BorderLayout.CENTER);
 		
 		JButton btnNewButton = new JButton("kopieren");
 		btnNewButton.addActionListener(new ActionListener() {

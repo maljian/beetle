@@ -2,14 +2,22 @@ package Beetle.Haggis.Client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.imageio.ImageIO;
+import javax.print.DocFlavor.URL;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;  // VORLAEUFIG FUER DAS TESTEN, KANN SPAETER AUCH WIEDER WEG
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class StartWindow extends JFrame implements ActionListener {
  
@@ -23,6 +31,8 @@ public class StartWindow extends JFrame implements ActionListener {
  private JPanel contentPane;
  private JButton btnNewGame;
  private JButton btnJoinGame;
+ private JPanel logopanel;
+ private JLabel logolabel;
 
  /**
   * Create the frame.
@@ -51,8 +61,20 @@ public class StartWindow extends JFrame implements ActionListener {
   contentPane.add(btnJoinGame);
   btnJoinGame.addActionListener(this);
   getContentPane().add(btnJoinGame);
+  
+  logopanel = new JPanel();
+  logopanel.setBounds(100, 81, 300, 300);
+  contentPane.add(logopanel);
+  logopanel.setLayout(new BorderLayout(0, 0));
+  
+  logolabel = new JLabel("");
+  logolabel.setIcon(new ImageIcon(getClass().getResource("/Beetle/Resources/Haggis_Logo_v6.jpg")));
+ 
+  
+  logopanel.add(logolabel, BorderLayout.CENTER);
+  
  }
-
+ 
  @Override
  public void actionPerformed(ActionEvent e) {
   // TODO Auto-generated method stub

@@ -1,11 +1,13 @@
 package Beetle.Haggis.Client;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -29,6 +31,8 @@ public class JoinGame extends JDialog {
 	private JTextField txtIpAdress;
 	private JButton btnPlay;
 	private JButton btnZurck;
+	private JPanel logopanel;
+	private JLabel logolabel;
 
 	/**
 	 * Launch the application.
@@ -81,6 +85,19 @@ public class JoinGame extends JDialog {
 		txtIpAdress.setColumns(10);
 		txtIpAdress.setBounds(475, 129, 240, 20);
 		contentPane.add(txtIpAdress);
+		
+		
+		 logopanel = new JPanel();
+		  logopanel.setBounds(100, 81, 300, 300);
+		  contentPane.add(logopanel);
+		  logopanel.setLayout(new BorderLayout(0, 0));
+		  
+		  logolabel = new JLabel("");
+		  logolabel.setIcon(new ImageIcon(getClass().getResource("/Beetle/Resources/Haggis_Logo_v6.jpg")));
+		 
+		  
+		  logopanel.add(logolabel, BorderLayout.CENTER);
+		
 
 		btnPlay = new JButton("Spielen");
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
