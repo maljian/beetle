@@ -1,5 +1,4 @@
-package Beetle.Haggis.S
-erver;
+package Beetle.Haggis.Server;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
