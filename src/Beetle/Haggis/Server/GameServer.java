@@ -1,11 +1,13 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.S
+erver;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
-
+import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.StyledEditorKit.BoldAction;
@@ -13,6 +15,8 @@ import javax.swing.text.StyledEditorKit.BoldAction;
 import com.sun.org.apache.xml.internal.utils.StylesheetPIHandler;
 
 import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card.Colour;
@@ -22,13 +26,14 @@ import Beetle.Haggis.Server.Card.Colour;
  * @version 1.0
  * @created 14-Nov-2014
  */
-public class GameServer {
+public class GameServer implements MessageInterface {
 
-	private EventHandlerServer eventHandler;
+	//private EventHandlerServer eventHandler;
 
-	private GameState state;
-	private int targetPoint;
-
+	static private GameState state;
+	static private int targetPoint;
+	private SynchronousQueue<Message> sendQueue;
+	private SynchronousQueue<Message> receiveQueue;
 	// public ClientConnection m_ClientConnection;
 	// public EventHandlerServer m_EventHandlerServer;
 	// public Listener m_Listener;
@@ -42,6 +47,37 @@ public class GameServer {
 //
 //	}
 
+	
+	/**
+	 * This is a remote method which is executed by the client. It will block until there is content in the sendQueue and then pass the message to the client.
+	 */
+	public Message receiveMessage() throws RemoteException{
+		Message m = sendQueue.poll();
+		return m;
+	}
+		
+	/**
+	 * This is a remote method which is executed by the client. It will receive the message and pass it to the receiveQueue where it will then be processed by the game logic.
+	 */
+	public void sendMessage(Message m) throws RemoteException{
+		try {
+			receiveQueue.put(m);
+		} catch (InterruptedException e) {
+			sendMessage(m);
+		}
+	}
+		
+	public void init() throws RemoteException{
+		// Hier muss sich der Client dann bei irgendwem anmelden.
+		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss, dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
+		// D.h. es muss static sein. 
+		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs GameServer angelegt, dieses hat alle statischen Felder der Klasse auch.
+		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die entsprechende Netzwerkverbindung.
+	
+	}
+		
+	
+	
 	/**
 	 * Get the value of the cards and addition them.
 	 * 
@@ -68,9 +104,9 @@ public class GameServer {
 	 * @param playerNr
 	 *            Amount of players in the game, 2 or 3. Default are 2
 	 */
-	public  GameServer(int targetPoint, boolean bet, boolean bombs,
+	public  GameServer(int _targetPoint, boolean bet, boolean bombs,
 			int playerNr) {
-		targetPoint = targetPoint;
+		targetPoint = _targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
 		state = new GameState(new Player[playerNr]);
 		startNewRound(0);
