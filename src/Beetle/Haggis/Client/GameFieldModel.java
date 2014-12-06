@@ -46,6 +46,7 @@ public class GameFieldModel {
 	private Registry registry;
 	private MessageInterface mi;
 	private boolean stillRunning = true;
+	
 	// Ende Teil Nadine
 
 	public GameFieldModel(){
@@ -87,7 +88,7 @@ public class GameFieldModel {
 			registry = LocateRegistry.getRegistry(host);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
 			// TODO
-			mi.setUserName(null);
+			mi.init();
 		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();

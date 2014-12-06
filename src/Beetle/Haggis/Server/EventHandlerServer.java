@@ -16,19 +16,20 @@ import Beetle.Haggis.Message.MessageInterface;
 public class EventHandlerServer {
 
 	private GameServer main;
-
+	private Registry registry;
 	public EventHandlerServer(){
 		
 	}
 
-	private void startServer(SynchronousQueue<Message> queue){
+	// Diese Methode muss von irgendwem aufgerufen werden, das ist bisher noch nicht der Fall!
+	public void startServer(int targetpoint, boolean bet, boolean bombs, int playerNr){
 		try{
-			Server obj = new Server();
+			main = new GameServer(targetpoint, bet, bombs, playerNr);
 			MessageInterface stub = (MessageInterface) UnicastRemoteObject
-					.exportObject(obj, 0);
+					.exportObject(main, 0);
 			
 			//Bind the remote object's stub in the registry
-			Registry registry = LocateRegistry.getRegistry();
+			registry = LocateRegistry.getRegistry();
 			registry.bind("MessageInterface", stub);
 			
 			System.err.println("Server ready");
@@ -39,11 +40,16 @@ public class EventHandlerServer {
 		
 
 	}
-
-	private void stopServer(){
+	// Dito
+	public void stopServer(){
+		try {
+			registry.unbind("MessageInterface");
+		} catch (Exception e) {
+			// TODO Hier was sinnvolles machen
+		}
 
 	}
-
+	// ?
 	public void updateCilent(){
 
 	}
