@@ -24,7 +24,7 @@ import Beetle.Haggis.Server.GameServer;
  * @created 25-Okt-2014 19:32:33
  */
 
-public class JoinGame extends JDialog {
+public class JoinGame extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField txtPlayerName;

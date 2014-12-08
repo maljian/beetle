@@ -117,7 +117,7 @@ public class GameField extends JFrame implements ItemListener{
    */
   Card bube = new Card(11, Colour.JOKER);
   Card dame = new Card(12, Colour.JOKER);
-  Card koenig = new Card(12, Colour.JOKER); 
+  Card koenig = new Card(13, Colour.JOKER); 
   
   
   ButtonCard btnBube = new ButtonCard(bube);
