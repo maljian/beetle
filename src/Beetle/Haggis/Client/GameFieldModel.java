@@ -1,16 +1,7 @@
 package Beetle.Haggis.Client;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
-import Beetle.Haggis.Message.GameState;
-import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.MessageInterface;
+
 import Beetle.Haggis.Server.Card;
-import Beetle.Haggis.Server.GameServer;
 
 /**
  * @author 

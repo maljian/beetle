@@ -40,8 +40,8 @@ public class Client {
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
-				// TODO
-				mi.init();
+//				// TODO
+//				mi.init();
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();

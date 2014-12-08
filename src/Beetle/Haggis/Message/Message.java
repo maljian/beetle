@@ -10,6 +10,7 @@ import java.net.Socket;
  * @created 25-Okt-2014 19:32:33
  */
 public class Message implements Serializable {
+	
 	public enum MessageType {
 		CONFIRM, ERROR, REGISTER
 	}
@@ -29,10 +30,6 @@ public class Message implements Serializable {
 		this.playedAction = playedAction; 
 	}
 	
-	public Message(){
-		
-	}
-
 	public GameState getGameState() {
 		return gameState;
 	}

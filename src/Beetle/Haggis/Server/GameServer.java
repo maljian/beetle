@@ -93,7 +93,7 @@ public class GameServer implements MessageInterface {
 	}
 
 	/**
-	 * Construktor
+	 * Constructor
 	 * 
 	 * @param targetPoint
 	 * @param bet
@@ -118,7 +118,7 @@ public class GameServer implements MessageInterface {
 	 * @param payerTurn
 	 *            With player start the next round
 	 */
-	private void startNewRound(int payerTurn) {
+	private void startNewRound(int playerTurn) {
 		Stack<Card> cardStack = newCards(state.getPlayers().length);
 		state = distributeCards(cardStack, state);
 		state.newRound();
@@ -130,7 +130,7 @@ public class GameServer implements MessageInterface {
 	 * @param cardStack
 	 *            A Stack with all cards.
 	 * @param state
-	 *            The Actual gam state
+	 *            The Actual game state
 	 * @return The player have new Cards in the Gamestate
 	 */
 	private GameState distributeCards(Stack<Card> cardStack, GameState state) {
@@ -153,7 +153,7 @@ public class GameServer implements MessageInterface {
 							// JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
 					
-				}// TODO LL dose it crusch?
+				}// TODO LL Test: dose it crusch?
 			}
 			Collections.sort(playerCard);
 			p.setCards(playerCard);
@@ -201,12 +201,12 @@ public class GameServer implements MessageInterface {
 				playerState.setGamePot(0);
 
 				if  (aktuelPlayer.getPoints()>= targetPoint){
-					//TODO LL Beetles:  Inform game winn, end game
+					//TODO LL Beetles:  Inform game win, end game
 				}
 				
 				if (remainingPlayer > 1) {
 					playerState.setPlayerTurns(playerTurns++);
-					return playerState; // Replace the ells part to avoid having to many steps in.
+					return playerState; // Replace the else part to avoid having to many steps in.
 				}
 				Stack<Card> cards = newCards(1);
 				playerState= distributeCards(cards, playerState);
@@ -214,7 +214,7 @@ public class GameServer implements MessageInterface {
 				int minPoint= targetPoint;
 				Player[] players = playerState.getPlayers();
 					
-				//Set the player with the les points as the next player.
+				//Set the player with the less points as the next player.
 				for ( int i=0; i< players.length; i++){
 					if (players[i].getPoints()<= minPoint){
 						minPoint= players[i].getPoints();
@@ -226,7 +226,7 @@ public class GameServer implements MessageInterface {
 			} else {
 				playerState.setPlayerTurns(playerTurns + 1);
 			}
-			// TODO LL nice to double-check the cards on the server
+			// TODO LL Zusatz: nice to double-check the cards on the server
 			break;
 		}
 
