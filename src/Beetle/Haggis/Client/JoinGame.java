@@ -24,37 +24,41 @@ import Beetle.Haggis.Server.GameServer;
  * @created 25-Okt-2014 19:32:33
  */
 
-public class JoinGame extends JFrame{
+public class JoinGame extends JFrame {
 
-	private JPanel contentPane;
+	protected JPanel contentPane;
 	private JTextField txtPlayerName;
 	public JTextField txtIpAdress;
 	private JButton btnPlay;
 	private JButton btnZurck;
-	private JPanel logopanel;
-	private JLabel logolabel;
+	private JPanel logoPanel;
+	private JLabel logoLabel;
+	private JoinGameModel model;
+	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JoinGame frame = new JoinGame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//
+	// /**
+	// * Launch the application.
+	// */
+	// public static void main(String[] args) {
+	// EventQueue.invokeLater(new Runnable() {
+	// public void run() {
+	// try {
+	// JoinGame frame = new JoinGame();
+	// frame.setVisible(true);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	// }
 
 	/**
 	 * Create the frame.
 	 */
-	public JoinGame() {
+	public JoinGame(JoinGameModel m) {
 		setResizable(false);
+		model = m;
 		setTitle("Haggis - Spiel beitreten");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -85,29 +89,25 @@ public class JoinGame extends JFrame{
 		txtIpAdress.setColumns(10);
 		txtIpAdress.setBounds(475, 129, 240, 20);
 		contentPane.add(txtIpAdress);
-		
-		
-		 logopanel = new JPanel();
-		  logopanel.setBounds(100, 81, 300, 300);
-		  contentPane.add(logopanel);
-		  logopanel.setLayout(new BorderLayout(0, 0));
-		  
-		  logolabel = new JLabel("");
-		  logolabel.setIcon(new ImageIcon(getClass().getResource("/Beetle/Resources/Haggis_Logo_v6.jpg")));
-		 
-		  
-		  logopanel.add(logolabel, BorderLayout.CENTER);
-		
+
+		logoPanel = new JPanel();
+		logoPanel.setBounds(100, 81, 300, 300);
+		contentPane.add(logoPanel);
+		logoPanel.setLayout(new BorderLayout(0, 0));
+
+		logoLabel = new JLabel("");
+		logoLabel.setIcon(new ImageIcon(getClass().getResource(
+				"/Beetle/Resources/Haggis_Logo_v6.jpg")));
+
+		logoPanel.add(logoLabel, BorderLayout.CENTER);
 
 		btnPlay = new JButton("Spielen");
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnPlay.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-
-				if (e.getSource() == btnPlay) {
-					//TODO (LL) korekter konstruktor verwenden
-					//new GameServer();
-					dispose();
+				if (e.getSource() == btnPlay) {	
+					model.joinGame();			
 				}
 			}
 		});
@@ -118,8 +118,7 @@ public class JoinGame extends JFrame{
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnZurck) {
-					new StartWindow().setVisible(true);
-					dispose();
+				model.goBack();
 				}
 			}
 		});
@@ -128,4 +127,6 @@ public class JoinGame extends JFrame{
 		contentPane.add(btnZurck);
 
 	}
+
+	
 }

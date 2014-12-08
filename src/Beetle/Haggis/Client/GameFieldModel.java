@@ -1,14 +1,19 @@
 package Beetle.Haggis.Client;
 
+import java.awt.EventQueue;
+
+import com.sun.glass.ui.View;
 
 import Beetle.Haggis.Server.Card;
 
 /**
- * @author 
+ * @author
  * @version 1.0
  * @created 25-Okt-2014 19:32:32
  */
 public class GameFieldModel {
+	GameField viwe;
+	GameFieldModel gfModel;
 
 	private Card cardsCenter;
 	/**
@@ -19,34 +24,52 @@ public class GameFieldModel {
 	 * Array
 	 */
 	private Card selectedCards;
-	
 
-	public GameFieldModel(){
-		
+	public GameFieldModel() {
 
 	}
 
 	/**
 	 * GameServer
 	 */
-	public void checkCard(){	
-		//TODO (NT) Karten hinzufügen → Funktion checkKombination (im GameState) → true - Knopf legen aktivieren → false deaktivieren
+	public void checkCard() {
+		// TODO (NT) Karten hinzufügen → Funktion checkKombination (im
+		// GameState) → true - Knopf legen aktivieren → false deaktivieren
 
 	}
 
-	public void layCards(){
-		//TODO Karten übergeben (im GameState speichern) und an Message weitergeleitet zum senden
+	public void layCards() {
+		// TODO Karten übergeben (im GameState speichern) und an Message
+		// weitergeleitet zum senden
 		// mi.sendMessage(m); m = Message
 	}
 
-	public void pass(){
-		//TODO Message absenden → keine Parameter(View) noetig, aber Message sagen ueberspringen
+	public void pass() {
+		// TODO Message absenden → keine Parameter(View) noetig, aber Message
+		// sagen ueberspringen
 		// mi.sendMessage(m); m = Message
 	}
-	
-	//TODO neue Private) funktion knoepfe deaktivieren (passen legen, alenfals cards) 
-	
-	
-	
 
-}//end GameFieldModel
+	// TODO neue Private) funktion knoepfe deaktivieren (passen legen, alenfals
+	// cards)
+
+	public void startGame() {
+		// viwe = new GameField();
+
+	}
+
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					GameFieldModel gfm = NewGameModel();
+//					GameField frame = new GameField(this);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+
+}// end GameFieldModel

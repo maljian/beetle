@@ -63,6 +63,7 @@ public class GameField extends JFrame implements ItemListener {
 	private ArrayList<ButtonCard> PlayerCards = new ArrayList<ButtonCard>();
 	private ArrayList<ButtonCard> OpponentCards = new ArrayList<ButtonCard>();
 	private ArrayList<JPanel> HandCards = new ArrayList<JPanel>(); // ?
+	private GameFieldModel gfModel;
 
 	/**
 	 * Fix Sizes
@@ -84,7 +85,8 @@ public class GameField extends JFrame implements ItemListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameField frame = new GameField();
+					GameFieldModel gfm = new GameFieldModel();
+					GameField frame = new GameField(gfm);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,9 +95,11 @@ public class GameField extends JFrame implements ItemListener {
 		});
 	}
 
-	public GameField() {
+	public GameField( GameFieldModel gfm) {
 		super("Haggis");
-		menuBar = new HaggisMenu();
+		gfModel = gfm;
+		
+		menuBar = new HaggisMenu(m_GameFieldModel);
 		createFrame();
 		getContentPane().setBackground(new Color(178, 34, 34));
 		getContentPane().setLayout(new BorderLayout(0, 0));

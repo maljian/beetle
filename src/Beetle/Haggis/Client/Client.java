@@ -30,6 +30,7 @@ public class Client {
 		private Registry registry;
 		private MessageInterface mi;
 		private boolean stillRunning = true;
+		private GameFieldModel gfModel;
 		
 		public void run() {
 			String host = "127.0.0.1";
@@ -48,8 +49,8 @@ public class Client {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
 				stillRunning= false; 
-				//TODO JoinGame Fenster neu aufrufen (+Fehlermeldung) IPAdresse, Spielername und ServerID uebergeben
-				new JoinGame();
+				//TODO 2 JoinGame Fenster neu aufrufen (+Fehlermeldung) IPAdresse, Spielername und ServerID uebergeben
+				new JoinGameModel(gfModel);
 			}
 			
 			
@@ -64,6 +65,17 @@ public class Client {
 				}
 	 
 			}
+			
+			
+			
+			
 
 		}
+
+		public Client(GameFieldModel gfModel) {
+			super();
+			this.gfModel = gfModel;
+		}
+
+		
 }

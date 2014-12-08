@@ -36,31 +36,35 @@ public class NewGame extends JoinGame {
 	private JTextField txtPlayerName;
 	private JButton btnPlay;
 	public JTextField txtIpAdress;
-	private JPanel logopanel;
-	private JLabel logolabel;
-	JComboBox NumberPlayer;
-	JComboBox TargetPoint;
+	private JPanel logoPanel;
+	private JLabel logoLabel;
+	protected JComboBox NumberPlayer;
+	protected JComboBox TargetPoint;
+	private NewGameModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NewGame frame = new NewGame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	// /**
+	// * Launch the application.
+	// */
+	// public static void main(String[] args) {
+	// EventQueue.invokeLater(new Runnable() {
+	// public void run() {
+	// try {
+	// NewGame frame = new NewGame();
+	// frame.setVisible(true);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	// }
 
 	/**
 	 * Create the frame.
 	 */
-	public NewGame() {
+	// @Override
+	public NewGame(NewGameModel gfm) {
+		super(gfm);
+
 		setTitle("Haggis - Neues Spiel");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -69,108 +73,107 @@ public class NewGame extends JoinGame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		txtPlayerName = new JTextField();
 		txtPlayerName.setBounds(582, 50, 133, 20);
 		contentPane.add(txtPlayerName);
 		txtPlayerName.setColumns(10);
-		
-		
-		
+
 		JLabel lblPlayerName = new JLabel("Spielername:");
 		lblPlayerName.setForeground(new Color(255, 255, 255));
 		lblPlayerName.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblPlayerName.setBounds(475, 53, 97, 17);
 		contentPane.add(lblPlayerName);
-		
+
 		JLabel lblNumberPlayer = new JLabel("Anzahl Spieler:");
 		lblNumberPlayer.setForeground(new Color(255, 255, 255));
 		lblNumberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNumberPlayer.setBounds(475, 81, 97, 20);
 		contentPane.add(lblNumberPlayer);
-		
+
 		btnPlay = new JButton("Spielen");
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 if (e.getSource() == btnPlay){
-					   new GameField().setVisible(true);
-					   dispose();
+				if (e.getSource() == btnPlay) {
+					model.startServer();
+//					new GameField().setVisible(true);
+//					dispose();
+				}
 			}
-		}});
+		});
 		btnPlay.setBounds(626, 392, 89, 30);
 		contentPane.add(btnPlay);
-		
+
 		NumberPlayer = new JComboBox();
-		NumberPlayer.setModel(new DefaultComboBoxModel(new String[] {"2", "3"}));
+		NumberPlayer.setModel(new DefaultComboBoxModel(
+				new String[] { "2", "3" }));
 		NumberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
 		NumberPlayer.setBounds(684, 81, 33, 20);
 		contentPane.add(NumberPlayer);
-		
+
 		JLabel lblTargetPoint = new JLabel("Ziel:");
 		lblTargetPoint.setForeground(Color.WHITE);
 		lblTargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblTargetPoint.setBounds(475, 112, 97, 20);
 		contentPane.add(lblTargetPoint);
-		
+
 		TargetPoint = new JComboBox();
-		TargetPoint.setModel(new DefaultComboBoxModel(new String[] {"10","250", "350"}));
+		TargetPoint.setModel(new DefaultComboBoxModel(new String[] { "10",
+				"250", "350" }));
 		TargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 		TargetPoint.setBounds(660, 112, 57, 20);
 		contentPane.add(TargetPoint);
-		
+
 		JLabel lblIpAdress = new JLabel("IP-Adresse:");
 		lblIpAdress.setForeground(Color.WHITE);
 		lblIpAdress.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblIpAdress.setBounds(475, 143, 97, 20);
 		contentPane.add(lblIpAdress);
-		
+
 		txtIpAdress = new JTextField();
 		txtIpAdress.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-	
 
 		txtIpAdress.setEditable(false);
 		txtIpAdress.setColumns(10);
 		txtIpAdress.setBounds(582, 143, 133, 20);
 		contentPane.add(txtIpAdress);
-		
-		 logopanel = new JPanel();
-		  logopanel.setBounds(100, 81, 300, 300);
-		  contentPane.add(logopanel);
-		  logopanel.setLayout(new BorderLayout(0, 0));
-		  
-		  logolabel = new JLabel("");
-		  logolabel.setIcon(new ImageIcon(getClass().getResource("/Beetle/Resources/Haggis_Logo_v6.jpg")));
-		 
-		  
-		  logopanel.add(logolabel, BorderLayout.CENTER);
-		
-		JButton btnNewButton = new JButton("kopieren");
-		btnNewButton.addActionListener(new ActionListener() {
+
+		logoPanel = new JPanel();
+		logoPanel.setBounds(100, 81, 300, 300);
+		contentPane.add(logoPanel);
+		logoPanel.setLayout(new BorderLayout(0, 0));
+
+		logoLabel = new JLabel("");
+		logoLabel.setIcon(new ImageIcon(getClass().getResource(
+				"/Beetle/Resources/Haggis_Logo_v6.jpg")));
+		logoPanel.add(logoLabel, BorderLayout.CENTER);
+
+		JButton btnCopy = new JButton("kopieren");
+		btnCopy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
-					        new StringSelection(txtIpAdress.getText() ), null
-					    );
-					}
+				Toolkit.getDefaultToolkit()
+						.getSystemClipboard()
+						.setContents(
+								new StringSelection(txtIpAdress.getText()),
+								null);
+			}
 		});
-		btnNewButton.setBackground(Color.ORANGE);
-		btnNewButton.setBounds(582, 168, 133, 23);
-		contentPane.add(btnNewButton);
-		
+		btnCopy.setBackground(Color.ORANGE);
+		btnCopy.setBounds(582, 168, 133, 23);
+		contentPane.add(btnCopy);
+
 		final JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 if (e.getSource() == btnZurck){
-					 //TODO (LL) korekter konstruktor verwenden
-					   //new GameServer();
-					   dispose();
+				if (e.getSource() == btnZurck) {
+					model.goBack();
+				}
 			}
-		}});
+		});
 		btnZurck.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnZurck.setBounds(475, 392, 89, 30);
 		contentPane.add(btnZurck);
-		
-		
+
 	}
 }

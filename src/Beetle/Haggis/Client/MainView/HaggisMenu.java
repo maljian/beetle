@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import Beetle.Haggis.Client.GameFieldModel;
 import Beetle.Haggis.Client.StartWindow;
 import Beetle.Haggis.Client.MainView.*;
 
@@ -16,8 +17,10 @@ public class HaggisMenu extends JMenuBar {
 	
 	private JMenuItem menuItemR;
 	private JMenuItem menuItemS;
+	private GameFieldModel gfModel;
 	
-	public HaggisMenu(){
+	public HaggisMenu(GameFieldModel gfm){
+		gfModel=gfm;
 		createMenuBar();
 		
 	}
@@ -44,11 +47,12 @@ public class HaggisMenu extends JMenuBar {
 	}
 	
 	private JMenuItem getStart(){
+		
 		menuItemS = new JMenuItem("Start");
 		menuItemS.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				new StartWindow().setVisible(true);{
+				new StartWindow(gfModel).setVisible(true);{
 					
 				}
 			}
