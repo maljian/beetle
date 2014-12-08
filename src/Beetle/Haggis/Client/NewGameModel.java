@@ -59,12 +59,18 @@ public class NewGameModel extends JoinGameModel {
 	 * @author Nadine Töpfer
 	 */
 	protected void startServer() {
-		int numberPlayer = (int) m_View.NumberPlayer.getSelectedItem();
-		int targetPoint = (int) m_View.TargetPoint.getSelectedItem();
+		int numberPlayer = Integer.parseInt(m_View.NumberPlayer.getSelectedItem().toString());
+		System.out.println(numberPlayer);		
+		int targetPoint = Integer.parseInt( m_View.TargetPoint.getSelectedItem().toString());
 		boolean bet = false;	//Preparation for future version 
 		boolean bombs = false;  //Preparation for future version  
 		EventHandlerServer ehs = new EventHandlerServer();
 		ehs.startServer(targetPoint, bet, bombs, numberPlayer);
+		m_View.dispose();
+	}
+	
+	public void goBack() {
+		new StartWindow(gfModel).setVisible(true);
 		m_View.dispose();
 	}
 	// gehört zum Server

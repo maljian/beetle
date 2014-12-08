@@ -15,8 +15,8 @@ public class Player {
 	private int points;
 	private Stack<Card> cards = new Stack<Card> ();
 
-	public Player(){
-
+	public Player(int id){
+		this.id = id;
 	}
 	
 	public int getId() {

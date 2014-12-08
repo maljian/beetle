@@ -62,9 +62,9 @@ public class NewGame extends JoinGame {
 	 * Create the frame.
 	 */
 	// @Override
-	public NewGame(NewGameModel gfm) {
-		super(gfm);
-
+	public NewGame(NewGameModel ngm) {
+		super(ngm);
+		model = ngm;
 		setTitle("Haggis - Neues Spiel");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -97,8 +97,7 @@ public class NewGame extends JoinGame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnPlay) {
 					model.startServer();
-//					new GameField().setVisible(true);
-//					dispose();
+
 				}
 			}
 		});

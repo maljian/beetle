@@ -81,19 +81,19 @@ public class GameField extends JFrame implements ItemListener {
 	public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameFieldModel gfm = new GameFieldModel();
-					GameField frame = new GameField(gfm);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					GameFieldModel gfm = new GameFieldModel();
+//					GameField frame = new GameField(gfm);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	public GameField( GameFieldModel gfm) {
 		super("Haggis");

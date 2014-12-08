@@ -107,7 +107,13 @@ public class GameServer implements MessageInterface {
 			int playerNr) {
 		targetPoint = _targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
-		state = new GameState(new Player[playerNr]);
+		Player[] players = new Player[playerNr];
+		for (int i=0; i<playerNr; i++){
+			Player p = new Player(i);
+			players[i]= p;
+			
+		}
+		state = new GameState(players);
 		startNewRound(0);
 
 	}

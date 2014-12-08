@@ -27,7 +27,7 @@ public class GameState {
 	/**
 	 * player [0,1,2], cards[Card]
 	 */
-	private Player player[];
+	private Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	/**
@@ -157,7 +157,7 @@ public class GameState {
 
 			if (playerPlayed[i] == true) {
 				playerTurns = i;
-				player[i].addPoint(gamePot);
+				players[i].addPoint(gamePot);
 				gamePot = 0;
 			} else {
 				playerPlayed[i] = true;
@@ -166,10 +166,11 @@ public class GameState {
 
 	}
 
-	public GameState(Player[] player) {
+	public GameState(Player[] players) {
 		super();
-		this.player = player;
-		for (int i = 0; i < player.length; i++) {
+		this.players = players;
+		playerPlayed = new boolean[players.length];
+		for (int i = 0; i < players.length; i++) {
 			playerPlayed[i] = true;
 		}
 
@@ -195,20 +196,20 @@ public class GameState {
 	 *            Next player 1, 2 [3]
 	 */
 	public int setPlayerTurns(int playerTurns) {
-		this.playerTurns = playerTurns >= player.length ? 0 : playerTurns;
+		this.playerTurns = playerTurns >= players.length ? 0 : playerTurns;
 		return playerTurns;
 	}
 
 	public void setPlayer(Player p, int id) {
-		player[id] = p;
+		players[id] = p;
 	}
 
 	public void setPlayerS(Player[] p) {
-		player = p;
+		players = p;
 	}
 
 	public Player[] getPlayers() {
-		return player;
+		return players;
 	}
 
 	public boolean[] getPlayerPlayed() {

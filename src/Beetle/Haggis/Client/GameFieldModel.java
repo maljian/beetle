@@ -12,7 +12,7 @@ import Beetle.Haggis.Server.Card;
  * @created 25-Okt-2014 19:32:32
  */
 public class GameFieldModel {
-	GameField viwe;
+
 	GameFieldModel gfModel;
 
 	private Card cardsCenter;
@@ -24,9 +24,11 @@ public class GameFieldModel {
 	 * Array
 	 */
 	private Card selectedCards;
+	private GameField view;
 
 	public GameFieldModel() {
-
+		view = new GameField(this);
+		view.setVisible(true);
 	}
 
 	/**
@@ -58,18 +60,19 @@ public class GameFieldModel {
 
 	}
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GameFieldModel gfm = NewGameModel();
-//					GameField frame = new GameField(this);
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GameFieldModel gfm = new GameFieldModel();
+//					GameField frame = new GameField(gfm);
 //					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 }// end GameFieldModel
