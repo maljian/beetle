@@ -32,12 +32,14 @@ import Beetle.Haggis.Server.GameServer;
  */
 public class NewGame extends JoinGame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	private JTextField txtPlayerName;
 	private JButton btnPlay;
 	public JTextField txtIpAdress;
 	private JPanel logopanel;
 	private JLabel logolabel;
+	JComboBox NumberPlayer;
+	JComboBox TargetPoint;
 
 	/**
 	 * Launch the application.
@@ -99,7 +101,7 @@ public class NewGame extends JoinGame {
 		btnPlay.setBounds(626, 392, 89, 30);
 		contentPane.add(btnPlay);
 		
-		JComboBox NumberPlayer = new JComboBox();
+		NumberPlayer = new JComboBox();
 		NumberPlayer.setModel(new DefaultComboBoxModel(new String[] {"2", "3"}));
 		NumberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
 		NumberPlayer.setBounds(684, 81, 33, 20);
@@ -111,7 +113,7 @@ public class NewGame extends JoinGame {
 		lblTargetPoint.setBounds(475, 112, 97, 20);
 		contentPane.add(lblTargetPoint);
 		
-		JComboBox TargetPoint = new JComboBox();
+		TargetPoint = new JComboBox();
 		TargetPoint.setModel(new DefaultComboBoxModel(new String[] {"10","250", "350"}));
 		TargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 		TargetPoint.setBounds(660, 112, 57, 20);

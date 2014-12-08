@@ -5,13 +5,15 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.concurrent.SynchronousQueue;
 
+import javax.swing.JOptionPane;
+
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
 
 /**
- * @author 
+ * @author Nadine Töpfer
  * @version 1.0
- * @created 25-Okt-2014 19:32:32
+
  */
 public class EventHandlerServer {
 
@@ -21,10 +23,9 @@ public class EventHandlerServer {
 		
 	}
 
-	// Diese Methode muss von irgendwem aufgerufen werden, das ist bisher noch nicht der Fall!
-	public void startServer(int targetpoint, boolean bet, boolean bombs, int playerNr){
+	public void startServer(int targetPoint, boolean bet, boolean bombs, int numberPlayer){
 		try{
-			main = new GameServer(targetpoint, bet, bombs, playerNr);
+			main = new GameServer(targetPoint, bet, bombs, numberPlayer);
 			MessageInterface stub = (MessageInterface) UnicastRemoteObject
 					.exportObject(main, 0);
 			
@@ -45,11 +46,11 @@ public class EventHandlerServer {
 		try {
 			registry.unbind("MessageInterface");
 		} catch (Exception e) {
-			// TODO Hier was sinnvolles machen
+			
 		}
 
 	}
-	// ?
+	// An alle Clients Message schicken mit aktuellen Stand
 	public void updateCilent(){
 
 	}
