@@ -145,14 +145,14 @@ public class GameServer implements MessageInterface {
 			for (int i = 0; i < 3; i++) {
 				try {
 					playerCard.push(new Card(10 + i, Colour.JOKER));
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					final JOptionPane optionPane = new JOptionPane(
 							"An error appeared while distributing the cards. \n Error message:\n"
 									+ e.toString(),
 							// JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
-					;
+					
 				}// TODO LL dose it crusch?
 			}
 			Collections.sort(playerCard);
