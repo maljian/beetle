@@ -28,7 +28,7 @@ public class JoinGame extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField txtPlayerName;
-	private JTextField txtIpAdress;
+	public JTextField txtIpAdress;
 	private JButton btnPlay;
 	private JButton btnZurck;
 	private JPanel logopanel;

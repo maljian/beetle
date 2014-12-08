@@ -20,6 +20,7 @@ public class Client {
 		private int id; //PlayerID starting 0 
 		private String playerName;
 		private String serverIP;
+		public static JoinGame m_JoinGame;
 		/**
 		 * 
 		 * Start the Server in a new Thread Only one of the player gets the server
@@ -33,6 +34,7 @@ public class Client {
 		public void run() {
 			String host = "127.0.0.1";
 			stillRunning= true;
+			String serverIP = m_JoinGame.txtIpAdress.getText();
 			try {
 //				String ipv4 = InetAddress.getLocalHost().toString();
 //				String[] ip = ipv4.split("/");
