@@ -64,6 +64,8 @@ public class GameField extends JFrame implements ItemListener {
 	private ArrayList<ButtonCard> OpponentCards = new ArrayList<ButtonCard>();
 	private ArrayList<JPanel> HandCards = new ArrayList<JPanel>(); // ?
 	private GameFieldModel gfModel;
+	private CombinationWindow cw;
+	private ProgressWindow pw;
 
 	/**
 	 * Fix Sizes
@@ -219,8 +221,14 @@ public class GameField extends JFrame implements ItemListener {
 		final JButton btnCombination = new JButton("C");
 		btnCombination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == btnCombination) {
-					new CombinationWindow();
+				if (e.getSource() == btnCombination) { 
+					if (cw == null){
+					cw = new CombinationWindow();
+					}
+					else {
+						cw.dispose();
+						cw = null;
+					}
 				}
 			}
 		});
@@ -231,9 +239,15 @@ public class GameField extends JFrame implements ItemListener {
 		btnProgress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnProgress) {
-					new ProgressWindow();
+					if (pw == null){
+						pw = new ProgressWindow();
+						}
+						else {
+							pw.dispose();
+							pw = null;
+						}
+					}
 				}
-			}
 		});
 		HelpButtons.add(btnProgress, BorderLayout.EAST);
 
