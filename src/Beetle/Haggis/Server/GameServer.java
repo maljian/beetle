@@ -27,12 +27,13 @@ import Beetle.Haggis.Server.Card.Colour;
  */
 public class GameServer implements MessageInterface {
 
-	//private EventHandlerServer eventHandler;
+	// private EventHandlerServer eventHandler;
 
 	static private GameState state;
 	static private int targetPoint;
 	private SynchronousQueue<Message> sendQueue;
 	private SynchronousQueue<Message> receiveQueue;
+
 	// public ClientConnection m_ClientConnection;
 	// public EventHandlerServer m_EventHandlerServer;
 	// public Listener m_Listener;
@@ -42,41 +43,46 @@ public class GameServer implements MessageInterface {
 	// public Player m_Player;
 	// public Card m_Card;
 
-//	public GameServer() {
-//
-//	}
+	// public GameServer() {
+	//
+	// }
 
-	
 	/**
-	 * This is a remote method which is executed by the client. It will block until there is content in the sendQueue and then pass the message to the client.
+	 * This is a remote method which is executed by the client. It will block
+	 * until there is content in the sendQueue and then pass the message to the
+	 * client.
 	 */
-	public Message receiveMessage() throws RemoteException{
+	public Message receiveMessage() throws RemoteException {
 		Message m = sendQueue.poll();
 		return m;
 	}
-		
+
 	/**
-	 * This is a remote method which is executed by the client. It will receive the message and pass it to the receiveQueue where it will then be processed by the game logic.
+	 * This is a remote method which is executed by the client. It will receive
+	 * the message and pass it to the receiveQueue where it will then be
+	 * processed by the game logic.
 	 */
-	public void sendMessage(Message m) throws RemoteException{
+	public void sendMessage(Message m) throws RemoteException {
 		try {
 			receiveQueue.put(m);
 		} catch (InterruptedException e) {
 			sendMessage(m);
 		}
 	}
-		
-	public void init() throws RemoteException{
+
+	public void init() throws RemoteException {
 		// Hier muss sich der Client dann bei irgendwem anmelden.
-		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss, dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
-		// D.h. es muss static sein. 
-		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs GameServer angelegt, dieses hat alle statischen Felder der Klasse auch.
-		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die entsprechende Netzwerkverbindung.
-	
+		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
+		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
+		// D.h. es muss static sein.
+		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
+		// GameServer angelegt, dieses hat alle statischen Felder der Klasse
+		// auch.
+		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
+		// entsprechende Netzwerkverbindung.
+
 	}
-		
-	
-	
+
 	/**
 	 * Get the value of the cards and addition them.
 	 * 
@@ -103,15 +109,14 @@ public class GameServer implements MessageInterface {
 	 * @param playerNr
 	 *            Amount of players in the game, 2 or 3. Default are 2
 	 */
-	public  GameServer(int _targetPoint, boolean bet, boolean bombs,
-			int playerNr) {
+	public GameServer(int _targetPoint, boolean bet, boolean bombs, int playerNr) {
 		targetPoint = _targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
 		Player[] players = new Player[playerNr];
-		for (int i=0; i<playerNr; i++){
+		for (int i = 0; i < playerNr; i++) {
 			Player p = new Player(i);
-			players[i]= p;
-			
+			players[i] = p;
+
 		}
 		state = new GameState(players);
 		startNewRound(0);
@@ -143,7 +148,7 @@ public class GameServer implements MessageInterface {
 		Collections.shuffle(cardStack);
 		Player[] players = state.getPlayers();
 		for (Player p : players) {
-		
+
 			Stack<Card> playerCard = new Stack<Card>();
 			for (int i = 0; i < 14; i++) {
 				playerCard.push(cardStack.pop());
@@ -158,7 +163,7 @@ public class GameServer implements MessageInterface {
 									+ e.toString(),
 							// JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE);
-					
+
 				}// TODO LL Test: dose it crusch?
 			}
 			Collections.sort(playerCard);
@@ -206,28 +211,28 @@ public class GameServer implements MessageInterface {
 						+ playerState.getGamePot());
 				playerState.setGamePot(0);
 
-				if  (aktuelPlayer.getPoints()>= targetPoint){
-					//TODO LL Beetles:  Inform game win, end game
+				if (aktuelPlayer.getPoints() >= targetPoint) {
+					// TODO LL Beetles: Inform game win, end game
 				}
-				
+
 				if (remainingPlayer > 1) {
 					playerState.setPlayerTurns(playerTurns++);
-					return playerState; // Replace the else part to avoid having to many steps in.
+					return playerState; // Replace the else part to avoid having
+										// to many steps in.
 				}
 				Stack<Card> cards = newCards(1);
-				playerState= distributeCards(cards, playerState);
+				playerState = distributeCards(cards, playerState);
 				playerState.setActualCombination(Combination.NEWTURN);
-				int minPoint= targetPoint;
+				int minPoint = targetPoint;
 				Player[] players = playerState.getPlayers();
-					
-				//Set the player with the less points as the next player.
-				for ( int i=0; i< players.length; i++){
-					if (players[i].getPoints()<= minPoint){
-						minPoint= players[i].getPoints();
+
+				// Set the player with the less points as the next player.
+				for (int i = 0; i < players.length; i++) {
+					if (players[i].getPoints() <= minPoint) {
+						minPoint = players[i].getPoints();
 						playerState.setPlayerTurns(i);
 					}
 				}
-						
 
 			} else {
 				playerState.setPlayerTurns(playerTurns + 1);
@@ -236,12 +241,11 @@ public class GameServer implements MessageInterface {
 			break;
 		}
 
-		//playerState.setPlayerTurns(playerTurns++);
+		// playerState.setPlayerTurns(playerTurns++);
 
 		return playerState;
 
 	}
-
 
 	/**
 	 * 
@@ -250,8 +254,36 @@ public class GameServer implements MessageInterface {
 	 * @return
 	 */
 	private Stack<Card> newCards(int playerAmount) {
-		Stack<Card> cardStack = null;
+		Stack<Card> cardStack = new Stack<>();
+		for (int number = 2; number <= 10; number++) {
+			for (int clr = 1; clr <= playerAmount +2; clr++) {
+				Colour colour = Colour.RED;
+				
+				switch (clr) {
+				case 1:
+					colour = Colour.RED;
+					break;
+				case 2:
+					colour = Colour.YELLOW;
+					break;
+				case 3:
+					colour = Colour.ORANGE;
+					break;
+				case 4:
+					colour = Colour.GREY;
+					break;
+				case 5:
+					colour = Colour.GREEN;
+					break;
+				}
+				Card c = new Card(number, colour);
+				cardStack.add(c);
+			}
 
+		}
+		Collections.shuffle(cardStack);
 		return cardStack;
 	}
-}// end GameServer
+
+}
+// end GameServer

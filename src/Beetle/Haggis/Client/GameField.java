@@ -227,6 +227,7 @@ public class GameField extends JFrame implements ItemListener {
 		HelpButtons.add(btnCombination, BorderLayout.WEST);
 
 		final JButton btnProgress = new JButton("P");
+		 btnProgress.setBorder(new RoundedBorder(1));
 		btnProgress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnProgress) {

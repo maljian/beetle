@@ -2,7 +2,7 @@ package Beetle.Haggis.Client;
 
 import java.awt.EventQueue;
 
-import com.sun.glass.ui.View;
+//import com.sun.glass.ui.View;
 
 import Beetle.Haggis.Server.Card;
 
