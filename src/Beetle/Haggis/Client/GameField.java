@@ -64,9 +64,14 @@ public class GameField extends JFrame implements ItemListener {
 	private Card btnCard;
 	private int btnLay;
 	private int btnPass;
-	private ArrayList<ButtonCard> JokerCards = new ArrayList<ButtonCard>();
-	private ArrayList<ButtonCard> PlayerCards = new ArrayList<ButtonCard>();
-	private ArrayList<ButtonCard> OpponentCards = new ArrayList<ButtonCard>();
+	protected ArrayList<ButtonCard> JokerCards = new ArrayList<ButtonCard>();
+	protected ArrayList<ButtonCard> PlayerCards = new ArrayList<ButtonCard>();
+	protected ArrayList<Card> CardsToCheck = new ArrayList<Card>();
+	//private ArrayList<ButtonCard> OpponentCards = new ArrayList<ButtonCard>();
+	protected JPanel buttonsPlace;
+	protected JPanel cardsPlace;
+	protected JButton btnLegen;
+	protected JButton btnPassen;
 	private ArrayList<JPanel> HandCards = new ArrayList<JPanel>(); // ?
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
@@ -123,30 +128,48 @@ public class GameField extends JFrame implements ItemListener {
 		getContentPane().add(BottomLine, BorderLayout.SOUTH);
 		BottomLine.setLayout(new BorderLayout(0, 0));
 
-		JPanel ButtonsPlace = new JPanel();
-		BottomLine.add(ButtonsPlace, BorderLayout.CENTER);
+		buttonsPlace = new JPanel();
+		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
-		JButton btnLegen = new JButton("legen");
-		ButtonsPlace.add(btnLegen);
+		btnLegen = new JButton("legen");
+		buttonsPlace.add(btnLegen);
 
 		/**
 		 * MM Die Jokerkarten des Spielers
 		 */
-		Card bube = new Card(11, Colour.JOKER);
-		Card dame = new Card(12, Colour.JOKER);
-		Card koenig = new Card(13, Colour.JOKER);
+//		Card bube = new Card(11, Colour.JOKER);
+//		Card dame = new Card(12, Colour.JOKER);
+//		Card koenig = new Card(13, Colour.JOKER);
+//
+//		ButtonCard btnBube = new ButtonCard(bube);
+//		ButtonCard btnDame = new ButtonCard(dame);
+//		ButtonCard btnKoenig = new ButtonCard(koenig);
+//
+//		JokerCards.add((ButtonCard) buttonsPlace.add(btnBube));
+//		JokerCards.add((ButtonCard) buttonsPlace.add(btnDame));
+//		JokerCards.add((ButtonCard) buttonsPlace.add(btnKoenig));
+//
+//		btnBube.addItemListener(this);
+//		btnDame.addItemListener(this);
+//		btnKoenig.addItemListener(this);
+		
+		/**
+		 * 
+		 * @author Marco Mancuso
+		 * 
+		 * Joker sollen sowieso angezeigt werden.
+		 */
 
-		ButtonCard btnBube = new ButtonCard(bube);
-		ButtonCard btnDame = new ButtonCard(dame);
-		ButtonCard btnKoenig = new ButtonCard(koenig);
-
-		JokerCards.add((ButtonCard) ButtonsPlace.add(btnBube));
-		JokerCards.add((ButtonCard) ButtonsPlace.add(btnDame));
-		JokerCards.add((ButtonCard) ButtonsPlace.add(btnKoenig));
-
-		btnBube.addItemListener(this);
-		btnDame.addItemListener(this);
-		btnKoenig.addItemListener(this);
+		
+		
+		for( int i = 11; i < 14; i++){
+			Card card = new Card(i, Colour.JOKER);
+			ButtonCard btnCard = new ButtonCard(card);
+			JokerCards.add((ButtonCard) buttonsPlace.add(btnCard));
+			btnCard.addItemListener(this);
+		}
+		
+		
 
 		// JButton btnDame = new JButton();
 		// btnDame.setPreferredSize(new Dimension(widthCard, heightCard));
@@ -217,15 +240,15 @@ public class GameField extends JFrame implements ItemListener {
 		// } catch (IOException ex) {
 		// }
 
-		JButton btnPassen = new JButton("passen");
+		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ButtonsPlace.add(btnPassen);
+		buttonsPlace.add(btnPassen);
 
-		JPanel CardsPlace = new JPanel();
-		BottomLine.add(CardsPlace, BorderLayout.NORTH);
+		cardsPlace = new JPanel();
+		BottomLine.add(cardsPlace, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
@@ -274,19 +297,18 @@ public class GameField extends JFrame implements ItemListener {
 		playerpanel1.add(Player1);
 
 		/**
-		 * MM Karten des Spielers in der Hand Hier wusste ich nicht woher diese
-		 * Karten kommen, als Beispiel sind ein paar zum Testen instanziert
+		 * MM als Beispiel sind ein paar zum Testen instanziert
 		 */
 		Card acht = new Card(8, Colour.RED);
 		Card neun = new Card(9, Colour.ORANGE);
 		ButtonCard btnacht = new ButtonCard(acht);
 		ButtonCard btnneun = new ButtonCard(neun);
 		btnneun.addItemListener(this);
-		CardsPlace.add(btnneun,
-				PlayerCards.add((ButtonCard) ButtonsPlace.add(btnneun)));
+		cardsPlace.add(btnneun,
+				PlayerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
 		btnacht.addItemListener(this);
-		CardsPlace.add(btnacht,
-				PlayerCards.add((ButtonCard) ButtonsPlace.add(btnacht)));
+		cardsPlace.add(btnacht,
+				PlayerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
 
 		// JButton cardHand[] = new JButton[15];
 		// for (int i = 1; i < 15; i++) {
@@ -303,15 +325,12 @@ public class GameField extends JFrame implements ItemListener {
 
 		/**
 		 * 
-		 * Hier kommen die Karten des Gegenspielers OpponentCards ist bereits
-		 * als Arraylist gespeichert hier muss nur noch mit Card.getImageBack()
-		 * gefüllt werden, weiß aber nicht (wegen instanzierung der Karten) als
-		 * kleines Beispiel
+		 * Hier Karten in die Mitte legen.
 		 */
 
-		ButtonCard btntest = new ButtonCard(acht);
-		centerField.add(btntest,
-				OpponentCards.add((ButtonCard) ButtonsPlace.add(btntest)));
+//		ButtonCard btntest = new ButtonCard(acht);
+//		centerField.add(btntest,
+//				OpponentCards.add((ButtonCard) buttonsPlace.add(btntest)));
 
 		// JButton tableCard[] = new JButton[15];
 		// for (int j = 1; j != 15; j++) {
@@ -382,6 +401,8 @@ public class GameField extends JFrame implements ItemListener {
 	// }
 	// }
 	/**
+	 * @author Marco Mancuso
+	 * EventHandler
 	 * ButtonCard hat nun zwei Zustände, Selected und nicht Selected
 	 * ItemListener für das Verwendet die Border kann noch geändert werden wenn
 	 * blau nicht passt..
@@ -390,11 +411,15 @@ public class GameField extends JFrame implements ItemListener {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createLineBorder(Color.BLUE, 3));
+			//SELECTED Karten werden in eine ArrayList gespeichert
+			CardsToCheck.add((Card) ((ButtonCard) e.getSource()).getCard());
 		} else {
-
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createEmptyBorder());
+			//Nicht SELECTED wieder aus dem ArrayList entfernt
+			CardsToCheck.remove((Card) ((ButtonCard) e.getSource()).getCard());
 		}
+		gfModel.checkCard(CardsToCheck);
 	}
 
 	// public void actionPerformed(ActionEvent e, ButtonCard z) {

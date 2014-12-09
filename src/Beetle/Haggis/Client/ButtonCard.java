@@ -22,10 +22,9 @@ import Beetle.Haggis.Server.Card.Colour;
  */
 public class ButtonCard extends JToggleButton {
 
- private Card card;
- private int widthCard = 67;
- private int heightCard = 105;
- static int cardSelected = 1;
+private Card card;
+private int widthCard = 67;
+private int heightCard = 105;
  
  public ButtonCard(Card card) {
   super();
@@ -35,4 +34,7 @@ public class ButtonCard extends JToggleButton {
   setPreferredSize(new Dimension(widthCard, heightCard));
   // Card sechsGruen = new Card(6, Colour.GREEN);
  }
+ public Card getCard() {
+	return card;
+}
 }

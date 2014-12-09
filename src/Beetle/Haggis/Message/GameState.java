@@ -21,8 +21,8 @@ public class GameState {
 		NEWTURN, SINGLE, PAIR, RUN
 	}
 
-	Combination actualCombination = Combination.NEWTURN;
-	private ArrayList<Card> lastPlayedCards;
+	static Combination actualCombination = Combination.NEWTURN;
+	private static ArrayList<Card> lastPlayedCards;
 
 	/**
 	 * player [0,1,2], cards[Card]
@@ -37,47 +37,47 @@ public class GameState {
 	private int gamePot = 0;
 
 	/**
-	 * Chek if it is allowed to played the selected cards. At this state of the
-	 * game.
+	 * Check if it is allowed to played the selected cards. At this state of the
+	 * game. 
 	 * 
 	 * @param cards
 	 *            List of selected cards
 	 * @return True if the combination is correct and higher
 	 */
-	public boolean chekKombination(ArrayList<Card> cards) {
+	public static boolean checkCombinations(ArrayList<Card> cards) {
 	
 		Collections.sort(cards);
-		boolean ansver = false;
+		boolean answer = false;
 		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
 				: actualCombination; // Avoid a crash in the case starting with
 										// single
 		switch (actualCombination) {
 		case NEWTURN:
-			ansver = run(cards) || pair(cards) || cards.size() == 1;
+			answer = run(cards) || pair(cards) || cards.size() == 1;
 			break;
 
 		case SINGLE:
 			if (cards.get(0).getNumber() > lastPlayedCards.get(0).getNumber()) {
-				ansver = true;
+				answer = true;
 			}
 			break;
 		case PAIR:
 			if (cards.size() == lastPlayedCards.size()
 					&& cards.get(0).getNumber() > lastPlayedCards.get(0)
 							.getNumber()) {
-				ansver = pair(cards);
+				answer = pair(cards);
 			}
 			break;
 		case RUN:
 			if (cards.size() == lastPlayedCards.size()
 					&& cards.get(0).getNumber() > lastPlayedCards.get(0)
 							.getNumber()) {
-				ansver = run(cards);
+				answer = run(cards);
 			}
 			break;
 
 		}
-		return ansver;
+		return answer;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class GameState {
 	 *            bigest
 	 * @return Does al cards have the same value or added jokers
 	 */
-	private boolean pair(ArrayList<Card> cards) {
+	private static boolean pair(ArrayList<Card> cards) {
 		boolean ansver = true;
 		int pairValue = cards.get(0).getNumber();
 		for (Card card : cards) {
@@ -107,7 +107,7 @@ public class GameState {
 	 *            bigest
 	 * @return Return true if the run is correct including jokers.
 	 */
-	private boolean run(ArrayList<Card> cards) {
+	private static boolean run(ArrayList<Card> cards) {
 		boolean ansver = true;
 		Card.Colour actualcolor = cards.get(0).getColour();
 		int lastNumber = cards.get(0).getNumber();

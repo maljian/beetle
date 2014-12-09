@@ -4,10 +4,14 @@ import java.awt.EventQueue;
 
 //import com.sun.glass.ui.View;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
+import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Server.Card;
 
 /**
- * @author
+ * @author Marco Mancuso
  * @version 1.0
  * @created 25-Okt-2014 19:32:32
  */
@@ -31,16 +35,36 @@ public class GameFieldModel {
 		view.setVisible(true);
 	}
 
+	
+	public void actualizeView(Stack<Card> playerHandCards){
+		//for each
+		for (Card card : playerHandCards) {
+			ButtonCard btnCard = new ButtonCard(card);
+			view.JokerCards.clear();
+			view.PlayerCards.clear();
+			
+			if(card.getValue() == 3){
+				view.JokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
+			}
+			else{
+				view.PlayerCards.add((ButtonCard) view.cardsPlace.add(btnCard));
+			}
+			btnCard.addItemListener(view);
+		}
+	}
+	
+	
 	/**
 	 * GameServer
 	 */
-	public void checkCard() {
-		// TODO (NT) Karten hinzufügen → Funktion checkKombination (im
-		// GameState) → true - Knopf legen aktivieren → false deaktivieren
+	public void checkCard(ArrayList<Card> selectedCards) {
+		boolean combinationConfirmed = GameState.checkCombinations(view.CardsToCheck);
+		view.btnLegen.setEnabled(combinationConfirmed);
 
 	}
 
-	public void layCards() {
+	public void layCards() {	
+		
 		// TODO Karten übergeben (im GameState speichern) und an Message
 		// weitergeleitet zum senden
 		// mi.sendMessage(m); m = Message
