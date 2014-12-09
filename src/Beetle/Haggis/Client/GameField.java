@@ -3,7 +3,9 @@ package Beetle.Haggis.Client;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Shape;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -12,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import java.awt.geom.*;
 
 import Beetle.Haggis.Client.MainView.CombinationWindow;
 import Beetle.Haggis.Client.MainView.HaggisMenu;
@@ -29,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.io.IOException;
@@ -66,6 +71,14 @@ public class GameField extends JFrame implements ItemListener {
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
+	private void RoundButton(String label) {
+		    setSize(new Dimension(0, 0));}
+		    protected void paintComponent(Graphics g) {    
+		  }
+	
+		 
+
+
 
 	/**
 	 * Fix Sizes
@@ -218,7 +231,8 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new BorderLayout(0, 0));
 
-		final JButton btnCombination = new JButton("C");
+		
+		final JButton btnCombination = new RoundButton("Kombination ");
 		btnCombination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnCombination) { 
@@ -234,8 +248,7 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		HelpButtons.add(btnCombination, BorderLayout.WEST);
 
-		final JButton btnProgress = new JButton("P");
-		 btnProgress.setBorder(new RoundedBorder(1));
+		final JButton btnProgress = new RoundButton("  Spielablauf  ");
 		btnProgress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnProgress) {
