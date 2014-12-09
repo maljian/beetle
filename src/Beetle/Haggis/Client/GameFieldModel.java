@@ -43,7 +43,7 @@ public class GameFieldModel {
 			view.JokerCards.clear();
 			view.PlayerCards.clear();
 			
-			if(card.getValue() == 3){
+			if(card.getValue() >= 3){
 				view.JokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
 			}
 			else{
