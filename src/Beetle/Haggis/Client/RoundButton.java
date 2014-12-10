@@ -1,6 +1,5 @@
 package Beetle.Haggis.Client;
 import java.awt.*;
-import java.awt.geom.*;
 import javax.swing.*;
 
 /**
@@ -10,9 +9,10 @@ import javax.swing.*;
  */
 public class RoundButton extends JButton {
   public RoundButton() {
-    setPreferredSize(new Dimension(70, 70));;
+    setPreferredSize(new Dimension(70,70));;
     setBackground(Color.LIGHT_GRAY);
     setContentAreaFilled(false);
     setBorder(null);
     
-  }}
+  }
+}

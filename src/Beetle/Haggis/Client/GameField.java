@@ -120,17 +120,20 @@ public class GameField extends JFrame implements ItemListener {
 		createFrame();
 		getContentPane().setBackground(new Color(178, 34, 34));
 		getContentPane().setLayout(new BorderLayout(0, 0));
+		
 
 		JPanel BottomLine = new JPanel();
 		getContentPane().add(BottomLine, BorderLayout.SOUTH);
 		BottomLine.setLayout(new BorderLayout(0, 0));
 
 		buttonsPlace = new JPanel();
+		buttonsPlace.setBackground(new Color(0, 100, 0));
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
 
+		
 		/**
 		 * MM Die Jokerkarten des Spielers
 		 */
@@ -245,9 +248,11 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.add(btnPassen);
 
 		cardsPlace = new JPanel();
+		cardsPlace.setBackground(new Color(0, 100, 0));
 		BottomLine.add(cardsPlace, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
+		HelpButtons.setBackground(new Color(0, 100, 0));
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new FlowLayout());
 		
@@ -300,7 +305,7 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.add(playerpanel1, BorderLayout.EAST);
 		FlowLayout fl_playerpanel1 = (FlowLayout) playerpanel1.getLayout();
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
-		playerpanel1.setBackground(Color.BLACK);
+		playerpanel1.setBackground(new Color(0, 128, 0));
 
 		JLabel Player1 = new JLabel("SPIELERNAME");
 		playerpanel1.add(Player1);
@@ -329,6 +334,7 @@ public class GameField extends JFrame implements ItemListener {
 		 */
 
 		JPanel centerField = new JPanel();
+		centerField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(centerField, BorderLayout.CENTER);
 		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -349,20 +355,21 @@ public class GameField extends JFrame implements ItemListener {
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
 		JPanel opponentField = new JPanel();
+		opponentField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(opponentField, BorderLayout.NORTH);
 		opponentField.setLayout(new BorderLayout(0, 0));
 
 		JPanel opponent_1 = new JPanel();
-		opponent_1.setBackground(Color.BLACK);
+		opponent_1.setBackground(new Color(0, 128, 0));
 		FlowLayout fl_opponent_1 = (FlowLayout) opponent_1.getLayout();
 		fl_opponent_1.setAlignment(FlowLayout.RIGHT);
 		opponentField.add(opponent_1, BorderLayout.WEST);
 
-		JLabel Player2 = new JLabel("SPIELERNAME2");
+		JLabel Player2 = new JLabel("SPIELERNAME2");	
 		opponent_1.add(Player2);
 
 		JPanel opponent_2 = new JPanel();
-		opponent_2.setBackground(Color.BLACK);
+		opponent_2.setBackground(new Color(0, 128, 0));
 		opponentField.add(opponent_2, BorderLayout.EAST);
 
 		JLabel Player3 = new JLabel("SPIELERNAME3");
