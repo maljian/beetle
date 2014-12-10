@@ -2,6 +2,8 @@ package Beetle.Haggis.Client;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author Faruk
  * @version 1.0
@@ -30,7 +32,7 @@ public class JoinGameModel {
 		}
 	}
 
-	public void checkIP() {
+	public boolean checkIP() {
 		// Nice to have
 	}
 
@@ -39,7 +41,12 @@ public class JoinGameModel {
 		
 
 		// TODO 1 LL spiel beitreten.
-		// fals es nicht geht --> fehlermeldung und fenster stehen lassen!
+		// TODO FFD (erledigt) falls es nicht geht --> fehlermeldung und fenster stehen lassen!
+		if (joinGame() == null){
+			new JoinGameModel(gfModel).setViewVisible(true);
+			JOptionPane.showMessageDialog(null, "IP-Adresse stimmt nicht oder Spiel wurde noch nicht erstellt. Bitte versuchen Sie es nochmal.");
+			
+		}
 	}
 
 	public void goBack() {
