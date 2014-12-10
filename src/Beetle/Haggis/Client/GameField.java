@@ -10,6 +10,7 @@ import java.awt.Shape;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -54,7 +55,6 @@ public class GameField extends JFrame implements ItemListener {
 	 * WICHTIG!!!! auskommentierter Bereich ist nicht mehr brauchbar:
 	 * Eventhandler, img-Aufrufe, usw.
 	 */
-
 	/**
 	 * JButton Selected
 	 */
@@ -76,10 +76,7 @@ public class GameField extends JFrame implements ItemListener {
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
-	private void RoundButton(String label) {
-		    setSize(new Dimension(0, 0));}
-		    protected void paintComponent(Graphics g) {    
-		  }
+
 	
 		 
 
@@ -115,7 +112,7 @@ public class GameField extends JFrame implements ItemListener {
 //		});
 //	}
 
-	public GameField( GameFieldModel gfm) {
+	public GameField(GameFieldModel gfm) {
 		super("Haggis");
 		gfModel = gfm;
 		
@@ -252,10 +249,15 @@ public class GameField extends JFrame implements ItemListener {
 
 		JPanel HelpButtons = new JPanel();
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
-		HelpButtons.setLayout(new BorderLayout(0, 0));
-
+		HelpButtons.setLayout(new FlowLayout());
 		
-		final JButton btnCombination = new RoundButton("Kombination ");
+
+		final JButton btnCombination = new RoundButton();
+		try {
+			Image comb = ImageIO.read(getClass().getResource("/Beetle/Resources/Kombinationen.png"));
+			btnCombination.setIcon(new ImageIcon(comb));
+		} catch (IOException e1) {
+		}
 		btnCombination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnCombination) { 
@@ -271,7 +273,14 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		HelpButtons.add(btnCombination, BorderLayout.WEST);
 
-		final JButton btnProgress = new RoundButton("  Spielablauf  ");
+		final JButton btnProgress = new RoundButton();
+		try {
+			Image prog = ImageIO.read(getClass().getResource("/Beetle/Resources/Spielablauf.png"));
+			btnProgress.setIcon(new ImageIcon(prog));
+		} catch (IOException e1) {
+		
+		}
+		
 		btnProgress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnProgress) {
