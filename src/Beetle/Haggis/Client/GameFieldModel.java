@@ -29,10 +29,14 @@ public class GameFieldModel {
 	 */
 	private Card selectedCards;
 	private GameField view;
+	
 
 	public GameFieldModel() {
 		view = new GameField(this);
 		view.setVisible(true);
+		view.btnLegen.setEnabled(false);
+		view.btnPassen.setEnabled(false);
+		playerHasTurn();
 	}
 
 	
@@ -43,7 +47,7 @@ public class GameFieldModel {
 			view.jokerCards.clear();
 			view.playerCards.clear();
 			
-			if(card.getValue() >= 3){
+			if(card.getValue() >= 2){
 				view.jokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
 			}
 			else{
@@ -57,10 +61,27 @@ public class GameFieldModel {
 	/**
 	 * GameServer
 	 */
+	
+	
+	/**
+	 * zum testen einfach Variable yourTurn auf true oder false setzen
+	 * false: spieler ist nicht an der reihe
+	 * true: spieler ist an der reihe
+	 * @return false oder true
+	 */
+	public boolean playerHasTurn(){
+		
+		boolean yourTurn;
+		yourTurn = false; //hier kommt etwas von Loic, was true oder false zurückgibt
+		view.btnPassen.setEnabled(yourTurn);
+		return yourTurn;
+	}
+	
+	
 	public void checkCard(ArrayList<Card> selectedCards) {
-		boolean combinationConfirmed = GameState.checkCombinations(view.cardsToCheck);
-		view.btnLegen.setEnabled(combinationConfirmed);
-
+		
+		boolean combinationConfirmed = GameState.checkCombinations(selectedCards);
+		view.btnLegen.setEnabled(combinationConfirmed && this.playerHasTurn());
 	}
 
 	public void layCards() {	
