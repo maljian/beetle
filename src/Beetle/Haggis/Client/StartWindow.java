@@ -77,6 +77,11 @@ public class StartWindow extends JFrame implements ActionListener {
 
 	}
 
+	
+	/**
+	 * @author Faruk Doganci
+	 * EventHandler
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNewGame) {
@@ -93,13 +98,4 @@ public class StartWindow extends JFrame implements ActionListener {
 			System.out.println();
 		}
 	}
-
-//	/**
-//	 * Launch the application. MAIN METHODE NUR ZUM TESTEN IN DER KLASSE
-//	 */
-//	public static void main(String[] args) {
-//
-//		StartWindow frame = new StartWindow();
-//		frame.setVisible(true);
-//	}
 }

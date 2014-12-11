@@ -89,14 +89,14 @@ public class GameState {
 	 * @return Does al cards have the same value or added jokers
 	 */
 	private static boolean pair(ArrayList<Card> cards) {
-		boolean ansver = true;
+		boolean answer = true;
 		int pairValue = cards.get(0).getNumber();
 		for (Card card : cards) {
 			if (card.getNumber() != pairValue && card.getNumber() < 11) {
-				ansver = false;
+				answer = false;
 			}
 		}
-		return ansver;
+		return answer;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class GameState {
 	 * @return Return true if the run is correct including jokers.
 	 */
 	private static boolean run(ArrayList<Card> cards) {
-		boolean ansver = true;
+		boolean answer = true;
 		Card.Colour actualcolor = cards.get(0).getColour();
 		int lastNumber = cards.get(0).getNumber();
 		int usedJoker = 0;
@@ -125,15 +125,15 @@ public class GameState {
 					usedJoker++;
 					i--;
 				} else {
-					ansver = false;
+					answer = false;
 					break;
 				}
 			} else if (!cards.get(i).getColour().equals(Card.Colour.JOKER)) {
-				ansver = false;
+				answer = false;
 				break;
 			}
 		}
-		return ansver;
+		return answer;
 	}
 
 	public Combination getActualCombination() {

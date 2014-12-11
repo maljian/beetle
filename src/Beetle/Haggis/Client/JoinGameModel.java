@@ -32,9 +32,10 @@ public class JoinGameModel {
 		}
 	}
 
-	public boolean checkIP() {
-		// Nice to have
-	}
+	//Nice to have...
+//	public boolean checkIP() {
+//		
+//	}
 
 	public void joinGame() {
 		m_View.dispose();
@@ -42,11 +43,11 @@ public class JoinGameModel {
 
 		// TODO 1 LL spiel beitreten.
 		// TODO FFD (erledigt) falls es nicht geht --> fehlermeldung und fenster stehen lassen!
-		if (joinGame() == null){
-			new JoinGameModel(gfModel).setViewVisible(true);
-			JOptionPane.showMessageDialog(null, "IP-Adresse stimmt nicht oder Spiel wurde noch nicht erstellt. Bitte versuchen Sie es nochmal.");
-			
-		}
+//		if (joinGame() == null){
+//			new JoinGameModel(gfModel).setViewVisible(true);
+//			JOptionPane.showMessageDialog(null, "IP-Adresse stimmt nicht oder Spiel wurde noch nicht erstellt. Bitte versuchen Sie es nochmal.");
+//			
+//		}
 	}
 
 	public void goBack() {

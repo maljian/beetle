@@ -38,8 +38,8 @@ public class NewGame extends JoinGame {
 	public JTextField txtIpAdress;
 	private JPanel logoPanel;
 	private JLabel logoLabel;
-	protected JComboBox NumberPlayer;
-	protected JComboBox TargetPoint;
+	protected JComboBox numberPlayer;
+	protected JComboBox TargetPoint; // Problem, deshalb keine Umbenennung!
 	private NewGameModel model;
 
 	// /**
@@ -104,12 +104,12 @@ public class NewGame extends JoinGame {
 		btnPlay.setBounds(626, 392, 89, 30);
 		contentPane.add(btnPlay);
 
-		NumberPlayer = new JComboBox();
-		NumberPlayer.setModel(new DefaultComboBoxModel(
+		numberPlayer = new JComboBox();
+		numberPlayer.setModel(new DefaultComboBoxModel(
 				new String[] { "2", "3" }));
-		NumberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
-		NumberPlayer.setBounds(684, 81, 33, 20);
-		contentPane.add(NumberPlayer);
+		numberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
+		numberPlayer.setBounds(684, 81, 33, 20);
+		contentPane.add(numberPlayer);
 
 		JLabel lblTargetPoint = new JLabel("Ziel:");
 		lblTargetPoint.setForeground(Color.WHITE);

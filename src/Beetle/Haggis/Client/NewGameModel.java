@@ -59,7 +59,7 @@ public class NewGameModel extends JoinGameModel {
 	 * @author Nadine Töpfer
 	 */
 	protected void startServer() {
-		int numberPlayer = Integer.parseInt(m_View.NumberPlayer.getSelectedItem().toString());
+		int numberPlayer = Integer.parseInt(m_View.numberPlayer.getSelectedItem().toString());
 		System.out.println(numberPlayer);		
 		int targetPoint = Integer.parseInt( m_View.TargetPoint.getSelectedItem().toString());
 		boolean bet = false;	//Preparation for future version 

@@ -64,29 +64,19 @@ public class GameField extends JFrame implements ItemListener {
 	private Card btnCard;
 	private int btnLay;
 	private int btnPass;
-	protected ArrayList<ButtonCard> JokerCards = new ArrayList<ButtonCard>();
-	protected ArrayList<ButtonCard> PlayerCards = new ArrayList<ButtonCard>();
-	protected ArrayList<Card> CardsToCheck = new ArrayList<Card>();
-	//private ArrayList<ButtonCard> OpponentCards = new ArrayList<ButtonCard>();
+	protected ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
+	protected ArrayList<ButtonCard> playerCards = new ArrayList<ButtonCard>();
+	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
+	private ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 	protected JPanel buttonsPlace;
 	protected JPanel cardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
-	private ArrayList<JPanel> HandCards = new ArrayList<JPanel>(); // ?
+	private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen wir das überhaupt??
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
 
-	
-		 
-
-
-
-	/**
-	 * Fix Sizes
-	 */
-	// private int widthCard = 67;
-	// private int heightCard = 105;
 
 	/**
 	 * Opponent
@@ -132,26 +122,6 @@ public class GameField extends JFrame implements ItemListener {
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
-
-		
-		/**
-		 * MM Die Jokerkarten des Spielers
-		 */
-//		Card bube = new Card(11, Colour.JOKER);
-//		Card dame = new Card(12, Colour.JOKER);
-//		Card koenig = new Card(13, Colour.JOKER);
-//
-//		ButtonCard btnBube = new ButtonCard(bube);
-//		ButtonCard btnDame = new ButtonCard(dame);
-//		ButtonCard btnKoenig = new ButtonCard(koenig);
-//
-//		JokerCards.add((ButtonCard) buttonsPlace.add(btnBube));
-//		JokerCards.add((ButtonCard) buttonsPlace.add(btnDame));
-//		JokerCards.add((ButtonCard) buttonsPlace.add(btnKoenig));
-//
-//		btnBube.addItemListener(this);
-//		btnDame.addItemListener(this);
-//		btnKoenig.addItemListener(this);
 		
 		/**
 		 * 
@@ -159,86 +129,13 @@ public class GameField extends JFrame implements ItemListener {
 		 * 
 		 * Joker sollen sowieso angezeigt werden.
 		 */
-
-		
-		
 		for( int i = 11; i < 14; i++){
 			Card card = new Card(i, Colour.JOKER);
 			ButtonCard btnCard = new ButtonCard(card);
-			JokerCards.add((ButtonCard) buttonsPlace.add(btnCard));
+			jokerCards.add((ButtonCard) buttonsPlace.add(btnCard));
 			btnCard.addItemListener(this);
 		}
-		
-		
-
-		// JButton btnDame = new JButton();
-		// btnDame.setPreferredSize(new Dimension(widthCard, heightCard));
-		// try {
-		// Image img = ImageIO.read(getClass().getResource(
-		// "/Beetle/Resources/Dame.jpg"));
-		// btnDame.setIcon(new ImageIcon(img));
-		// } catch (IOException ex) {
-		// }
-		// Border empty = BorderFactory.createEmptyBorder(1, 1, 1, 1);
-		// final Border compound;
-		// Color crl = (Color.blue);
-		// compound = BorderFactory.createCompoundBorder(empty, new
-		// OldRoundedBorderLine(crl));
-		// Color crl1 = (Color.red);
-		// final Border compound1;
-		// compound1 = BorderFactory.createCompoundBorder(empty, new
-		// OldRoundedBorderLine(crl1));
-		// Color crl2 = (Color.black);
-		// final Border compound2;
-		// compound2 = BorderFactory.createCompoundBorder(empty, new
-		// OldRoundedBorderLine(crl2));
-
-		// btnBube.setPreferredSize(new Dimension(widthCard, heightCard));
-		// btnBube.addActionListener(new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// // TODO Auto-generated method stub
-		// if (e.getSource() == btnBube){
-		// btnBube.setBorderPainted(true);
-		// btnBube.setFocusPainted(false);
-		// btnBube.setBorder(compound);
-		// btnBube.setHorizontalTextPosition(SwingConstants.CENTER);
-		// btnBube.setVerticalTextPosition(SwingConstants.BOTTOM);
-		// btnBube.getModel().addChangeListener(new ChangeListener() {
-		// @Override
-		// public void stateChanged(ChangeEvent e) {
-		// ButtonModel model = (ButtonModel) e.getSource();
-		// if (model.isRollover()) {
-		// btnBube.setBorder(compound1);
-		// } else {
-		// btnBube.setBorder(compound);
-		// }
-		// if (model.isPressed()) {
-		// btnBube.setBorder(compound2);
-		// }
-		// }
-		// });
-		// }
-		// }
-		// });
-		// try {
-		// Image img = ImageIO.read(getClass().getResource(
-		// "/Beetle/Resources/Bube.jpg"));
-		//
-		// btnBube.setIcon(new ImageIcon(img));
-		//
-		// } catch (IOException ex) {
-		// }
-		// JButton btnKonig = new JButton();
-		// btnKonig.setPreferredSize(new Dimension(widthCard, heightCard));
-		// try {
-		// Image img = ImageIO.read(getClass().getResource(
-		// "/Beetle/Resources/König.jpg"));
-		//
-		// btnKonig.setIcon(new ImageIcon(img));
-		//
-		// } catch (IOException ex) {
-		// }
+	
 
 		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
@@ -311,7 +208,7 @@ public class GameField extends JFrame implements ItemListener {
 		playerpanel1.add(Player1);
 
 		/**
-		 * MM als Beispiel sind ein paar zum Testen instanziert
+		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
 		 */
 		Card acht = new Card(8, Colour.RED);
 		Card neun = new Card(9, Colour.ORANGE);
@@ -319,15 +216,10 @@ public class GameField extends JFrame implements ItemListener {
 		ButtonCard btnneun = new ButtonCard(neun);
 		btnneun.addItemListener(this);
 		cardsPlace.add(btnneun,
-				PlayerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
+				playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
 		btnacht.addItemListener(this);
 		cardsPlace.add(btnacht,
-				PlayerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
-
-		// JButton cardHand[] = new JButton[15];
-		// for (int i = 1; i < 15; i++) {
-		// cardHand[i] = new JButton("card " + i);
-		// CardsPlace.add(cardHand[i]); }
+				playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
 
 		/**
 		 * Tisch (MITTE)
@@ -339,18 +231,15 @@ public class GameField extends JFrame implements ItemListener {
 		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		/**
-		 * 
+		 * MM
 		 * Hier Karten in die Mitte legen.
+		 * Hier wieder nur ein beispiel
 		 */
 
-//		ButtonCard btntest = new ButtonCard(acht);
-//		centerField.add(btntest,
-//				OpponentCards.add((ButtonCard) buttonsPlace.add(btntest)));
-
-		// JButton tableCard[] = new JButton[15];
-		// for (int j = 1; j != 15; j++) {
-		// tableCard[j] = new JButton("card " + j);
-		// centerField.add(tableCard[j]); }
+		ButtonCard btntest = new ButtonCard(acht);
+		centerField.add(btntest,
+				layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
+		
 		/**
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
@@ -389,60 +278,24 @@ public class GameField extends JFrame implements ItemListener {
 	public void EventHandler() {
 
 	}
-
-	// class OldRoundedBorderLine extends AbstractBorder {
-	//
-	// private final static int MARGIN = 5;
-	// private static final long serialVersionUID = 1L;
-	// public Color color;
-	//
-	// OldRoundedBorderLine(Color clr) {
-	// color = clr;
-	// }}
-
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// if(e.getActionCommand() = ActionEvent.ACTION_FIRST)
-	// switch (ButtonCard.cardSelected) {
-	//
-	// case 2:
-	// ((ButtonCard)e.getSource()).setBorder(BorderFactory.createLineBorder(Color.BLACK,
-	// 2));
-	// ButtonCard.cardSelected = 1;
-	//
-	// case 1:
-	// ((ButtonCard)e.getSource()).setBorder(BorderFactory.createLineBorder(Color.RED,
-	// 6));
-	// ButtonCard.cardSelected = 2;
-	// }
-	// }
 	/**
 	 * @author Marco Mancuso
 	 * EventHandler
 	 * ButtonCard hat nun zwei Zustände, Selected und nicht Selected
-	 * ItemListener für das Verwendet die Border kann noch geändert werden wenn
-	 * blau nicht passt..
+	 * ItemListener für das Verwendet
 	 */
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createLineBorder(Color.BLUE, 3));
 			//SELECTED Karten werden in eine ArrayList gespeichert
-			CardsToCheck.add((Card) ((ButtonCard) e.getSource()).getCard());
+			cardsToCheck.add((Card) ((ButtonCard) e.getSource()).getCard());
 		} else {
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createEmptyBorder());
 			//Nicht SELECTED wieder aus dem ArrayList entfernt
-			CardsToCheck.remove((Card) ((ButtonCard) e.getSource()).getCard());
+			cardsToCheck.remove((Card) ((ButtonCard) e.getSource()).getCard());
 		}
-		gfModel.checkCard(CardsToCheck);
+		gfModel.checkCard(cardsToCheck);
 	}
-
-	// public void actionPerformed(ActionEvent e, ButtonCard z) {
-	// // TODO Auto-generated method stub
-	// if (e.getSource() == z){
-	// z.cardSelected = true;
-	// }
-	// }
-
 }// end GameField

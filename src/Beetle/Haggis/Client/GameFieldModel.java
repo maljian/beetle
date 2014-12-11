@@ -40,14 +40,14 @@ public class GameFieldModel {
 		//for each
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
-			view.JokerCards.clear();
-			view.PlayerCards.clear();
+			view.jokerCards.clear();
+			view.playerCards.clear();
 			
 			if(card.getValue() >= 3){
-				view.JokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
+				view.jokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
 			}
 			else{
-				view.PlayerCards.add((ButtonCard) view.cardsPlace.add(btnCard));
+				view.playerCards.add((ButtonCard) view.cardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 		}
@@ -58,7 +58,7 @@ public class GameFieldModel {
 	 * GameServer
 	 */
 	public void checkCard(ArrayList<Card> selectedCards) {
-		boolean combinationConfirmed = GameState.checkCombinations(view.CardsToCheck);
+		boolean combinationConfirmed = GameState.checkCombinations(view.cardsToCheck);
 		view.btnLegen.setEnabled(combinationConfirmed);
 
 	}

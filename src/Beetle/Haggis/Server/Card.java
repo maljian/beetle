@@ -39,21 +39,21 @@ public class Card implements Comparable<Card> {
   this.value = number % 2;
 
   // Maximale Kartenmengen
-  final int MAXnormaleKarten = 9;
+  final int maxNormalCards = 9;
 
   // StandardPfade
-  final String standardPfad = "/Beetle/Resources/";
-  String aktuellerPfad = standardPfad;
+  final String standardPath = "/Beetle/Resources/";
+  String actualPath = standardPath;
 
   // Pfade für Joker und Rückseite
-  String rueckseitePfad = standardPfad + "rueckseite.jpg";
-  String koenigPfad = standardPfad + "König.jpg";
-  String damePfad = standardPfad + "Dame.jpg";
-  String bubePfad = standardPfad + "Bube.jpg";
+  String backsidePath = standardPath + "rueckseite.jpg";
+  String kingPath = standardPath + "König.jpg";
+  String queenPath = standardPath + "Dame.jpg";
+  String jackPath = standardPath + "Bube.jpg";
 
   // Rueckseite Bild
   try {
-   this.image = ImageIO.read(getClass().getResource(rueckseitePfad));
+   this.imageBack = ImageIO.read(getClass().getResource(backsidePath));
   } catch (IOException e1) {
    e1.printStackTrace();
   }
@@ -63,53 +63,53 @@ public class Card implements Comparable<Card> {
 
   switch (colour) {
   case RED:
-   aktuellerPfad += "Red/rot";
+   actualPath += "Red/rot";
    break;
 
   case YELLOW:
-   aktuellerPfad += "Yellow/gelb";
+   actualPath += "Yellow/gelb";
    break;
 
   case ORANGE:
-   aktuellerPfad += "Orange/orange";
+   actualPath += "Orange/orange";
    break;
 
   case GREY:
-   aktuellerPfad += "Grey/grau";
+   actualPath += "Grey/grau";
    break;
 
   case GREEN:
-   aktuellerPfad += "Green/gruen";
+   actualPath += "Green/gruen";
    break;
 
   case JOKER:
    break;
   }
 
-  if (number <= MAXnormaleKarten) {
-   aktuellerPfad += "0";
+  if (number <= maxNormalCards) {
+   actualPath += "0";
   }
 
-  aktuellerPfad += number + ".jpg";
+  actualPath += number + ".jpg";
   // Value Zuweisung der Karten B,D,K;
 
   switch (number) {
   case 11:
    value = 2;
-    aktuellerPfad = bubePfad;
+    actualPath = jackPath;
    break;
   case 12:
    value = 3;
-   aktuellerPfad = damePfad;
+   actualPath = queenPath;
    break;
   case 13:
    value = 5;
-   aktuellerPfad = koenigPfad;
+   actualPath = kingPath;
    break;
   }
   
   try {
-   this.image = ImageIO.read(getClass().getResource(aktuellerPfad));
+   this.image = ImageIO.read(getClass().getResource(actualPath));
   } catch (IOException e) {
    e.printStackTrace();
   }
