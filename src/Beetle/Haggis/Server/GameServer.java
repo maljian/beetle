@@ -1,6 +1,7 @@
 package Beetle.Haggis.Server;
 
 import java.io.IOException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,14 +26,14 @@ import Beetle.Haggis.Server.Card.Colour;
  * @version 1.0
  * @created 14-Nov-2014
  */
-public class GameServer implements MessageInterface {
+public class GameServer implements Remote{ //implements MessageInterface {
 
 	// private EventHandlerServer eventHandler;
 
 	static private GameState state;
 	static private int targetPoint;
-	private SynchronousQueue<Message> sendQueue;
-	private SynchronousQueue<Message> receiveQueue;
+//	private SynchronousQueue<Message> sendQueue;
+//	private SynchronousQueue<Message> receiveQueue;
 
 	// public ClientConnection m_ClientConnection;
 	// public EventHandlerServer m_EventHandlerServer;
@@ -47,41 +48,41 @@ public class GameServer implements MessageInterface {
 	//
 	// }
 
-	/**
-	 * This is a remote method which is executed by the client. It will block
-	 * until there is content in the sendQueue and then pass the message to the
-	 * client.
-	 */
-	public Message receiveMessage() throws RemoteException {
-		Message m = sendQueue.poll();
-		return m;
-	}
-
-	/**
-	 * This is a remote method which is executed by the client. It will receive
-	 * the message and pass it to the receiveQueue where it will then be
-	 * processed by the game logic.
-	 */
-	public void sendMessage(Message m) throws RemoteException {
-		try {
-			receiveQueue.put(m);
-		} catch (InterruptedException e) {
-			sendMessage(m);
-		}
-	}
-
-	public void init() throws RemoteException {
-		// Hier muss sich der Client dann bei irgendwem anmelden.
-		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
-		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
-		// D.h. es muss static sein.
-		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
-		// GameServer angelegt, dieses hat alle statischen Felder der Klasse
-		// auch.
-		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
-		// entsprechende Netzwerkverbindung.
-
-	}
+//	/**
+//	 * This is a remote method which is executed by the client. It will block
+//	 * until there is content in the sendQueue and then pass the message to the
+//	 * client.
+//	 */
+//	public Message receiveMessage() throws RemoteException {
+//		Message m = sendQueue.poll();
+//		return m;
+//	}
+//
+//	/**
+//	 * This is a remote method which is executed by the client. It will receive
+//	 * the message and pass it to the receiveQueue where it will then be
+//	 * processed by the game logic.
+//	 */
+//	public void sendMessage(Message m) throws RemoteException {
+//		try {
+//			receiveQueue.put(m);
+//		} catch (InterruptedException e) {
+//			sendMessage(m);
+//		}
+//	}
+//
+//	public void init() throws RemoteException {
+//		// Hier muss sich der Client dann bei irgendwem anmelden.
+//		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
+//		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
+//		// D.h. es muss static sein.
+//		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
+//		// GameServer angelegt, dieses hat alle statischen Felder der Klasse
+//		// auch.
+//		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
+//		// entsprechende Netzwerkverbindung.
+//
+//	}
 
 	/**
 	 * Get the value of the cards and addition them.

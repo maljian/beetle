@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import javax.swing.JOptionPane;
+
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
@@ -31,15 +33,13 @@ public class Client {
 		private MessageInterface mi;
 		private boolean stillRunning = true;
 		private GameFieldModel gfModel;
+		public GameField m_GameField;
 		
 		public void run() {
 			String host = "127.0.0.1";
 			stillRunning= true;
 			String serverIP = m_JoinGame.txtIpAdress.getText();
 			try {
-//				String ipv4 = InetAddress.getLocalHost().toString();
-//				String[] ip = ipv4.split("/");
-//				host = ip[1];
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
@@ -49,10 +49,9 @@ public class Client {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
 				stillRunning= false; 
-				//TODO 2 JoinGame Fenster neu aufrufen (+Fehlermeldung) IPAdresse, Spielername und ServerID uebergeben
+				JOptionPane.showMessageDialog(null, "Fehlermeldung", "Es konnte keine Verbindung hergestellt werden, bitte gib deine Daten neu ein.", JOptionPane.ERROR_MESSAGE);
 				new JoinGameModel(gfModel);
 			}
-			
 			
 			while (stillRunning) {
 				Message m;
@@ -65,10 +64,6 @@ public class Client {
 				}
 	 
 			}
-			
-			
-			
-			
 
 		}
 
