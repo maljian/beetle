@@ -32,6 +32,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 	static private GameState state;
 	static private int targetPoint;
+	static private ArrayList<String> playerName;
 //	private SynchronousQueue<Message> sendQueue;
 //	private SynchronousQueue<Message> receiveQueue;
 
@@ -170,7 +171,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 			Collections.sort(playerCard);
 			p.setCards(playerCard);
 		}
-		state.setPlayerS(players);
+		state.setPlayers(players);
 		state.setGamePot(CalculateStackValue(cardStack));
 		return state;
 	}

@@ -30,6 +30,7 @@ public class GameState {
 	private Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
+	
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
 	 * point. "Haggis"
@@ -204,7 +205,7 @@ public class GameState {
 		players[id] = p;
 	}
 
-	public void setPlayerS(Player[] p) {
+	public void setPlayers(Player[] p) {
 		players = p;
 	}
 

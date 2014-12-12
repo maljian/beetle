@@ -45,7 +45,7 @@ public class Client {
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
 //				// TODO
-				mi.init();
+//				mi.init();
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();

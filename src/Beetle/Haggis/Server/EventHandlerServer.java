@@ -55,11 +55,11 @@ public class EventHandlerServer implements MessageInterface{
 
 	}
 	
-	// An alle Clients Message schicken mit aktuellen Stand
-	public void updateCilent(){
-		
-
-	}
+//	// An alle Clients Message schicken mit aktuellen Stand
+//	public void updateCilent(){
+//		
+//
+//	}
 
 	/**
 	 * This is a remote method which is executed by the client. It will block
@@ -84,7 +84,9 @@ public class EventHandlerServer implements MessageInterface{
 		}
 	}
 
-	public void init() throws RemoteException {
+	public int init(String name) throws RemoteException {
+		return 0;
+		
 		// Spieler muss sich beim GameServer irgendwie anmelden
 		// Hier muss sich der Client dann bei irgendwem anmelden.
 		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
@@ -97,4 +99,6 @@ public class EventHandlerServer implements MessageInterface{
 		// entsprechende Netzwerkverbindung.
 
 	}
+
+	
 }//end EventHandlerServer
