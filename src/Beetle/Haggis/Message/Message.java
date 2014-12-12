@@ -1,7 +1,6 @@
 package Beetle.Haggis.Message;
 
 import java.io.Serializable;
-import java.net.Socket;
 
 
 /**
@@ -24,6 +23,12 @@ public class Message implements Serializable {
 	private MessageType messageType;
 	private PlayedAction playedAction;
 
+	/**
+	 * 
+	 * @param gameState
+	 * @param messageType
+	 * @param playedAction
+	 */
 	public Message(GameState gameState, MessageType messageType, PlayedAction playedAction){
 		this.gameState = gameState;
 		this.messageType = messageType;

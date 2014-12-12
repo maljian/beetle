@@ -19,9 +19,6 @@ import javax.swing.ScrollPaneConstants;
  */
 public class RulesWindow extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JLabel lblRules = new JLabel();
 	

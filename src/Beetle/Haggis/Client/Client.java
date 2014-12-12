@@ -20,8 +20,8 @@ import Beetle.Haggis.Server.GameServer;
 public class Client {
 
 		private int id; //PlayerID starting 0 
-		private String playerName;
-		private String serverIP;
+//		private String playerName;
+//		private String serverIP;
 		public static JoinGame m_JoinGame;
 		/**
 		 * 
@@ -38,7 +38,7 @@ public class Client {
 		public void connect(String name) {
 			
 			String host = "127.0.0.1";
-			connected= true;
+			connected = true;
 			String serverIP = m_JoinGame.txtIpAdress.getText();
 			try {
 				host = serverIP;
@@ -46,7 +46,6 @@ public class Client {
 				mi = (MessageInterface) registry.lookup("MessageInterface");
 				id = mi.init(m_JoinGame.txtPlayerName.getText());
 				
-				//TODO Spiel ersteller muss sich auch noch verbinden
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
@@ -68,6 +67,9 @@ public class Client {
 			}
 
 		}
+		
+		// Thread erstellen, entlosschlaufe durchlaufen pull state
+		// schauen ob neue Version, falls ja gui aktualisieren
 
 		public Client(GameFieldModel gfModel) {
 			super();

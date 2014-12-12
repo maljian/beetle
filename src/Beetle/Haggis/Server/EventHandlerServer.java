@@ -3,12 +3,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.JOptionPane;
 
-import Beetle.Haggis.Client.Client;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
 
@@ -29,6 +27,13 @@ public class EventHandlerServer implements MessageInterface{
 		super();
 	}
 
+	/**
+	 * 
+	 * @param targetPoint
+	 * @param bet
+	 * @param bombs
+	 * @param numberPlayer
+	 */
 	public void startServer(int targetPoint, boolean bet, boolean bombs, int numberPlayer){
 		
 		try{
@@ -88,8 +93,8 @@ public class EventHandlerServer implements MessageInterface{
 	}
 
 	public int init(String name) throws RemoteException {
-		return main.initPlayer(name);
-		
+//		return main.initPlayer(name);
+		return 0;
 		
 		
 		

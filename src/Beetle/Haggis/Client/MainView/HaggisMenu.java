@@ -20,6 +20,10 @@ public class HaggisMenu extends JMenuBar {
 	private JMenuItem menuItemS;
 	private GameFieldModel gfModel;
 	
+	/**
+	 * 
+	 * @param gfm
+	 */
 	public HaggisMenu(GameFieldModel gfm){
 		gfModel=gfm;
 		createMenuBar();
@@ -34,6 +38,10 @@ public class HaggisMenu extends JMenuBar {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private JMenuItem getRules(){
 		menuItemR = new JMenuItem("Spielregeln");
 		menuItemR.addActionListener(new ActionListener(){
@@ -47,8 +55,11 @@ public class HaggisMenu extends JMenuBar {
 		return menuItemR;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private JMenuItem getStart(){
-		
 		menuItemS = new JMenuItem("Start");
 		menuItemS.addActionListener(new ActionListener(){
 			@Override
