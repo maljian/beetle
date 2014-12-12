@@ -257,7 +257,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 		// playerState.setPlayerTurns(playerTurns++);
 
-		GameState.versionCounter();
+		state.versionCounter();
 		return playerState;
 
 	}
