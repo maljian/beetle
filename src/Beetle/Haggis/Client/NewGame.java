@@ -33,9 +33,9 @@ import Beetle.Haggis.Server.GameServer;
 public class NewGame extends JoinGame {
 
 	public JPanel contentPane;
-	private JTextField txtPlayerName;
+	protected JTextField txtPlayerName;
 	private JButton btnPlay;
-	public JTextField txtIpAdress;
+	protected JTextField txtIpAdress;
 	private JPanel logoPanel;
 	private JLabel logoLabel;
 	protected JComboBox numberPlayer;

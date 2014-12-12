@@ -15,6 +15,7 @@ public class JoinGameModel {
 	private String playerName;
 	public JoinGame m_View;
 	private GameFieldModel gfModel;
+	private Client client;
 
 	/**
 	 * 
@@ -38,6 +39,7 @@ public class JoinGameModel {
 //	}
 
 	public void joinGame() {
+		client.connect(m_View.txtPlayerName.getText());
 		m_View.dispose();
 		
 

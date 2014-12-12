@@ -8,6 +8,7 @@ import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.JOptionPane;
 
+import Beetle.Haggis.Client.Client;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
 
@@ -23,6 +24,7 @@ public class EventHandlerServer implements MessageInterface{
 	private SynchronousQueue<Message> sendQueue;
 	private SynchronousQueue<Message> receiveQueue;
 	
+	
 	public EventHandlerServer(){
 		super();
 	}
@@ -37,11 +39,12 @@ public class EventHandlerServer implements MessageInterface{
 			registry = LocateRegistry.getRegistry();
 			registry.bind("MessageInterface", stub);
 			
-			System.err.println("Server ready");
+			System.out.println("Startserver ready");
 		}catch (Exception e){
-			System.err.println("Server exception: " + e.toString());
+			System.out.println("Startserver error" );
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
@@ -86,6 +89,8 @@ public class EventHandlerServer implements MessageInterface{
 
 	public int init(String name) throws RemoteException {
 		return main.initPlayer(name);
+		
+		
 		
 		
 		// Spieler muss sich beim GameServer irgendwie anmelden

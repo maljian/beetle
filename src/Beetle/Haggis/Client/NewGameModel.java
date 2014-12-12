@@ -16,6 +16,7 @@ public class NewGameModel extends JoinGameModel {
 
 	public static NewGame m_View;
 	public GameFieldModel gfModel;
+	private Client client;
 
 	// public static void main(String[] args) {
 	// EventQueue.invokeLater(new Runnable() {
@@ -63,6 +64,7 @@ public class NewGameModel extends JoinGameModel {
 		boolean bombs = false;  //Preparation for future version  
 		EventHandlerServer ehs = new EventHandlerServer();
 		ehs.startServer(targetPoint, bet, bombs, numberPlayer);
+		client.connect(m_View.txtPlayerName.getText());
 		m_View.dispose();
 	}
 	

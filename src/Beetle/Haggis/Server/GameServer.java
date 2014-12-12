@@ -93,6 +93,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 		}else{
 			id = -1;
 		}
+		System.out.println("Player-ID: " + id);
 		return id;
 	}
 	

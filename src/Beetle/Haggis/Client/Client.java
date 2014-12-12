@@ -31,29 +31,31 @@ public class Client {
 		private GameState state;
 		private Registry registry;
 		private MessageInterface mi;
-		private boolean stillRunning = true;
+		private boolean connected = true;
 		private GameFieldModel gfModel;
 		public GameField m_GameField;
 		
-		public void run() {
+		public void connect(String name) {
 			
 			String host = "127.0.0.1";
-			stillRunning= true;
+			connected= true;
 			String serverIP = m_JoinGame.txtIpAdress.getText();
 			try {
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
 				id = mi.init(m_JoinGame.txtPlayerName.getText());
+				
+				//TODO Spiel ersteller muss sich auch noch verbinden
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
-				stillRunning= false; 
+				connected= false; 
 				JOptionPane.showMessageDialog(null, "Fehlermeldung", "Es konnte keine Verbindung hergestellt werden, bitte gib deine Daten neu ein.", JOptionPane.ERROR_MESSAGE);
 				new JoinGameModel(gfModel);
 			}
 			
-			while (stillRunning) {
+			while (connected) {
 				Message m;
 				try {
 					m = mi.receiveMessage();
