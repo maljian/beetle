@@ -30,23 +30,12 @@ public class GameState {
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	
-	private static int version;
-	
-	public static int getVersion() {
-		return version;
-	}
-
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
 	 * point. "Haggis"
 	 */
 	private int gamePot = 0;
 
-	
-	
-	public static void versionCounter(){
-		GameState.version ++;
-	}
 	/**
 	 * Check if it is allowed to played the selected cards. At this state of the
 	 * game. 
