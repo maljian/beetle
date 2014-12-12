@@ -28,16 +28,14 @@ public class EventHandlerServer implements MessageInterface{
 	}
 
 	public void startServer(int targetPoint, boolean bet, boolean bombs, int numberPlayer){
-		if(System.getSecurityManager()== null){
-			System.setSecurityManager(new SecurityManager());
-		}
+		
 		try{
 			main = new GameServer(targetPoint, bet, bombs, numberPlayer);
 			MessageInterface stub = (MessageInterface) UnicastRemoteObject.exportObject(main, 0);
 			
 			//Bind the remote object's stub in the registry
 			registry = LocateRegistry.getRegistry();
-			registry.rebind("MessageInterface", stub);
+			registry.bind("MessageInterface", stub);
 			
 			System.err.println("Server ready");
 		}catch (Exception e){
@@ -87,6 +85,7 @@ public class EventHandlerServer implements MessageInterface{
 	}
 
 	public void init() throws RemoteException {
+		// Spieler muss sich beim GameServer irgendwie anmelden
 		// Hier muss sich der Client dann bei irgendwem anmelden.
 		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
 		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
