@@ -1,11 +1,9 @@
 package Beetle.Haggis.Client;
 
-import java.awt.EventQueue;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import Beetle.Haggis.Server.EventHandlerServer;
-import Beetle.Haggis.Server.GameServer;
 
 /**
  * 
@@ -60,7 +58,6 @@ public class NewGameModel extends JoinGameModel {
 	 */
 	protected void startServer() {
 		int numberPlayer = Integer.parseInt(m_View.numberPlayer.getSelectedItem().toString());
-		System.out.println(numberPlayer);		
 		int targetPoint = Integer.parseInt( m_View.TargetPoint.getSelectedItem().toString());
 		boolean bet = false;	//Preparation for future version 
 		boolean bombs = false;  //Preparation for future version  

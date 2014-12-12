@@ -85,7 +85,8 @@ public class EventHandlerServer implements MessageInterface{
 	}
 
 	public int init(String name) throws RemoteException {
-		return 0;
+		return main.initPlayer(name);
+		
 		
 		// Spieler muss sich beim GameServer irgendwie anmelden
 		// Hier muss sich der Client dann bei irgendwem anmelden.

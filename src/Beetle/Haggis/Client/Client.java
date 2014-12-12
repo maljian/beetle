@@ -44,8 +44,7 @@ public class Client {
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
-//				// TODO
-//				mi.init();
+				id = mi.init(m_JoinGame.txtPlayerName.getText());
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();

@@ -2,7 +2,6 @@ package Beetle.Haggis.Message;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Player;
@@ -27,7 +26,7 @@ public class GameState {
 	/**
 	 * player [0,1,2], cards[Card]
 	 */
-	private Player players[];
+	private static Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	
@@ -241,6 +240,11 @@ public class GameState {
 	public void setPlayerPlayed(boolean b, int playerTurns2) {
 		playerPlayed[playerTurns2] = b;
 
+	}
+	
+	public static void setPlayerName(int id, String name){
+		players[id].setName(name);
+		players[id].setId(id);
 	}
 
 }// end GameState

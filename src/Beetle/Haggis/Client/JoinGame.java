@@ -27,8 +27,8 @@ import Beetle.Haggis.Server.GameServer;
 public class JoinGame extends JFrame {
 
 	protected JPanel contentPane;
-	private JTextField txtPlayerName;
-	public JTextField txtIpAdress;
+	protected JTextField txtPlayerName;
+	protected JTextField txtIpAdress;
 	private JButton btnPlay;
 	private JButton btnZurck;
 	private JPanel logoPanel;

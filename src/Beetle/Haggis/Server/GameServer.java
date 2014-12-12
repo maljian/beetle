@@ -1,22 +1,13 @@
 package Beetle.Haggis.Server;
 
-import java.io.IOException;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Stack;
-import java.util.concurrent.SynchronousQueue;
 
 import javax.swing.JOptionPane;
-import javax.swing.text.StyledEditorKit.BoldAction;
-
-import com.sun.org.apache.xml.internal.utils.StylesheetPIHandler;
 
 import Beetle.Haggis.Message.GameState;
-import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card.Colour;
@@ -32,7 +23,8 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 	static private GameState state;
 	static private int targetPoint;
-	static private ArrayList<String> playerName;
+	static private ArrayList<String> registeredPlayer;
+	
 //	private SynchronousQueue<Message> sendQueue;
 //	private SynchronousQueue<Message> receiveQueue;
 
@@ -85,6 +77,25 @@ public class GameServer implements Remote{ //implements MessageInterface {
 //
 //	}
 
+	/**
+	 * 
+	 * @author Nadine Töpfer
+	 * @param playerName
+	 * @return
+	 */
+	public int initPlayer(String playerName){
+		int id;
+		if(state.getPlayers().length > registeredPlayer.size()){		// Es werden nur so viel Spieler erstellt, wie angegeben
+			
+			registeredPlayer.add(playerName);
+			id = registeredPlayer.size()-1;
+			state.setPlayerName(id, playerName);	
+		}else{
+			id = -1;
+		}
+		return id;
+	}
+	
 	/**
 	 * Get the value of the cards and addition them.
 	 * 

@@ -52,4 +52,12 @@ public class Player {
 		this.cards = cards;
 	}
 
+	public void setName(String name2) {
+		this.name = name2;			
+	}
+
+	public void setId(int id2) {
+		this.id = id2;		
+	}
+
 }//end Player
