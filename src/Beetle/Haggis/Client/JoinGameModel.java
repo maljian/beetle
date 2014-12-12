@@ -1,8 +1,5 @@
 package Beetle.Haggis.Client;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.JOptionPane;
 
 /**
  * @author Faruk

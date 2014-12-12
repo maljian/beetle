@@ -263,10 +263,10 @@ public class GameServer implements Remote{ //implements MessageInterface {
 	}
 
 	/**
-	 * 
+	 * @author Faruk Doganci
 	 * @param playerAmount
-	 *            Amount of paling Person
-	 * @return
+	 * Amount of paling Person
+	 * @return cardStack
 	 */
 	private Stack<Card> newCards(int playerAmount) {
 		Stack<Card> cardStack = new Stack<>();
