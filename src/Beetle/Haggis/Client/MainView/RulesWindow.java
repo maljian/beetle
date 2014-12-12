@@ -1,12 +1,7 @@
 package Beetle.Haggis.Client.MainView;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,10 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.ScrollPaneLayout;
 /**
  * 
  * @author Nadine Töpfer
@@ -26,6 +19,10 @@ import javax.swing.ScrollPaneLayout;
  */
 public class RulesWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel lblRules = new JLabel();
 	
 	/**

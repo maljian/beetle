@@ -17,6 +17,11 @@ import javax.swing.JLabel;
 public class CombinationWindow extends JFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Create the frame.
 	 */
 	public CombinationWindow() {

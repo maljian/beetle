@@ -13,6 +13,11 @@ import javax.swing.JLabel;
 public class ProgressWindow extends JFrame {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Create the frame.
 	 */
 	public ProgressWindow() {
