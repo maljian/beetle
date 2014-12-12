@@ -29,6 +29,7 @@ public class GameState {
 	private static Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
+	private int version=0;
 	
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
@@ -245,6 +246,11 @@ public class GameState {
 	public static void setPlayerName(int id, String name){
 		players[id].setName(name);
 		players[id].setId(id);
+	}
+
+	public void versionCounter() {
+		version++;
+		
 	}
 
 }// end GameState
