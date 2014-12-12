@@ -1,48 +1,30 @@
 package Beetle.Haggis.Client;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
+import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-
-import java.awt.geom.*;
 
 import Beetle.Haggis.Client.MainView.CombinationWindow;
 import Beetle.Haggis.Client.MainView.HaggisMenu;
 import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Card.Colour;
-
-import javax.swing.JButton;
-import javax.swing.border.AbstractBorder;
-import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.swing.JLabel;
 
 /**
  * @author Faruk Doganci, Marco Mancuso

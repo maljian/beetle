@@ -3,18 +3,13 @@
  */
 package Beetle.Haggis.Client;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JToggleButton;
+
 import Beetle.Haggis.Server.Card;
-import Beetle.Haggis.Server.Card.Colour;
 
 /**
  * @author Marco Mancuso
@@ -36,5 +31,6 @@ private int heightCard = 105;
  }
  public Card getCard() {
 	return card;
+	
 }
 }

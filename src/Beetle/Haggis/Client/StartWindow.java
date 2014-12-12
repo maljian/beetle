@@ -2,27 +2,22 @@ package Beetle.Haggis.Client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.imageio.ImageIO;
-import javax.print.DocFlavor.URL;
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane; // VORLAEUFIG FUER DAS TESTEN, KANN SPAETER AUCH WIEDER WEG
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
+// VORLAEUFIG FUER DAS TESTEN, KANN SPAETER AUCH WIEDER WEG
 
 public class StartWindow extends JFrame implements ActionListener {
 
 	/**
-	 * @author Marco Mancuso
+	 * @author 	Marco Mancuso (Buttons)
+	 * 			Faruk Doganci (EventHandler, Layout (Design), Logo)
 	 * @version 1.0
 	 * @created 07.11.2014, 11:02
 	 */
