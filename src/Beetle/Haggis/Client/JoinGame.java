@@ -65,6 +65,7 @@ public class JoinGame extends JFrame {
 		contentPane.setLayout(null);
 
 		txtPlayerName = new JTextField();
+		txtPlayerName.setText("Beetle");
 		txtPlayerName.setBounds(582, 50, 133, 20);
 		contentPane.add(txtPlayerName);
 		txtPlayerName.setColumns(10);

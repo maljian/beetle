@@ -35,11 +35,11 @@ public class Client {
 		private GameFieldModel gfModel;
 		public GameField m_GameField;
 		
-		public void connect(String name) {
+		public void connect(String name, String serverIP) {
 			
 			String host = "127.0.0.1";
 			connected = true;
-			String serverIP = m_JoinGame.txtIpAdress.getText();
+		//	String serverIP = m_JoinGame.txtIpAdress.getText();
 			try {
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
@@ -50,7 +50,7 @@ public class Client {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
 				connected= false; 
-				JOptionPane.showMessageDialog(null, "Fehlermeldung", "Es konnte keine Verbindung hergestellt werden, bitte gib deine Daten neu ein.", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Es konnte keine Verbindung hergestellt werden, bitte gib deine Daten neu ein.","Fehlermeldung, Server verbindung", JOptionPane.ERROR_MESSAGE);
 				new JoinGameModel(gfModel);
 			}
 			

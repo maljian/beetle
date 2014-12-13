@@ -43,6 +43,7 @@ public class NewGameModel extends JoinGameModel {
 		this.gfModel = gfModel;
 		m_View = new NewGame(this);
 		m_View.setVisible(true);
+		client = new Client(gfModel);
 
 		try {
 			String ipv4 = InetAddress.getLocalHost().toString();
@@ -64,7 +65,8 @@ public class NewGameModel extends JoinGameModel {
 		boolean bombs = false;  //Preparation for future version  
 		EventHandlerServer ehs = new EventHandlerServer();
 		ehs.startServer(targetPoint, bet, bombs, numberPlayer);
-		client.connect(m_View.txtPlayerName.getText());
+		String serverIP = m_View.txtIpAdress.getText();
+		client.connect(m_View.txtPlayerName.getText(),serverIP); //TODO ExeptionNull Pointer
 		m_View.dispose();
 	}
 	

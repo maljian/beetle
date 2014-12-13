@@ -167,18 +167,20 @@ public class GameServer implements Remote{ //implements MessageInterface {
 			for (int i = 0; i < 14; i++) {
 				playerCard.push(cardStack.pop());
 			}
+			
 			for (int i = 0; i < 3; i++) {
-				try {
-					playerCard.push(new Card(10 + i, Colour.JOKER));
-				} catch (Exception e) {
-					e.printStackTrace();
-					final JOptionPane optionPane = new JOptionPane(
-							"An error appeared while distributing the cards. \n Error message:\n"
-									+ e.toString(),
-							// JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE);
 
-				}// TODO LL Test: dose it crusch?
+					playerCard.push(new Card(11 + i, Colour.JOKER));
+//					try {		
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					final JOptionPane optionPane = new JOptionPane(
+//							"An error appeared while distributing the cards. \n Error message:\n"
+//									+ e.toString(),
+//							// JOptionPane.YES_NO_OPTION,
+//							JOptionPane.QUESTION_MESSAGE);
+//
+//				}// TODO LL Test: dose it crusch?
 			}
 			Collections.sort(playerCard);
 			p.setCards(playerCard);

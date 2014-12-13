@@ -5,164 +5,145 @@ package Beetle.Haggis.Server;
  * @version 1.0
  * @created 25-Nov-2014 16:51
  */
-import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Comparator;
+
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.border.Border;
 
 public class Card implements Comparable<Card> {
- public enum Colour {
-  RED, YELLOW, ORANGE, GREY, GREEN, JOKER
- }
+	public enum Colour {
+		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+	}
 
- private Colour colour;
- private BufferedImage image;
- private BufferedImage imageBack;
- private int number;
- private int value;
+	private Colour colour;
+	private BufferedImage image;
+	private BufferedImage imageBack;
+	private int number;
+	private int value;
 
- /**
-  * KONSTRUKTOR Bsp. Card Karte01 = new Card(8, colour.RED);
-  * 
-  */
- public Card(int number, Colour colour){
+	/**
+	 * KONSTRUKTOR Bsp. Card Karte01 = new Card(8, colour.RED);
+	 * 
+	 */
+	public Card(int number, Colour colour) {
 
-  this.number = number;
-  this.colour = colour;
-  this.value = number % 2;
+		this.number = number;
+		this.colour = colour;
+		this.value = number % 2;
 
-  // Maximale Kartenmengen
-  final int maxNormalCards = 9;
+		// Maximale Kartenmengen
+		final int maxNormalCards = 9;
 
-  // StandardPfade
-  final String standardPath = "/Beetle/Resources/";
-  String actualPath = standardPath;
+		// StandardPfade
+		final String standardPath = "/Beetle/Resources/";
+		String actualPath = standardPath;
 
-  // Pfade für Joker und Rückseite
-  String backsidePath = standardPath + "rueckseite.jpg";
-  String kingPath = standardPath + "König.jpg";
-  String queenPath = standardPath + "Dame.jpg";
-  String jackPath = standardPath + "Bube.jpg";
+		// Rueckseite Bild
+		try {
+			this.imageBack = ImageIO.read(getClass().getResource(standardPath + "rueckseite.jpg"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
-  // Rueckseite Bild
-  try {
-   this.imageBack = ImageIO.read(getClass().getResource(backsidePath));
-  } catch (IOException e1) {
-   e1.printStackTrace();
-  }
+		// Zuweisung der Bilder auf den Karten
+		// RED, YELLOW, ORANGE, GREY, GREEN, JOKER
 
-  // Zuweisung der Bilder auf den Karten
-  // RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+		switch (colour) {
+		case RED:
+			actualPath += "Red/rot";
+			break;
+		case YELLOW:
+			actualPath += "Yellow/gelb";
+			break;
+		case ORANGE:
+			actualPath += "Orange/orange";
+			break;
+		case GREY:
+			actualPath += "Grey/grau";
+			break;
+		case GREEN:
+			actualPath += "Green/gruen";
+			break;
+		case JOKER:
+			break;
+		}
 
-  switch (colour) {
-  case RED:
-   actualPath += "Red/rot";
-   break;
+		if (number <= maxNormalCards) {
+			actualPath += "0";
+		}
+		actualPath += number + ".jpg";
+		
+		// Value Zuweisung der Karten B,D,K;
+		switch (number) {
+		case 11:
+			value = 2;
+			actualPath = standardPath + "Bube.jpg";
+			break;
+		case 12:
+			value = 3;
+			actualPath = standardPath + "Dame.jpg";
+			break;
+		case 13:
+			value = 5;
+			actualPath = standardPath + "König.jpg";
+			break;
+		}
 
-  case YELLOW:
-   actualPath += "Yellow/gelb";
-   break;
+		try {
+			this.image = ImageIO.read(getClass().getResource(actualPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  case ORANGE:
-   actualPath += "Orange/orange";
-   break;
+	/**
+	 * RED, YELLOW, ORANGE, GREY, GREEN, JOKER
+	 * 
+	 * @return
+	 */
+	public Colour getColour() {
+		return colour;
+	}
 
-  case GREY:
-   actualPath += "Grey/grau";
-   break;
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	public BufferedImage getImage() {
+		return image;
+	}
 
-  case GREEN:
-   actualPath += "Green/gruen";
-   break;
+	public BufferedImage getImageBack() {
+		return imageBack;
+	}
 
-  case JOKER:
-   break;
-  }
+	/**
+	 * Number on the Cart
+	 * 
+	 * @return 2 - 10: Normal cards; 11: J, 12: Q, 13:K
+	 */
+	public int getNumber() {
+		return number;
+	}
 
-  if (number <= maxNormalCards) {
-   actualPath += "0";
-  }
+	/**
+	 * Point on cards, for end evaluation
+	 * 
+	 * @return Impair: 1p, J: 2p, Q: 3p, K:5p
+	 */
+	public int getValue() {
+		return value;
+	}
 
-  actualPath += number + ".jpg";
-  // Value Zuweisung der Karten B,D,K;
+	// Comparator
+	public int compareTo(Card c) {
+		int answer = number - c.getNumber();
 
-  switch (number) {
-  case 11:
-   value = 2;
-    actualPath = jackPath;
-   break;
-  case 12:
-   value = 3;
-   actualPath = queenPath;
-   break;
-  case 13:
-   value = 5;
-   actualPath = kingPath;
-   break;
-  }
-  
-  try {
-   this.image = ImageIO.read(getClass().getResource(actualPath));
-  } catch (IOException e) {
-   e.printStackTrace();
-  }
- }
-
- /**
-  * RED, YELLOW, ORANGE, GREY, GREEN, JOKER
-  * 
-  * @return
-  */
- public Colour getColour() {
-  return colour;
- }
-
- /**
-  * 
-  * 
-  * @return
-  */
- public BufferedImage getImage() {
-  return image;
- }
-
- public BufferedImage getImageBack() {
-  return imageBack;
- }
-
- /**
-  * Number on the Cart
-  * 
-  * @return 2 - 10: Normal cards; 11: J, 12: Q, 13:K
-  */
- public int getNumber() {
-  return number;
- }
-
- /**
-  * Point on cards, for end evaluation
-  * 
-  * @return Impair: 1p, J: 2p, Q: 3p, K:5p
-  */
- public int getValue() {
-  return value;
- }
-
- // Comparator
- public int compareTo(Card c) {
-  int answer = number - c.getNumber();
-
-  if (answer == 0) {
-   answer = colour.compareTo(c.getColour());
-  }
-  return answer;
- }
+		if (answer == 0) {
+			answer = colour.compareTo(c.getColour());
+		}
+		return answer;
+	}
 
 }

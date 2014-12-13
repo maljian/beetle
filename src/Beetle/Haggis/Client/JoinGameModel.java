@@ -22,6 +22,7 @@ public class JoinGameModel {
 	public JoinGameModel(GameFieldModel gfm) {
 		gfModel = gfm;
 		m_View = new JoinGame(this);
+		client = new Client(gfModel);
 	}
 
 	public void setViewVisible(boolean visibel) {
@@ -36,7 +37,10 @@ public class JoinGameModel {
 //	}
 
 	public void joinGame() {
-		client.connect(m_View.txtPlayerName.getText());
+		
+		String name = m_View.txtPlayerName.getText();
+		String serverIP = m_View.txtIpAdress.getText();
+		client.connect(name, serverIP);
 		m_View.dispose();
 		
 
