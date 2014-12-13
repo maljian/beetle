@@ -3,6 +3,9 @@ package Beetle.Haggis.Client;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.swing.JOptionPane;
+
+import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
 
 /**
@@ -59,17 +62,24 @@ public class NewGameModel extends JoinGameModel {
 	 * @author Nadine Töpfer
 	 */
 	protected void startServer() {
-		int numberPlayer = Integer.parseInt(m_View.numberPlayer.getSelectedItem().toString());
-		int targetPoint = Integer.parseInt( m_View.TargetPoint.getSelectedItem().toString());
-		boolean bet = false;	//Preparation for future version 
-		boolean bombs = false;  //Preparation for future version  
+		int numberPlayer = Integer.parseInt(m_View.numberPlayer
+				.getSelectedItem().toString());
+		int targetPoint = Integer.parseInt(m_View.TargetPoint.getSelectedItem()
+				.toString());
+		boolean bet = false; // Preparation for future version
+		boolean bombs = false; // Preparation for future version
 		EventHandlerServer ehs = new EventHandlerServer();
-		ehs.startServer(targetPoint, bet, bombs, numberPlayer);
-		String serverIP = m_View.txtIpAdress.getText();
-		client.connect(m_View.txtPlayerName.getText(),serverIP); //TODO ExeptionNull Pointer
-		m_View.dispose();
+		try {
+			ehs.startServer(targetPoint, bet, bombs, numberPlayer);
+			String serverIP = m_View.txtIpAdress.getText();
+			client.connect(m_View.txtPlayerName.getText(), serverIP); 
+			m_View.dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,  "Der Server konnte nicht gestartet werden. Bitter versuchen Sie es erneut.", "Information",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
-	
+
 	public void goBack() {
 		new StartWindow(gfModel).setVisible(true);
 		m_View.dispose();

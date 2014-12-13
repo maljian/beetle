@@ -1,15 +1,16 @@
 package Beetle.Haggis.Server;
 
-import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
-import javax.swing.JOptionPane;
-
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
+import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
+import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Server.Card.Colour;
 
 /**
@@ -17,13 +18,14 @@ import Beetle.Haggis.Server.Card.Colour;
  * @version 1.0
  * @created 14-Nov-2014
  */
-public class GameServer implements Remote{ //implements MessageInterface {
+public class GameServer implements  MessageInterface{ //Remote{ // {
 
 	// private EventHandlerServer eventHandler;
 
 	static private GameState state;
 	static private int targetPoint;
 	static private ArrayList<String> registeredPlayer;
+	private Message message;
 	
 //	private SynchronousQueue<Message> sendQueue;
 //	private SynchronousQueue<Message> receiveQueue;
@@ -133,6 +135,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 		}
 		state = new GameState(players);
+		message = new Message(state, MessageType.REGISTER, PlayedAction.CARDS);
 		startNewRound(0);
 
 	}
@@ -193,7 +196,7 @@ public class GameServer implements Remote{ //implements MessageInterface {
 	/**
 	 * Reihenfolge Spieler
 	 */
-	public GameState logic(GameState playerState, PlayedAction action) {
+	public void logic(GameState playerState, PlayedAction action) {
 		// TOTO LL 1. logick definiren; 2. programieren
 		int playerTurns = playerState.getPlayerTurns();
 
@@ -233,7 +236,9 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 				if (remainingPlayer > 1) {
 					playerState.setPlayerTurns(playerTurns++);
-					return playerState; // Replace the else part to avoid having
+					playerState.versionCounter();
+					message.newMessage(playerState);
+					return;  // Replace the else part to avoid having
 										// to many steps in.
 				}
 				Stack<Card> cards = newCards(1);
@@ -259,8 +264,9 @@ public class GameServer implements Remote{ //implements MessageInterface {
 
 		// playerState.setPlayerTurns(playerTurns++);
 
-		state.versionCounter();
-		return playerState;
+	//	state.versionCounter();
+		playerState.versionCounter();
+		message.newMessage(playerState);
 
 	}
 
@@ -300,6 +306,24 @@ public class GameServer implements Remote{ //implements MessageInterface {
 		}
 		Collections.shuffle(cardStack);
 		return cardStack;
+	}
+
+	
+	
+	//Remot conection from Client
+	@Override
+	public Message receiveMessage() throws RemoteException {
+		return message;
+	}
+
+	@Override
+	public void sendMessage(Message m) throws RemoteException {
+		logic(m.getGameState(), m.getPlayedAction());
+	}
+
+	@Override
+	public int init(String name) throws RemoteException {
+		 return initPlayer(name);
 	}
 
 }

@@ -1,5 +1,7 @@
 package Beetle.Haggis.Client;
 
+import Beetle.Haggis.Server.Client;
+
 
 /**
  * @author Faruk

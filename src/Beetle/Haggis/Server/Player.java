@@ -1,6 +1,5 @@
 package Beetle.Haggis.Server;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 /**

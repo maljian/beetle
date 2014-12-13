@@ -1,4 +1,5 @@
 package Beetle.Haggis.Server;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,17 +14,15 @@ import Beetle.Haggis.Message.MessageInterface;
 /**
  * @author Nadine Töpfer
  * @version 1.0
-
  */
-public class EventHandlerServer implements MessageInterface{
+public class EventHandlerServer implements MessageInterface {
 
-	private GameServer main;
+	private GameServer gameServer;
 	private Registry registry;
 	private SynchronousQueue<Message> sendQueue;
 	private SynchronousQueue<Message> receiveQueue;
-	
-	
-	public EventHandlerServer(){
+
+	public EventHandlerServer() {
 		super();
 	}
 
@@ -33,41 +32,40 @@ public class EventHandlerServer implements MessageInterface{
 	 * @param bet
 	 * @param bombs
 	 * @param numberPlayer
+	 * @throws Exception
 	 */
-	public void startServer(int targetPoint, boolean bet, boolean bombs, int numberPlayer){
-		
-		try{
-			main = new GameServer(targetPoint, bet, bombs, numberPlayer);
-			MessageInterface stub = (MessageInterface) UnicastRemoteObject.exportObject(main, 0);
-			
-			//Bind the remote object's stub in the registry
-			registry = LocateRegistry.getRegistry();
-			registry.bind("MessageInterface", stub);
-			
-			System.out.println("Startserver ready");
-		}catch (Exception e){
-			System.out.println("Startserver error" );
-			e.printStackTrace();
-		}
-		
-		
+	public void startServer(int targetPoint, boolean bet, boolean bombs,
+			int numberPlayer) throws Exception {
+
+		gameServer = new GameServer(targetPoint, bet, bombs, numberPlayer);
+		MessageInterface stub = (MessageInterface) UnicastRemoteObject
+				.exportObject(gameServer, 0);
+
+		// Bind the remote object's stub in the registry
+		registry = LocateRegistry.getRegistry();
+		registry.bind("MessageInterface", stub);
+
+		System.out.println("Startserver ready");
+
 	}
-	
-	//muss noch aufgerufen werden
-	public void stopServer(){
+
+	// muss noch aufgerufen werden
+	public void stopServer() {
 		try {
 			registry.unbind("MessageInterface");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Information", "Die Verbindung zum Server wurde unterbrochen.", JOptionPane.INFORMATION_MESSAGE);	
+			JOptionPane.showMessageDialog(null, "Information",
+					"Die Verbindung zum Server wurde unterbrochen.",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 
 	}
-	
-//	// An alle Clients Message schicken mit aktuellen Stand
-//	public void updateCilent(){
-//		
-//
-//	}
+
+	// // An alle Clients Message schicken mit aktuellen Stand
+	// public void updateCilent(){
+	//
+	//
+	// }
 
 	/**
 	 * This is a remote method which is executed by the client. It will block
@@ -93,11 +91,9 @@ public class EventHandlerServer implements MessageInterface{
 	}
 
 	public int init(String name) throws RemoteException {
-//		return main.initPlayer(name);
-		return 0;
-		
-		
-		
+		// return main.initPlayer(name);
+		return gameServer.initPlayer(name);
+
 		// Spieler muss sich beim GameServer irgendwie anmelden
 		// Hier muss sich der Client dann bei irgendwem anmelden.
 		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
@@ -111,5 +107,4 @@ public class EventHandlerServer implements MessageInterface{
 
 	}
 
-	
-}//end EventHandlerServer
+}// end EventHandlerServer

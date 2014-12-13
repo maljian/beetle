@@ -35,6 +35,10 @@ public class Message implements Serializable {
 		this.playedAction = playedAction; 
 	}
 	
+	public void newMessage(GameState state){
+		gameState = state;
+	}
+	
 	public GameState getGameState() {
 		return gameState;
 	}

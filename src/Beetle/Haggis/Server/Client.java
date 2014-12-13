@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.Server;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -7,10 +7,13 @@ import java.rmi.registry.Registry;
 
 import javax.swing.JOptionPane;
 
+import Beetle.Haggis.Client.GameField;
+import Beetle.Haggis.Client.GameFieldModel;
+import Beetle.Haggis.Client.JoinGame;
+import Beetle.Haggis.Client.JoinGameModel;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
-import Beetle.Haggis.Server.GameServer;
 
 /**
  * 
@@ -44,13 +47,13 @@ public class Client {
 				host = serverIP;
 				registry = LocateRegistry.getRegistry(host);
 				mi = (MessageInterface) registry.lookup("MessageInterface");
-				id = mi.init(m_JoinGame.txtPlayerName.getText());
+				id = mi.init(name);
 				
 			} catch (RemoteException | NotBoundException e) {
 				System.err.println("Client exception: " + e.toString());
 				e.printStackTrace();
 				connected= false; 
-				JOptionPane.showMessageDialog(null, "Es konnte keine Verbindung hergestellt werden, bitte gib deine Daten neu ein.","Fehlermeldung, Server verbindung", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Es konnte keine Verbindung hergestellt werden, versuchen Sie es nochmals.","Fehlermeldung, Server verbindung", JOptionPane.ERROR_MESSAGE);
 				new JoinGameModel(gfModel);
 			}
 			

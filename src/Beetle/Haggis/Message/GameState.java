@@ -253,4 +253,9 @@ public class GameState {
 		
 	}
 
+	public int getVersion() {
+		return version;
+	}
+	
+
 }// end GameState
