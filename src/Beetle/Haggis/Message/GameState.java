@@ -57,7 +57,7 @@ public class GameState {
 										// single
 		switch (actualCombination) {
 		case NEWTURN:
-			answer = cards.size() == 1 || pair(cards) || run(cards);
+			answer = cards.size() == 1 || pair(cards) || streetCombination(cards);
 			break;
 
 		case SINGLE:
@@ -76,7 +76,7 @@ public class GameState {
 			if (cards.size() == lastPlayedCards.size()
 					&& cards.get(0).getNumber() > lastPlayedCards.get(0)
 							.getNumber()) {
-				answer = run(cards);
+				answer = streetCombination(cards);
 			}
 			break;
 
@@ -111,7 +111,7 @@ public class GameState {
 	 *            bigest
 	 * @return Return true if the run is correct including jokers.
 	 */
-	private static boolean run(ArrayList<Card> cards) {
+	private static boolean streetCombination(ArrayList<Card> cards) {
 		boolean answer = true;
 		Card.Colour actualcolor = cards.get(0).getColour();
 		int lastNumber = cards.get(0).getNumber();
@@ -263,7 +263,7 @@ public class GameState {
 	
 	public boolean setNewCombination(	ArrayList<Card> cards){
 		boolean answer= false;
-		if (run(cards)) {
+		if (streetCombination(cards)) {
 			actualCombination = Combination.RUN;
 			answer = true;
 		} else if (pair(cards)) {
