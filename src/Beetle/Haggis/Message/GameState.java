@@ -117,7 +117,7 @@ public class GameState {
 		int lastNumber = cards.get(0).getNumber();
 		int usedJoker = 0;
 
-		for (int i = 1; i < cards.size() - 1 - usedJoker; i++) {
+		for (int i = 1; i < cards.size()- usedJoker; i++) {
 			// Correct Colour
 			if (cards.get(i).getColour().equals(actualcolor)) {
 				// Correct Value
