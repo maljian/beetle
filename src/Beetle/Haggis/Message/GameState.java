@@ -12,7 +12,7 @@ import Beetle.Haggis.Server.Player;
  * @created 09-Nov-2014
  */
 public class GameState {
-	
+
 	/**
 	 * sortcards run of pairs.... ???
 	 */
@@ -29,8 +29,8 @@ public class GameState {
 	private static Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
-	private int version=0;
-	
+	private int version = 0;
+
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
 	 * point. "Haggis"
@@ -39,14 +39,14 @@ public class GameState {
 
 	/**
 	 * Check if it is allowed to played the selected cards. At this state of the
-	 * game. 
+	 * game.
 	 * 
 	 * @param cards
 	 *            List of selected cards
 	 * @return True if the combination is correct and higher
 	 */
 	public static boolean checkCombinations(ArrayList<Card> cards) {
-	
+
 		Collections.sort(cards);
 		boolean answer = false;
 		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
@@ -54,7 +54,17 @@ public class GameState {
 										// single
 		switch (actualCombination) {
 		case NEWTURN:
-			answer = run(cards) || pair(cards) || cards.size() == 1;
+
+			if (run(cards)) {
+				actualCombination = Combination.RUN;
+				answer = true;
+			} else if (pair(cards)) {
+				actualCombination = Combination.PAIR;
+				answer = true;
+			} else if (cards.size() == 1) {
+				actualCombination = Combination.SINGLE;
+				answer = true;
+			}
 			break;
 
 		case SINGLE:
@@ -137,16 +147,6 @@ public class GameState {
 		return answer;
 	}
 
-	public Combination getActualCombination() {
-		return actualCombination;
-	}
-
-	// Geter & Setter
-
-	public void setActualCombination(Combination actualCombination) {
-		this.actualCombination = actualCombination;
-	}
-
 	/**
 	 * Reset the array player played and gives the point to the player with
 	 * played last.
@@ -175,6 +175,15 @@ public class GameState {
 			playerPlayed[i] = true;
 		}
 
+	}
+
+	// Geter & Setter
+	public Combination getActualCombination() {
+		return actualCombination;
+	}
+
+	public void setActualCombination(Combination actualCombination) {
+		this.actualCombination = actualCombination;
 	}
 
 	public ArrayList<Card> getLastPlayedCards() {
@@ -232,6 +241,7 @@ public class GameState {
 
 	/**
 	 * Hggis
+	 * 
 	 * @param gamePot
 	 */
 	public void setGamePot(int gamePot) {
@@ -242,20 +252,19 @@ public class GameState {
 		playerPlayed[playerTurns2] = b;
 
 	}
-	
-	public static void setPlayerName(int id, String name){
+
+	public static void setPlayerName(int id, String name) {
 		players[id].setName(name);
 		players[id].setId(id);
 	}
 
 	public void versionCounter() {
 		version++;
-		
+
 	}
 
 	public int getVersion() {
 		return version;
 	}
-	
 
 }// end GameState
