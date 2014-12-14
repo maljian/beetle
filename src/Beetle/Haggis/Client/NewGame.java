@@ -32,8 +32,8 @@ public class NewGame extends JoinGame {
 	protected JTextField txtIpAdress;
 	private JPanel logoPanel;
 	private JLabel logoLabel;
-	protected JComboBox numberPlayer;
-	protected JComboBox TargetPoint; // Problem, deshalb keine Umbenennung!
+	protected JComboBox<Integer> numberPlayer;
+	protected JComboBox<Integer> TargetPoint; // Problem, deshalb keine Umbenennung!
 	private NewGameModel model;
 
 	/**
@@ -82,7 +82,7 @@ public class NewGame extends JoinGame {
 		btnPlay.setBounds(626, 392, 89, 30);
 		contentPane.add(btnPlay);
 
-		numberPlayer = new JComboBox();
+		numberPlayer = new JComboBox<Integer>();
 		numberPlayer.setModel(new DefaultComboBoxModel(
 				new String[] { "2", "3" }));
 		numberPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -95,7 +95,7 @@ public class NewGame extends JoinGame {
 		lblTargetPoint.setBounds(475, 112, 97, 20);
 		contentPane.add(lblTargetPoint);
 
-		TargetPoint = new JComboBox();
+		TargetPoint = new JComboBox<Integer>();
 		TargetPoint.setModel(new DefaultComboBoxModel(new String[] { "10",
 				"250", "350" }));
 		TargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));

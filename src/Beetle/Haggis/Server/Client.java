@@ -61,7 +61,7 @@ public class Client {
 				Message m;
 				try {
 					m = mi.receiveMessage();
-					//TODO GUI aktualisieren
+					//TODO 1 GUI aktualisieren
 					//btn Pass Aktivieren
 				} catch (RemoteException e) {
 					e.printStackTrace();

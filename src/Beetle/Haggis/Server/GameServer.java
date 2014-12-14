@@ -89,13 +89,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 */
 	public int initPlayer(String playerName) {
 		int id;
-		if (state.getPlayers().length > registeredPlayer.size()) { // Es werden
-																	// nur so
-																	// viel
-																	// Spieler
-																	// erstellt,
-																	// wie
-																	// angegeben
+		if (state.getPlayers().length > registeredPlayer.size()) { 
+			// Es werden nur so viel Spieler erstellt, wie angegeben
 
 			registeredPlayer.add(playerName);
 			id = registeredPlayer.size() - 1;
@@ -214,6 +209,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			break;
 
 		case CARDS:
+			// TODO 4 LL Zusatz: nice to double-check the cards on the server
 			Player aktuelPlayer = playerState.getPlayers()[playerTurns];
 			if (aktuelPlayer.getCards().size() == 0) {
 				int maxHandcards = 0;
@@ -228,7 +224,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				playerState.setGamePot(0);
 
 				if (aktuelPlayer.getPoints() >= targetPoint) {
-					// TODO LL Beetles: Inform game win, end game
+					// TODO 2 LL Beetles: Inform game win, end game
 				}
 
 				if (remainingPlayer > 1) {
@@ -255,7 +251,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			} else {
 				playerState.setPlayerTurns(playerTurns + 1);
 			}
-			// TODO LL Zusatz: nice to double-check the cards on the server
+			
 			break;
 		}
 		playerState.versionCounter();

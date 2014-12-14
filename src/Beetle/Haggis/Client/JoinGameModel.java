@@ -9,8 +9,8 @@ import Beetle.Haggis.Server.Client;
  */
 public class JoinGameModel {
 
-	private String ipAdress;
-	private String playerName;
+	//private String ipAdress;
+	//private String playerName;
 	public JoinGame m_View;
 	private GameFieldModel gfModel;
 	private Client client;
@@ -39,7 +39,7 @@ public class JoinGameModel {
 		client.connect(name, serverIP);
 		m_View.dispose();
 
-		// TODO LL sicherstellen das man zurück zum Gamefleld (model) kommt
+		// TODO 2 LL sicherstellen das man zurück zum Gamefleld (model) kommt
 		// new JoinGameModel(gfModel).setViewVisible(true);
 
 	}

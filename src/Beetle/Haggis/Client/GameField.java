@@ -54,7 +54,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel cardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
-	private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen
+	//private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen
 																	// wir das
 																	// überhaupt??
 	private GameFieldModel gfModel;
@@ -65,9 +65,9 @@ public class GameField extends JFrame implements ItemListener {
 	 * Opponent
 	 */
 
-	private int lblCards;
-	private int lblCardsCenter;
-	private int lblPlayer;
+	//private int lblCards;
+	//private int lblCardsCenter;
+	//private int lblPlayer;
 	public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 

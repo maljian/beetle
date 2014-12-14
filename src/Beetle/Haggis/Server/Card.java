@@ -46,8 +46,6 @@ public class Card implements Comparable<Card> {
 		}
 
 		// Zuweisung der Bilder auf den Karten
-		// RED, YELLOW, ORANGE, GREY, GREEN, JOKER
-
 		switch (colour) {
 		case RED:
 			actualPath += "Red/rot";

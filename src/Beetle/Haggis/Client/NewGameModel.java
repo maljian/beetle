@@ -14,8 +14,8 @@ import Beetle.Haggis.Server.EventHandlerServer;
  *
  */
 public class NewGameModel extends JoinGameModel {
-	private int numberPlayer;
-	private int targetPoint;
+//	private int numberPlayer;
+//	private int targetPoint;
 
 	public static NewGame m_View;
 	public GameFieldModel gfModel;

@@ -24,17 +24,6 @@ import Beetle.Haggis.Server.Card;
 public class GameFieldModel {
 
 	GameFieldModel gfModel;
-
-	// TODO LL löschen?
-	private Card cardsCenter;
-	/**
-	 * Array
-	 */
-	private Card handCards;
-	/**
-	 * Array
-	 */
-	private Card selectedCards;
 	private GameField view;
 	private GameState gState;
 
@@ -73,8 +62,9 @@ public class GameFieldModel {
 
 		boolean yourTurn;
 //		yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
-		yourTurn = false; // TODO hier kommt etwas von Loic, was true oder false
+		yourTurn = true; // TODO 1 hier kommt etwas von Loic, was true oder false
 							// zurückgibt
+		//zu überprüfen wenn der spieler den neuen Stand erhält.
 		view.btnPassen.setEnabled(yourTurn);
 		return yourTurn;
 	}
@@ -100,12 +90,12 @@ public class GameFieldModel {
 		}
 		
 		
-		// TODO Mesage versenden
+		// TODO 1 Mesage versenden
 		// mi.sendMessage(m); m = Message
 	}
 
 	public void pass() {
-		// TODO Message absenden → keine Parameter(View) noetig, aber Message
+		// TODO 1 Message absenden → keine Parameter(View) noetig, aber Message
 		// sagen ueberspringen
 		// mi.sendMessage(m); m = Message
 		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
@@ -121,7 +111,8 @@ public class GameFieldModel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameFieldModel gfm = new GameFieldModel();
+					//GameFieldModel gfm =
+							new GameFieldModel();
 					// GameField frame = new GameField(gfm);
 					// frame.setVisible(true);
 				} catch (Exception e) {
