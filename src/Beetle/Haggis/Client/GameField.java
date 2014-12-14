@@ -19,12 +19,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import Beetle.Haggis.Client.MainView.CombinationWindow;
 import Beetle.Haggis.Client.MainView.HaggisMenu;
 import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Card.Colour;
+import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Client.TextAreaCustom;
 
 /**
  * @author Faruk Doganci, Marco Mancuso
@@ -170,7 +173,11 @@ public class GameField extends JFrame implements ItemListener {
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
 		playerpanel1.setBackground(new Color(0, 128, 0));
 
-		JLabel Player1 = new JLabel("SPIELERNAME");
+		TextAreaCustom Player1 = new TextAreaCustom();
+		Player1.setText("SPIELERNAME"
+				+" Anzahl Karten: " + playerCards.size()
+				+" Anzahl Joker: " + jokerCards.size()
+				);
 		playerpanel1.add(Player1);
 
 		/**
@@ -218,14 +225,22 @@ public class GameField extends JFrame implements ItemListener {
 		fl_opponent_1.setAlignment(FlowLayout.RIGHT);
 		opponentField.add(opponent_1, BorderLayout.WEST);
 
-		JLabel Player2 = new JLabel("SPIELERNAME2");
+		TextAreaCustom Player2 = new TextAreaCustom();
+		Player2.setText("SPIELERNAME2"
+				+" Anzahl Karten: " + playerCards.size()
+				+" Anzahl Joker: " + jokerCards.size()
+				);
 		opponent_1.add(Player2);
 
 		JPanel opponent_2 = new JPanel();
 		opponent_2.setBackground(new Color(0, 128, 0));
 		opponentField.add(opponent_2, BorderLayout.EAST);
 
-		JLabel Player3 = new JLabel("SPIELERNAME3");
+		TextAreaCustom Player3 = new TextAreaCustom();
+		Player3.setText("SPIELERNAME3" +
+				" Anzahl Karten: " + playerCards.size() +
+				" Anzahl Joker: " + jokerCards.size()
+				);
 		opponent_2.add(Player3);
 
 	}
@@ -261,4 +276,5 @@ public class GameField extends JFrame implements ItemListener {
 		}
 		gfModel.checkCard(cardsToCheck);
 	}
-}
+
+	}

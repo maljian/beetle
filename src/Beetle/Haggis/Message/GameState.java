@@ -250,6 +250,12 @@ public class GameState {
 		players[id].setName(name);
 		players[id].setId(id);
 	}
+	public static String getPlayerName(int id, String name) {
+		players[id].setName(name);
+		players[id].setId(id);
+		return name;
+		
+	}
 
 	public void versionCounter() {
 		version++;

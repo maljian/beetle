@@ -3,8 +3,8 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * 
- * @author Faruk
+ * Custom JButton to not repeat it 2 times.
+ * @author Faruk Doganci
  *
  */
 public class RoundButton extends JButton {
