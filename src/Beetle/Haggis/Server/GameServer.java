@@ -20,66 +20,11 @@ import Beetle.Haggis.Server.Card.Colour;
  */
 public class GameServer implements MessageInterface { // Remote{ // {
 
-	// private EventHandlerServer eventHandler;
-
 	static private GameState state;
 	static private int targetPoint;
 	static private ArrayList<String> registeredPlayer;
 	private Message message;
 
-	// private SynchronousQueue<Message> sendQueue;
-	// private SynchronousQueue<Message> receiveQueue;
-
-	// public ClientConnection m_ClientConnection;
-	// public EventHandlerServer m_EventHandlerServer;
-	// public Listener m_Listener;
-
-	// private Player[] players;
-	// private int targetPoint = 0;
-	// public Player m_Player;
-	// public Card m_Card;
-
-	// public GameServer() {
-	//
-	// }
-
-	// /**
-	// * This is a remote method which is executed by the client. It will block
-	// * until there is content in the sendQueue and then pass the message to
-	// the
-	// * client.
-	// */
-	// public Message receiveMessage() throws RemoteException {
-	// Message m = sendQueue.poll();
-	// return m;
-	// }
-	//
-	// /**
-	// * This is a remote method which is executed by the client. It will
-	// receive
-	// * the message and pass it to the receiveQueue where it will then be
-	// * processed by the game logic.
-	// */
-	// public void sendMessage(Message m) throws RemoteException {
-	// try {
-	// receiveQueue.put(m);
-	// } catch (InterruptedException e) {
-	// sendMessage(m);
-	// }
-	// }
-	//
-	// public void init() throws RemoteException {
-	// // Hier muss sich der Client dann bei irgendwem anmelden.
-	// // wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
-	// // dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
-	// // D.h. es muss static sein.
-	// // Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
-	// // GameServer angelegt, dieses hat alle statischen Felder der Klasse
-	// // auch.
-	// // Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
-	// // entsprechende Netzwerkverbindung.
-	//
-	// }
 
 	/**
 	 * 
@@ -137,6 +82,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			players[i] = p;
 
 		}
+		registeredPlayer = new ArrayList<String>(10);
 		state = new GameState(players);
 		message = new Message(state, MessageType.REGISTER, PlayedAction.CARDS);
 		startNewRound(0);

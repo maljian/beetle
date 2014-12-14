@@ -73,3 +73,4 @@ public class HaggisMenu extends JMenuBar {
 	}
 	
 }
+

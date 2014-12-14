@@ -20,7 +20,7 @@ public class NewGameModel extends JoinGameModel {
 	public static NewGame m_View;
 	public GameFieldModel gfModel;
 	private Client client;
-
+	private EventHandlerServer ehs;
 
 	public NewGameModel(GameFieldModel gfModel) {
 		super(gfModel);
@@ -49,7 +49,8 @@ public class NewGameModel extends JoinGameModel {
 				.toString());
 		boolean bet = false; // Preparation for future version
 		boolean bombs = false; // Preparation for future version
-		EventHandlerServer ehs = new EventHandlerServer();
+		ehs = new EventHandlerServer();
+		gfModel.setEventHandlerServer(ehs);
 		try {
 			ehs.startServer(targetPoint, bet, bombs, numberPlayer);
 			String serverIP = m_View.txtIpAdress.getText();
@@ -57,7 +58,7 @@ public class NewGameModel extends JoinGameModel {
 			m_View.dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,  "Der Server konnte nicht gestartet werden. Bitter versuchen Sie es erneut.", "Information",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "Der Server konnte nicht gestartet werden. Bitte versuchen Sie es erneut.", "Information",JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 

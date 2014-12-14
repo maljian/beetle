@@ -8,7 +8,12 @@ import javax.swing.*;
  *
  */
 public class RoundButton extends JButton {
-  public RoundButton() {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+public RoundButton() {
     setPreferredSize(new Dimension(70,70));;
     setBackground(Color.LIGHT_GRAY);
     setContentAreaFilled(false);

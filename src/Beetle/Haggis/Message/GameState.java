@@ -1,5 +1,6 @@
 package Beetle.Haggis.Message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,7 +12,13 @@ import Beetle.Haggis.Server.Player;
  * @version 1.1
  * @created 09-Nov-2014
  */
-public class GameState {
+public class GameState implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1l;
+
 
 	/**
 	 * sortcards run of pairs.... ???
@@ -284,3 +291,4 @@ public class GameState {
 	}
 
 }// end GameState
+

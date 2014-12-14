@@ -15,6 +15,7 @@ import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
+import Beetle.Haggis.Server.EventHandlerServer;
 
 /**
  * @author Marco Mancuso
@@ -129,5 +130,10 @@ public class GameFieldModel {
 	public void setgState(GameState gState) {
 		this.gState = gState;
 	}
+	
+	public void setEventHandlerServer(EventHandlerServer ehs) {
+		view.setEventHandlerServer(ehs);
+	}
+	
 
 }// end GameFieldModel

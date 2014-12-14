@@ -26,6 +26,10 @@ import javax.swing.border.EmptyBorder;
  */
 public class NewGame extends JoinGame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	protected JTextField txtPlayerName;
 	private JButton btnPlay;

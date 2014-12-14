@@ -23,8 +23,6 @@ import Beetle.Haggis.Message.MessageInterface;
 public class Client {
 
 		private int id; //PlayerID starting 0 
-//		private String playerName;
-//		private String serverIP;
 		public static JoinGame m_JoinGame;
 		/**
 		 * 
@@ -73,7 +71,21 @@ public class Client {
 		
 		// Thread erstellen, entlosschlaufe durchlaufen pull state
 		// schauen ob neue Version, falls ja gui aktualisieren
-
+		public void pullVersion(){
+			Message m = null;
+			int currentVersion = 0;
+			if(currentVersion < state.getVersion()){
+				try {
+					server.sendMessage(m);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+				currentVersion++;
+			}
+		}
+		
+		
 		public Client(GameFieldModel gfModel) {
 			super();
 			this.gfModel = gfModel;
@@ -81,3 +93,4 @@ public class Client {
 
 		
 }
+

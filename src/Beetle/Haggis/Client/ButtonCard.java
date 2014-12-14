@@ -17,6 +17,10 @@ import Beetle.Haggis.Server.Card;
  */
 public class ButtonCard extends JToggleButton {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Card card;
 	private int widthCard = 67;
 	private int heightCard = 105;

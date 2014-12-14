@@ -22,6 +22,10 @@ import javax.swing.border.EmptyBorder;
 
 public class JoinGame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JPanel contentPane;
 	protected JTextField txtPlayerName;
 	protected JTextField txtIpAdress;

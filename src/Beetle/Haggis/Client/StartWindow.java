@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 public class StartWindow extends JFrame implements ActionListener {
 
+	
 	/**
 	 * @author Marco Mancuso (Buttons)
 	 * @author Faruk Doganci (EventHandler, Layout (Design), Logo)
@@ -23,6 +24,7 @@ public class StartWindow extends JFrame implements ActionListener {
 	 * @created 07.11.2014, 11:02
 	 */
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnNewGame;
 	private JButton btnJoinGame;

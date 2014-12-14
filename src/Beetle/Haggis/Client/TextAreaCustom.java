@@ -10,7 +10,12 @@ import javax.swing.*;
  */
 
 public class TextAreaCustom extends JTextArea {
-    public TextAreaCustom() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public TextAreaCustom() {
         setEditable(false);
         setLineWrap(true);
         setWrapStyleWord(true);

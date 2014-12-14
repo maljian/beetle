@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ import Beetle.Haggis.Client.MainView.HaggisMenu;
 import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Card.Colour;
+import Beetle.Haggis.Server.EventHandlerServer;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Client.TextAreaCustom;
 
@@ -36,6 +39,10 @@ import Beetle.Haggis.Client.TextAreaCustom;
  */
 public class GameField extends JFrame implements ItemListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * WICHTIG!!!! auskommentierter Bereich ist nicht mehr brauchbar:
 	 * Eventhandler, img-Aufrufe, usw.
@@ -63,6 +70,7 @@ public class GameField extends JFrame implements ItemListener {
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
+	private EventHandlerServer ehs;
 
 	/**
 	 * Opponent
@@ -71,14 +79,14 @@ public class GameField extends JFrame implements ItemListener {
 	//private int lblCards;
 	//private int lblCardsCenter;
 	//private int lblPlayer;
-	public GameFieldModel m_GameFieldModel;
+	//public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 
 	public GameField(GameFieldModel gfm) {
 		super("Haggis");
 		gfModel = gfm;
 
-		menuBar = new HaggisMenu(m_GameFieldModel);
+		menuBar = new HaggisMenu(gfm);
 		createFrame();
 		getContentPane().setBackground(new Color(178, 34, 34));
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -251,11 +259,15 @@ public class GameField extends JFrame implements ItemListener {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1200, 700));
-
+		addWindowListener(new WindowAdapter() {
+			   public void windowClosing(WindowEvent evt) {
+			     onClose();
+			   }
+		});
 	}
 
-	public void EventHandler() {
-
+	private void onClose() {
+		ehs.stopServer();
 	}
 
 	/**
@@ -276,5 +288,10 @@ public class GameField extends JFrame implements ItemListener {
 		}
 		gfModel.checkCard(cardsToCheck);
 	}
+	
+	public void setEventHandlerServer(EventHandlerServer ehs) {
+		this.ehs = ehs;
+	}
 
 	}
+

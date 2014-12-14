@@ -46,8 +46,11 @@ public class EventHandlerServer implements MessageInterface {
 		// Registry problems solved with  portNr: http://hirt.se/blog/?p=289
 		// http://stackoverflow.com/questions/14265232/java-rmi-registry-port-change-issue
 		//registry= LocateRegistry.getRegistry(10243);
-		registry = LocateRegistry.getRegistry();
+		
+		registry = LocateRegistry.createRegistry(1099); 
+		LocateRegistry.getRegistry();
 		registry.bind(registeryName, stub);
+		
 
 		System.out.println("Startserver ready");
 
@@ -58,8 +61,8 @@ public class EventHandlerServer implements MessageInterface {
 		try {
 			registry.unbind("MessageInterface");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Information",
-					"Die Verbindung zum Server wurde unterbrochen.",
+			JOptionPane.showMessageDialog(null, "Die Verbindung zum Server wurde unterbrochen.", "Information",
+					
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
