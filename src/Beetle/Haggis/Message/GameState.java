@@ -46,25 +46,18 @@ public class GameState {
 	 * @return True if the combination is correct and higher
 	 */
 	public static boolean checkCombinations(ArrayList<Card> cards) {
-
-		Collections.sort(cards);
 		boolean answer = false;
+		if (cards.size()==0|| cards== null){
+			return false; // Catch if the player unselect al his cards.
+		}
+		Collections.sort(cards);
+		
 		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
 				: actualCombination; // Avoid a crash in the case starting with
 										// single
 		switch (actualCombination) {
 		case NEWTURN:
-
-			if (run(cards)) {
-				actualCombination = Combination.RUN;
-				answer = true;
-			} else if (pair(cards)) {
-				actualCombination = Combination.PAIR;
-				answer = true;
-			} else if (cards.size() == 1) {
-				actualCombination = Combination.SINGLE;
-				answer = true;
-			}
+			answer = cards.size() == 1 || pair(cards) || run(cards);
 			break;
 
 		case SINGLE:
@@ -265,6 +258,23 @@ public class GameState {
 
 	public int getVersion() {
 		return version;
+	}
+	
+	
+	public boolean setNewCombination(	ArrayList<Card> cards){
+		boolean answer= false;
+		if (run(cards)) {
+			actualCombination = Combination.RUN;
+			answer = true;
+		} else if (pair(cards)) {
+			actualCombination = Combination.PAIR;
+			answer = true;
+		} else if (cards.size() == 1) {
+			actualCombination = Combination.SINGLE;
+			answer = true;
+		}
+		return answer;
+		
 	}
 
 }// end GameState

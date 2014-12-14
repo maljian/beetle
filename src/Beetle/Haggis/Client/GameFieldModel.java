@@ -7,8 +7,11 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import javax.swing.JOptionPane;
+
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
@@ -84,12 +87,20 @@ public class GameFieldModel {
 	}
 
 	public void layCards() {
-		view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
-									// entfernen
-		gState.setLastPlayedCards(view.cardsToCheck);
-		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.CARDS);
-		// TODO Karten übergeben (im GameState speichern) und an Message
-		// weitergeleitet zum senden
+
+		if ( gState.setNewCombination(view.cardsToCheck)){
+			gState.setLastPlayedCards(view.cardsToCheck);
+			view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
+										// entfernen
+			
+			Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.CARDS);
+		}else{
+			JOptionPane.showMessageDialog(null, "Es ist nicht möglich die Karten zu legen, überprüfen Sie die Kombination.","Kombinationsfehler", JOptionPane.INFORMATION_MESSAGE);
+			
+		}
+		
+		
+		// TODO Mesage versenden
 		// mi.sendMessage(m); m = Message
 	}
 
