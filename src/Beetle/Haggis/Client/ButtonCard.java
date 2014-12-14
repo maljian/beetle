@@ -17,20 +17,21 @@ import Beetle.Haggis.Server.Card;
  */
 public class ButtonCard extends JToggleButton {
 
-private Card card;
-private int widthCard = 67;
-private int heightCard = 105;
- 
- public ButtonCard(Card card) {
-  super();
-  this.card = card;
-  setIcon(new ImageIcon(card.getImage()));
-  setBorder(BorderFactory.createEmptyBorder());
-  setPreferredSize(new Dimension(widthCard, heightCard));
-  // Card sechsGruen = new Card(6, Colour.GREEN);
- }
- public Card getCard() {
-	return card;
-	
-}
+	private Card card;
+	private int widthCard = 67;
+	private int heightCard = 105;
+
+	public ButtonCard(Card card) {
+		super();
+		this.card = card;
+		setIcon(new ImageIcon(card.getImage()));
+		setBorder(BorderFactory.createEmptyBorder());
+		setPreferredSize(new Dimension(widthCard, heightCard));
+
+	}
+
+	public Card getCard() {
+		return card;
+
+	}
 }

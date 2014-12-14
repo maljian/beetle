@@ -54,11 +54,12 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel cardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
-	private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen wir das überhaupt??
+	private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen
+																	// wir das
+																	// überhaupt??
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
-
 
 	/**
 	 * Opponent
@@ -70,29 +71,14 @@ public class GameField extends JFrame implements ItemListener {
 	public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GameFieldModel gfm = new GameFieldModel();
-//					GameField frame = new GameField(gfm);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	public GameField(GameFieldModel gfm) {
 		super("Haggis");
 		gfModel = gfm;
-		
+
 		menuBar = new HaggisMenu(m_GameFieldModel);
 		createFrame();
 		getContentPane().setBackground(new Color(178, 34, 34));
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		
 
 		JPanel BottomLine = new JPanel();
 		getContentPane().add(BottomLine, BorderLayout.SOUTH);
@@ -104,20 +90,19 @@ public class GameField extends JFrame implements ItemListener {
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
-		
+
 		/**
 		 * 
 		 * @author Marco Mancuso
 		 * 
-		 * Joker sollen sowieso angezeigt werden.
+		 *         Joker sollen sowieso angezeigt werden.
 		 */
-		for( int i = 11; i < 14; i++){
+		for (int i = 11; i < 14; i++) {
 			Card card = new Card(i, Colour.JOKER);
 			ButtonCard btnCard = new ButtonCard(card);
 			jokerCards.add((ButtonCard) buttonsPlace.add(btnCard));
 			btnCard.addItemListener(this);
 		}
-	
 
 		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
@@ -134,21 +119,20 @@ public class GameField extends JFrame implements ItemListener {
 		HelpButtons.setBackground(new Color(0, 100, 0));
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new FlowLayout());
-		
 
 		final JButton btnCombination = new RoundButton();
 		try {
-			Image comb = ImageIO.read(getClass().getResource("/Beetle/Resources/Kombinationen.png"));
+			Image comb = ImageIO.read(getClass().getResource(
+					"/Beetle/Resources/Kombinationen.png"));
 			btnCombination.setIcon(new ImageIcon(comb));
 		} catch (IOException e1) {
 		}
 		btnCombination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == btnCombination) { 
-					if (cw == null){
-					cw = new CombinationWindow();
-					}
-					else {
+				if (e.getSource() == btnCombination) {
+					if (cw == null) {
+						cw = new CombinationWindow();
+					} else {
 						cw.dispose();
 						cw = null;
 					}
@@ -159,24 +143,24 @@ public class GameField extends JFrame implements ItemListener {
 
 		final JButton btnProgress = new RoundButton();
 		try {
-			Image prog = ImageIO.read(getClass().getResource("/Beetle/Resources/Spielablauf.png"));
+			Image prog = ImageIO.read(getClass().getResource(
+					"/Beetle/Resources/Spielablauf.png"));
 			btnProgress.setIcon(new ImageIcon(prog));
 		} catch (IOException e1) {
-		
+
 		}
-		
+
 		btnProgress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnProgress) {
-					if (pw == null){
+					if (pw == null) {
 						pw = new ProgressWindow();
-						}
-						else {
-							pw.dispose();
-							pw = null;
-						}
+					} else {
+						pw.dispose();
+						pw = null;
 					}
 				}
+			}
 		});
 		HelpButtons.add(btnProgress, BorderLayout.EAST);
 
@@ -213,15 +197,13 @@ public class GameField extends JFrame implements ItemListener {
 		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		/**
-		 * MM
-		 * Hier Karten in die Mitte legen.
-		 * Hier wieder nur ein beispiel
+		 * MM Hier Karten in die Mitte legen. Hier wieder nur ein beispiel
 		 */
 
 		ButtonCard btntest = new ButtonCard(acht);
 		centerField.add(btntest,
 				layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
-		
+
 		/**
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
@@ -236,7 +218,7 @@ public class GameField extends JFrame implements ItemListener {
 		fl_opponent_1.setAlignment(FlowLayout.RIGHT);
 		opponentField.add(opponent_1, BorderLayout.WEST);
 
-		JLabel Player2 = new JLabel("SPIELERNAME2");	
+		JLabel Player2 = new JLabel("SPIELERNAME2");
 		opponent_1.add(Player2);
 
 		JPanel opponent_2 = new JPanel();
@@ -260,24 +242,23 @@ public class GameField extends JFrame implements ItemListener {
 	public void EventHandler() {
 
 	}
+
 	/**
-	 * @author Marco Mancuso
-	 * EventHandler
-	 * ButtonCard hat nun zwei Zustände, Selected und nicht Selected
-	 * ItemListener für das Verwendet
+	 * @author Marco Mancuso EventHandler ButtonCard hat nun zwei Zustände,
+	 *         Selected und nicht Selected ItemListener für das Verwendet
 	 */
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createLineBorder(Color.BLUE, 3));
-			//SELECTED Karten werden in eine ArrayList gespeichert
+			// SELECTED Karten werden in eine ArrayList gespeichert
 			cardsToCheck.add((Card) ((ButtonCard) e.getSource()).getCard());
 		} else {
 			((ButtonCard) e.getSource()).setBorder(BorderFactory
 					.createEmptyBorder());
-			//Nicht SELECTED wieder aus dem ArrayList entfernt
+			// Nicht SELECTED wieder aus dem ArrayList entfernt
 			cardsToCheck.remove((Card) ((ButtonCard) e.getSource()).getCard());
 		}
 		gfModel.checkCard(cardsToCheck);
 	}
-}// end GameField
+}

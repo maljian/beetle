@@ -11,13 +11,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 // VORLAEUFIG FUER DAS TESTEN, KANN SPAETER AUCH WIEDER WEG
 
 public class StartWindow extends JFrame implements ActionListener {
 
 	/**
-	 * @author 	Marco Mancuso (Buttons)
-	 * 			Faruk Doganci (EventHandler, Layout (Design), Logo)
+	 * @author Marco Mancuso (Buttons)
+	 * @author Faruk Doganci (EventHandler, Layout (Design), Logo)
 	 * @version 1.0
 	 * @created 07.11.2014, 11:02
 	 */
@@ -35,7 +36,7 @@ public class StartWindow extends JFrame implements ActionListener {
 	public StartWindow(GameFieldModel gfm) {
 		super("Haggis");
 		gfModel = gfm;
-		
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -72,25 +73,17 @@ public class StartWindow extends JFrame implements ActionListener {
 
 	}
 
-	
 	/**
-	 * @author Faruk Doganci
-	 * EventHandler
+	 * @author Faruk Doganci EventHandler
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNewGame) {
 			new NewGameModel(gfModel);
 			dispose();
-
-		}
-
-		if (e.getSource() == btnJoinGame) {
+		} else if (e.getSource() == btnJoinGame) {
 			new JoinGameModel(gfModel).setViewVisible(true);
-			
-//			new JoinGame().setVisible(true);
 			dispose();
-			System.out.println();
 		}
 	}
 }

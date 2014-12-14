@@ -21,25 +21,6 @@ public class NewGameModel extends JoinGameModel {
 	public GameFieldModel gfModel;
 	private Client client;
 
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// m_NewGame = new NewGame();
-	// m_NewGame.setVisible(true);
-	// try {
-	// String ipv4 = InetAddress.getLocalHost().toString();
-	// String [] ip = ipv4.split("/");
-	// m_NewGame.txtIpAdress.setText(ip[1]);
-	// } catch (UnknownHostException e) {
-	// e.printStackTrace();
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
 
 	public NewGameModel(GameFieldModel gfModel) {
 		super(gfModel);
@@ -84,11 +65,5 @@ public class NewGameModel extends JoinGameModel {
 		new StartWindow(gfModel).setVisible(true);
 		m_View.dispose();
 	}
-	// gehört zum Server
-	// public void newGame(){
-	// GameServer server = new GameServer(targetPoint, false, false,
-	// numberPlayer);
-	//
-	//
-	// }
-}// end NewGameModel
+	
+}

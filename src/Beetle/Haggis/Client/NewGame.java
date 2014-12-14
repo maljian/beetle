@@ -36,22 +36,6 @@ public class NewGame extends JoinGame {
 	protected JComboBox TargetPoint; // Problem, deshalb keine Umbenennung!
 	private NewGameModel model;
 
-	// /**
-	// * Launch the application.
-	// */
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// NewGame frame = new NewGame();
-	// frame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
-
 	/**
 	 * Create the frame.
 	 */

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.Message.MessageType;
+import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
 
 /**
@@ -19,6 +22,7 @@ public class GameFieldModel {
 
 	GameFieldModel gfModel;
 
+	// TODO LL löschen?
 	private Card cardsCenter;
 	/**
 	 * Array
@@ -29,7 +33,7 @@ public class GameFieldModel {
 	 */
 	private Card selectedCards;
 	private GameField view;
-	
+	private GameState gState;
 
 	public GameFieldModel() {
 		view = new GameField(this);
@@ -39,53 +43,51 @@ public class GameFieldModel {
 		playerHasTurn();
 	}
 
-	
-	public void actualizeView(Stack<Card> playerHandCards){
-		//for each
+	public void actualizeView(Stack<Card> playerHandCards) {
+		// for each
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
 			view.jokerCards.clear();
 			view.playerCards.clear();
-			
-			if(card.getValue() >= 2){
-				view.jokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
-			}
-			else{
+
+			if (card.getValue() >= 2) {
+				view.jokerCards
+						.add((ButtonCard) view.buttonsPlace.add(btnCard));
+			} else {
 				view.playerCards.add((ButtonCard) view.cardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 		}
 	}
-	
-	
+
 	/**
-	 * GameServer
-	 */
-	
-	
-	/**
-	 * zum testen einfach Variable yourTurn auf true oder false setzen
-	 * false: spieler ist nicht an der reihe
-	 * true: spieler ist an der reihe
+	 * zum testen einfach Variable yourTurn auf true oder false setzen false:
+	 * spieler ist nicht an der reihe true: spieler ist an der reihe
+	 * 
 	 * @return false oder true
 	 */
-	public boolean playerHasTurn(){
-		
+	public boolean playerHasTurn() {
+
 		boolean yourTurn;
-		yourTurn = false; //hier kommt etwas von Loic, was true oder false zurückgibt
+//		yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
+		yourTurn = false; // TODO hier kommt etwas von Loic, was true oder false
+							// zurückgibt
 		view.btnPassen.setEnabled(yourTurn);
 		return yourTurn;
 	}
-	
-	
+
 	public void checkCard(ArrayList<Card> selectedCards) {
-		
-		boolean combinationConfirmed = GameState.checkCombinations(selectedCards);
+
+		boolean combinationConfirmed = GameState
+				.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && this.playerHasTurn());
 	}
 
-	public void layCards() {	
-		
+	public void layCards() {
+		view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
+									// entfernen
+		gState.setLastPlayedCards(view.cardsToCheck);
+		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.CARDS);
 		// TODO Karten übergeben (im GameState speichern) und an Message
 		// weitergeleitet zum senden
 		// mi.sendMessage(m); m = Message
@@ -95,10 +97,8 @@ public class GameFieldModel {
 		// TODO Message absenden → keine Parameter(View) noetig, aber Message
 		// sagen ueberspringen
 		// mi.sendMessage(m); m = Message
+		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
 	}
-
-	// TODO neue Private) funktion knoepfe deaktivieren (passen legen, alenfals
-	// cards)
 
 	public void startGame() {
 		// viwe = new GameField();
@@ -106,18 +106,26 @@ public class GameFieldModel {
 	}
 
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GameFieldModel gfm = new GameFieldModel();
-//					GameField frame = new GameField(gfm);
-//					frame.setVisible(true);
+					// GameField frame = new GameField(gfm);
+					// frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+
+	public GameState getgState() {
+		return gState;
+	}
+
+	public void setgState(GameState gState) {
+		this.gState = gState;
 	}
 
 }// end GameFieldModel

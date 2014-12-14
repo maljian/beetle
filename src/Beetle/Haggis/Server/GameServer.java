@@ -18,7 +18,7 @@ import Beetle.Haggis.Server.Card.Colour;
  * @version 1.0
  * @created 14-Nov-2014
  */
-public class GameServer implements  MessageInterface{ //Remote{ // {
+public class GameServer implements MessageInterface { // Remote{ // {
 
 	// private EventHandlerServer eventHandler;
 
@@ -26,9 +26,9 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 	static private int targetPoint;
 	static private ArrayList<String> registeredPlayer;
 	private Message message;
-	
-//	private SynchronousQueue<Message> sendQueue;
-//	private SynchronousQueue<Message> receiveQueue;
+
+	// private SynchronousQueue<Message> sendQueue;
+	// private SynchronousQueue<Message> receiveQueue;
 
 	// public ClientConnection m_ClientConnection;
 	// public EventHandlerServer m_EventHandlerServer;
@@ -43,41 +43,43 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 	//
 	// }
 
-//	/**
-//	 * This is a remote method which is executed by the client. It will block
-//	 * until there is content in the sendQueue and then pass the message to the
-//	 * client.
-//	 */
-//	public Message receiveMessage() throws RemoteException {
-//		Message m = sendQueue.poll();
-//		return m;
-//	}
-//
-//	/**
-//	 * This is a remote method which is executed by the client. It will receive
-//	 * the message and pass it to the receiveQueue where it will then be
-//	 * processed by the game logic.
-//	 */
-//	public void sendMessage(Message m) throws RemoteException {
-//		try {
-//			receiveQueue.put(m);
-//		} catch (InterruptedException e) {
-//			sendMessage(m);
-//		}
-//	}
-//
-//	public void init() throws RemoteException {
-//		// Hier muss sich der Client dann bei irgendwem anmelden.
-//		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
-//		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
-//		// D.h. es muss static sein.
-//		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
-//		// GameServer angelegt, dieses hat alle statischen Felder der Klasse
-//		// auch.
-//		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
-//		// entsprechende Netzwerkverbindung.
-//
-//	}
+	// /**
+	// * This is a remote method which is executed by the client. It will block
+	// * until there is content in the sendQueue and then pass the message to
+	// the
+	// * client.
+	// */
+	// public Message receiveMessage() throws RemoteException {
+	// Message m = sendQueue.poll();
+	// return m;
+	// }
+	//
+	// /**
+	// * This is a remote method which is executed by the client. It will
+	// receive
+	// * the message and pass it to the receiveQueue where it will then be
+	// * processed by the game logic.
+	// */
+	// public void sendMessage(Message m) throws RemoteException {
+	// try {
+	// receiveQueue.put(m);
+	// } catch (InterruptedException e) {
+	// sendMessage(m);
+	// }
+	// }
+	//
+	// public void init() throws RemoteException {
+	// // Hier muss sich der Client dann bei irgendwem anmelden.
+	// // wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
+	// // dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
+	// // D.h. es muss static sein.
+	// // Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
+	// // GameServer angelegt, dieses hat alle statischen Felder der Klasse
+	// // auch.
+	// // Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
+	// // entsprechende Netzwerkverbindung.
+	//
+	// }
 
 	/**
 	 * 
@@ -85,20 +87,26 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 	 * @param playerName
 	 * @return
 	 */
-	public int initPlayer(String playerName){
+	public int initPlayer(String playerName) {
 		int id;
-		if(state.getPlayers().length > registeredPlayer.size()){		// Es werden nur so viel Spieler erstellt, wie angegeben
-			
+		if (state.getPlayers().length > registeredPlayer.size()) { // Es werden
+																	// nur so
+																	// viel
+																	// Spieler
+																	// erstellt,
+																	// wie
+																	// angegeben
+
 			registeredPlayer.add(playerName);
-			id = registeredPlayer.size()-1;
-			state.setPlayerName(id, playerName);	
-		}else{
+			id = registeredPlayer.size() - 1;
+			state.setPlayerName(id, playerName);
+		} else {
 			id = -1;
 		}
 		System.out.println("Player-ID: " + id);
 		return id;
 	}
-	
+
 	/**
 	 * Get the value of the cards and addition them.
 	 * 
@@ -170,20 +178,9 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 			for (int i = 0; i < 14; i++) {
 				playerCard.push(cardStack.pop());
 			}
-			
-			for (int i = 0; i < 3; i++) {
 
-					playerCard.push(new Card(11 + i, Colour.JOKER));
-//					try {		
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					final JOptionPane optionPane = new JOptionPane(
-//							"An error appeared while distributing the cards. \n Error message:\n"
-//									+ e.toString(),
-//							// JOptionPane.YES_NO_OPTION,
-//							JOptionPane.QUESTION_MESSAGE);
-//
-//				}// TODO LL Test: dose it crusch?
+			for (int i = 0; i < 3; i++) {
+				playerCard.push(new Card(11 + i, Colour.JOKER));
 			}
 			Collections.sort(playerCard);
 			p.setCards(playerCard);
@@ -238,8 +235,8 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 					playerState.setPlayerTurns(playerTurns++);
 					playerState.versionCounter();
 					message.newMessage(playerState);
-					return;  // Replace the else part to avoid having
-										// to many steps in.
+					return; // Replace the else part to avoid having
+							// to many steps in.
 				}
 				Stack<Card> cards = newCards(1);
 				playerState = distributeCards(cards, playerState);
@@ -261,10 +258,6 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 			// TODO LL Zusatz: nice to double-check the cards on the server
 			break;
 		}
-
-		// playerState.setPlayerTurns(playerTurns++);
-
-	//	state.versionCounter();
 		playerState.versionCounter();
 		message.newMessage(playerState);
 
@@ -273,15 +266,15 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 	/**
 	 * @author Faruk Doganci
 	 * @param playerAmount
-	 * Amount of paling Person
+	 *            Amount of paling Person
 	 * @return cardStack
 	 */
 	private Stack<Card> newCards(int playerAmount) {
 		Stack<Card> cardStack = new Stack<>();
 		for (int number = 2; number <= 10; number++) {
-			for (int clr = 1; clr <= playerAmount +2; clr++) {
+			for (int clr = 1; clr <= playerAmount + 2; clr++) {
 				Colour colour = Colour.RED;
-				
+
 				switch (clr) {
 				case 1:
 					colour = Colour.RED;
@@ -308,9 +301,7 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 		return cardStack;
 	}
 
-	
-	
-	//Remot conection from Client
+	// Remot conection from Client
 	@Override
 	public Message receiveMessage() throws RemoteException {
 		return message;
@@ -323,8 +314,7 @@ public class GameServer implements  MessageInterface{ //Remote{ // {
 
 	@Override
 	public int init(String name) throws RemoteException {
-		 return initPlayer(name);
+		return initPlayer(name);
 	}
 
 }
-// end GameServer

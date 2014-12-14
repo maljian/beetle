@@ -42,8 +42,12 @@ public class EventHandlerServer implements MessageInterface {
 				.exportObject(gameServer, 0);
 
 		// Bind the remote object's stub in the registry
+		String registeryName= "MessageInterface";
+		// Registry problems solved with  portNr: http://hirt.se/blog/?p=289
+		// http://stackoverflow.com/questions/14265232/java-rmi-registry-port-change-issue
+		//registry= LocateRegistry.getRegistry(10243);
 		registry = LocateRegistry.getRegistry();
-		registry.bind("MessageInterface", stub);
+		registry.bind(registeryName, stub);
 
 		System.out.println("Startserver ready");
 
