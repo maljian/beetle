@@ -192,16 +192,16 @@ public class GameField extends JFrame implements ItemListener {
 		/**
 		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
 		 */
-		Card acht = new Card(8, Colour.RED);
-		Card neun = new Card(9, Colour.ORANGE);
-		ButtonCard btnacht = new ButtonCard(acht);
-		ButtonCard btnneun = new ButtonCard(neun);
-		btnneun.addItemListener(this);
-		cardsPlace.add(btnneun,
-				playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
-		btnacht.addItemListener(this);
-		cardsPlace.add(btnacht,
-				playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
+//		Card acht = new Card(8, Colour.RED);
+//		Card neun = new Card(9, Colour.ORANGE);
+//		ButtonCard btnacht = new ButtonCard(acht);
+//		ButtonCard btnneun = new ButtonCard(neun);
+//		btnneun.addItemListener(this);
+//		cardsPlace.add(btnneun,
+//				playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
+//		btnacht.addItemListener(this);
+//		cardsPlace.add(btnacht,
+//				playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
 
 		/**
 		 * Tisch (MITTE)
@@ -215,10 +215,10 @@ public class GameField extends JFrame implements ItemListener {
 		/**
 		 * MM Hier Karten in die Mitte legen. Hier wieder nur ein beispiel
 		 */
-
-		ButtonCard btntest = new ButtonCard(acht);
-		centerField.add(btntest,
-				layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
+//
+//		ButtonCard btntest = new ButtonCard(acht);
+//		centerField.add(btntest,
+//				layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
 
 		/**
 		 * Tisch (MITTE) beendet Gegner Label

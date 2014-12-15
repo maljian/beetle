@@ -45,31 +45,38 @@ public class GameFieldModel {
 		gState = gs;
 		Stack<Card> playerHandCards = gState.getPlayers()[id].getCards();
 		// for each
-		view.jokerCards.clear();
-		view.playerCards.clear();
-		//view.centerField.removeAll();
+//		view.jokerCards.clear();
+//		view.playerCards.clear();
+		// view.centerField.removeAll();
+		ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
+		ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
+		ArrayList<ButtonCard> playedCards = new ArrayList<ButtonCard>();
 		view.layedCards.clear();
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
-			view.jokerCards.clear();
-			view.playerCards.clear();
+			
 
 			if (card.getValue() >= 2) {
-				view.jokerCards
-						.add((ButtonCard) view.buttonsPlace.add(btnCard));
+				jokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
 			} else {
-				view.playerCards.add((ButtonCard) view.cardsPlace.add(btnCard));
+				layedCards.add((ButtonCard) view.cardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
+			
 		}
-		for (Card card : gState.getLastPlayedCards()) {
+		view.layedCards= layedCards;
+		view.jokerCards=jokerCards;
+		if (gState.getLastPlayedCards() != null) {
+			for (Card card : gState.getLastPlayedCards()) {
 
-			ButtonCard btnCardCenter = new ButtonCard(card);
-			view.layedCards.add(btnCardCenter);		
+				ButtonCard btnCardCenter = new ButtonCard(card);
+				layedCards.add(btnCardCenter);
+			}
+			view.layedCards=layedCards;
 		}
-		//TODO 1 vie aktualisiren
+		// TODO 1 vie aktualisiren
 		// gegenspieler aktualisiren
-		//Knöpfe aktualisiren
+		// Knöpfe aktualisiren
 	}
 
 	/**
