@@ -11,6 +11,7 @@ import Beetle.Haggis.Client.GameField;
 import Beetle.Haggis.Client.GameFieldModel;
 import Beetle.Haggis.Client.JoinGame;
 import Beetle.Haggis.Client.JoinGameModel;
+import Beetle.Haggis.Client.NewGame;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.MessageInterface;
@@ -24,6 +25,7 @@ public class Client extends Thread {
 
 	private int id; // PlayerID starting 0
 	public static JoinGame m_JoinGame;
+	public static NewGame m_NewGame;
 	/**
 	 * 
 	 * Start the Server in a new Thread Only one of the player gets the server
@@ -40,13 +42,13 @@ public class Client extends Thread {
 
 		String host = "127.0.0.1";
 		connected = true;
-		// serverIP = m_JoinGame.txtIpAdress.getText();
+		if(m_JoinGame != null && m_JoinGame.txtIpAdress.getText() != null){
+			host = m_JoinGame.txtIpAdress.getText();
+		}
 		try {
-			host = serverIP;
 			registry = LocateRegistry.getRegistry(host);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
 			id = mi.init(name);
-			gfModel.setId(id);
 
 		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
@@ -61,6 +63,7 @@ public class Client extends Thread {
 			new JoinGameModel(gfModel);
 		}
 
+		
 	}
 
 	public void run() {
@@ -70,8 +73,9 @@ public class Client extends Thread {
 				m = mi.receiveMessage();
 				System.out.println(m.getGameState().getVersion());
 				Thread.sleep(1000);
-				if (m.getGameState().getVersion() > state.getVersion()) {
-					
+				if (state == null || m.getGameState().getVersion() > state.getVersion()) {
+					state = m.getGameState();
+					gfModel.actualizeView(state);
 				}
 				// btn Pass Aktivieren
 			} catch (RemoteException | InterruptedException e) {
@@ -80,6 +84,15 @@ public class Client extends Thread {
 
 		}
 
+	}
+
+	public void sendMessage(Message m) {
+		try {
+			server.sendMessage(m);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		;
 	}
 
 	public Client(GameFieldModel gfModel) {

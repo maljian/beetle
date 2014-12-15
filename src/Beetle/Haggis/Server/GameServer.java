@@ -40,6 +40,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			registeredPlayer.add(playerName);
 			id = registeredPlayer.size() - 1;
 			state.setPlayerName(id, playerName);
+			state.versionCounter();
 		} else {
 			id = -1;
 		}

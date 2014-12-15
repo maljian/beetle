@@ -34,7 +34,7 @@ public class NewGame extends JoinGame {
 	public JPanel contentPane;
 	protected JTextField txtPlayerName;
 	private JButton btnPlay;
-	protected JTextField txtIpAdress;
+	public JTextField txtIpAdress;
 	private JPanel logoPanel;
 	private JLabel logoLabel;
 	protected JComboBox<Integer> numberPlayer;
