@@ -65,9 +65,10 @@ public class GameField extends JFrame implements ItemListener {
 	protected JButton btnLegen;
 	protected JButton btnPassen;
 	protected JPanel centerField;
-	//private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen
-																	// wir das
-																	// überhaupt??
+	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
+	// brauchen
+	// wir das
+	// überhaupt??
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
@@ -77,10 +78,10 @@ public class GameField extends JFrame implements ItemListener {
 	 * Opponent
 	 */
 
-	//private int lblCards;
-	//private int lblCardsCenter;
-	//private int lblPlayer;
-	//public GameFieldModel m_GameFieldModel;
+	// private int lblCards;
+	// private int lblCardsCenter;
+	// private int lblPlayer;
+	// public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 
 	public GameField(GameFieldModel gfm) {
@@ -100,8 +101,13 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.setBackground(new Color(0, 100, 0));
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
-		btnLegen = new JButton("legen");
-		buttonsPlace.add(btnLegen);
+		btnPassen = new JButton("passen");
+		btnPassen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		buttonsPlace.add(btnPassen);
+		
 
 		/**
 		 * 
@@ -116,12 +122,8 @@ public class GameField extends JFrame implements ItemListener {
 			btnCard.addItemListener(this);
 		}
 
-		btnPassen = new JButton("passen");
-		btnPassen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		buttonsPlace.add(btnPassen);
+		btnLegen = new JButton("legen");
+		buttonsPlace.add(btnLegen);
 
 		cardsPlace = new JPanel();
 		cardsPlace.setBackground(new Color(0, 100, 0));
@@ -183,10 +185,8 @@ public class GameField extends JFrame implements ItemListener {
 		playerpanel1.setBackground(new Color(0, 128, 0));
 
 		TextAreaCustom Player1 = new TextAreaCustom();
-		Player1.setText("SPIELERNAME"
-				+" Anzahl Karten: " + playerCards.size()
-				+" Anzahl Joker: " + jokerCards.size()
-				);
+		Player1.setText("SPIELERNAME" + " Anzahl Karten: " + playerCards.size()
+				+ " Anzahl Joker: " + jokerCards.size());
 		playerpanel1.add(Player1);
 
 		/**
@@ -235,10 +235,8 @@ public class GameField extends JFrame implements ItemListener {
 		opponentField.add(opponent_1, BorderLayout.WEST);
 
 		TextAreaCustom Player2 = new TextAreaCustom();
-		Player2.setText("SPIELERNAME2"
-				+" Anzahl Karten: " + playerCards.size()
-				+" Anzahl Joker: " + jokerCards.size()
-				);
+		Player2.setText("SPIELERNAME2" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
 		opponent_1.add(Player2);
 
 		JPanel opponent_2 = new JPanel();
@@ -246,10 +244,8 @@ public class GameField extends JFrame implements ItemListener {
 		opponentField.add(opponent_2, BorderLayout.EAST);
 
 		TextAreaCustom Player3 = new TextAreaCustom();
-		Player3.setText("SPIELERNAME3" +
-				" Anzahl Karten: " + playerCards.size() +
-				" Anzahl Joker: " + jokerCards.size()
-				);
+		Player3.setText("SPIELERNAME3" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
 		opponent_2.add(Player3);
 
 	}
@@ -261,19 +257,19 @@ public class GameField extends JFrame implements ItemListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1200, 700));
 		addWindowListener(new WindowAdapter() {
-			   public void windowClosing(WindowEvent evt) {
-			     onClose();
-			   }
+			public void windowClosing(WindowEvent evt) {
+				onClose();
+			}
 		});
 	}
 
 	private void onClose() {
-		try{
-			ehs.stopServer();	
-						
-		}catch (Exception e){
-//			System.out.println("bla");
-//			e.printStackTrace();
+		try {
+			ehs.stopServer();
+
+		} catch (Exception e) {
+			// System.out.println("bla");
+			// e.printStackTrace();
 		}
 		this.dispose();
 	}
@@ -296,10 +292,9 @@ public class GameField extends JFrame implements ItemListener {
 		}
 		gfModel.checkCard(cardsToCheck);
 	}
-	
+
 	public void setEventHandlerServer(EventHandlerServer ehs) {
 		this.ehs = ehs;
 	}
 
-	}
-
+}
