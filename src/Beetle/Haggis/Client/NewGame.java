@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -77,12 +78,15 @@ public class NewGame extends JoinGame {
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == btnPlay) {
+				if (txtPlayerName.equals("") && e.getSource() == btnPlay) 
+					JOptionPane.showMessageDialog(null, "Bitte Spielername eingeben.");
+				else
 					model.startServer();
 
 				}
+				
 			}
-		});
+		);
 		btnPlay.setBounds(626, 392, 89, 30);
 		contentPane.add(btnPlay);
 
@@ -143,6 +147,9 @@ public class NewGame extends JoinGame {
 		btnCopy.setBackground(Color.ORANGE);
 		btnCopy.setBounds(582, 168, 133, 23);
 		contentPane.add(btnCopy);
+
+			
+		
 
 		final JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.addActionListener(new ActionListener() {

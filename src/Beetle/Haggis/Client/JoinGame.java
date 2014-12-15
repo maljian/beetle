@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -52,7 +53,6 @@ public class JoinGame extends JFrame {
 		contentPane.setLayout(null);
 
 		txtPlayerName = new JTextField();
-		txtPlayerName.setText("Beetle");
 		txtPlayerName.setBounds(582, 50, 133, 20);
 		contentPane.add(txtPlayerName);
 		txtPlayerName.setColumns(10);
@@ -90,11 +90,13 @@ public class JoinGame extends JFrame {
 		btnPlay.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == btnPlay) {	
+				if (txtPlayerName.equals("") && e.getSource() == btnPlay) 
+					JOptionPane.showMessageDialog(null, "Bitte Spielername eingeben.");
+				else
 					model.joinGame();			
 				}
 			}
-		});
+		);
 		btnPlay.setBounds(626, 391, 89, 30);
 		contentPane.add(btnPlay);
 
