@@ -41,9 +41,15 @@ public class Client extends Thread {
 	public void connect(String name, String serverIP) {
 
 		String host = "127.0.0.1";
-		connected = true;
-		if(m_JoinGame != null && m_JoinGame.txtIpAdress.getText() != null){
-			host = m_JoinGame.txtIpAdress.getText();
+		if (serverIP == null || serverIP.length() == 0) {
+			JOptionPane
+			.showMessageDialog(
+					null,
+					"Bitte geben Sie eine gültige IP-Adresse an.",
+					"Information",
+					JOptionPane.INFORMATION_MESSAGE);
+			//new JoinGameModel(gfModel);
+			return;
 		}
 		try {
 			registry = LocateRegistry.getRegistry(host);
