@@ -47,7 +47,10 @@ public class GameFieldModel {
 		view.centerField.removeAll();
 		view.panJoker.removeAll();
 		gState = gs;
-		Player p[] =   gState.getPlayers();
+		Player[] p =   gState.getPlayers();
+		System.out.println(p);		// null
+		System.out.println(id);
+		System.out.println(p[id].getCards());
 		Stack<Card> playerHandCards =p[id].getCards();
 		// for each
 //		view.jokerCards.clear();
