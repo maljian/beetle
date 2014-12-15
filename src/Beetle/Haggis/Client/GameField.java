@@ -61,10 +61,14 @@ public class GameField extends JFrame implements ItemListener {
 	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
 	protected ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 	protected JPanel buttonsPlace;
+	protected JPanel cardsPlayerPlace; // TODO 1 LL pan mit den caten. pan kan gelöst und dan neu gefült werden
+	protected JPanel cardsJokerPlace;
+	protected JPanel cardsLayedPlace;
 	protected JPanel cardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
 	protected JPanel centerField;
+	protected JPanel panJoker;
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
 	// brauchen
 	// wir das
@@ -108,7 +112,9 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		buttonsPlace.add(btnPassen);
 		
-
+		 panJoker = new JPanel();
+		buttonsPlace.add(panJoker);
+		panJoker.setBackground(new Color(0, 100, 0));
 		/**
 		 * 
 		 * @author Marco Mancuso
@@ -118,9 +124,12 @@ public class GameField extends JFrame implements ItemListener {
 		for (int i = 11; i < 14; i++) {
 			Card card = new Card(i, Colour.JOKER);
 			ButtonCard btnCard = new ButtonCard(card);
-			jokerCards.add((ButtonCard) buttonsPlace.add(btnCard));
+			jokerCards.add((ButtonCard) panJoker.add(btnCard));
 			btnCard.addItemListener(this);
 		}
+		
+	
+//		buttonsPlace.add(jokerCards);
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
@@ -210,7 +219,7 @@ public class GameField extends JFrame implements ItemListener {
 		centerField = new JPanel();
 		centerField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(centerField, BorderLayout.CENTER);
-		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, FlowLayout.CENTER)); // FL.Center, 5,5
 
 		/**
 		 * MM Hier Karten in die Mitte legen. Hier wieder nur ein beispiel

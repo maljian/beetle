@@ -43,6 +43,9 @@ public class GameFieldModel {
 	}
 
 	public void actualizeView(GameState gs) {
+		view.cardsPlace.removeAll();	// Clear from old items befor draving the new one
+		view.centerField.removeAll();
+		view.panJoker.removeAll();
 		gState = gs;
 		Player p[] =   gState.getPlayers();
 		Stack<Card> playerHandCards =p[id].getCards();
@@ -54,18 +57,23 @@ public class GameFieldModel {
 		ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> playedCards = new ArrayList<ButtonCard>();
 		view.layedCards.clear();
+		
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
 			
 
 			if (card.getValue() >= 2) {
-				jokerCards.add((ButtonCard) view.buttonsPlace.add(btnCard));
+				jokerCards.add((ButtonCard) view.panJoker.add(btnCard));
 			} else {
 				layedCards.add((ButtonCard) view.cardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 			
 		}
+		
+		view.jokerCards=null;
+		view.layedCards= null;
+		view.revalidate();
 		view.layedCards= layedCards;
 		view.jokerCards=jokerCards;
 		if (gState.getLastPlayedCards() != null) {
