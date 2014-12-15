@@ -267,7 +267,14 @@ public class GameField extends JFrame implements ItemListener {
 	}
 
 	private void onClose() {
-		ehs.stopServer();
+		try{
+			ehs.stopServer();	
+						
+		}catch (Exception e){
+//			System.out.println("bla");
+//			e.printStackTrace();
+		}
+		this.dispose();
 	}
 
 	/**

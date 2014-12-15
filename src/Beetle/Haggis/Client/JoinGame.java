@@ -29,7 +29,7 @@ public class JoinGame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JPanel contentPane;
 	protected JTextField txtPlayerName;
-	protected JTextField txtIpAdress;
+	public JTextField txtIpAdress;
 	private JButton btnPlay;
 	private JButton btnZurck;
 	private JPanel logoPanel;

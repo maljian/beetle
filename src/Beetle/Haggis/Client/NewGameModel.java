@@ -55,6 +55,7 @@ public class NewGameModel extends JoinGameModel {
 			ehs.startServer(targetPoint, bet, bombs, numberPlayer);
 			String serverIP = m_View.txtIpAdress.getText();
 			client.connect(m_View.txtPlayerName.getText(), serverIP); 
+			client.start();
 			m_View.dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
