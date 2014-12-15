@@ -37,6 +37,7 @@ public class JoinGameModel {
 		String name = m_View.txtPlayerName.getText();
 		String serverIP = m_View.txtIpAdress.getText();
 		client.connect(name, serverIP);
+		client.start();
 		m_View.dispose();
 
 		// TODO 2 LL sicherstellen das man zurück zum Gamefleld (model) kommt

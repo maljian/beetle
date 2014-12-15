@@ -20,6 +20,7 @@ import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.EventHandlerServer;
+import Beetle.Haggis.Server.Player;
 
 /**
  * @author Marco Mancuso
@@ -43,7 +44,8 @@ public class GameFieldModel {
 
 	public void actualizeView(GameState gs) {
 		gState = gs;
-		Stack<Card> playerHandCards = gState.getPlayers()[id].getCards();
+		Player p[] =   gState.getPlayers();
+		Stack<Card> playerHandCards =p[id].getCards();
 		// for each
 //		view.jokerCards.clear();
 //		view.playerCards.clear();
@@ -77,6 +79,11 @@ public class GameFieldModel {
 		// TODO 1 vie aktualisiren
 		// gegenspieler aktualisiren
 		// Knöpfe aktualisiren
+		
+	
+//		view.repaint();
+		view.revalidate();
+		System.out.println("View up to date");
 	}
 
 	/**

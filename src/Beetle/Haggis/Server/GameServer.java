@@ -214,7 +214,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 */
 	private Stack<Card> newCards(int playerAmount) {
 		Stack<Card> cardStack = new Stack<>();
-		if (fullCardStack != null) {
+		if (fullCardStack == null) {
 
 			for (int number = 2; number <= 10; number++) {
 				for (int clr = 1; clr <= playerAmount + 2; clr++) {
@@ -240,7 +240,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 					Card c = new Card(number, colour);
 					cardStack.add(c);
 				}
-
+				fullCardStack = cardStack;
 			}
 		} else {
 			cardStack = fullCardStack;
