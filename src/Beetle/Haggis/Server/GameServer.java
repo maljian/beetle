@@ -23,8 +23,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	static private GameState state;
 	static private int targetPoint;
 	static private ArrayList<String> registeredPlayer;
+	private Stack<Card> fullCardStack = null;
 	private Message message;
-
 
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 */
 	public int initPlayer(String playerName) {
 		int id;
-		if (state.getPlayers().length > registeredPlayer.size()) { 
+		if (state.getPlayers().length > registeredPlayer.size()) {
 			// Es werden nur so viel Spieler erstellt, wie angegeben
 
 			registeredPlayer.add(playerName);
@@ -198,7 +198,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			} else {
 				playerState.setPlayerTurns(playerTurns + 1);
 			}
-			
+
 			break;
 		}
 		playerState.versionCounter();
@@ -214,31 +214,36 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 */
 	private Stack<Card> newCards(int playerAmount) {
 		Stack<Card> cardStack = new Stack<>();
-		for (int number = 2; number <= 10; number++) {
-			for (int clr = 1; clr <= playerAmount + 2; clr++) {
-				Colour colour = Colour.RED;
+		if (fullCardStack != null) {
 
-				switch (clr) {
-				case 1:
-					colour = Colour.RED;
-					break;
-				case 2:
-					colour = Colour.YELLOW;
-					break;
-				case 3:
-					colour = Colour.ORANGE;
-					break;
-				case 4:
-					colour = Colour.GREY;
-					break;
-				case 5:
-					colour = Colour.GREEN;
-					break;
+			for (int number = 2; number <= 10; number++) {
+				for (int clr = 1; clr <= playerAmount + 2; clr++) {
+					Colour colour = Colour.RED;
+
+					switch (clr) {
+					case 1:
+						colour = Colour.RED;
+						break;
+					case 2:
+						colour = Colour.YELLOW;
+						break;
+					case 3:
+						colour = Colour.ORANGE;
+						break;
+					case 4:
+						colour = Colour.GREY;
+						break;
+					case 5:
+						colour = Colour.GREEN;
+						break;
+					}
+					Card c = new Card(number, colour);
+					cardStack.add(c);
 				}
-				Card c = new Card(number, colour);
-				cardStack.add(c);
-			}
 
+			}
+		} else {
+			cardStack = fullCardStack;
 		}
 		Collections.shuffle(cardStack);
 		return cardStack;
