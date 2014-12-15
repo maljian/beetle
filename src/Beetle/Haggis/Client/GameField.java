@@ -53,17 +53,18 @@ public class GameField extends JFrame implements ItemListener {
 	/**
 	 * Array, Joker
 	 */
-	private Card btnCard;
-	private int btnLay;
-	private int btnPass;
+	protected Card btnCard;
+	protected int btnLay;
+	protected int btnPass;
 	protected ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
 	protected ArrayList<ButtonCard> playerCards = new ArrayList<ButtonCard>();
 	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
-	private ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
+	protected ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 	protected JPanel buttonsPlace;
 	protected JPanel cardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
+	protected JPanel centerField;
 	//private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); // brauchen
 																	// wir das
 																	// überhaupt??
@@ -206,7 +207,7 @@ public class GameField extends JFrame implements ItemListener {
 		 * Tisch (MITTE)
 		 */
 
-		JPanel centerField = new JPanel();
+		centerField = new JPanel();
 		centerField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(centerField, BorderLayout.CENTER);
 		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

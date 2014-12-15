@@ -46,6 +46,7 @@ public class Client extends Thread {
 			registry = LocateRegistry.getRegistry(host);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
 			id = mi.init(name);
+			gfModel.setId(id);
 
 		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());

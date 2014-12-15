@@ -1,13 +1,17 @@
 package Beetle.Haggis.Client;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 //import com.sun.glass.ui.View;
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
@@ -27,6 +31,7 @@ public class GameFieldModel {
 	GameFieldModel gfModel;
 	private GameField view;
 	private GameState gState;
+	private int id;
 
 	public GameFieldModel() {
 		view = new GameField(this);
@@ -36,8 +41,14 @@ public class GameFieldModel {
 		playerHasTurn();
 	}
 
-	public void actualizeView(Stack<Card> playerHandCards) {
+	public void actualizeView(GameState gs) {
+		gState = gs;
+		Stack<Card> playerHandCards = gState.getPlayers()[id].getCards();
 		// for each
+		view.jokerCards.clear();
+		view.playerCards.clear();
+		//view.centerField.removeAll();
+		view.layedCards.clear();
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
 			view.jokerCards.clear();
@@ -51,6 +62,14 @@ public class GameFieldModel {
 			}
 			btnCard.addItemListener(view);
 		}
+		for (Card card : gState.getLastPlayedCards()) {
+
+			ButtonCard btnCardCenter = new ButtonCard(card);
+			view.layedCards.add(btnCardCenter);		
+		}
+		//TODO 1 vie aktualisiren
+		// gegenspieler aktualisiren
+		//Knöpfe aktualisiren
 	}
 
 	/**
@@ -62,10 +81,11 @@ public class GameFieldModel {
 	public boolean playerHasTurn() {
 
 		boolean yourTurn;
-//		yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
-		yourTurn = true; // TODO 1 hier kommt etwas von Loic, was true oder false
+		// yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
+		yourTurn = true; // TODO 1 hier kommt etwas von Loic, was true oder
+							// false
 							// zurückgibt
-		//zu überprüfen wenn der spieler den neuen Stand erhält.
+		// zu überprüfen wenn der spieler den neuen Stand erhält.
 		view.btnPassen.setEnabled(yourTurn);
 		return yourTurn;
 	}
@@ -79,18 +99,23 @@ public class GameFieldModel {
 
 	public void layCards() {
 
-		if ( gState.setNewCombination(view.cardsToCheck)){
+		if (gState.setNewCombination(view.cardsToCheck)) {
 			gState.setLastPlayedCards(view.cardsToCheck);
 			view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
 										// entfernen
-			
-			Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.CARDS);
-		}else{
-			JOptionPane.showMessageDialog(null, "Es ist nicht möglich die Karten zu legen, überprüfen Sie die Kombination.","Kombinationsfehler", JOptionPane.INFORMATION_MESSAGE);
-			
+
+			Message m = new Message(gState, MessageType.CONFIRM,
+					PlayedAction.CARDS);
+		} else {
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Es ist nicht möglich die Karten zu legen, überprüfen Sie die Kombination.",
+							"Kombinationsfehler",
+							JOptionPane.INFORMATION_MESSAGE);
+
 		}
-		
-		
+
 		// TODO 1 Mesage versenden
 		// mi.sendMessage(m); m = Message
 	}
@@ -112,8 +137,8 @@ public class GameFieldModel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//GameFieldModel gfm =
-							new GameFieldModel();
+					// GameFieldModel gfm =
+					new GameFieldModel();
 					// GameField frame = new GameField(gfm);
 					// frame.setVisible(true);
 				} catch (Exception e) {
@@ -130,10 +155,17 @@ public class GameFieldModel {
 	public void setgState(GameState gState) {
 		this.gState = gState;
 	}
-	
+
 	public void setEventHandlerServer(EventHandlerServer ehs) {
 		view.setEventHandlerServer(ehs);
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 }// end GameFieldModel
