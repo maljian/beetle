@@ -7,7 +7,6 @@ import java.rmi.registry.Registry;
 
 import javax.swing.JOptionPane;
 
-import Beetle.Haggis.Client.GameField;
 import Beetle.Haggis.Client.GameFieldModel;
 import Beetle.Haggis.Client.JoinGame;
 import Beetle.Haggis.Client.JoinGameModel;
@@ -36,11 +35,11 @@ public class Client extends Thread {
 	private MessageInterface mi;
 	private boolean connected = true;
 	private GameFieldModel gfModel;
-	public GameField m_GameField;
 
-	public void connect(String name, String serverIP) {
+	public boolean connect(String name, String serverIP) {
 
 		String host = "127.0.0.1";
+		boolean connected = false;
 		if (serverIP == null || serverIP.length() == 0) {
 			JOptionPane
 			.showMessageDialog(
@@ -49,7 +48,7 @@ public class Client extends Thread {
 					"Information",
 					JOptionPane.INFORMATION_MESSAGE);
 			//new JoinGameModel(gfModel);
-			return;
+			return false;
 		}
 		try {
 			registry = LocateRegistry.getRegistry(host);
@@ -60,7 +59,7 @@ public class Client extends Thread {
 		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
-			connected = false;
+			connected = true;
 			JOptionPane
 					.showMessageDialog(
 							null,
@@ -69,6 +68,7 @@ public class Client extends Thread {
 							JOptionPane.ERROR_MESSAGE);
 			new JoinGameModel(gfModel);
 		}
+		return connected;
 
 		
 	}
@@ -86,7 +86,7 @@ public class Client extends Thread {
 				}
 				// btn Pass Aktivieren
 			} catch (RemoteException | InterruptedException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 
 		}

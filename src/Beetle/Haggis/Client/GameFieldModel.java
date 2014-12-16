@@ -1,18 +1,16 @@
 package Beetle.Haggis.Client;
 
 import java.awt.EventQueue;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
-import javax.swing.Spring;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
+import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
@@ -194,7 +192,7 @@ public class GameFieldModel {
 	}
 
 	public boolean joinGame(String name, String serverIP) {
-		client = new Client(gfModel);
+		client = new Client(this);
 		client.connect(name, serverIP);
 		client.start();
 		return true;

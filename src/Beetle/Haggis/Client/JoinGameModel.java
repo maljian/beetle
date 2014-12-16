@@ -1,8 +1,5 @@
 package Beetle.Haggis.Client;
 
-import javax.swing.JOptionPane;
-
-import Beetle.Haggis.Server.Client;
 
 /**
  * @author Faruk

@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
-import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
 
 /**
