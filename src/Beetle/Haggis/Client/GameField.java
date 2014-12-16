@@ -58,7 +58,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel cardsPlayerPlace; 
 	protected JPanel cardsJokerPlace;
 	protected JPanel cardsLayedPlace;
-	protected JPanel panCardsPlace;
+	protected JPanel panPlayerCards;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
 	protected JPanel panCenterField;
@@ -143,9 +143,9 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		buttonsPlace.add(btnLegen);
 
-		panCardsPlace = new JPanel();
-		panCardsPlace.setBackground(new Color(0, 100, 0));
-		BottomLine.add(panCardsPlace, BorderLayout.NORTH);
+		panPlayerCards = new JPanel();
+		panPlayerCards.setBackground(new Color(0, 100, 0));
+		BottomLine.add(panPlayerCards, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
 		HelpButtons.setBackground(new Color(0, 100, 0));

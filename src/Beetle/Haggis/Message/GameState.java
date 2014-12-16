@@ -29,11 +29,7 @@ public class GameState implements Serializable {
 	static Combination curentCombination = Combination.NEWTURN;
 	private  static ArrayList<Card> lastPlayedCards;
 
-
-	/**
-	 * player [0,1,2], cards[Card]
-	 */
-	private Player players[];
+	private Player players[]; //player [0,1,2], cards[Card]
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	private int version = 0;

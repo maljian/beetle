@@ -44,10 +44,14 @@ public class GameFieldModel {
 
 	public void actualizeView(GameState gs) {
 		// Clear from old items befor draving the new one
-		view.panCardsPlace.removeAll(); 
+		view.panPlayerCards.removeAll(); 
 		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
-		System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
+//		view.jokerCards = null;
+//		view.layedCards = null;
+//		view.playerCards=null;
+		
+		//System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
 		gState = gs;
 		Player[] p = gState.getPlayers();
 //		System.out.println(p); // null
@@ -69,25 +73,23 @@ public class GameFieldModel {
 			if (card.getValue() >= 2) {
 				btnJokerCards.add((ButtonCard) view.panJoker.add(btnCard));
 			} else {
-				btnPlayerCards.add((ButtonCard) view.panCardsPlace.add(btnCard));
+				btnPlayerCards.add((ButtonCard) view.panPlayerCards.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 
 		}
 
-		view.jokerCards = null;
-		view.layedCards = null;
-		view.playerCards=null;
+		
 		//view.revalidate();
-		view.layedCards = btnPlayerCards;
-		view.jokerCards = btnJokerCards;
+//		view.layedCards.addAll( btnPlayerCards);
+//		view.jokerCards.addAll(btnJokerCards);
 		if (gState.getLastPlayedCards()!= null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
 				ButtonCard btnCardCenter = new ButtonCard(card);
 				btnPlayedCards.add( (ButtonCard) view.panCenterField.add(btnCardCenter));
 			}
-			view.layedCards = btnPlayedCards;
+//			view.layedCards = btnPlayedCards;
 		}
 
 		if (id == gState.getPlayerTurns()) {

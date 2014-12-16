@@ -82,6 +82,7 @@ public class Client extends Thread {
 				Thread.sleep(1000);
 				if (state == null || m.getGameState().getVersion() > state.getVersion()) {
 					state = m.getGameState();
+			
 					gfModel.actualizeView(state);
 				}
 				// btn Pass Aktivieren
