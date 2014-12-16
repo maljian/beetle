@@ -47,6 +47,7 @@ public class GameFieldModel {
 		view.panCardsPlace.removeAll(); 
 		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
+		System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
 		gState = gs;
 		Player[] p = gState.getPlayers();
 //		System.out.println(p); // null
@@ -60,7 +61,7 @@ public class GameFieldModel {
 		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnJokerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnPlayedCards = new ArrayList<ButtonCard>();
-		view.layedCards.clear();
+		//view.layedCards.clear();
 
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
@@ -77,7 +78,7 @@ public class GameFieldModel {
 		view.jokerCards = null;
 		view.layedCards = null;
 		view.playerCards=null;
-		view.revalidate();
+		//view.revalidate();
 		view.layedCards = btnPlayerCards;
 		view.jokerCards = btnJokerCards;
 		if (gState.getLastPlayedCards()!= null) {
