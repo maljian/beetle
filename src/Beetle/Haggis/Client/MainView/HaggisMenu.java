@@ -2,12 +2,14 @@ package Beetle.Haggis.Client.MainView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.sun.glass.events.KeyEvent;
+
+
 
 import Beetle.Haggis.Client.GameFieldModel;
 import Beetle.Haggis.Client.JoinGameModel;

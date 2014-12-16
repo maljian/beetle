@@ -38,7 +38,7 @@ public class Client extends Thread {
 
 	public boolean connect(String name, String serverIP) {
 
-		String host = "127.0.0.1";
+//		String host = "127.0.0.1";
 		boolean connected = false;
 		if (serverIP == null || serverIP.length() == 0) {
 			JOptionPane
@@ -51,7 +51,7 @@ public class Client extends Thread {
 			return false;
 		}
 		try {
-			registry = LocateRegistry.getRegistry(host);
+			registry = LocateRegistry.getRegistry(serverIP);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
 			id = mi.init(name);
 			gfModel.setId(id);
