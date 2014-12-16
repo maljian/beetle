@@ -101,9 +101,14 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.setBackground(new Color(0, 100, 0));
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
+		
+		
+		
+		//
 		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				gfModel.pass();
 			}
 		});
 		buttonsPlace.add(btnPassen);
@@ -129,6 +134,13 @@ public class GameField extends JFrame implements ItemListener {
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
+		
+		btnPassen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gfModel.layCards();
+			}
+		});
+		
 
 		cardsPlace = new JPanel();
 		cardsPlace.setBackground(new Color(0, 100, 0));
