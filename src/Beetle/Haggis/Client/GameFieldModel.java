@@ -26,6 +26,7 @@ public class GameFieldModel {
 	private GameField view;
 	private GameState gState;
 	private int id;
+	private boolean playerIsOnTurn;
 
 	public GameFieldModel() {
 		view = new GameField(this);
@@ -84,7 +85,13 @@ public class GameFieldModel {
 		// gegenspieler aktualisiren
 		// Knöpfe aktualisiren
 		
-	
+		if (id == gState.getPlayerTurns()){
+			playerIsOnTurn = true;
+		} else {
+			playerIsOnTurn = false;
+		}
+		view.btnPassen.setEnabled(playerIsOnTurn);
+
 //		view.repaint();
 		view.revalidate();
 		System.out.println("View up to date");
@@ -96,7 +103,7 @@ public class GameFieldModel {
 	 * 
 	 * @return false oder true
 	 */
-	public boolean playerHasTurn() {
+	public void playerHasTurn() {
 
 		boolean yourTurn;
 		// yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
@@ -105,14 +112,15 @@ public class GameFieldModel {
 							// zurückgibt
 		// zu überprüfen wenn der spieler den neuen Stand erhält.
 		view.btnPassen.setEnabled(yourTurn);
-		return yourTurn;
+		//return yourTurn;
 	}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
 
 		boolean combinationConfirmed = GameState
 				.checkCombinations(selectedCards);
-		view.btnLegen.setEnabled(combinationConfirmed && this.playerHasTurn());
+		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
+		//TODO 2 knöpfe bereits deaktiviren
 	}
 
 	public void layCards() {
