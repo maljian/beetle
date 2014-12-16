@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
+import javax.swing.Spring;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
@@ -16,6 +17,7 @@ import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
 import Beetle.Haggis.Server.Player;
+
 //import com.sun.glass.ui.View;
 
 /**
@@ -38,31 +40,31 @@ public class GameFieldModel {
 		view.setVisible(true);
 		view.btnLegen.setEnabled(false);
 		view.btnPassen.setEnabled(false);
-//		playerHasTurn();
+		// playerHasTurn();
 	}
 
 	public void actualizeView(GameState gs) {
-		view.cardsPlace.removeAll();	// Clear from old items befor draving the new one
+		view.cardsPlace.removeAll(); // Clear from old items befor draving the
+										// new one
 		view.centerField.removeAll();
 		view.panJoker.removeAll();
 		gState = gs;
-		Player[] p =   gState.getPlayers();
-		System.out.println(p);		// null
+		Player[] p = gState.getPlayers();
+		System.out.println(p); // null
 		System.out.println(id);
 		System.out.println(p[id].getCards());
-		Stack<Card> playerHandCards =p[id].getCards();
+		Stack<Card> playerHandCards = p[id].getCards();
 		// for each
-//		view.jokerCards.clear();
-//		view.playerCards.clear();
+		// view.jokerCards.clear();
+		// view.playerCards.clear();
 		// view.centerField.removeAll();
 		ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> playedCards = new ArrayList<ButtonCard>();
 		view.layedCards.clear();
-		
+
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
-			
 
 			if (card.getValue() >= 2) {
 				jokerCards.add((ButtonCard) view.panJoker.add(btnCard));
@@ -70,9 +72,9 @@ public class GameFieldModel {
 				layedCards.add((ButtonCard) view.cardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
-			
+
 		}
-		
+
 		view.jokerCards = null;
 		view.layedCards = null;
 		view.revalidate();
@@ -84,22 +86,43 @@ public class GameFieldModel {
 				ButtonCard btnCardCenter = new ButtonCard(card);
 				layedCards.add(btnCardCenter);
 			}
-			view.layedCards=layedCards;
+			view.layedCards = layedCards;
 		}
 		// TODO 1 vie aktualisiren
 		// gegenspieler aktualisiren
 		// Knöpfe aktualisiren
-		
-		if (id == gState.getPlayerTurns()){
+
+		if (id == gState.getPlayerTurns()) {
 			playerIsOnTurn = true;
 		} else {
 			playerIsOnTurn = false;
 		}
-	//	view.btnPassen.setEnabled(playerIsOnTurn);
+		// view.btnPassen.setEnabled(playerIsOnTurn);
 
-//		view.repaint();
+		// view.repaint();
 		view.revalidate();
 		System.out.println("View up to date");
+	}
+
+	public String updateLabels() {
+		String Labels = null;
+		int opponentTextArea = 2;
+		Player[] p = gState.getPlayers();
+		for (Player player : p) {
+			
+			Labels = player.toString();
+			TextAreaCustom infoPlayer = new TextAreaCustom();
+			infoPlayer.setText(Labels);
+			if (player.getId() == id) {
+				view.playerpanel1.add(infoPlayer);
+			} else if (opponentTextArea == 2) {
+				view.playerpanel2.add(infoPlayer);
+				opponentTextArea++;
+			} else if (opponentTextArea == 3) {
+				view.playerpanel3.add(infoPlayer);
+			}
+		}
+		return Labels;
 	}
 
 	/**
@@ -109,9 +132,9 @@ public class GameFieldModel {
 	 * @return false oder true
 	 */
 	public void playerHasTurn() {
-		if (playerIsOnTurn == true){
+		if (playerIsOnTurn == true) {
 			view.btnPassen.setEnabled(playerIsOnTurn);
-		}else{
+		} else {
 			view.btnPassen.setEnabled(playerIsOnTurn);
 			view.btnLegen.setEnabled(playerIsOnTurn);
 		}
@@ -122,7 +145,7 @@ public class GameFieldModel {
 		boolean combinationConfirmed = GameState
 				.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
-		//TODO 2 knöpfe bereits deaktiviren
+		// TODO 2 knöpfe bereits deaktiviren
 	}
 
 	public void layCards() {
@@ -146,7 +169,7 @@ public class GameFieldModel {
 		}
 
 		// TODO 1 Mesage versenden
-		
+
 	}
 
 	public void pass() {
@@ -156,12 +179,21 @@ public class GameFieldModel {
 		client.sendMessage(m);
 	}
 
+	public String playerInfo(int id, String name, Stack<Card> playerHandCards,
+			int jokerCards) {
+		String info;
+		info = name + " Anzahl Karten: " + playerHandCards + " Anzahl Joker: "
+				+ jokerCards;
+		return info;
+
+	}
+
 	public void startGame() {
 		// viwe = new GameField();
 
 	}
-	
-	public boolean joinGame(String name, String serverIP){
+
+	public boolean joinGame(String name, String serverIP) {
 		client = new Client(gfModel);
 		client.connect(name, serverIP);
 		client.start();

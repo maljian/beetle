@@ -25,6 +25,7 @@ import Beetle.Haggis.Client.MainView.CombinationWindow;
 import Beetle.Haggis.Client.MainView.HaggisMenu;
 import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
+import Beetle.Haggis.Server.Player;
 import Beetle.Haggis.Server.Card.Colour;
 import Beetle.Haggis.Server.EventHandlerServer;
 
@@ -57,7 +58,8 @@ public class GameField extends JFrame implements ItemListener {
 	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
 	protected ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 	protected JPanel buttonsPlace;
-	protected JPanel cardsPlayerPlace; // TODO 1 LL pan mit den caten. pan kan gelöst und dan neu gefült werden
+	protected JPanel cardsPlayerPlace; // TODO 1 LL pan mit den caten. pan kan
+										// gelöst und dan neu gefült werden
 	protected JPanel cardsJokerPlace;
 	protected JPanel cardsLayedPlace;
 	protected JPanel cardsPlace;
@@ -65,6 +67,11 @@ public class GameField extends JFrame implements ItemListener {
 	protected JButton btnPassen;
 	protected JPanel centerField;
 	protected JPanel panJoker;
+	protected JPanel playerpanel1;
+	protected JPanel playerpanel2;
+	protected JPanel playerpanel3;
+	protected TextAreaCustom player3;
+
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
 	// brauchen
 	// wir das
@@ -107,8 +114,8 @@ public class GameField extends JFrame implements ItemListener {
 			}
 		});
 		buttonsPlace.add(btnPassen);
-		
-		 panJoker = new JPanel();
+
+		panJoker = new JPanel();
 		buttonsPlace.add(panJoker);
 		panJoker.setBackground(new Color(0, 100, 0));
 		/**
@@ -123,9 +130,8 @@ public class GameField extends JFrame implements ItemListener {
 			jokerCards.add((ButtonCard) panJoker.add(btnCard));
 			btnCard.addItemListener(this);
 		}
-		
-	
-//		buttonsPlace.add(jokerCards);
+
+		// buttonsPlace.add(jokerCards);
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
@@ -183,30 +189,25 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		HelpButtons.add(btnProgress, BorderLayout.EAST);
 
-		JPanel playerpanel1 = new JPanel();
+		playerpanel1 = new JPanel();
 		BottomLine.add(playerpanel1, BorderLayout.EAST);
 		FlowLayout fl_playerpanel1 = (FlowLayout) playerpanel1.getLayout();
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
 		playerpanel1.setBackground(new Color(0, 128, 0));
 
-		TextAreaCustom Player1 = new TextAreaCustom();
-		Player1.setText("SPIELERNAME" + " Anzahl Karten: " + playerCards.size()
-				+ " Anzahl Joker: " + jokerCards.size());
-		playerpanel1.add(Player1);
-
 		/**
 		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
 		 */
-//		Card acht = new Card(8, Colour.RED);
-//		Card neun = new Card(9, Colour.ORANGE);
-//		ButtonCard btnacht = new ButtonCard(acht);
-//		ButtonCard btnneun = new ButtonCard(neun);
-//		btnneun.addItemListener(this);
-//		cardsPlace.add(btnneun,
-//				playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
-//		btnacht.addItemListener(this);
-//		cardsPlace.add(btnacht,
-//				playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
+		// Card acht = new Card(8, Colour.RED);
+		// Card neun = new Card(9, Colour.ORANGE);
+		// ButtonCard btnacht = new ButtonCard(acht);
+		// ButtonCard btnneun = new ButtonCard(neun);
+		// btnneun.addItemListener(this);
+		// cardsPlace.add(btnneun,
+		// playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
+		// btnacht.addItemListener(this);
+		// cardsPlace.add(btnacht,
+		// playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
 
 		/**
 		 * Tisch (MITTE)
@@ -215,43 +216,43 @@ public class GameField extends JFrame implements ItemListener {
 		centerField = new JPanel();
 		centerField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(centerField, BorderLayout.CENTER);
-		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5, FlowLayout.CENTER)); // FL.Center, 5,5
+		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
+				FlowLayout.CENTER)); // FL.Center, 5,5
 
 		/**
 		 * MM Hier Karten in die Mitte legen. Hier wieder nur ein beispiel
 		 */
-//
-//		ButtonCard btntest = new ButtonCard(acht);
-//		centerField.add(btntest,
-//				layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
+		//
+		// ButtonCard btntest = new ButtonCard(acht);
+		// centerField.add(btntest,
+		// layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
 
 		/**
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
+
+		TextAreaCustom Player2 = new TextAreaCustom();
+		Player2.setText("SPIELERNAME2" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
 		JPanel opponentField = new JPanel();
 		opponentField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(opponentField, BorderLayout.NORTH);
 		opponentField.setLayout(new BorderLayout(0, 0));
 
-		JPanel opponent_1 = new JPanel();
-		opponent_1.setBackground(new Color(0, 128, 0));
-		FlowLayout fl_opponent_1 = (FlowLayout) opponent_1.getLayout();
-		fl_opponent_1.setAlignment(FlowLayout.RIGHT);
-		opponentField.add(opponent_1, BorderLayout.WEST);
+		playerpanel2 = new JPanel();
+		playerpanel2.setBackground(new Color(0, 128, 0));
+		FlowLayout fl_playerpanel2 = (FlowLayout) playerpanel2.getLayout();
+		fl_playerpanel2.setAlignment(FlowLayout.RIGHT);
+		opponentField.add(playerpanel2, BorderLayout.WEST);
 
-		TextAreaCustom Player2 = new TextAreaCustom();
-		Player2.setText("SPIELERNAME2" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
-		opponent_1.add(Player2);
+		playerpanel3 = new JPanel();
+		playerpanel3.setBackground(new Color(0, 128, 0));
+		opponentField.add(playerpanel3, BorderLayout.EAST);
 
-		JPanel opponent_2 = new JPanel();
-		opponent_2.setBackground(new Color(0, 128, 0));
-		opponentField.add(opponent_2, BorderLayout.EAST);
-
-		TextAreaCustom Player3 = new TextAreaCustom();
-		Player3.setText("SPIELERNAME3" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
-		opponent_2.add(Player3);
+//		player3 = new TextAreaCustom();
+//		player3.setText("SPIELERNAME3" + " Anzahl Karten: "
+//				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+//		playerpanel3.add(player3);
 
 	}
 
