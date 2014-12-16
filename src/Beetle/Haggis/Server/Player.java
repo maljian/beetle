@@ -61,4 +61,15 @@ public class Player implements Serializable{
 		this.id = id2;		
 	}
 
+	public String playerInfo(String name, int points, Stack<Card> cards){
+		this.name = name;
+		this.points = points;
+		this.cards = cards;
+		String playerInfo = " Name: " + name + " Anzahl Karten: " + cards + " Punkte: " + points;
+		return playerInfo;
+		
+	}
+	
+	
+	
 }//end Player
