@@ -101,14 +101,9 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.setBackground(new Color(0, 100, 0));
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
-		
-		
-		
-		//
 		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				gfModel.pass();
 			}
 		});
 		buttonsPlace.add(btnPassen);
@@ -134,13 +129,6 @@ public class GameField extends JFrame implements ItemListener {
 
 		btnLegen = new JButton("legen");
 		buttonsPlace.add(btnLegen);
-		
-		btnPassen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				gfModel.layCards();
-			}
-		});
-		
 
 		cardsPlace = new JPanel();
 		cardsPlace.setBackground(new Color(0, 100, 0));
@@ -154,7 +142,7 @@ public class GameField extends JFrame implements ItemListener {
 		final JButton btnCombination = new RoundButton();
 		try {
 			Image comb = ImageIO.read(getClass().getResource(
-					"/Beetle/Resources/Kombinationen.png"));
+					"/Beetle/Resources/IconKombinationen.png"));
 			btnCombination.setIcon(new ImageIcon(comb));
 		} catch (IOException e1) {
 		}
@@ -175,7 +163,7 @@ public class GameField extends JFrame implements ItemListener {
 		final JButton btnProgress = new RoundButton();
 		try {
 			Image prog = ImageIO.read(getClass().getResource(
-					"/Beetle/Resources/Spielablauf.png"));
+					"/Beetle/Resources/IconSpielablauf.png"));
 			btnProgress.setIcon(new ImageIcon(prog));
 		} catch (IOException e1) {
 
