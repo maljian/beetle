@@ -19,7 +19,6 @@ public class GameState implements Serializable {
 	 */
 	private static final long serialVersionUID = 1l;
 
-
 	/**
 	 * sortcards run of pairs.... ???
 	 */
@@ -33,7 +32,7 @@ public class GameState implements Serializable {
 	/**
 	 * player [0,1,2], cards[Card]
 	 */
-	private static Player players[];
+	private Player players[];
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	private int version = 0;
@@ -54,17 +53,18 @@ public class GameState implements Serializable {
 	 */
 	public static boolean checkCombinations(ArrayList<Card> cards) {
 		boolean answer = false;
-		if (cards.size()==0|| cards== null){
+		if (cards.size() == 0 || cards == null) {
 			return false; // Catch if the player unselect al his cards.
 		}
 		Collections.sort(cards);
-		
+
 		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
 				: actualCombination; // Avoid a crash in the case starting with
 										// single
 		switch (actualCombination) {
 		case NEWTURN:
-			answer = cards.size() == 1 || pair(cards) || streetCombination(cards);
+			answer = cards.size() == 1 || pair(cards)
+					|| streetCombination(cards);
 			break;
 
 		case SINGLE:
@@ -124,7 +124,7 @@ public class GameState implements Serializable {
 		int lastNumber = cards.get(0).getNumber();
 		int usedJoker = 0;
 
-		for (int i = 1; i < cards.size()- usedJoker; i++) {
+		for (int i = 1; i < cards.size() - usedJoker; i++) {
 			// Correct Colour
 			if (cards.get(i).getColour().equals(actualcolor)) {
 				// Correct Value
@@ -253,15 +253,14 @@ public class GameState implements Serializable {
 
 	}
 
-	public static void setPlayerName(int id, String name) {
+	public void setPlayerName(int id, String name) {
 		players[id].setName(name);
 		players[id].setId(id);
 	}
-	public static String getPlayerName(int id, String name) {
-		players[id].setName(name);
-		players[id].setId(id);
-		return name;
-		
+
+	public String getPlayerName(int id) {
+		return players[id].getName();
+
 	}
 
 	public void versionCounter() {
@@ -272,10 +271,9 @@ public class GameState implements Serializable {
 	public int getVersion() {
 		return version;
 	}
-	
-	
-	public boolean setNewCombination(	ArrayList<Card> cards){
-		boolean answer= false;
+
+	public boolean setNewCombination(ArrayList<Card> cards) {
+		boolean answer = false;
 		if (streetCombination(cards)) {
 			actualCombination = Combination.RUN;
 			answer = true;
@@ -287,7 +285,7 @@ public class GameState implements Serializable {
 			answer = true;
 		}
 		return answer;
-		
+
 	}
 
 }// end GameState

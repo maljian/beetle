@@ -1,15 +1,15 @@
 package Beetle.Haggis.Server;
 
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 /**
  * @author Marco Mancuso
  * @version 1.0
  * @created 25-Nov-2014 16:51
  */
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Card implements Comparable<Card> {
 	public enum Colour {
 		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
