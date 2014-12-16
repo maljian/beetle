@@ -38,7 +38,7 @@ public class GameFieldModel {
 		view.setVisible(true);
 		view.btnLegen.setEnabled(false);
 		view.btnPassen.setEnabled(false);
-		playerHasTurn();
+//		playerHasTurn();
 	}
 
 	public void actualizeView(GameState gs) {
@@ -73,11 +73,11 @@ public class GameFieldModel {
 			
 		}
 		
-		view.jokerCards=null;
-		view.layedCards= null;
+		view.jokerCards = null;
+		view.layedCards = null;
 		view.revalidate();
-		view.layedCards= layedCards;
-		view.jokerCards=jokerCards;
+		view.layedCards = layedCards;
+		view.jokerCards = jokerCards;
 		if (gState.getLastPlayedCards() != null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
@@ -95,7 +95,7 @@ public class GameFieldModel {
 		} else {
 			playerIsOnTurn = false;
 		}
-		view.btnPassen.setEnabled(playerIsOnTurn);
+	//	view.btnPassen.setEnabled(playerIsOnTurn);
 
 //		view.repaint();
 		view.revalidate();
@@ -109,15 +109,12 @@ public class GameFieldModel {
 	 * @return false oder true
 	 */
 	public void playerHasTurn() {
-
-		boolean yourTurn;
-		// yourTurn= gState.getPlayerTurns()== cilent.id? true: false;
-		yourTurn = true; // TODO 1 hier kommt etwas von Loic, was true oder
-							// false
-							// zurückgibt
-		// zu überprüfen wenn der spieler den neuen Stand erhält.
-		view.btnPassen.setEnabled(yourTurn);
-		//return yourTurn;
+		if (playerIsOnTurn == true){
+			view.btnPassen.setEnabled(playerIsOnTurn);
+		}else{
+			view.btnPassen.setEnabled(playerIsOnTurn);
+			view.btnLegen.setEnabled(playerIsOnTurn);
+		}
 	}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
