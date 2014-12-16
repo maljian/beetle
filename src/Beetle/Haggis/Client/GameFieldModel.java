@@ -1,6 +1,7 @@
 package Beetle.Haggis.Client;
 
 import java.awt.EventQueue;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -8,9 +9,11 @@ import javax.swing.JOptionPane;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
+import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
 import Beetle.Haggis.Server.Player;
 //import com.sun.glass.ui.View;
@@ -27,6 +30,8 @@ public class GameFieldModel {
 	private GameState gState;
 	private int id;
 	private boolean playerIsOnTurn;
+	private MessageInterface messageInterface;
+	private Client client;
 
 	public GameFieldModel() {
 		view = new GameField(this);
@@ -132,6 +137,7 @@ public class GameFieldModel {
 
 			Message m = new Message(gState, MessageType.CONFIRM,
 					PlayedAction.CARDS);
+			client.sendMessage(m);
 		} else {
 			JOptionPane
 					.showMessageDialog(
@@ -143,19 +149,26 @@ public class GameFieldModel {
 		}
 
 		// TODO 1 Mesage versenden
-		// mi.sendMessage(m); m = Message
+		
 	}
 
 	public void pass() {
 		// TODO 1 Message absenden → keine Parameter(View) noetig, aber Message
 		// sagen ueberspringen
-		// mi.sendMessage(m); m = Message
 		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
+		client.sendMessage(m);
 	}
 
 	public void startGame() {
 		// viwe = new GameField();
 
+	}
+	
+	public boolean joinGame(String name, String serverIP){
+		client = new Client(gfModel);
+		client.connect(name, serverIP);
+		client.start();
+		return true;
 	}
 
 	public static void main(String[] args) {

@@ -14,12 +14,12 @@ import Beetle.Haggis.Server.EventHandlerServer;
  *
  */
 public class NewGameModel extends JoinGameModel {
-//	private int numberPlayer;
-//	private int targetPoint;
+	// private int numberPlayer;
+	// private int targetPoint;
 
 	public static NewGame m_View;
 	public GameFieldModel gfModel;
-	private Client client;
+
 	private EventHandlerServer ehs;
 
 	public NewGameModel(GameFieldModel gfModel) {
@@ -27,7 +27,7 @@ public class NewGameModel extends JoinGameModel {
 		this.gfModel = gfModel;
 		m_View = new NewGame(this);
 		m_View.setVisible(true);
-		client = new Client(gfModel);
+//		Client client = new Client(gfModel);
 
 		try {
 			String ipv4 = InetAddress.getLocalHost().toString();
@@ -54,12 +54,19 @@ public class NewGameModel extends JoinGameModel {
 		try {
 			ehs.startServer(targetPoint, bet, bombs, numberPlayer);
 			String serverIP = m_View.txtIpAdress.getText();
-			client.connect(m_View.txtPlayerName.getText(), serverIP); 
-			client.start();
-			m_View.dispose();
+			String name = m_View.txtPlayerName.getText();
+			boolean joined = gfModel.joinGame(name, serverIP);
+			// client.start();
+			if (joined) {
+				m_View.dispose();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,  "Der Server konnte nicht gestartet werden. Bitte versuchen Sie es erneut.", "Information",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Der Server konnte nicht gestartet werden. Bitte versuchen Sie es erneut.",
+							"Information", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -67,5 +74,5 @@ public class NewGameModel extends JoinGameModel {
 		new StartWindow(gfModel).setVisible(true);
 		m_View.dispose();
 	}
-	
+
 }

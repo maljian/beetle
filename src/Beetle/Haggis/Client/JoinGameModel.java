@@ -1,5 +1,7 @@
 package Beetle.Haggis.Client;
 
+import javax.swing.JOptionPane;
+
 import Beetle.Haggis.Server.Client;
 
 /**
@@ -13,7 +15,6 @@ public class JoinGameModel {
 	//private String playerName;
 	public JoinGame m_View;
 	private GameFieldModel gfModel;
-	private Client client;
 
 	/**
 	 * 
@@ -23,7 +24,7 @@ public class JoinGameModel {
 	public JoinGameModel(GameFieldModel gfm) {
 		gfModel = gfm;
 		m_View = new JoinGame(this);
-		client = new Client(gfModel);
+//		Client client = new Client(gfModel);
 	}
 
 	public void setViewVisible(boolean visibel) {
@@ -33,12 +34,13 @@ public class JoinGameModel {
 	}
 
 	public void joinGame() {
-
+		
 		String name = m_View.txtPlayerName.getText();
 		String serverIP = m_View.txtIpAdress.getText();
-		client.connect(name, serverIP);
-		client.start();
-		m_View.dispose();
+		boolean joined = gfModel.joinGame(name, serverIP);
+		if(joined){
+			m_View.dispose();
+		}
 
 		// TODO 2 LL sicherstellen das man zurück zum Gamefleld (model) kommt
 		// new JoinGameModel(gfModel).setViewVisible(true);
