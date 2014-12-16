@@ -58,10 +58,10 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel cardsPlayerPlace; 
 	protected JPanel cardsJokerPlace;
 	protected JPanel cardsLayedPlace;
-	protected JPanel cardsPlace;
+	protected JPanel panCardsPlace;
 	protected JButton btnLegen;
 	protected JButton btnPassen;
-	protected JPanel centerField;
+	protected JPanel panCenterField;
 	protected JPanel panJoker;
 	protected JPanel playerpanel1;
 	protected JPanel playerpanel2;
@@ -143,9 +143,9 @@ public class GameField extends JFrame implements ItemListener {
 		});
 		buttonsPlace.add(btnLegen);
 
-		cardsPlace = new JPanel();
-		cardsPlace.setBackground(new Color(0, 100, 0));
-		BottomLine.add(cardsPlace, BorderLayout.NORTH);
+		panCardsPlace = new JPanel();
+		panCardsPlace.setBackground(new Color(0, 100, 0));
+		BottomLine.add(panCardsPlace, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
 		HelpButtons.setBackground(new Color(0, 100, 0));
@@ -220,10 +220,10 @@ public class GameField extends JFrame implements ItemListener {
 		 * Tisch (MITTE)
 		 */
 
-		centerField = new JPanel();
-		centerField.setBackground(new Color(0, 100, 0));
-		getContentPane().add(centerField, BorderLayout.CENTER);
-		centerField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
+		panCenterField = new JPanel();
+		panCenterField.setBackground(new Color(0, 100, 0));
+		getContentPane().add(panCenterField, BorderLayout.CENTER);
+		panCenterField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
 				FlowLayout.CENTER)); // FL.Center, 5,5
 
 		/**

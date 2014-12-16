@@ -43,9 +43,9 @@ public class GameFieldModel {
 	}
 
 	public void actualizeView(GameState gs) {
-		view.cardsPlace.removeAll(); // Clear from old items befor draving the
-										// new one
-		view.centerField.removeAll();
+		// Clear from old items befor draving the new one
+		view.panCardsPlace.removeAll(); 
+		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
 		gState = gs;
 		Player[] p = gState.getPlayers();
@@ -57,18 +57,18 @@ public class GameFieldModel {
 		// view.jokerCards.clear();
 		// view.playerCards.clear();
 		// view.centerField.removeAll();
-		ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
-		ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
-		ArrayList<ButtonCard> playedCards = new ArrayList<ButtonCard>();
+		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
+		ArrayList<ButtonCard> btnJokerCards = new ArrayList<ButtonCard>();
+		ArrayList<ButtonCard> btnPlayedCards = new ArrayList<ButtonCard>();
 		view.layedCards.clear();
 
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
 
 			if (card.getValue() >= 2) {
-				jokerCards.add((ButtonCard) view.panJoker.add(btnCard));
+				btnJokerCards.add((ButtonCard) view.panJoker.add(btnCard));
 			} else {
-				layedCards.add((ButtonCard) view.cardsPlace.add(btnCard));
+				btnPlayerCards.add((ButtonCard) view.panCardsPlace.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 
@@ -76,20 +76,18 @@ public class GameFieldModel {
 
 		view.jokerCards = null;
 		view.layedCards = null;
+		view.playerCards=null;
 		view.revalidate();
-		view.layedCards = layedCards;
-		view.jokerCards = jokerCards;
+		view.layedCards = btnPlayerCards;
+		view.jokerCards = btnJokerCards;
 		if (gState.getLastPlayedCards()!= null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
 				ButtonCard btnCardCenter = new ButtonCard(card);
-				layedCards.add(btnCardCenter);
+				btnPlayedCards.add( (ButtonCard) view.panCenterField.add(btnCardCenter));
 			}
-			view.layedCards = layedCards;
+			view.layedCards = btnPlayedCards;
 		}
-		// TODO 1 vie aktualisiren
-		// gegenspieler aktualisiren
-		// Knöpfe aktualisiren
 
 		if (id == gState.getPlayerTurns()) {
 			playerIsOnTurn = true;
@@ -98,10 +96,9 @@ public class GameFieldModel {
 		}
 		// view.btnPassen.setEnabled(playerIsOnTurn);
 
-		// view.repaint();
-		view.revalidate();
 		updateLabels();
-		System.out.println("View up to date");
+		
+		view.revalidate();	
 	}
 
 	public String updateLabels() {
