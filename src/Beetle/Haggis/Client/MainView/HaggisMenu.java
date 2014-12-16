@@ -19,6 +19,7 @@ public class HaggisMenu extends JMenuBar {
 	private JMenuItem menuItemR;
 	private JMenuItem menuItemS;
 	private GameFieldModel gfModel;
+	private RulesWindow rw;
 	
 	/**
 	 * 
@@ -47,7 +48,11 @@ public class HaggisMenu extends JMenuBar {
 		menuItemR.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				new RulesWindow().setVisible(true);{
+				if (rw == null) {
+					rw = new RulesWindow();
+				} else {
+					rw.dispose();
+					rw = null;
 				
 				}
 			}
