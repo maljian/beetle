@@ -67,7 +67,10 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel playerpanel1;
 	protected JPanel playerpanel2;
 	protected JPanel playerpanel3;
+	protected TextAreaCustom player1;
+	protected TextAreaCustom player2;
 	protected TextAreaCustom player3;
+
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
 	// brauchen
@@ -254,10 +257,23 @@ public class GameField extends JFrame implements ItemListener {
 		playerpanel3.setBackground(new Color(0, 128, 0));
 		opponentField.add(playerpanel3, BorderLayout.EAST);
 
-//		player3 = new TextAreaCustom();
-//		player3.setText("SPIELERNAME3" + " Anzahl Karten: "
-//				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
-//		playerpanel3.add(player3);
+		
+		//TODO Loic, überschreiben der setText
+		
+		player1 = new TextAreaCustom();
+		player1.setText("SPIELERNAME1" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		playerpanel1.add(player1);
+
+		player2 = new TextAreaCustom();
+		player2.setText("SPIELERNAME3" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		playerpanel2.add(player2);
+		
+		player3 = new TextAreaCustom();
+		player3.setText("SPIELERNAME3" + " Anzahl Karten: "
+				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		playerpanel3.add(player3);
 
 	}
 
