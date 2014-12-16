@@ -26,8 +26,9 @@ public class GameState implements Serializable {
 		NEWTURN, SINGLE, PAIR, RUN
 	}
 
-	static Combination actualCombination = Combination.NEWTURN;
-	private static ArrayList<Card> lastPlayedCards;
+	static Combination curentCombination = Combination.NEWTURN;
+	private  static ArrayList<Card> lastPlayedCards;
+
 
 	/**
 	 * player [0,1,2], cards[Card]
@@ -58,10 +59,10 @@ public class GameState implements Serializable {
 		}
 		Collections.sort(cards);
 
-		actualCombination = lastPlayedCards == null ? Combination.NEWTURN
-				: actualCombination; // Avoid a crash in the case starting with
+		curentCombination = lastPlayedCards == null ? Combination.NEWTURN
+				: curentCombination; // Avoid a crash in the case starting with
 										// single
-		switch (actualCombination) {
+		switch (curentCombination) {
 		case NEWTURN:
 			answer = cards.size() == 1 || pair(cards)
 					|| streetCombination(cards);
@@ -182,20 +183,28 @@ public class GameState implements Serializable {
 
 	// Geter & Setter
 	public Combination getActualCombination() {
-		return actualCombination;
+		return curentCombination;
 	}
 
 	public void setActualCombination(Combination actualCombination) {
-		this.actualCombination = actualCombination;
+		GameState.curentCombination = actualCombination;
 	}
 
 	public ArrayList<Card> getLastPlayedCards() {
 		return lastPlayedCards;
 	}
 
-	public void setLastPlayedCards(ArrayList<Card> lastPlayedCards) {
-		this.lastPlayedCards = lastPlayedCards;
+	public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
+		GameState.lastPlayedCards = PlayedCards;
 	}
+	
+//	public ArrayList<Card> getLastPlayedCardsClient() {
+//		return lastPlayedCardsClient;
+//	}
+//
+//	public void setLastPlayedCardsClient(ArrayList<Card> lastPlayedCardsClient) {
+//		this.lastPlayedCardsClient = lastPlayedCardsClient;
+//	}
 
 	public int getPlayerTurns() {
 		return playerTurns;
@@ -208,8 +217,24 @@ public class GameState implements Serializable {
 	 * @param playerTurns
 	 *            Next player 1, 2 [3]
 	 */
-	public int setPlayerTurns(int playerTurns) {
-		this.playerTurns = playerTurns >= players.length ? 0 : playerTurns;
+	public int setPlayerTurns(int pTurns) {
+		int inPlayr = players.length;
+		this.playerTurns = pTurns % inPlayr;
+		// playerTurns >= players.length ? 0 : playerTurns;
+		return this.playerTurns;
+	}
+
+	/**
+	 * Chek the value isn’t higher as the amount of player. If it is, the first
+	 * player is set as actual player.
+	 * 
+	 * @param playerTurns
+	 *            Next player 1, 2 [3]
+	 */
+	public int nextPlayer() {
+
+		this.playerTurns = (1 + playerTurns) % players.length;
+		// playerTurns >= players.length ? 0 : playerTurns;
 		return playerTurns;
 	}
 
@@ -277,18 +302,22 @@ public class GameState implements Serializable {
 
 	public boolean setNewCombination(ArrayList<Card> cards) {
 		boolean answer = false;
-		if (streetCombination(cards)) {
-			actualCombination = Combination.RUN;
+		if (cards.size() == 1) {
+			curentCombination = Combination.SINGLE;
+			answer = true;
+		} else if (streetCombination(cards)) {
+			curentCombination = Combination.RUN;
 			answer = true;
 		} else if (pair(cards)) {
-			actualCombination = Combination.PAIR;
-			answer = true;
-		} else if (cards.size() == 1) {
-			actualCombination = Combination.SINGLE;
+			curentCombination = Combination.PAIR;
 			answer = true;
 		}
 		return answer;
 
+	}
+
+	public Combination getCurentCombination() {
+		return curentCombination;
 	}
 
 }// end GameState

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
+import com.sun.org.apache.xerces.internal.parsers.CachingParserPool.SynchronizedGrammarPool;
+
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message;
@@ -78,8 +80,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		targetPoint = _targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
 		Player[] players = new Player[playerNr];
-		
-		
+
 		for (int i = 0; i < playerNr; i++) {
 			Player p = new Player(i);
 			players[i] = p;
@@ -149,7 +150,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				stilPlayingPlayer += plyed ? 1 : 0;
 			}
 			if (stilPlayingPlayer > 1) {
-				playerState.setPlayerTurns(playerTurns + 1);
+				playerState.nextPlayer();
 
 			} else {
 				playerState.newRound();
@@ -160,7 +161,9 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		case CARDS:
 			// TODO 4 LL Zusatz: nice to double-check the cards on the server
 			Player aktuelPlayer = playerState.getPlayers()[playerTurns];
-			if (aktuelPlayer.getCards().size() == 0) {
+			if (aktuelPlayer.getCards().size() != 0) {
+				playerState.setPlayerTurns(playerTurns + 1);
+			} else {
 				int maxHandcards = 0;
 				int remainingPlayer = 0;
 				for (Player p : playerState.getPlayers()) {
@@ -197,14 +200,18 @@ public class GameServer implements MessageInterface { // Remote{ // {
 					}
 				}
 
-			} else {
-				playerState.setPlayerTurns(playerTurns + 1);
 			}
 
 			break;
 		}
 		playerState.versionCounter();
-		message.newMessage(playerState);
+
+		state = playerState;
+		//state.setLastPlayedCards(playerState.getLastPlayedCards());
+		message.newMessage(state);
+
+		// message.newMessage(playerState);
+		//System.out.println("server state version:" + state.getVersion());
 
 	}
 
@@ -259,7 +266,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 
 	@Override
 	public void sendMessage(Message m) throws RemoteException {
-		logic(m.getGameState(), m.getPlayedAction());
+		GameState pState =m.getGameState();
+		logic(pState, m.getPlayedAction());
 	}
 
 	@Override

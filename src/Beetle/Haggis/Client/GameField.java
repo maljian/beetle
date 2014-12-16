@@ -55,8 +55,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
 	protected ArrayList<ButtonCard> layedCards = new ArrayList<ButtonCard>();
 	protected JPanel buttonsPlace;
-	protected JPanel cardsPlayerPlace; // TODO 1 LL pan mit den caten. pan kan
-										// gelöst und dan neu gefült werden
+	protected JPanel cardsPlayerPlace; 
 	protected JPanel cardsJokerPlace;
 	protected JPanel cardsLayedPlace;
 	protected JPanel cardsPlace;
@@ -256,9 +255,6 @@ public class GameField extends JFrame implements ItemListener {
 		playerpanel3 = new JPanel();
 		playerpanel3.setBackground(new Color(0, 128, 0));
 		opponentField.add(playerpanel3, BorderLayout.EAST);
-
-		
-		//TODO Loic, überschreiben der setText
 		
 		player1 = new TextAreaCustom();
 		player1.setText("SPIELERNAME1" + " Anzahl Karten: "
@@ -323,5 +319,7 @@ public class GameField extends JFrame implements ItemListener {
 	public void setEventHandlerServer(EventHandlerServer ehs) {
 		this.ehs = ehs;
 	}
+	
+	
 
 }

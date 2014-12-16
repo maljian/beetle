@@ -7,6 +7,7 @@ import java.util.Stack;
 import javax.swing.JOptionPane;
 
 import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
@@ -48,9 +49,9 @@ public class GameFieldModel {
 		view.panJoker.removeAll();
 		gState = gs;
 		Player[] p = gState.getPlayers();
-		System.out.println(p); // null
-		System.out.println(id);
-		System.out.println(p[id].getCards());
+//		System.out.println(p); // null
+//		System.out.println(id);
+//		System.out.println(p[id].getCards());
 		Stack<Card> playerHandCards = p[id].getCards();
 		// for each
 		// view.jokerCards.clear();
@@ -78,7 +79,7 @@ public class GameFieldModel {
 		view.revalidate();
 		view.layedCards = layedCards;
 		view.jokerCards = jokerCards;
-		if (gState.getLastPlayedCards() != null) {
+		if (gState.getLastPlayedCards()!= null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
 				ButtonCard btnCardCenter = new ButtonCard(card);
@@ -99,28 +100,30 @@ public class GameFieldModel {
 
 		// view.repaint();
 		view.revalidate();
+		updateLabels();
 		System.out.println("View up to date");
 	}
 
 	public String updateLabels() {
-		String Labels = null;
+
+		String txt = null;
 		int opponentTextArea = 2;
 		Player[] p = gState.getPlayers();
 		for (Player player : p) {
-			
-			Labels = player.toString();
-			TextAreaCustom infoPlayer = new TextAreaCustom();
-			infoPlayer.setText(Labels);
+
+			txt = player.toString();
+			// TextAreaCustom infoPlayer = new TextAreaCustom();
+			// view.player1.setText(Labels);
 			if (player.getId() == id) {
-				view.playerpanel1.add(infoPlayer);
+				view.player1.setText(txt);
 			} else if (opponentTextArea == 2) {
-				view.playerpanel2.add(infoPlayer);
+				view.player2.setText(txt);
 				opponentTextArea++;
 			} else if (opponentTextArea == 3) {
-				view.playerpanel3.add(infoPlayer);
+				view.player3.setText(txt);
 			}
 		}
-		return Labels;
+		return txt;
 	}
 
 	/**
@@ -148,11 +151,24 @@ public class GameFieldModel {
 
 	public void layCards() {
 
-		if (gState.setNewCombination(view.cardsToCheck)) {
-			gState.setLastPlayedCards(view.cardsToCheck);
-			view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
-										// entfernen
+		// TODO 1.1 Carten vom spiler wegnemen, wirds gemacht???
+		ArrayList<Card> cardsToPlay = view.cardsToCheck;
 
+	
+		if (GameState.checkCombinations(cardsToPlay)) {
+			if (gState.getCurentCombination() == Combination.NEWTURN) {
+				gState.setNewCombination(cardsToPlay);
+			}
+			gState.setLastPlayedCards((ArrayList<Card>) cardsToPlay.clone());
+			
+			Stack<Card> playerCards = gState.getPlayers()[id].getCards();
+			for (Card card : cardsToPlay) {
+				playerCards.remove(card);
+			}
+			 gState.getPlayers()[id].setCards((Stack<Card>) playerCards.clone());
+			
+			
+			System.out.println(gState.getLastPlayedCards().size()+" ");
 			Message m = new Message(gState, MessageType.CONFIRM,
 					PlayedAction.CARDS);
 			client.sendMessage(m);
@@ -165,8 +181,8 @@ public class GameFieldModel {
 							JOptionPane.INFORMATION_MESSAGE);
 
 		}
-
-		// TODO 1 Mesage versenden
+		view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
+		// entfernen
 
 	}
 
