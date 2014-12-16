@@ -1,5 +1,6 @@
 package Beetle.Haggis.Server;
 
+import java.io.Serializable;
 import java.util.Stack;
 
 /**
@@ -7,8 +8,9 @@ import java.util.Stack;
  * @version 1.0
  * @created 25-Okt-2014 19:32:34
  */
-public class Player {
+public class Player implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private int points;

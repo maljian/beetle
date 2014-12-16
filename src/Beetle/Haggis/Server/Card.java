@@ -1,23 +1,27 @@
 package Beetle.Haggis.Server;
 
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
+
 /**
  * @author Marco Mancuso
  * @version 1.0
  * @created 25-Nov-2014 16:51
  */
-public class Card implements Comparable<Card> {
+public class Card implements Comparable<Card>, Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	public enum Colour {
 		RED, YELLOW, ORANGE, GREY, GREEN, JOKER
 	}
 
 	private Colour colour;
-	private BufferedImage image;
-	private BufferedImage imageBack;
+	private String imigePath;
+	private String imigeBackPath;
 	private int number;
 	private int value;
 
@@ -38,12 +42,7 @@ public class Card implements Comparable<Card> {
 		final String standardPath = "/Beetle/Resources/";
 		String actualPath = standardPath;
 
-		// Rueckseite Bild
-		try {
-			this.imageBack = ImageIO.read(getClass().getResource(standardPath + "rueckseite.jpg"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		imigeBackPath = standardPath + "rueckseite.jpg";
 
 		// Zuweisung der Bilder auf den Karten
 		switch (colour) {
@@ -70,7 +69,7 @@ public class Card implements Comparable<Card> {
 			actualPath += "0";
 		}
 		actualPath += number + ".jpg";
-		
+
 		// Value Zuweisung der Karten B,D,K;
 		switch (number) {
 		case 11:
@@ -86,12 +85,8 @@ public class Card implements Comparable<Card> {
 			actualPath = standardPath + "König.jpg";
 			break;
 		}
+		imigePath = actualPath;
 
-		try {
-			this.image = ImageIO.read(getClass().getResource(actualPath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -109,11 +104,21 @@ public class Card implements Comparable<Card> {
 	 * @return
 	 */
 	public BufferedImage getImage() {
-		return image;
+		try {
+			return ImageIO.read(getClass().getResource(imigePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public BufferedImage getImageBack() {
-		return imageBack;
+		try {
+			return ImageIO.read(getClass().getResource(imigeBackPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

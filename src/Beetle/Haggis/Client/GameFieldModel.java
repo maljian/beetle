@@ -1,26 +1,19 @@
 package Beetle.Haggis.Client;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-
-//import com.sun.glass.ui.View;
-
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.EventHandlerServer;
 import Beetle.Haggis.Server.Player;
+//import com.sun.glass.ui.View;
 
 /**
  * @author Marco Mancuso

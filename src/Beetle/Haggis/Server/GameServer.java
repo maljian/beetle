@@ -78,6 +78,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		targetPoint = _targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
 		Player[] players = new Player[playerNr];
+		
+		
 		for (int i = 0; i < playerNr; i++) {
 			Player p = new Player(i);
 			players[i] = p;
