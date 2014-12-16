@@ -123,17 +123,20 @@ public class GameState implements Serializable {
 		Card.Colour actualcolor = cards.get(0).getColour();
 		int lastNumber = cards.get(0).getNumber();
 		int usedJoker = 0;
-
+		if (cards.size() < 3) {
+			return false;
+		} // • Minimum of 3 cards for a street
 		for (int i = 1; i < cards.size() - usedJoker; i++) {
 			// Correct Colour
 			if (cards.get(i).getColour().equals(actualcolor)) {
 				// Correct Value
-				if (cards.get(i).getNumber() + 1 == lastNumber) {
+				if (cards.get(i).getNumber() - 1 == lastNumber) {
 					lastNumber++;
 					// Try to use a joker
 				} else if (cards.get(cards.size() - 1 - usedJoker).getColour()
 						.equals(Card.Colour.JOKER)) {
 					usedJoker++;
+					lastNumber++;
 					i--;
 				} else {
 					answer = false;
