@@ -50,8 +50,6 @@ public class GameField extends JFrame implements ItemListener {
 	 * Array, Joker
 	 */
 	protected Card btnCard;
-	protected int btnLay;
-	protected int btnPass;
 	protected ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
 	protected ArrayList<ButtonCard> playerCards = new ArrayList<ButtonCard>();
 	protected ArrayList<Card> cardsToCheck = new ArrayList<Card>();
@@ -110,6 +108,7 @@ public class GameField extends JFrame implements ItemListener {
 		btnPassen = new JButton("passen");
 		btnPassen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				gfModel.pass();
 			}
 		});
 		buttonsPlace.add(btnPassen);
@@ -133,6 +132,13 @@ public class GameField extends JFrame implements ItemListener {
 		// buttonsPlace.add(jokerCards);
 
 		btnLegen = new JButton("legen");
+		btnLegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == btnLegen) {
+					gfModel.layCards();
+				}
+			}
+		});
 		buttonsPlace.add(btnLegen);
 
 		cardsPlace = new JPanel();
