@@ -81,7 +81,7 @@ public class JoinGame extends JFrame {
 
 		logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon(getClass().getResource(
-				"/Beetle/Resources/Haggis_Logo_v6.jpg")));
+				"/Beetle/Resources/Haggis_Logo_v10.jpg")));
 
 		logoPanel.add(logoLabel, BorderLayout.CENTER);
 

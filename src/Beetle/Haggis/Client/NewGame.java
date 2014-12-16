@@ -131,7 +131,7 @@ public class NewGame extends JoinGame {
 
 		logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon(getClass().getResource(
-				"/Beetle/Resources/Haggis_Logo_v6.jpg")));
+				"/Beetle/Resources/Haggis_Logo_v10.jpg")));
 		logoPanel.add(logoLabel, BorderLayout.CENTER);
 
 		JButton btnCopy = new JButton("kopieren");

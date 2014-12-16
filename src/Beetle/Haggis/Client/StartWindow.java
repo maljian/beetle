@@ -69,7 +69,7 @@ public class StartWindow extends JFrame implements ActionListener {
 
 		logolabel = new JLabel("");
 		logolabel.setIcon(new ImageIcon(getClass().getResource(
-				"/Beetle/Resources/Haggis_Logo_v6.jpg")));
+				"/Beetle/Resources/Haggis_Logo_v10.jpg")));
 
 		logopanel.add(logolabel, BorderLayout.CENTER);
 
