@@ -90,8 +90,9 @@ public class JoinGame extends JFrame {
 		btnPlay.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if (txtPlayerName.equals("") && e.getSource() == btnPlay) 
-					JOptionPane.showMessageDialog(null, "Bitte Spielername eingeben.");
+				
+				if (txtPlayerName.getText().equals("") && e.getSource() == btnPlay) 
+					JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ein.");
 				else
 					model.joinGame();			
 				}
