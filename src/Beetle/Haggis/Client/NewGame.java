@@ -78,8 +78,8 @@ public class NewGame extends JoinGame {
 		btnPlay.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtPlayerName.equals("") && e.getSource() == btnPlay) 
-					JOptionPane.showMessageDialog(null, "Bitte Spielername eingeben.");
+				if (txtPlayerName.getText().equals("") && e.getSource() == btnPlay) 
+					JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ein.");
 				else
 					model.startServer();
 
