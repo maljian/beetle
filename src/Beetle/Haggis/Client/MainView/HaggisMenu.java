@@ -7,7 +7,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import com.sun.glass.events.KeyEvent;
+
 import Beetle.Haggis.Client.GameFieldModel;
+import Beetle.Haggis.Client.JoinGameModel;
+import Beetle.Haggis.Client.NewGameModel;
 import Beetle.Haggis.Client.StartWindow;
 
 public class HaggisMenu extends JMenuBar {
@@ -18,6 +22,8 @@ public class HaggisMenu extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 	private JMenuItem menuItemR;
 	private JMenuItem menuItemS;
+	private JMenuItem menuItemJ;
+	private JMenuItem menuItemN;
 	private GameFieldModel gfModel;
 	private RulesWindow rw;
 	
@@ -33,8 +39,11 @@ public class HaggisMenu extends JMenuBar {
 	
 	void createMenuBar(){		
 		JMenu menu = new JMenu("Menü");
+		menu.setMnemonic(KeyEvent.VK_M);
 		add(menu);
 		menu.add(getStart());
+		menu.add(getNew());
+		menu.add(getJoin());
 		menu.add(getRules());
 		
 	}
@@ -74,8 +83,40 @@ public class HaggisMenu extends JMenuBar {
 				}
 			}
 		});
+		menuItemS.setMnemonic(KeyEvent.VK_S);
+		
 		return menuItemS;
 	}
+	
+	private JMenuItem getJoin(){
+		menuItemJ = new JMenuItem("Join");
+		menuItemJ.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				new JoinGameModel(gfModel).setViewVisible(true);{
+					
+				}
+			}
+		});
+		menuItemJ.setMnemonic(KeyEvent.VK_J);
+		
+		return menuItemJ;
+	}	
+	
+	private JMenuItem getNew(){
+		menuItemN = new JMenuItem("New");
+		menuItemN.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				new NewGameModel(gfModel).setViewVisible(true);{
+					
+				}
+			}
+		});
+		menuItemN.setMnemonic(KeyEvent.VK_N);
+		
+		return menuItemN;
+	}	
 	
 }
 
