@@ -95,7 +95,7 @@ public class Client extends Thread {
 
 	public void sendMessage(Message m) {
 		try {
-			server.sendMessage(m);
+			mi.sendMessage(m);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
