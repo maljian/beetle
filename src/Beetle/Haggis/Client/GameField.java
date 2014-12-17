@@ -238,9 +238,6 @@ public class GameField extends JFrame implements ItemListener {
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
 
-		TextAreaCustom Player2 = new TextAreaCustom();
-		Player2.setText("SPIELERNAME2" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
 		JPanel opponentField = new JPanel();
 		opponentField.setBackground(new Color(0, 100, 0));
 		getContentPane().add(opponentField, BorderLayout.NORTH);
@@ -257,18 +254,18 @@ public class GameField extends JFrame implements ItemListener {
 		opponentField.add(playerpanel3, BorderLayout.EAST);
 		
 		player1 = new TextAreaCustom();
-		player1.setText("SPIELERNAME1" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		player1.setText("Spieler1" + "\nAnzahl Karten: "
+				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
 		playerpanel1.add(player1);
 
 		player2 = new TextAreaCustom();
-		player2.setText("SPIELERNAME3" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		player2.setText("Spieler2" + "\nAnzahl Karten: "
+				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
 		playerpanel2.add(player2);
 		
 		player3 = new TextAreaCustom();
-		player3.setText("SPIELERNAME3" + " Anzahl Karten: "
-				+ playerCards.size() + " Anzahl Joker: " + jokerCards.size());
+		player3.setText("Spieler3" + "\nAnzahl Karten: "
+				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
 		playerpanel3.add(player3);
 
 	}

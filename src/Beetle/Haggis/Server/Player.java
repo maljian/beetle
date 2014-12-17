@@ -73,7 +73,7 @@ public class Player implements Serializable{
 
 	@Override
 	public String toString() {
-		return " Name: " + name + " Anzahl Karten: " + cards.size() + " Punkte: " + points;
+		return name +"\n" +"\nAnzahl Karten:\n" + cards.size() + "\nPunkte:\n" + points;
 	}
 	
 	

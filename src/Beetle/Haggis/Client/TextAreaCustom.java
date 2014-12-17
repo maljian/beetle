@@ -1,6 +1,7 @@
 package Beetle.Haggis.Client;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.*;
 /**
@@ -21,7 +22,8 @@ public class TextAreaCustom extends JTextArea {
         setWrapStyleWord(true);
         setBackground(new Color(0, 128, 0));
         setEditable(false);
-		
+        setForeground(Color.WHITE);
+		setFont(new Font("Arial", Font.PLAIN, 14));
 	}
 
 }
