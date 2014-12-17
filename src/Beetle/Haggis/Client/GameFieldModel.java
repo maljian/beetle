@@ -1,10 +1,13 @@
 package Beetle.Haggis.Client;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
@@ -151,9 +154,25 @@ public class GameFieldModel {
 			view.btnLegen.setEnabled(playerIsOnTurn);
 		}
 	}
+	
+	
+	public void setBackgroundColor(Color bgColor){
+		
+			view.player1.setBackgroundColor(bgColor);
+			view.player2.setBackgroundColor(bgColor);
+			view.player3.setBackgroundColor(bgColor);
+			view.buttonsPlace.setBackground(bgColor);
+			view.cardsPlayerPlace.setBackground(bgColor);
+			view.cardsJokerPlace.setBackground(bgColor);
+			view.cardsLayedPlace.setBackground(bgColor);
+			view.panPlayerCards.setBackground(bgColor);
+			view.panCenterField.setBackground(bgColor);
+			view.panJoker.setBackground(bgColor);
+			
+		}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
-
+    
 		boolean combinationConfirmed = gState
 				.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
