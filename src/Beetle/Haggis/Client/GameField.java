@@ -254,18 +254,15 @@ public class GameField extends JFrame implements ItemListener {
 		opponentField.add(playerpanel3, BorderLayout.EAST);
 		
 		player1 = new TextAreaCustom();
-		player1.setText("Spieler1" + "\nAnzahl Karten: "
-				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
+		player1.setText("Spieler1\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
 		playerpanel1.add(player1);
 
 		player2 = new TextAreaCustom();
-		player2.setText("Spieler2" + "\nAnzahl Karten: "
-				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
+		player2.setText("Spieler2\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
 		playerpanel2.add(player2);
 		
 		player3 = new TextAreaCustom();
-		player3.setText("Spieler3" + "\nAnzahl Karten: "
-				+ playerCards.size() + "\nAnzahl Joker: " + jokerCards.size());
+		player3.setText("Spieler3\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
 		playerpanel3.add(player3);
 
 	}

@@ -15,7 +15,7 @@ public class Player implements Serializable{
 	private String name;
 	private int points;
 	private Stack<Card> cards = new Stack<Card> ();
-
+ 
 	public Player(int id){
 		this.id = id;
 	}
@@ -61,19 +61,11 @@ public class Player implements Serializable{
 		this.id = id2;		
 	}
 
-//	public static String playerInfo(String name, int points, Stack<Card> cards){
-
-		
-//	
-//		String playerInfo = " Name: " + name + " Anzahl Karten: " + cards + " Punkte: " + points;
-//		return playerInfo;
-//		String x = " "+id+"";
-		
-//	}
+	
 
 	@Override
 	public String toString() {
-		return name +"\n" +"\nAnzahl Karten:\n" + cards.size() + "\nPunkte:\n" + points;
+		return name +"\n" +"\nAnzahl Karten:\n" + cards.size() + "\nPunkte:\n" + points +"\n";
 	}
 	
 	

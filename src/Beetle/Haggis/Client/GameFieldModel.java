@@ -44,19 +44,19 @@ public class GameFieldModel {
 
 	public void actualizeView(GameState gs) {
 		// Clear from old items befor draving the new one
-		view.panPlayerCards.removeAll(); 
+		view.panPlayerCards.removeAll();
 		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
-//		view.jokerCards = null;
-//		view.layedCards = null;
-//		view.playerCards=null;
-		
-		//System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
+		// view.jokerCards = null;
+		// view.layedCards = null;
+		// view.playerCards=null;
+
+		// System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
 		gState = gs;
 		Player[] p = gState.getPlayers();
-//		System.out.println(p); // null
-//		System.out.println(id);
-//		System.out.println(p[id].getCards());
+		// System.out.println(p); // null
+		// System.out.println(id);
+		// System.out.println(p[id].getCards());
 		Stack<Card> playerHandCards = p[id].getCards();
 		// for each
 		// view.jokerCards.clear();
@@ -65,7 +65,7 @@ public class GameFieldModel {
 		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnJokerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnPlayedCards = new ArrayList<ButtonCard>();
-		//view.layedCards.clear();
+		// view.layedCards.clear();
 
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
@@ -73,23 +73,24 @@ public class GameFieldModel {
 			if (card.getValue() >= 2) {
 				btnJokerCards.add((ButtonCard) view.panJoker.add(btnCard));
 			} else {
-				btnPlayerCards.add((ButtonCard) view.panPlayerCards.add(btnCard));
+				btnPlayerCards.add((ButtonCard) view.panPlayerCards
+						.add(btnCard));
 			}
 			btnCard.addItemListener(view);
 
 		}
 
-		
-		//view.revalidate();
-//		view.layedCards.addAll( btnPlayerCards);
-//		view.jokerCards.addAll(btnJokerCards);
-		if (gState.getLastPlayedCards()!= null) {
+		// view.revalidate();
+		// view.layedCards.addAll( btnPlayerCards);
+		// view.jokerCards.addAll(btnJokerCards);
+		if (gState.getLastPlayedCards() != null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
 				ButtonCard btnCardCenter = new ButtonCard(card);
-				btnPlayedCards.add( (ButtonCard) view.panCenterField.add(btnCardCenter));
+				btnPlayedCards.add((ButtonCard) view.panCenterField
+						.add(btnCardCenter));
 			}
-//			view.layedCards = btnPlayedCards;
+			// view.layedCards = btnPlayedCards;
 		}
 
 		if (id == gState.getPlayerTurns()) {
@@ -100,27 +101,38 @@ public class GameFieldModel {
 		// view.btnPassen.setEnabled(playerIsOnTurn);
 
 		updateLabels();
-		
-		view.revalidate();	
+
+		view.revalidate();
 	}
 
 	public String updateLabels() {
 
+		String jokers = "Jokers: \n";
 		String txt = null;
 		int opponentTextArea = 2;
 		Player[] p = gState.getPlayers();
+		Stack<Card> playerHandCards = p[id].getCards();
+
+		for (Card c : playerHandCards) {
+			if (c.getNumber() == 11) {
+				jokers += "J ";
+			} else if (c.getNumber() == 12) {
+				jokers += "B ";
+			} else if (c.getNumber() == 13) {
+				jokers += "K ";
+			}
+		}
+
 		for (Player player : p) {
 
 			txt = player.toString();
-			// TextAreaCustom infoPlayer = new TextAreaCustom();
-			// view.player1.setText(Labels);
 			if (player.getId() == id) {
-				view.player1.setText(txt);
+				view.player1.setText(txt + jokers);
 			} else if (opponentTextArea == 2) {
-				view.player2.setText(txt);
+				view.player2.setText(txt + jokers);
 				opponentTextArea++;
 			} else if (opponentTextArea == 3) {
-				view.player3.setText(txt);
+				view.player3.setText(txt + jokers);
 			}
 		}
 		return txt;
@@ -154,21 +166,19 @@ public class GameFieldModel {
 		// TODO 1.1 Carten vom spiler wegnemen, wirds gemacht???
 		ArrayList<Card> cardsToPlay = view.cardsToCheck;
 
-	
 		if (GameState.checkCombinations(cardsToPlay)) {
 			if (gState.getCurentCombination() == Combination.NEWTURN) {
 				gState.setNewCombination(cardsToPlay);
 			}
 			gState.setLastPlayedCards((ArrayList<Card>) cardsToPlay.clone());
-			
+
 			Stack<Card> playerCards = gState.getPlayers()[id].getCards();
 			for (Card card : cardsToPlay) {
 				playerCards.remove(card);
 			}
-			 gState.getPlayers()[id].setCards((Stack<Card>) playerCards.clone());
-			
-			
-			System.out.println(gState.getLastPlayedCards().size()+" ");
+			gState.getPlayers()[id].setCards((Stack<Card>) playerCards.clone());
+
+			System.out.println(gState.getLastPlayedCards().size() + " ");
 			Message m = new Message(gState, MessageType.CONFIRM,
 					PlayedAction.CARDS);
 			client.sendMessage(m);
@@ -191,15 +201,6 @@ public class GameFieldModel {
 		// sagen ueberspringen
 		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
 		client.sendMessage(m);
-	}
-
-	public String playerInfo(int id, String name, Stack<Card> playerHandCards,
-			int jokerCards) {
-		String info;
-		info = name + " Anzahl Karten: " + playerHandCards + " Anzahl Joker: "
-				+ jokerCards;
-		return info;
-
 	}
 
 	public void startGame() {
