@@ -57,6 +57,8 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel buttonsPlace;
 	protected JPanel cardsPlayerPlace; 
 	protected JPanel cardsJokerPlace;
+	protected JPanel opponentField;
+	protected JPanel HelpButtons;
 	protected JPanel cardsLayedPlace;
 	protected JPanel panPlayerCards;
 	protected JButton btnLegen;
@@ -155,7 +157,7 @@ public class GameField extends JFrame implements ItemListener {
 		panPlayerCards.setBackground(green);
 		BottomLine.add(panPlayerCards, BorderLayout.NORTH);
 
-		JPanel HelpButtons = new JPanel();
+		HelpButtons = new JPanel();
 		HelpButtons.setBackground(green);
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new FlowLayout());
@@ -246,7 +248,7 @@ public class GameField extends JFrame implements ItemListener {
 		 * Tisch (MITTE) beendet Gegner Label
 		 */
 
-		JPanel opponentField = new JPanel();
+		opponentField = new JPanel();
 		opponentField.setBackground(green);
 		getContentPane().add(opponentField, BorderLayout.NORTH);
 		opponentField.setLayout(new BorderLayout(0, 0));
