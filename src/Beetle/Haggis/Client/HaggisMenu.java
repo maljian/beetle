@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client.MainView;
+package Beetle.Haggis.Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,13 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import javax.swing.JRadioButtonMenuItem;
-
-import Beetle.Haggis.Client.GameFieldModel;
-import Beetle.Haggis.Client.JoinGameModel;
-import Beetle.Haggis.Client.NewGameModel;
-import Beetle.Haggis.Client.StartWindow;
 
 public class HaggisMenu extends JMenuBar implements ActionListener {
 	
@@ -68,19 +62,19 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == green){
-			
+			gfModel.setBackgroundColor(gfModel.view.green);
 		} 
 		if(e.getSource() == red){
-			
+			gfModel.setBackgroundColor(gfModel.view.red);
 		}
 		if(e.getSource() == yellow){
-			
+			gfModel.setBackgroundColor(gfModel.view.yellow);
 		}
 		if(e.getSource() == black){
-			
+			gfModel.setBackgroundColor(gfModel.view.black);
 		}
 		if(e.getSource() == blue){
-			
+			gfModel.setBackgroundColor(gfModel.view.blue);
 		}
 	}
 	

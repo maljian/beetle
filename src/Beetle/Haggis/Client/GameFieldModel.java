@@ -30,7 +30,7 @@ import Beetle.Haggis.Server.Player;
 public class GameFieldModel {
 
 	GameFieldModel gfModel;
-	private GameField view;
+	protected GameField view;
 	private GameState gState;
 	private int id;
 	private boolean playerIsOnTurn;

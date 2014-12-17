@@ -21,9 +21,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Beetle.Haggis.Client.MainView.CombinationWindow;
-import Beetle.Haggis.Client.MainView.HaggisMenu;
-import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Card.Colour;
 import Beetle.Haggis.Server.EventHandlerServer;
