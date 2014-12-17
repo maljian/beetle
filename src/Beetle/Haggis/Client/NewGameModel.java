@@ -19,7 +19,14 @@ public class NewGameModel extends JoinGameModel {
 	public static NewGame m_View;
 	public GameFieldModel gfModel;
 
+
+	public String getIpAdress() {
+		return ipAdress;
+	}
+
 	private EventHandlerServer ehs;
+	protected String ipAdress;
+	protected String targetP;
 
 	public NewGameModel(GameFieldModel gfModel) {
 		super(gfModel);
@@ -32,6 +39,7 @@ public class NewGameModel extends JoinGameModel {
 			String ipv4 = InetAddress.getLocalHost().toString();
 			String[] ip = ipv4.split("/");
 			m_View.txtIpAdress.setText(ip[1]);
+			ip[1] = ipAdress;
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -44,8 +52,8 @@ public class NewGameModel extends JoinGameModel {
 	protected void startServer() {
 		int numberPlayer = Integer.parseInt(m_View.numberPlayer
 				.getSelectedItem().toString());
-		int targetPoint = Integer.parseInt(m_View.TargetPoint.getSelectedItem()
-				.toString());
+		int targetPoint = Integer.parseInt(m_View.TargetPoint.getSelectedItem().toString());
+		targetP ="" + targetPoint;
 		boolean bet = false; // Preparation for future version
 		boolean bombs = false; // Preparation for future version
 		ehs = new EventHandlerServer();
