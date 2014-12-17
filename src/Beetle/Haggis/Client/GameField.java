@@ -35,20 +35,8 @@ import javax.swing.SwingConstants;
  */
 public class GameField extends JFrame implements ItemListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * WICHTIG!!!! auskommentierter Bereich ist nicht mehr brauchbar:
-	 * Eventhandler, img-Aufrufe, usw.
-	 */
-	/**
-	 * JButton Selected
-	 */
-	/**
-	 * Array, Joker
-	 */
+
 	protected Card btnCard;
 	protected ArrayList<ButtonCard> jokerCards = new ArrayList<ButtonCard>();
 	protected ArrayList<ButtonCard> playerCards = new ArrayList<ButtonCard>();
@@ -80,24 +68,12 @@ public class GameField extends JFrame implements ItemListener {
 	protected Color bordeaux = new Color(178, 34, 34);
 
 
-	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
-	// brauchen
-	// wir das
-	// überhaupt??
 	private GameFieldModel gfModel;
 	private CombinationWindow cw;
 	private ProgressWindow pw;
 	private EventHandlerServer ehs;
 	
 
-	/**
-	 * Opponent
-	 */
-
-	// private int lblCards;
-	// private int lblCardsCenter;
-	// private int lblPlayer;
-	// public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
 	
 
@@ -129,10 +105,9 @@ public class GameField extends JFrame implements ItemListener {
 		panJoker = new JPanel();
 		buttonsPlace.add(panJoker);
 		panJoker.setBackground(green);
-		/**
-		 * 
+		
+		/** 
 		 * @author Marco Mancuso
-		 * 
 		 *         Joker sollen sowieso angezeigt werden.
 		 */
 		for (int i = 11; i < 14; i++) {
@@ -142,8 +117,7 @@ public class GameField extends JFrame implements ItemListener {
 			btnCard.addItemListener(this);
 		}
 
-		// buttonsPlace.add(jokerCards);
-
+		
 		btnLegen = new JButton("legen");
 		btnLegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,40 +187,19 @@ public class GameField extends JFrame implements ItemListener {
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
 		playerpanel1.setBackground(Color.LIGHT_GRAY);
 
-		/**
-		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
-		 */
-		// Card acht = new Card(8, Colour.RED);
-		// Card neun = new Card(9, Colour.ORANGE);
-		// ButtonCard btnacht = new ButtonCard(acht);
-		// ButtonCard btnneun = new ButtonCard(neun);
-		// btnneun.addItemListener(this);
-		// cardsPlace.add(btnneun,
-		// playerCards.add((ButtonCard) buttonsPlace.add(btnneun)));
-		// btnacht.addItemListener(this);
-		// cardsPlace.add(btnacht,
-		// playerCards.add((ButtonCard) buttonsPlace.add(btnacht)));
-
+		
 		/**
 		 * Tisch (MITTE)
 		 */
-
 		panCenterField = new JPanel();
 		panCenterField.setBackground(green);
 		getContentPane().add(panCenterField, BorderLayout.CENTER);
 		panCenterField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
 				FlowLayout.CENTER)); // FL.Center, 5,5
 
+		
 		/**
-		 * MM Hier Karten in die Mitte legen. Hier wieder nur ein beispiel
-		 */
-		//
-		// ButtonCard btntest = new ButtonCard(acht);
-		// centerField.add(btntest,
-		// layedCards.add((ButtonCard) buttonsPlace.add(btntest)));
-
-		/**
-		 * Tisch (MITTE) beendet Gegner Label
+		 *  Gegner Label
 		 */
 
 		opponentField = new JPanel();
@@ -303,8 +256,7 @@ public class GameField extends JFrame implements ItemListener {
 			ehs.stopServer();
 
 		} catch (Exception e) {
-			// System.out.println("bla");
-			// e.printStackTrace();
+			
 		}
 		this.dispose();
 	}

@@ -50,6 +50,7 @@ public class GameFieldModel {
 		view.panPlayerCards.removeAll();
 		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
+		view.cardsToCheck.clear();
 		gState = gs;
 		Player[] p = gState.getPlayers();
 		Stack<Card> playerHandCards = p[id].getCards();
@@ -88,7 +89,7 @@ public class GameFieldModel {
 			view.lblHowsTurn.setText(name+ " ist am Zug");
 			playerIsOnTurn = false;
 		}
-		playerHasTurn();
+		enableBtn();
 		// view.btnPassen.setEnabled(playerIsOnTurn);
 
 		updateLabels();
@@ -146,7 +147,7 @@ public class GameFieldModel {
 	 * 
 	 * @return false oder true
 	 */
-	public void playerHasTurn() {
+	public void enableBtn() {
 		if (playerIsOnTurn == true) {
 			view.btnPassen.setEnabled(playerIsOnTurn);
 		} else {

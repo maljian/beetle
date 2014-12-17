@@ -100,7 +100,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 *            With player start the next round
 	 */
 	private void startNewRound(int playerTurn) {
-		state = distributeCards( state);
+		state = distributeCards(state);
 		state.newRound();
 	}
 
@@ -113,8 +113,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 *            The Actual game state
 	 * @return The player have new Cards in the Gamestate
 	 */
-	private GameState distributeCards( GameState state) {
-		
+	private GameState distributeCards(GameState state) {
+
 		Stack<Card> cardStack = newCards(state.getPlayers().length);
 		Collections.shuffle(cardStack);
 		Player[] players = state.getPlayers();
@@ -188,8 +188,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 					return; // Replace the else part to avoid having
 							// to many steps in.
 				}
-				//TODO
-				
+				// TODO
+
 				playerState = distributeCards(playerState);
 				playerState.setActualCombination(Combination.NEWTURN);
 				int minPoint = targetPoint;
@@ -227,36 +227,31 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 */
 	private Stack<Card> newCards(int playerAmount) {
 		Stack<Card> cardStack = new Stack<>();
-		if (fullCardStack == null) {
 
-			for (int number = 2; number <= 10; number++) {
-				for (int clr = 1; clr <= playerAmount + 2; clr++) {
-					Colour colour = Colour.RED;
+		for (int number = 2; number <= 10; number++) {
+			for (int clr = 1; clr <= playerAmount + 2; clr++) {
+				Colour colour = Colour.RED;
 
-					switch (clr) {
-					case 1:
-						colour = Colour.RED;
-						break;
-					case 2:
-						colour = Colour.YELLOW;
-						break;
-					case 3:
-						colour = Colour.ORANGE;
-						break;
-					case 4:
-						colour = Colour.GREY;
-						break;
-					case 5:
-						colour = Colour.GREEN;
-						break;
-					}
-					Card c = new Card(number, colour);
-					cardStack.add(c);
+				switch (clr) {
+				case 1:
+					colour = Colour.RED;
+					break;
+				case 2:
+					colour = Colour.YELLOW;
+					break;
+				case 3:
+					colour = Colour.ORANGE;
+					break;
+				case 4:
+					colour = Colour.GREY;
+					break;
+				case 5:
+					colour = Colour.GREEN;
+					break;
 				}
-				fullCardStack = cardStack;
+				Card c = new Card(number, colour);
+				cardStack.add(c);
 			}
-		} else {
-			cardStack = fullCardStack;
 		}
 		Collections.shuffle(cardStack);
 		return cardStack;
