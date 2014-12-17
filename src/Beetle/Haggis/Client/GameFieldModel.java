@@ -162,15 +162,19 @@ public class GameFieldModel {
 			view.player2.setBackground(bgColor);
 			view.player3.setBackground(bgColor);
 			view.buttonsPlace.setBackground(bgColor);
-			view.cardsPlayerPlace.setBackground(bgColor);
-			view.cardsJokerPlace.setBackground(bgColor);
-			view.cardsLayedPlace.setBackground(bgColor);
 			view.panPlayerCards.setBackground(bgColor);
 			view.panCenterField.setBackground(bgColor);
 			view.panJoker.setBackground(bgColor);
 			view.helpButtons.setBackground(bgColor);
 			view.opponentField.setBackground(bgColor);
 			
+			try{
+				view.cardsPlayerPlace.setBackground(bgColor);
+				view.cardsJokerPlace.setBackground(bgColor);
+				view.cardsLayedPlace.setBackground(bgColor);
+			}catch(NullPointerException e){
+				
+			}
 		}
 
 	public void checkCard(ArrayList<Card> selectedCards) {

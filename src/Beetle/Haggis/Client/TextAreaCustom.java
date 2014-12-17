@@ -16,7 +16,7 @@ public class TextAreaCustom extends JTextArea {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	protected Color BackgroundColor = Color.GREEN;
+	protected Color BackgroundColor = new Color(0, 100, 0);
 
 	public TextAreaCustom() {
         setEditable(false);

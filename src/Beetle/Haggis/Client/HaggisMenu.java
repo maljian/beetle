@@ -44,19 +44,22 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		add(background);
 		background.add(green);
 		background.add(red);
-		background.add(yellow);
+		background.add(purple);
 		background.add(black);
 		background.add(blue);
+		background.add(bordeaux);
 		directionGroup.add(green);
 		directionGroup.add(red);
-		directionGroup.add(yellow);
+		directionGroup.add(purple);
 		directionGroup.add(black);
 		directionGroup.add(blue);
+		directionGroup.add(bordeaux);
 		green.addActionListener(this);
 		red.addActionListener(this);
-		yellow.addActionListener(this);
+		purple.addActionListener(this);
 		black.addActionListener(this);
 		blue.addActionListener(this);
+		bordeaux.addActionListener(this);
 
 	}
 	
@@ -67,14 +70,17 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		if(e.getSource() == red){
 			gfModel.setBackgroundColor(gfModel.view.red);
 		}
-		if(e.getSource() == yellow){
-			gfModel.setBackgroundColor(gfModel.view.yellow);
+		if(e.getSource() == purple){
+			gfModel.setBackgroundColor(gfModel.view.purple);
 		}
 		if(e.getSource() == black){
 			gfModel.setBackgroundColor(gfModel.view.black);
 		}
 		if(e.getSource() == blue){
 			gfModel.setBackgroundColor(gfModel.view.blue);
+		}
+		if(e.getSource() == bordeaux){
+			gfModel.setBackgroundColor(gfModel.view.bordeaux);
 		}
 	}
 	
@@ -142,11 +148,13 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		
 	JRadioButtonMenuItem red = new JRadioButtonMenuItem("Rot");
 	
-	JRadioButtonMenuItem yellow = new JRadioButtonMenuItem("Gelb");
+	JRadioButtonMenuItem purple = new JRadioButtonMenuItem("Lila");
 	
 	JRadioButtonMenuItem black = new JRadioButtonMenuItem("Schwarz");
 	
 	JRadioButtonMenuItem blue = new JRadioButtonMenuItem("Blau");
+	
+	JRadioButtonMenuItem bordeaux = new JRadioButtonMenuItem("Bordeaux");
 	
 	
 }

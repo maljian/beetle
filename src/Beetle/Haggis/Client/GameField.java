@@ -74,9 +74,10 @@ public class GameField extends JFrame implements ItemListener {
 	protected JLabel lblHowsTurn;
 	protected Color green = new Color(0, 100, 0);
 	protected Color black = Color.BLACK;
-	protected Color yellow = Color.YELLOW;
-	protected Color red = Color.RED;
-	protected Color blue = Color.BLUE;
+	protected Color purple = new Color(100, 0, 100);
+	protected Color red = new Color(195, 0, 0);
+	protected Color blue = new Color(0, 0, 120);
+	protected Color bordeaux = new Color(178, 34, 34);
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
