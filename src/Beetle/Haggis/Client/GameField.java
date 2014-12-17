@@ -211,7 +211,7 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.add(playerpanel1, BorderLayout.EAST);
 		FlowLayout fl_playerpanel1 = (FlowLayout) playerpanel1.getLayout();
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
-		playerpanel1.setBackground(new Color(0, 128, 0));
+		playerpanel1.setBackground(Color.LIGHT_GRAY);
 
 		/**
 		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
@@ -255,13 +255,13 @@ public class GameField extends JFrame implements ItemListener {
 		opponentField.setLayout(new BorderLayout(0, 0));
 
 		playerpanel2 = new JPanel();
-		playerpanel2.setBackground(new Color(0, 128, 0));
+		playerpanel2.setBackground(Color.LIGHT_GRAY);
 		FlowLayout fl_playerpanel2 = (FlowLayout) playerpanel2.getLayout();
 		fl_playerpanel2.setAlignment(FlowLayout.RIGHT);
 		opponentField.add(playerpanel2, BorderLayout.WEST);
 
 		playerpanel3 = new JPanel();
-		playerpanel3.setBackground(new Color(0, 128, 0));
+		playerpanel3.setBackground(Color.LIGHT_GRAY);
 		opponentField.add(playerpanel3, BorderLayout.EAST);
 		
 		player1 = new TextAreaCustom();
