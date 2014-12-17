@@ -205,13 +205,14 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			break;
 		}
 		playerState.versionCounter();
-
+		System.out.println("GmSe, logic, playersturn: "
+				+ playerState.getPlayerTurns());
 		state = playerState;
-		//state.setLastPlayedCards(playerState.getLastPlayedCards());
+		// state.setLastPlayedCards(playerState.getLastPlayedCards());
 		message.newMessage(state);
 
 		// message.newMessage(playerState);
-		//System.out.println("server state version:" + state.getVersion());
+		// System.out.println("server state version:" + state.getVersion());
 
 	}
 
@@ -266,14 +267,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 
 	@Override
 	public void sendMessage(Message m) throws RemoteException {
-	
-		GameState pState =m.getGameState();try{
-			System.out.println("Game Serv, sendM, "+ pState.getLastPlayedCards().size());
-		}
-		
-		catch (NullPointerException e){
-			System.out.println("Game Serv, sendM, keine karten");
-		}
+		GameState pState = m.getGameState();
 		logic(pState, m.getPlayedAction());
 	}
 

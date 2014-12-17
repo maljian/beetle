@@ -38,16 +38,13 @@ public class Client extends Thread {
 
 	public boolean connect(String name, String serverIP) {
 
-//		String host = "127.0.0.1";
+		// String host = "127.0.0.1";
 		boolean connected = false;
 		if (serverIP == null || serverIP.length() == 0) {
-			JOptionPane
-			.showMessageDialog(
-					null,
+			JOptionPane.showMessageDialog(null,
 					"Bitte geben Sie eine gültige IP-Adresse an.",
-					"Information",
-					JOptionPane.INFORMATION_MESSAGE);
-			//new JoinGameModel(gfModel);
+					"Information", JOptionPane.INFORMATION_MESSAGE);
+			// new JoinGameModel(gfModel);
 			return false;
 		}
 		try {
@@ -70,7 +67,6 @@ public class Client extends Thread {
 		}
 		return connected;
 
-		
 	}
 
 	public void run() {
@@ -78,16 +74,17 @@ public class Client extends Thread {
 			Message m;
 			try {
 				m = mi.receiveMessage();
-			//	System.out.println(m.getGameState().getVersion());
+				// System.out.println(m.getGameState().getVersion());
 				Thread.sleep(1000);
-				if (state == null || m.getGameState().getVersion() > state.getVersion()) {
+				if (state == null
+						|| m.getGameState().getVersion() > state.getVersion()) {
 					state = m.getGameState();
-			
+
 					gfModel.actualizeView(state);
 				}
 				// btn Pass Aktivieren
 			} catch (RemoteException | InterruptedException e) {
-//				e.printStackTrace();
+				// e.printStackTrace();
 			}
 
 		}
@@ -95,12 +92,6 @@ public class Client extends Thread {
 	}
 
 	public void sendMessage(Message m) {
-		//TODO DELET
-		try{
-			System.out.println("client, sendM, anzahl karten: "+m.getGameState().getLastPlayedCards().size());
-		}catch( NullPointerException e ){
-			System.out.println("client, sendM, keine karten");
-		}
 		try {
 			mi.sendMessage(m);
 		} catch (RemoteException e) {

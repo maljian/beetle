@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
+import sun.rmi.runtime.NewThreadAction;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Player;
 
@@ -28,9 +29,9 @@ public class GameState implements Serializable {
 	}
 
 	static Combination curentCombination = Combination.NEWTURN;
-	private   Stack<Card> lastPlayedCards;
+	private Stack<Card> lastPlayedCards;
 
-	private Player players[]; //player [0,1,2], cards[Card]
+	private Player players[]; // player [0,1,2], cards[Card]
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	private int version = 0;
@@ -49,7 +50,7 @@ public class GameState implements Serializable {
 	 *            List of selected cards
 	 * @return True if the combination is correct and higher
 	 */
-	public  boolean checkCombinations(ArrayList<Card> cards) {
+	public boolean checkCombinations(ArrayList<Card> cards) {
 		boolean answer = false;
 		if (cards.size() == 0 || cards == null) {
 			return false; // Catch if the player unselect al his cards.
@@ -59,6 +60,7 @@ public class GameState implements Serializable {
 		curentCombination = lastPlayedCards == null ? Combination.NEWTURN
 				: curentCombination; // Avoid a crash in the case starting with
 										// single
+
 		switch (curentCombination) {
 		case NEWTURN:
 			answer = cards.size() == 1 || pair(cards)
@@ -85,6 +87,13 @@ public class GameState implements Serializable {
 			}
 			break;
 
+		}
+
+		if (answer  && curentCombination != Combination.NEWTURN
+				&& cards.get(0).getNumber() < lastPlayedCards.get(0)
+						.getNumber()) {
+			answer = false;
+			System.out.println("GaSt, chekC, karte zu klein"); //TODO Delet
 		}
 		return answer;
 	}
@@ -187,13 +196,13 @@ public class GameState implements Serializable {
 		GameState.curentCombination = actualCombination;
 	}
 
-//	public ArrayList<Card> getLastPlayedCards() {
-//		return lastPlayedCards;
-//	}
-//
-//	public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
-//		GameState.lastPlayedCards = PlayedCards;
-//	}
+	// public ArrayList<Card> getLastPlayedCards() {
+	// return lastPlayedCards;
+	// }
+	//
+	// public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
+	// GameState.lastPlayedCards = PlayedCards;
+	// }
 	public Stack<Card> getLastPlayedCards() {
 		return lastPlayedCards;
 	}
@@ -203,16 +212,17 @@ public class GameState implements Serializable {
 		for (Card card : playedCards) {
 			cards.push(card);
 		}
-	lastPlayedCards = cards;
+		lastPlayedCards = cards;
 	}
-	
-//	public ArrayList<Card> getLastPlayedCardsClient() {
-//		return lastPlayedCardsClient;
-//	}
-//
-//	public void setLastPlayedCardsClient(ArrayList<Card> lastPlayedCardsClient) {
-//		this.lastPlayedCardsClient = lastPlayedCardsClient;
-//	}
+
+	// public ArrayList<Card> getLastPlayedCardsClient() {
+	// return lastPlayedCardsClient;
+	// }
+	//
+	// public void setLastPlayedCardsClient(ArrayList<Card>
+	// lastPlayedCardsClient) {
+	// this.lastPlayedCardsClient = lastPlayedCardsClient;
+	// }
 
 	public int getPlayerTurns() {
 		return playerTurns;
