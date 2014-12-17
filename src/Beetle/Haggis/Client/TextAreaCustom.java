@@ -15,12 +15,15 @@ public class TextAreaCustom extends JTextArea {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	protected Color BackgroundColor = new Color(0, 128, 0);
 
 	public TextAreaCustom() {
         setEditable(false);
         setLineWrap(true);
         setWrapStyleWord(true);
-        setBackground(new Color(0, 128, 0));
+        //setBackground(new Color(0, 128, 0));
+        setBackground(this.BackgroundColor);
         setEditable(false);
         setForeground(Color.WHITE);
 		setFont(new Font("Arial", Font.PLAIN, 14));
