@@ -174,6 +174,7 @@ public class GameState implements Serializable {
 				playerPlayed[i] = true;
 			}
 		}
+		lastPlayedCards = null;
 
 	}
 

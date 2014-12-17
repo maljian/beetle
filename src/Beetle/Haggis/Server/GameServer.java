@@ -155,6 +155,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			} else {
 				playerState.newRound();
 			}
+			message.newMessage(playerState);
 
 			break;
 
