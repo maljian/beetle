@@ -72,7 +72,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected TextAreaCustom player2;
 	protected TextAreaCustom player3;
 	protected JLabel lblHowsTurn;
-	private Color green = new Color(0, 100, 0);
+	protected Color green = new Color(0, 100, 0);
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
@@ -275,7 +275,7 @@ public class GameField extends JFrame implements ItemListener {
 		lblHowsTurn.setForeground(new Color(255, 255, 255));
 		lblHowsTurn.setBackground(new Color(0, 255, 0));
 		lblHowsTurn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		opponentField.add(lblHowsTurn, BorderLayout.CENTER);
+		buttonsPlace.add(lblHowsTurn, BorderLayout.EAST);
 
 	}
 
