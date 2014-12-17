@@ -163,7 +163,6 @@ public class GameFieldModel {
 
 	public void layCards() {
 
-		// TODO 1.1 Carten vom spiler wegnemen, wirds gemacht???
 		ArrayList<Card> cardsToPlay = view.cardsToCheck;
 
 		if (GameState.checkCombinations(cardsToPlay)) {

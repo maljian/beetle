@@ -95,6 +95,12 @@ public class Client extends Thread {
 	}
 
 	public void sendMessage(Message m) {
+		//TODO DELET
+		try{
+			System.out.println("client, sendM, anzahl karten: "+m.getGameState().getLastPlayedCards().size());
+		}catch( NullPointerException e ){
+			System.out.println("client, sendM, keine karten");
+		}
 		try {
 			mi.sendMessage(m);
 		} catch (RemoteException e) {

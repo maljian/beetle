@@ -3,6 +3,7 @@ package Beetle.Haggis.Message;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Player;
@@ -27,7 +28,7 @@ public class GameState implements Serializable {
 	}
 
 	static Combination curentCombination = Combination.NEWTURN;
-	private  static ArrayList<Card> lastPlayedCards;
+	private  static Stack<Card> lastPlayedCards;
 
 	private Player players[]; //player [0,1,2], cards[Card]
 	private int playerTurns = 0;
@@ -186,12 +187,23 @@ public class GameState implements Serializable {
 		GameState.curentCombination = actualCombination;
 	}
 
-	public ArrayList<Card> getLastPlayedCards() {
+//	public ArrayList<Card> getLastPlayedCards() {
+//		return lastPlayedCards;
+//	}
+//
+//	public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
+//		GameState.lastPlayedCards = PlayedCards;
+//	}
+	public Stack<Card> getLastPlayedCards() {
 		return lastPlayedCards;
 	}
 
-	public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
-		GameState.lastPlayedCards = PlayedCards;
+	public void setLastPlayedCards(ArrayList<Card> playedCards) {
+		Stack<Card> cards = new Stack<Card>();
+		for (Card card : playedCards) {
+			cards.push(card);
+		}
+		GameState.lastPlayedCards = cards;
 	}
 	
 //	public ArrayList<Card> getLastPlayedCardsClient() {

@@ -266,7 +266,14 @@ public class GameServer implements MessageInterface { // Remote{ // {
 
 	@Override
 	public void sendMessage(Message m) throws RemoteException {
-		GameState pState =m.getGameState();
+	
+		GameState pState =m.getGameState();try{
+			System.out.println("Game Serv, sendM, "+ pState.getLastPlayedCards().size());
+		}
+		
+		catch (NullPointerException e){
+			System.out.println("Game Serv, sendM, keine karten");
+		}
 		logic(pState, m.getPlayedAction());
 	}
 
