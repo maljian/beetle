@@ -61,7 +61,10 @@ public class Player implements Serializable{
 		this.id = id2;		
 	}
 
-	
+	/**
+	 * @author Faruk
+	 * @return Spielerinformationen
+	 */
 
 	@Override
 	public String toString() {

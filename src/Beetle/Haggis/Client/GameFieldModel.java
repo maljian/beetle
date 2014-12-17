@@ -92,7 +92,10 @@ public class GameFieldModel {
 
 		view.revalidate();
 	}
-
+/**
+ * @author Faruk
+ * @return txt
+ */
 	public String updateLabels() {
 		String txt = null;
 		int opponentTextArea = 2;
@@ -117,21 +120,21 @@ public class GameFieldModel {
 	/**
 	 * @author FD & MM
 	 * @param playerHandCards
-	 * @return
+	 * @return joker
 	 */
 	private String jokerTxt(Stack<Card> playerHandCards){
-		String jokers = "Joker: \n";
+		String joker = "Joker: \n";
 		for (Card c : playerHandCards) {
 			if (c.getNumber() == 11) {
-				jokers += "J ";
+				joker += "J ";
 			} else if (c.getNumber() == 12) {
-				jokers += "B ";
+				joker += "B ";
 			} else if (c.getNumber() == 13) {
-				jokers += "K ";
+				joker += "K ";
 			}
 		}
 		
-		return jokers;
+		return joker;
 	}
 
 	/**
