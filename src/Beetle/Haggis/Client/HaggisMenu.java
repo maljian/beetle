@@ -19,8 +19,10 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 	private JMenuItem menuItemR;
 	private JMenuItem menuItemS;
 	private JMenuItem menuItemE;
+	private JMenuItem menuItemI;
 	private GameFieldModel gfModel;
 	private RulesWindow rw;
+	private InformationWindow iw;
 	
 	/**
 	 * 
@@ -38,6 +40,7 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		add(menu);
 		menu.add(getStart());
 		menu.add(getRules());
+		menu.add(getInfo());
 		menu.addSeparator();
 		menu.add(getExit());
 		JMenu background = new JMenu("Hintergrund");
@@ -48,12 +51,12 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		background.add(black);
 		background.add(blue);
 		background.add(bordeaux);
-		directionGroup.add(green);
-		directionGroup.add(red);
-		directionGroup.add(purple);
-		directionGroup.add(black);
-		directionGroup.add(blue);
-		directionGroup.add(bordeaux);
+		buttonGroup.add(green);
+		buttonGroup.add(red);
+		buttonGroup.add(purple);
+		buttonGroup.add(black);
+		buttonGroup.add(blue);
+		buttonGroup.add(bordeaux);
 		green.addActionListener(this);
 		red.addActionListener(this);
 		purple.addActionListener(this);
@@ -107,6 +110,24 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		return menuItemR;
 	}
 	
+	private JMenuItem getInfo(){
+		menuItemI = new JMenuItem ("Spielinformation");
+		menuItemI.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if (iw == null){
+					iw = new InformationWindow();
+				} else {
+					iw.dispose();
+					iw = null;
+				}
+			}
+		});
+		menuItemI.setMnemonic(KeyEvent.VK_I);
+		
+		return menuItemI;
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -126,6 +147,10 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		return menuItemS;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private JMenuItem getExit(){
 		menuItemE = new JMenuItem("Exit");
 		menuItemE.addActionListener(new ActionListener(){
@@ -141,20 +166,13 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 	}
 	
 	JMenuItem background = new JMenuItem("Hintergrundfarbe");
-	
-	ButtonGroup directionGroup = new ButtonGroup();
+	ButtonGroup buttonGroup = new ButtonGroup();
 	
 	JRadioButtonMenuItem green = new JRadioButtonMenuItem("Grün", true);
-		
 	JRadioButtonMenuItem red = new JRadioButtonMenuItem("Rot");
-	
 	JRadioButtonMenuItem purple = new JRadioButtonMenuItem("Lila");
-	
 	JRadioButtonMenuItem black = new JRadioButtonMenuItem("Schwarz");
-	
 	JRadioButtonMenuItem blue = new JRadioButtonMenuItem("Blau");
-	
 	JRadioButtonMenuItem bordeaux = new JRadioButtonMenuItem("Bordeaux");
-	
 	
 }

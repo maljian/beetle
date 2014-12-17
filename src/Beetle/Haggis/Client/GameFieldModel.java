@@ -169,13 +169,13 @@ public class GameFieldModel {
 			view.helpButtons.setBackground(bgColor);
 			view.opponentField.setBackground(bgColor);
 			
-			try{
-				view.cardsPlayerPlace.setBackground(bgColor);
-				view.cardsJokerPlace.setBackground(bgColor);
-				view.cardsLayedPlace.setBackground(bgColor);
-			}catch(NullPointerException e){
-				
-			}
+//			try{
+//				view.cardsPlayerPlace.setBackground(bgColor);
+//				view.cardsJokerPlace.setBackground(bgColor);
+//				view.cardsLayedPlace.setBackground(bgColor);
+//			}catch(NullPointerException e){
+//				
+//			}
 		}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
