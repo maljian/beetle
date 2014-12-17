@@ -72,6 +72,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected TextAreaCustom player2;
 	protected TextAreaCustom player3;
 	protected JLabel lblHowsTurn;
+	private Color green = new Color(0, 100, 0);
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
@@ -82,6 +83,7 @@ public class GameField extends JFrame implements ItemListener {
 	private CombinationWindow cw;
 	private ProgressWindow pw;
 	private EventHandlerServer ehs;
+	
 
 	/**
 	 * Opponent
@@ -108,7 +110,7 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.setLayout(new BorderLayout(0, 0));
 
 		buttonsPlace = new JPanel();
-		buttonsPlace.setBackground(new Color(0, 100, 0));
+		buttonsPlace.setBackground(green);
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
 		btnPassen = new JButton("passen");
@@ -121,7 +123,7 @@ public class GameField extends JFrame implements ItemListener {
 
 		panJoker = new JPanel();
 		buttonsPlace.add(panJoker);
-		panJoker.setBackground(new Color(0, 100, 0));
+		panJoker.setBackground(green);
 		/**
 		 * 
 		 * @author Marco Mancuso
@@ -148,11 +150,11 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.add(btnLegen);
 
 		panPlayerCards = new JPanel();
-		panPlayerCards.setBackground(new Color(0, 100, 0));
+		panPlayerCards.setBackground(green);
 		BottomLine.add(panPlayerCards, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
-		HelpButtons.setBackground(new Color(0, 100, 0));
+		HelpButtons.setBackground(green);
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new FlowLayout());
 
@@ -225,7 +227,7 @@ public class GameField extends JFrame implements ItemListener {
 		 */
 
 		panCenterField = new JPanel();
-		panCenterField.setBackground(new Color(0, 100, 0));
+		panCenterField.setBackground(green);
 		getContentPane().add(panCenterField, BorderLayout.CENTER);
 		panCenterField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
 				FlowLayout.CENTER)); // FL.Center, 5,5
@@ -243,7 +245,7 @@ public class GameField extends JFrame implements ItemListener {
 		 */
 
 		JPanel opponentField = new JPanel();
-		opponentField.setBackground(new Color(0, 100, 0));
+		opponentField.setBackground(green);
 		getContentPane().add(opponentField, BorderLayout.NORTH);
 		opponentField.setLayout(new BorderLayout(0, 0));
 
