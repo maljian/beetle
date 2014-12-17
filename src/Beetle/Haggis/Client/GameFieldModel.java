@@ -158,9 +158,9 @@ public class GameFieldModel {
 	
 	public void setBackgroundColor(Color bgColor){
 		
-			view.player1.setBackgroundColor(bgColor);
-			view.player2.setBackgroundColor(bgColor);
-			view.player3.setBackgroundColor(bgColor);
+			view.player1.setBackground(bgColor);
+			view.player2.setBackground(bgColor);
+			view.player3.setBackground(bgColor);
 			view.buttonsPlace.setBackground(bgColor);
 			view.cardsPlayerPlace.setBackground(bgColor);
 			view.cardsJokerPlace.setBackground(bgColor);
@@ -168,6 +168,8 @@ public class GameFieldModel {
 			view.panPlayerCards.setBackground(bgColor);
 			view.panCenterField.setBackground(bgColor);
 			view.panJoker.setBackground(bgColor);
+			view.helpButtons.setBackground(bgColor);
+			view.opponentField.setBackground(bgColor);
 			
 		}
 

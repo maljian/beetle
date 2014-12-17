@@ -58,7 +58,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected JPanel cardsPlayerPlace; 
 	protected JPanel cardsJokerPlace;
 	protected JPanel opponentField;
-	protected JPanel HelpButtons;
+	protected JPanel helpButtons;
 	protected JPanel cardsLayedPlace;
 	protected JPanel panPlayerCards;
 	protected JButton btnLegen;
@@ -157,10 +157,10 @@ public class GameField extends JFrame implements ItemListener {
 		panPlayerCards.setBackground(green);
 		BottomLine.add(panPlayerCards, BorderLayout.NORTH);
 
-		HelpButtons = new JPanel();
-		HelpButtons.setBackground(green);
-		BottomLine.add(HelpButtons, BorderLayout.WEST);
-		HelpButtons.setLayout(new FlowLayout());
+		helpButtons = new JPanel();
+		helpButtons.setBackground(green);
+		BottomLine.add(helpButtons, BorderLayout.WEST);
+		helpButtons.setLayout(new FlowLayout());
 
 		final JButton btnCombination = new RoundButton();
 		try {
@@ -181,7 +181,7 @@ public class GameField extends JFrame implements ItemListener {
 				}
 			}
 		});
-		HelpButtons.add(btnCombination, BorderLayout.WEST);
+		helpButtons.add(btnCombination, BorderLayout.WEST);
 
 		final JButton btnProgress = new RoundButton();
 		try {
@@ -204,7 +204,7 @@ public class GameField extends JFrame implements ItemListener {
 				}
 			}
 		});
-		HelpButtons.add(btnProgress, BorderLayout.EAST);
+		helpButtons.add(btnProgress, BorderLayout.EAST);
 
 		playerpanel1 = new JPanel();
 		BottomLine.add(playerpanel1, BorderLayout.EAST);
