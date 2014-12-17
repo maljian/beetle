@@ -1,10 +1,13 @@
 package Beetle.Haggis.Client;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
@@ -92,7 +95,10 @@ public class GameFieldModel {
 
 		view.revalidate();
 	}
-
+/**
+ * @author Faruk
+ * @return txt
+ */
 	public String updateLabels() {
 		String txt = null;
 		int opponentTextArea = 2;
@@ -117,21 +123,21 @@ public class GameFieldModel {
 	/**
 	 * @author FD & MM
 	 * @param playerHandCards
-	 * @return
+	 * @return joker
 	 */
 	private String jokerTxt(Stack<Card> playerHandCards){
-		String jokers = "Joker: \n";
+		String joker = "Joker: \n";
 		for (Card c : playerHandCards) {
 			if (c.getNumber() == 11) {
-				jokers += "J ";
+				joker += "J ";
 			} else if (c.getNumber() == 12) {
-				jokers += "B ";
+				joker += "B ";
 			} else if (c.getNumber() == 13) {
-				jokers += "K ";
+				joker += "K ";
 			}
 		}
 		
-		return jokers;
+		return joker;
 	}
 
 	/**
@@ -148,9 +154,25 @@ public class GameFieldModel {
 			view.btnLegen.setEnabled(playerIsOnTurn);
 		}
 	}
+	
+	
+	public void setBackgroundColor(Color bgColor){
+		
+			view.player1.setBackgroundColor(bgColor);
+			view.player2.setBackgroundColor(bgColor);
+			view.player3.setBackgroundColor(bgColor);
+			view.buttonsPlace.setBackground(bgColor);
+			view.cardsPlayerPlace.setBackground(bgColor);
+			view.cardsJokerPlace.setBackground(bgColor);
+			view.cardsLayedPlace.setBackground(bgColor);
+			view.panPlayerCards.setBackground(bgColor);
+			view.panCenterField.setBackground(bgColor);
+			view.panJoker.setBackground(bgColor);
+			
+		}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
-
+    
 		boolean combinationConfirmed = gState
 				.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);

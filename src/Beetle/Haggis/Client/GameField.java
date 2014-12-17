@@ -29,6 +29,7 @@ import Beetle.Haggis.Server.Card.Colour;
 import Beetle.Haggis.Server.EventHandlerServer;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 /**
  * @author Faruk Doganci, Marco Mancuso
@@ -72,6 +73,11 @@ public class GameField extends JFrame implements ItemListener {
 	protected TextAreaCustom player2;
 	protected TextAreaCustom player3;
 	protected JLabel lblHowsTurn;
+	protected Color green = new Color(0, 100, 0);
+	protected Color black = Color.BLACK;
+	protected Color yellow = Color.YELLOW;
+	protected Color red = Color.RED;
+	protected Color blue = Color.BLUE;
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
@@ -82,6 +88,7 @@ public class GameField extends JFrame implements ItemListener {
 	private CombinationWindow cw;
 	private ProgressWindow pw;
 	private EventHandlerServer ehs;
+	
 
 	/**
 	 * Opponent
@@ -108,7 +115,7 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.setLayout(new BorderLayout(0, 0));
 
 		buttonsPlace = new JPanel();
-		buttonsPlace.setBackground(new Color(0, 100, 0));
+		buttonsPlace.setBackground(green);
 		BottomLine.add(buttonsPlace, BorderLayout.CENTER);
 
 		btnPassen = new JButton("passen");
@@ -121,7 +128,7 @@ public class GameField extends JFrame implements ItemListener {
 
 		panJoker = new JPanel();
 		buttonsPlace.add(panJoker);
-		panJoker.setBackground(new Color(0, 100, 0));
+		panJoker.setBackground(green);
 		/**
 		 * 
 		 * @author Marco Mancuso
@@ -148,11 +155,11 @@ public class GameField extends JFrame implements ItemListener {
 		buttonsPlace.add(btnLegen);
 
 		panPlayerCards = new JPanel();
-		panPlayerCards.setBackground(new Color(0, 100, 0));
+		panPlayerCards.setBackground(green);
 		BottomLine.add(panPlayerCards, BorderLayout.NORTH);
 
 		JPanel HelpButtons = new JPanel();
-		HelpButtons.setBackground(new Color(0, 100, 0));
+		HelpButtons.setBackground(green);
 		BottomLine.add(HelpButtons, BorderLayout.WEST);
 		HelpButtons.setLayout(new FlowLayout());
 
@@ -204,7 +211,7 @@ public class GameField extends JFrame implements ItemListener {
 		BottomLine.add(playerpanel1, BorderLayout.EAST);
 		FlowLayout fl_playerpanel1 = (FlowLayout) playerpanel1.getLayout();
 		fl_playerpanel1.setAlignment(FlowLayout.RIGHT);
-		playerpanel1.setBackground(new Color(0, 128, 0));
+		playerpanel1.setBackground(Color.LIGHT_GRAY);
 
 		/**
 		 * MM momentan nur als Beispiel sind ein paar zum Testen instanziert
@@ -225,7 +232,7 @@ public class GameField extends JFrame implements ItemListener {
 		 */
 
 		panCenterField = new JPanel();
-		panCenterField.setBackground(new Color(0, 100, 0));
+		panCenterField.setBackground(green);
 		getContentPane().add(panCenterField, BorderLayout.CENTER);
 		panCenterField.setLayout(new FlowLayout(FlowLayout.CENTER, 5,
 				FlowLayout.CENTER)); // FL.Center, 5,5
@@ -243,37 +250,38 @@ public class GameField extends JFrame implements ItemListener {
 		 */
 
 		JPanel opponentField = new JPanel();
-		opponentField.setBackground(new Color(0, 100, 0));
+		opponentField.setBackground(green);
 		getContentPane().add(opponentField, BorderLayout.NORTH);
 		opponentField.setLayout(new BorderLayout(0, 0));
 
 		playerpanel2 = new JPanel();
-		playerpanel2.setBackground(new Color(0, 128, 0));
+		playerpanel2.setBackground(Color.LIGHT_GRAY);
 		FlowLayout fl_playerpanel2 = (FlowLayout) playerpanel2.getLayout();
 		fl_playerpanel2.setAlignment(FlowLayout.RIGHT);
 		opponentField.add(playerpanel2, BorderLayout.WEST);
 
 		playerpanel3 = new JPanel();
-		playerpanel3.setBackground(new Color(0, 128, 0));
+		playerpanel3.setBackground(Color.LIGHT_GRAY);
 		opponentField.add(playerpanel3, BorderLayout.EAST);
 		
 		player1 = new TextAreaCustom();
-		player1.setText("Spieler1\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
+		player1.setText("Spieler1\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJoker:");
 		playerpanel1.add(player1);
 
 		player2 = new TextAreaCustom();
-		player2.setText("Spieler2\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
+		player2.setText("Spieler2\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJoker:");
 		playerpanel2.add(player2);
 		
 		player3 = new TextAreaCustom();
-		player3.setText("Spieler3\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
+		player3.setText("Spieler3\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJoker:");
 		playerpanel3.add(player3);
 		
-		lblHowsTurn = new JLabel("Spielen");
+		lblHowsTurn = new JLabel("Bitte Spiel erstellen oder Spiel beitreten");
+		lblHowsTurn.setHorizontalAlignment(SwingConstants.CENTER);
+		opponentField.add(lblHowsTurn, BorderLayout.CENTER);
 		lblHowsTurn.setForeground(new Color(255, 255, 255));
 		lblHowsTurn.setBackground(new Color(0, 255, 0));
 		lblHowsTurn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		opponentField.add(lblHowsTurn, BorderLayout.CENTER);
 
 	}
 
