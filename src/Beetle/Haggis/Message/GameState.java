@@ -93,7 +93,7 @@ public class GameState implements Serializable {
 				&& cards.get(0).getNumber() < lastPlayedCards.get(0)
 						.getNumber()) {
 			answer = false;
-			System.out.println("GaSt, chekC, karte zu klein"); //TODO Delet
+			
 		}
 		return answer;
 	}

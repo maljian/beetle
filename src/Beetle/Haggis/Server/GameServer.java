@@ -100,8 +100,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 *            With player start the next round
 	 */
 	private void startNewRound(int playerTurn) {
-		Stack<Card> cardStack = newCards(state.getPlayers().length);
-		state = distributeCards(cardStack, state);
+		state = distributeCards( state);
 		state.newRound();
 	}
 
@@ -114,7 +113,9 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 *            The Actual game state
 	 * @return The player have new Cards in the Gamestate
 	 */
-	private GameState distributeCards(Stack<Card> cardStack, GameState state) {
+	private GameState distributeCards( GameState state) {
+		
+		Stack<Card> cardStack = newCards(state.getPlayers().length);
 		Collections.shuffle(cardStack);
 		Player[] players = state.getPlayers();
 		for (Player p : players) {
@@ -187,8 +188,9 @@ public class GameServer implements MessageInterface { // Remote{ // {
 					return; // Replace the else part to avoid having
 							// to many steps in.
 				}
-				Stack<Card> cards = newCards(1);
-				playerState = distributeCards(cards, playerState);
+				//TODO
+				
+				playerState = distributeCards(playerState);
 				playerState.setActualCombination(Combination.NEWTURN);
 				int minPoint = targetPoint;
 				Player[] players = playerState.getPlayers();

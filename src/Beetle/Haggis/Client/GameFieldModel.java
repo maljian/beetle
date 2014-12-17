@@ -92,7 +92,7 @@ public class GameFieldModel {
 		// view.btnPassen.setEnabled(playerIsOnTurn);
 
 		updateLabels();
-
+		view.repaint();
 		view.revalidate();
 	}
 /**
