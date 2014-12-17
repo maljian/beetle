@@ -26,7 +26,7 @@ import Beetle.Haggis.Server.Player;
  */
 public class GameFieldModel {
 
-	GameFieldModel gfModel;
+	static GameFieldModel gfModel;
 	private GameField view;
 	private GameState gState;
 	private int id;
@@ -221,6 +221,7 @@ public class GameFieldModel {
 				try {
 					// GameFieldModel gfm =
 					new GameFieldModel();
+					new StartWindow(gfModel).setVisible(true);
 					// GameField frame = new GameField(gfm);
 					// frame.setVisible(true);
 				} catch (Exception e) {
