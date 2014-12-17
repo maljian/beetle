@@ -47,25 +47,13 @@ public class GameFieldModel {
 		view.panPlayerCards.removeAll();
 		view.panCenterField.removeAll();
 		view.panJoker.removeAll();
-		// view.jokerCards = null;
-		// view.layedCards = null;
-		// view.playerCards=null;
-
-		// System.out.println("anzahl zulezt gespilter karten"+gs.getLastPlayedCards().size());
 		gState = gs;
 		Player[] p = gState.getPlayers();
-		// System.out.println(p); // null
-		// System.out.println(id);
-		// System.out.println(p[id].getCards());
 		Stack<Card> playerHandCards = p[id].getCards();
-		// for each
-		// view.jokerCards.clear();
-		// view.playerCards.clear();
-		// view.centerField.removeAll();
+
 		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnJokerCards = new ArrayList<ButtonCard>();
 		ArrayList<ButtonCard> btnPlayedCards = new ArrayList<ButtonCard>();
-		// view.layedCards.clear();
 
 		for (Card card : playerHandCards) {
 			ButtonCard btnCard = new ButtonCard(card);
@@ -80,9 +68,6 @@ public class GameFieldModel {
 
 		}
 
-		// view.revalidate();
-		// view.layedCards.addAll( btnPlayerCards);
-		// view.jokerCards.addAll(btnJokerCards);
 		if (gState.getLastPlayedCards() != null) {
 			for (Card card : gState.getLastPlayedCards()) {
 
@@ -90,14 +75,17 @@ public class GameFieldModel {
 				btnPlayedCards.add((ButtonCard) view.panCenterField
 						.add(btnCardCenter));
 			}
-			// view.layedCards = btnPlayedCards;
 		}
 
 		if (id == gState.getPlayerTurns()) {
 			playerIsOnTurn = true;
+			view.lblHowsTurn.setText("Sie sind am Zug");
 		} else {
+			String name = gState.getPlayerName(gState.getPlayerTurns());
+			view.lblHowsTurn.setText(name+ " ist am Zug");
 			playerIsOnTurn = false;
 		}
+		playerHasTurn();
 		// view.btnPassen.setEnabled(playerIsOnTurn);
 
 		updateLabels();
@@ -106,22 +94,9 @@ public class GameFieldModel {
 	}
 
 	public String updateLabels() {
-
-//		String jokers = "Jokers: \n";
 		String txt = null;
 		int opponentTextArea = 2;
 		Player[] p = gState.getPlayers();
-//		Stack<Card> playerHandCards = p[id].getCards();
-
-//		for (Card c : playerHandCards) {
-//			if (c.getNumber() == 11) {
-//				jokers += "J ";
-//			} else if (c.getNumber() == 12) {
-//				jokers += "B ";
-//			} else if (c.getNumber() == 13) {
-//				jokers += "K ";
-//			}
-//		}
 
 		for (Player player : p) {
 
@@ -212,20 +187,12 @@ public class GameFieldModel {
 
 		}
 		view.cardsToCheck.clear(); // Gespilte carten aus der zuprüfen liste
-		// entfernen
 
 	}
 
 	public void pass() {
-		// TODO 1 Message absenden → keine Parameter(View) noetig, aber Message
-		// sagen ueberspringen
 		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
 		client.sendMessage(m);
-	}
-
-	public void startGame() {
-		// viwe = new GameField();
-
 	}
 
 	public boolean joinGame(String name, String serverIP) {
@@ -236,7 +203,6 @@ public class GameFieldModel {
 	}
 
 	public static void main(String[] args) {
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -271,4 +237,4 @@ public class GameFieldModel {
 		this.id = id;
 	}
 
-}// end GameFieldModel
+}

@@ -27,6 +27,8 @@ import Beetle.Haggis.Client.MainView.ProgressWindow;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Card.Colour;
 import Beetle.Haggis.Server.EventHandlerServer;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 /**
  * @author Faruk Doganci, Marco Mancuso
@@ -69,6 +71,7 @@ public class GameField extends JFrame implements ItemListener {
 	protected TextAreaCustom player1;
 	protected TextAreaCustom player2;
 	protected TextAreaCustom player3;
+	protected JLabel lblHowsTurn;
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
@@ -89,6 +92,7 @@ public class GameField extends JFrame implements ItemListener {
 	// private int lblPlayer;
 	// public GameFieldModel m_GameFieldModel;
 	public final HaggisMenu menuBar;
+	
 
 	public GameField(GameFieldModel gfm) {
 		super("Haggis");
@@ -264,6 +268,12 @@ public class GameField extends JFrame implements ItemListener {
 		player3 = new TextAreaCustom();
 		player3.setText("Spieler3\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJokers:");
 		playerpanel3.add(player3);
+		
+		lblHowsTurn = new JLabel("Spielen");
+		lblHowsTurn.setForeground(new Color(255, 255, 255));
+		lblHowsTurn.setBackground(new Color(0, 255, 0));
+		lblHowsTurn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		opponentField.add(lblHowsTurn, BorderLayout.CENTER);
 
 	}
 
