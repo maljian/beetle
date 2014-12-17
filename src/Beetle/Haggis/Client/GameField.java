@@ -29,6 +29,7 @@ import Beetle.Haggis.Server.Card.Colour;
 import Beetle.Haggis.Server.EventHandlerServer;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 /**
  * @author Faruk Doganci, Marco Mancuso
@@ -73,6 +74,10 @@ public class GameField extends JFrame implements ItemListener {
 	protected TextAreaCustom player3;
 	protected JLabel lblHowsTurn;
 	protected Color green = new Color(0, 100, 0);
+	protected Color black = Color.BLACK;
+	protected Color yellow = Color.YELLOW;
+	protected Color red = Color.RED;
+	protected Color blue = Color.BLUE;
 
 
 	// private ArrayList<JPanel> handCards = new ArrayList<JPanel>(); //
@@ -271,11 +276,12 @@ public class GameField extends JFrame implements ItemListener {
 		player3.setText("Spieler3\n" + "\nAnzahl Karten:\n" + "\nPunkte:\n" + "\nJoker:");
 		playerpanel3.add(player3);
 		
-		lblHowsTurn = new JLabel("Spielen");
+		lblHowsTurn = new JLabel("Bitte Spiel erstellen oder Spiel beitreten");
+		lblHowsTurn.setHorizontalAlignment(SwingConstants.CENTER);
+		opponentField.add(lblHowsTurn, BorderLayout.CENTER);
 		lblHowsTurn.setForeground(new Color(255, 255, 255));
 		lblHowsTurn.setBackground(new Color(0, 255, 0));
 		lblHowsTurn.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonsPlace.add(lblHowsTurn, BorderLayout.EAST);
 
 	}
 
