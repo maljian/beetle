@@ -155,7 +155,7 @@ public class GameFieldModel {
 
 	public void checkCard(ArrayList<Card> selectedCards) {
 
-		boolean combinationConfirmed = GameState
+		boolean combinationConfirmed = gState
 				.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
 		// TODO 2 knöpfe bereits deaktiviren
@@ -165,7 +165,7 @@ public class GameFieldModel {
 
 		ArrayList<Card> cardsToPlay = view.cardsToCheck;
 
-		if (GameState.checkCombinations(cardsToPlay)) {
+		if (gState.checkCombinations(cardsToPlay)) {
 			if (gState.getCurentCombination() == Combination.NEWTURN) {
 				gState.setNewCombination(cardsToPlay);
 			}

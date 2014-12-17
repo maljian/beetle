@@ -28,7 +28,7 @@ public class GameState implements Serializable {
 	}
 
 	static Combination curentCombination = Combination.NEWTURN;
-	private  static Stack<Card> lastPlayedCards;
+	private   Stack<Card> lastPlayedCards;
 
 	private Player players[]; //player [0,1,2], cards[Card]
 	private int playerTurns = 0;
@@ -49,7 +49,7 @@ public class GameState implements Serializable {
 	 *            List of selected cards
 	 * @return True if the combination is correct and higher
 	 */
-	public static boolean checkCombinations(ArrayList<Card> cards) {
+	public  boolean checkCombinations(ArrayList<Card> cards) {
 		boolean answer = false;
 		if (cards.size() == 0 || cards == null) {
 			return false; // Catch if the player unselect al his cards.
@@ -203,7 +203,7 @@ public class GameState implements Serializable {
 		for (Card card : playedCards) {
 			cards.push(card);
 		}
-		GameState.lastPlayedCards = cards;
+	lastPlayedCards = cards;
 	}
 	
 //	public ArrayList<Card> getLastPlayedCardsClient() {
