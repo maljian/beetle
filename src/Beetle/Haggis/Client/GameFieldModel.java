@@ -107,12 +107,45 @@ public class GameFieldModel {
 
 	public String updateLabels() {
 
-		String jokers = "Jokers: \n";
+//		String jokers = "Jokers: \n";
 		String txt = null;
 		int opponentTextArea = 2;
 		Player[] p = gState.getPlayers();
-		Stack<Card> playerHandCards = p[id].getCards();
+//		Stack<Card> playerHandCards = p[id].getCards();
 
+//		for (Card c : playerHandCards) {
+//			if (c.getNumber() == 11) {
+//				jokers += "J ";
+//			} else if (c.getNumber() == 12) {
+//				jokers += "B ";
+//			} else if (c.getNumber() == 13) {
+//				jokers += "K ";
+//			}
+//		}
+
+		for (Player player : p) {
+
+			txt = player.toString() +jokerTxt(player.getCards());
+			if (player.getId() == id) {
+				
+				view.player1.setText(txt);
+			} else if (opponentTextArea == 2) {
+				view.player2.setText(txt );
+				opponentTextArea++;
+			} else if (opponentTextArea == 3) {
+				view.player3.setText(txt);
+			}
+		}
+		return txt;
+	}
+	
+	/**
+	 * @author FD & MM
+	 * @param playerHandCards
+	 * @return
+	 */
+	private String jokerTxt(Stack<Card> playerHandCards){
+		String jokers = "Joker: \n";
 		for (Card c : playerHandCards) {
 			if (c.getNumber() == 11) {
 				jokers += "J ";
@@ -122,20 +155,8 @@ public class GameFieldModel {
 				jokers += "K ";
 			}
 		}
-
-		for (Player player : p) {
-
-			txt = player.toString();
-			if (player.getId() == id) {
-				view.player1.setText(txt + jokers);
-			} else if (opponentTextArea == 2) {
-				view.player2.setText(txt + jokers);
-				opponentTextArea++;
-			} else if (opponentTextArea == 3) {
-				view.player3.setText(txt + jokers);
-			}
-		}
-		return txt;
+		
+		return jokers;
 	}
 
 	/**
