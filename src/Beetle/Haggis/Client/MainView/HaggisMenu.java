@@ -26,6 +26,7 @@ public class HaggisMenu extends JMenuBar {
 	private JMenuItem menuItemS;
 	private JMenuItem menuItemJ;
 	private JMenuItem menuItemN;
+	private JMenuItem menuItemE;
 	private GameFieldModel gfModel;
 	private RulesWindow rw;
 	
@@ -47,6 +48,7 @@ public class HaggisMenu extends JMenuBar {
 		menu.add(getNew());
 		menu.add(getJoin());
 		menu.add(getRules());
+		menu.add(getExit());
 		
 	}
 	
@@ -120,5 +122,18 @@ public class HaggisMenu extends JMenuBar {
 		return menuItemN;
 	}	
 	
+	private JMenuItem getExit(){
+		menuItemE = new JMenuItem("Exit");
+		menuItemE.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);{
+					
+				}
+			}
+		});
+		menuItemE.setMnemonic(KeyEvent.VK_E);
+		return menuItemE;
+	}
 }
 
