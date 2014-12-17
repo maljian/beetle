@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client.MainView;
+package Beetle.Haggis.Client;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
