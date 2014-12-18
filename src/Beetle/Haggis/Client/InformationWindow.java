@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Beetle.Haggis.Message.GameState;
@@ -23,9 +22,7 @@ import Beetle.Haggis.Server.Player;
 
 public class InformationWindow extends JFrame {
 	private GameState gState;
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	protected JPanel contentPane;
 	private JPanel logoPanel;
@@ -48,16 +45,10 @@ public class InformationWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-//		JLabel lblAdresse = new JLabel("IP-Adresse:");
-//		lblAdresse.setForeground(new Color(255, 255, 255));
-//		lblAdresse.setFont(new Font("Arial", Font.PLAIN, 12));
-//		lblAdresse.setBounds(475, 81, 97, 17);
-//		contentPane.add(lblAdresse);
-
 		JLabel lblAmountPlayer = new JLabel("Anzahl Spieler:");
 		lblAmountPlayer.setForeground(Color.WHITE);
 		lblAmountPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblAmountPlayer.setBounds(475, 109, 97, 20);
+		lblAmountPlayer.setBounds(475, 81, 97, 20);
 		contentPane.add(lblAmountPlayer);
 
 		logoPanel = new JPanel();
@@ -74,7 +65,7 @@ public class InformationWindow extends JFrame {
 		JLabel lblTargetPoint = new JLabel("Ziel:");
 		lblTargetPoint.setForeground(Color.WHITE);
 		lblTargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblTargetPoint.setBounds(475, 140, 97, 20);
+		lblTargetPoint.setBounds(475, 112, 97, 20);
 		contentPane.add(lblTargetPoint);
 
 		JLabel lblSpieler = new JLabel("Spieler");
@@ -90,46 +81,50 @@ public class InformationWindow extends JFrame {
 		contentPane.add(lblPunktzahl);
 
 		ArrayList<JLabel> lblPlayers = new ArrayList<JLabel>();
+		int yPlayer = 231;
+		for (int i = 0; i <= gState.getPlayers().length; i++)
+			;
+		{
+			for (Player p : gState.getPlayers()) {
+				JLabel lblPlayer = new JLabel(p.getName());
+				lblPlayer.setForeground(Color.WHITE);
+				lblPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
+				lblPlayer.setBounds(475, yPlayer, 97, 20);
+				lblPlayers.add(lblPlayer);
+				contentPane.add(lblPlayer);
+				yPlayer = yPlayer + 20;
 
-		for (Player p : gState.getPlayers()) {
-			JLabel lblPlayer = new JLabel(p.getName());
-			lblPlayer.setForeground(Color.WHITE);
-			lblPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
-			lblPlayer.setBounds(475, 231, 97, 20);
-			lblPlayers.add(lblPlayer);
-			contentPane.add(lblPlayer);
+			}
+
+			lblAmount = new JLabel();
+			lblAmount.setText(gState.getPlayers().length + "");
+			lblAmount.setForeground(Color.WHITE);
+			lblAmount.setBounds(582, 82, 160, 20);
+			contentPane.add(lblAmount);
+
+			// TODO Anzahl Spieler anzeigen
+			// lblPoints = new JLabel(getAmountPlayer());
+			// lblPoints.setForeground(Color.WHITE);
+			// lblPoints.setBounds(582, 141, 160, 20);
+			// contentPane.add(lblTargetPoint);
+
+			ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
+			int yPoint = 231;
+			for (int i = 0; i <= gState.getPlayers().length; i++)
+				;
+			{
+				for (Player p : gState.getPlayers()) {
+					JLabel lblPoint = new JLabel(p.getPoints() + "");
+					lblPoint.setForeground(Color.WHITE);
+					lblPoint.setFont(new Font("Arial", Font.PLAIN, 12));
+					lblPoint.setBounds(582, yPoint, 97, 20);
+					lblPoints.add(lblPoint);
+					contentPane.add(lblPoint);
+					contentPane.add(lblPoint);
+					yPoint = yPoint + 20;
+				}
+				setVisible(true);
+			}
 		}
-
-		lblAmount = new JLabel();
-		lblAmount.setText(gState.getPlayers().length + "");
-		lblAmount.setForeground(Color.WHITE);
-//		tfAmountPlayer.setEditable(false);
-//		tfAmountPlayer.setColumns(10);
-		lblAmount.setBounds(582, 110, 160, 20);
-		contentPane.add(lblAmount);
-		//
-		
-		 lblPoints = new JLabel();
-//		 lblPoints.setText(ge;
-		 lblPoints.setForeground(Color.WHITE);
-//		 lblPoints.setEditable(false);
-//		 lblPoints.setColumns(10);
-		 lblPoints.setBounds(582, 141, 160, 20);
-		 contentPane.add(lblTargetPoint);
-
-		ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
-
-		for (Player p : gState.getPlayers()) {
-			JLabel lblPoint = new JLabel(p.getPoints()+"");
-			lblPoint.setForeground(Color.WHITE);
-			lblPoint.setFont(new Font("Arial", Font.PLAIN, 12));
-			lblPoint.setBounds(582, 231, 97, 20);
-			lblPoints.add(lblPoint);
-			contentPane.add(lblPoint);
-			contentPane.add(lblPoint);
-
-		}
-
-		setVisible(true);
 	}
 }
