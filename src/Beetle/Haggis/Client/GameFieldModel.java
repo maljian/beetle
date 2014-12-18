@@ -5,16 +5,13 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.Message.MessageType;
+//import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
-import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Client;
 import Beetle.Haggis.Server.EventHandlerServer;
@@ -34,7 +31,6 @@ public class GameFieldModel {
 	private GameState gState;
 	private int id;
 	private boolean playerIsOnTurn;
-	private MessageInterface messageInterface;
 	private Client client;
 
 	public GameFieldModel() {
@@ -42,7 +38,6 @@ public class GameFieldModel {
 		view.setVisible(true);
 		view.btnLegen.setEnabled(false);
 		view.btnPassen.setEnabled(false);
-		// playerHasTurn();
 	}
 
 	public void actualizeView(GameState gs) {
@@ -55,7 +50,7 @@ public class GameFieldModel {
 		Player[] p = gState.getPlayers();
 
 		gState.setPlayerPlayed(true, id);
-		
+
 		Stack<Card> playerHandCards = p[id].getCards();
 
 		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
@@ -93,7 +88,6 @@ public class GameFieldModel {
 			playerIsOnTurn = false;
 		}
 		enableBtn();
-		// view.btnPassen.setEnabled(playerIsOnTurn);
 
 		updateLabels();
 		view.repaint();
@@ -127,7 +121,7 @@ public class GameFieldModel {
 
 		for (Player player : p) {
 
-			txt = player.toString() + jokerTxt(player.getCards());
+			txt = player.toString();
 			if (player.getId() == id) {
 
 				view.player1.setText(txt);
@@ -139,26 +133,6 @@ public class GameFieldModel {
 			}
 		}
 		return txt;
-	}
-
-	/**
-	 * @author FD & MM
-	 * @param playerHandCards
-	 * @return joker
-	 */
-	private String jokerTxt(Stack<Card> playerHandCards) {
-		String joker = "Joker: \n";
-		for (Card c : playerHandCards) {
-			if (c.getNumber() == 11) {
-				joker += "J ";
-			} else if (c.getNumber() == 12) {
-				joker += "B ";
-			} else if (c.getNumber() == 13) {
-				joker += "K ";
-			}
-		}
-
-		return joker;
 	}
 
 	/**
@@ -213,8 +187,8 @@ public class GameFieldModel {
 			gState.getPlayers()[id].setCards((Stack<Card>) playerCards.clone());
 
 			System.out.println(gState.getLastPlayedCards().size() + " ");
-			Message m = new Message(gState, MessageType.CONFIRM,
-					PlayedAction.CARDS);
+			Message m = new Message(gState,
+					PlayedAction.CARDS);// MessageType.CONFIRM,
 			client.sendMessage(m);
 		} else {
 			JOptionPane
@@ -230,7 +204,7 @@ public class GameFieldModel {
 	}
 
 	public void pass() {
-		Message m = new Message(gState, MessageType.CONFIRM, PlayedAction.PASS);
+		Message m = new Message(gState, PlayedAction.PASS); // MessageType.CONFIRM,
 		client.sendMessage(m);
 	}
 

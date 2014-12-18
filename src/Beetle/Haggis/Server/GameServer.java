@@ -10,7 +10,7 @@ import com.sun.org.apache.xerces.internal.parsers.CachingParserPool.Synchronized
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.GameState.Combination;
 import Beetle.Haggis.Message.Message;
-import Beetle.Haggis.Message.Message.MessageType;
+//import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Message.MessageInterface;
 import Beetle.Haggis.Server.Card.Colour;
@@ -88,7 +88,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		}
 		registeredPlayer = new ArrayList<String>(10);
 		state = new GameState(players);
-		message = new Message(state, MessageType.REGISTER, PlayedAction.CARDS);
+		message = new Message(state,  PlayedAction.CARDS); //
 		state = distributeCards(state);
 		state.newRound();
 		
@@ -206,7 +206,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				+ playerState.getPlayerTurns());
 		state = playerState;
 		// state.setLastPlayedCards(playerState.getLastPlayedCards());
-		message = new Message(state, MessageType.CONFIRM, playedAction);
+		message = new Message(state,  playedAction); //MessageType.CONFIRM,
 
 		// message.newMessage(playerState);
 		// System.out.println("server state version:" + state.getVersion());

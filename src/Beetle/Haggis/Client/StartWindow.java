@@ -12,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-// VORLAEUFIG FUER DAS TESTEN, KANN SPAETER AUCH WIEDER WEG
-
 public class StartWindow extends JFrame implements ActionListener {
 
 	
@@ -48,14 +46,14 @@ public class StartWindow extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Button 1
+		// Button Neues Spiel
 		btnNewGame = new JButton("Neues Spiel");
 		btnNewGame.setBounds(540, 81, 117, 29);
 		contentPane.add(btnNewGame);
 		btnNewGame.addActionListener(this);
 		getContentPane().add(btnNewGame);
 
-		// Button 2
+		// Button Spiel beitreten
 		btnJoinGame = new JButton("Spiel beitreten");
 		btnJoinGame.setBounds(540, 161, 117, 29);
 		contentPane.add(btnJoinGame);

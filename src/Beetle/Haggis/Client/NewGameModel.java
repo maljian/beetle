@@ -13,12 +13,9 @@ import Beetle.Haggis.Server.EventHandlerServer;
  *
  */
 public class NewGameModel extends JoinGameModel {
-	// private int numberPlayer;
-	// private int targetPoint;
 
 	public static NewGame m_View;
 	public GameFieldModel gfModel;
-
 
 	public String getIpAdress() {
 		return ipAdress;
@@ -33,7 +30,6 @@ public class NewGameModel extends JoinGameModel {
 		this.gfModel = gfModel;
 		m_View = new NewGame(this);
 		m_View.setVisible(true);
-//		Client client = new Client(gfModel);
 
 		try {
 			String ipv4 = InetAddress.getLocalHost().toString();
@@ -52,8 +48,9 @@ public class NewGameModel extends JoinGameModel {
 	protected void startServer() {
 		int numberPlayer = Integer.parseInt(m_View.numberPlayer
 				.getSelectedItem().toString());
-		int targetPoint = Integer.parseInt(m_View.TargetPoint.getSelectedItem().toString());
-		targetP ="" + targetPoint;
+		int targetPoint = Integer.parseInt(m_View.TargetPoint.getSelectedItem()
+				.toString());
+		targetP = "" + targetPoint;
 		boolean bet = false; // Preparation for future version
 		boolean bombs = false; // Preparation for future version
 		ehs = new EventHandlerServer();
@@ -63,7 +60,6 @@ public class NewGameModel extends JoinGameModel {
 			String serverIP = m_View.txtIpAdress.getText();
 			String name = m_View.txtPlayerName.getText();
 			boolean joined = gfModel.joinGame(name, serverIP);
-			// client.start();
 			if (joined) {
 				m_View.dispose();
 			}

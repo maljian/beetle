@@ -1,6 +1,5 @@
 package Beetle.Haggis.Client;
 
-
 /**
  * @author Faruk
  * @version 1.0
@@ -8,8 +7,6 @@ package Beetle.Haggis.Client;
  */
 public class JoinGameModel {
 
-	//private String ipAdress;
-	//private String playerName;
 	public JoinGame m_View;
 	private GameFieldModel gfModel;
 
@@ -21,7 +18,6 @@ public class JoinGameModel {
 	public JoinGameModel(GameFieldModel gfm) {
 		gfModel = gfm;
 		m_View = new JoinGame(this);
-//		Client client = new Client(gfModel);
 	}
 
 	public void setViewVisible(boolean visibel) {
@@ -31,16 +27,13 @@ public class JoinGameModel {
 	}
 
 	public void joinGame() {
-		
+
 		String name = m_View.txtPlayerName.getText();
 		String serverIP = m_View.txtIpAdress.getText();
 		boolean joined = gfModel.joinGame(name, serverIP);
-		if(joined){
+		if (joined) {
 			m_View.dispose();
 		}
-
-		// TODO 2 LL sicherstellen das man zurück zum Gamefleld (model) kommt
-		// new JoinGameModel(gfModel).setViewVisible(true);
 
 	}
 
@@ -49,4 +42,4 @@ public class JoinGameModel {
 		m_View.dispose();
 	}
 
-}// end JoinGameModel
+}

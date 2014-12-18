@@ -102,12 +102,6 @@ public class InformationWindow extends JFrame {
 			lblAmount.setBounds(582, 82, 160, 20);
 			contentPane.add(lblAmount);
 
-			// TODO Anzahl Spieler anzeigen
-			// lblPoints = new JLabel(getAmountPlayer());
-			// lblPoints.setForeground(Color.WHITE);
-			// lblPoints.setBounds(582, 141, 160, 20);
-			// contentPane.add(lblTargetPoint);
-
 			ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
 			int yPoint = 231;
 			for (int i = 0; i <= gState.getPlayers().length; i++)

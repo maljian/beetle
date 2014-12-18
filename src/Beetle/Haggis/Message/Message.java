@@ -8,9 +8,6 @@ import java.io.Serializable;
  */
 public class Message implements Serializable {
 
-	public enum MessageType {
-		CONFIRM, ERROR, REGISTER
-	}
 
 	public enum PlayedAction {
 		CARDS, PASS, STATE, WINN
@@ -18,7 +15,6 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private GameState gameState;
-	private MessageType messageType;
 	private PlayedAction playedAction;
 
 	/**
@@ -27,10 +23,9 @@ public class Message implements Serializable {
 	 * @param messageType
 	 * @param playedAction
 	 */
-	public Message(GameState gameState, MessageType messageType,
+	public Message(GameState gameState, 
 			PlayedAction playedAction) {
 		this.gameState = gameState;
-		this.messageType = messageType;
 		this.playedAction = playedAction;
 	}
 
@@ -40,10 +35,6 @@ public class Message implements Serializable {
 
 	public GameState getGameState() {
 		return gameState;
-	}
-
-	public MessageType getMessageType() {
-		return messageType;
 	}
 
 	public PlayedAction getPlayedAction() {

@@ -68,7 +68,18 @@ public class Player implements Serializable{
 
 	@Override
 	public String toString() {
-		return name +"\n" +"\nAnzahl Karten:\n" + cards.size() + "\nPunkte:\n" + points +"\n";
+		
+		String joker = "Joker: \n";
+		for (Card c : cards) {
+			if (c.getNumber() == 11) {
+				joker += "J ";
+			} else if (c.getNumber() == 12) {
+				joker += "B ";
+			} else if (c.getNumber() == 13) {
+				joker += "K ";
+			}
+		}
+		return name +"\n" +"\nAnzahl Karten:\n" + cards.size() + "\nPunkte:\n" + points +"\n"+joker;
 	}
 	
 	

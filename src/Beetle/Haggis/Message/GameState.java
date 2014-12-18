@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
-import sun.rmi.runtime.NewThreadAction;
 import Beetle.Haggis.Server.Card;
 import Beetle.Haggis.Server.Player;
 
@@ -140,7 +139,7 @@ public class GameState implements Serializable {
 		int usedJoker = 0;
 		if (cards.size() < 3) {
 			return false;
-		} // • Minimum of 3 cards for a street
+		} // Minimum of 3 cards for a street
 		for (int i = 1; i < cards.size() - usedJoker; i++) {
 			// Correct Colour
 			if (cards.get(i).getColour().equals(actualcolor)) {
@@ -205,13 +204,6 @@ public class GameState implements Serializable {
 		GameState.curentCombination = actualCombination;
 	}
 
-	// public ArrayList<Card> getLastPlayedCards() {
-	// return lastPlayedCards;
-	// }
-	//
-	// public void setLastPlayedCards(ArrayList<Card> PlayedCards) {
-	// GameState.lastPlayedCards = PlayedCards;
-	// }
 	public Stack<Card> getLastPlayedCards() {
 		return lastPlayedCards;
 	}
@@ -224,14 +216,6 @@ public class GameState implements Serializable {
 		lastPlayedCards = cards;
 	}
 
-	// public ArrayList<Card> getLastPlayedCardsClient() {
-	// return lastPlayedCardsClient;
-	// }
-	//
-	// public void setLastPlayedCardsClient(ArrayList<Card>
-	// lastPlayedCardsClient) {
-	// this.lastPlayedCardsClient = lastPlayedCardsClient;
-	// }
 
 	public int getPlayerTurns() {
 		return playerTurns;
@@ -347,5 +331,4 @@ public class GameState implements Serializable {
 		return curentCombination;
 	}
 
-}// end GameState
-
+}
