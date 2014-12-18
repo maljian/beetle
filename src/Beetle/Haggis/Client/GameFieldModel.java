@@ -86,7 +86,7 @@ public class GameFieldModel {
 			view.lblHowsTurn.setText("Sie sind am Zug");
 		} else {
 			String name = gState.getPlayerName(gState.getPlayerTurns());
-			view.lblHowsTurn.setText(name+ " ist am Zug");
+			view.lblHowsTurn.setText(name + " ist am Zug");
 			playerIsOnTurn = false;
 		}
 		enableBtn();
@@ -96,10 +96,27 @@ public class GameFieldModel {
 		view.repaint();
 		view.revalidate();
 	}
-/**
- * @author Faruk
- * @return txt
- */
+
+	public void anounceWinner(GameState state) {
+		int maxPoint = 0;
+		int idWithMax = 0;
+
+		for (int i = 0; i < state.getPlayers().length; i++) {
+			if (maxPoint < state.getPlayers()[i].getPoints()) {
+				maxPoint = state.getPlayers()[i].getPoints();
+				idWithMax = i;
+			}
+		}
+		String winnerName = state.getPlayers()[idWithMax].getName();
+		view.lblHowsTurn.setText(winnerName + " hat das Spiel mit " + maxPoint
+				+ " Punkten gewonnen.");
+		view.repaint();
+	}
+
+	/**
+	 * @author Faruk
+	 * @return txt
+	 */
 	public String updateLabels() {
 		String txt = null;
 		int opponentTextArea = 2;
@@ -107,12 +124,12 @@ public class GameFieldModel {
 
 		for (Player player : p) {
 
-			txt = player.toString() +jokerTxt(player.getCards());
+			txt = player.toString() + jokerTxt(player.getCards());
 			if (player.getId() == id) {
-				
+
 				view.player1.setText(txt);
 			} else if (opponentTextArea == 2) {
-				view.player2.setText(txt );
+				view.player2.setText(txt);
 				opponentTextArea++;
 			} else if (opponentTextArea == 3) {
 				view.player3.setText(txt);
@@ -120,13 +137,13 @@ public class GameFieldModel {
 		}
 		return txt;
 	}
-	
+
 	/**
 	 * @author FD & MM
 	 * @param playerHandCards
 	 * @return joker
 	 */
-	private String jokerTxt(Stack<Card> playerHandCards){
+	private String jokerTxt(Stack<Card> playerHandCards) {
 		String joker = "Joker: \n";
 		for (Card c : playerHandCards) {
 			if (c.getNumber() == 11) {
@@ -137,7 +154,7 @@ public class GameFieldModel {
 				joker += "K ";
 			}
 		}
-		
+
 		return joker;
 	}
 
@@ -155,33 +172,31 @@ public class GameFieldModel {
 			view.btnLegen.setEnabled(playerIsOnTurn);
 		}
 	}
-	
-	
-	public void setBackgroundColor(Color bgColor){
-		
-			view.player1.setBackground(bgColor);
-			view.player2.setBackground(bgColor);
-			view.player3.setBackground(bgColor);
-			view.buttonsPlace.setBackground(bgColor);
-			view.panPlayerCards.setBackground(bgColor);
-			view.panCenterField.setBackground(bgColor);
-			view.panJoker.setBackground(bgColor);
-			view.helpButtons.setBackground(bgColor);
-			view.opponentField.setBackground(bgColor);
-			
-//			try{
-//				view.cardsPlayerPlace.setBackground(bgColor);
-//				view.cardsJokerPlace.setBackground(bgColor);
-//				view.cardsLayedPlace.setBackground(bgColor);
-//			}catch(NullPointerException e){
-//				
-//			}
-		}
+
+	public void setBackgroundColor(Color bgColor) {
+
+		view.player1.setBackground(bgColor);
+		view.player2.setBackground(bgColor);
+		view.player3.setBackground(bgColor);
+		view.buttonsPlace.setBackground(bgColor);
+		view.panPlayerCards.setBackground(bgColor);
+		view.panCenterField.setBackground(bgColor);
+		view.panJoker.setBackground(bgColor);
+		view.helpButtons.setBackground(bgColor);
+		view.opponentField.setBackground(bgColor);
+
+		// try{
+		// view.cardsPlayerPlace.setBackground(bgColor);
+		// view.cardsJokerPlace.setBackground(bgColor);
+		// view.cardsLayedPlace.setBackground(bgColor);
+		// }catch(NullPointerException e){
+		//
+		// }
+	}
 
 	public void checkCard(ArrayList<Card> selectedCards) {
-    
-		boolean combinationConfirmed = gState
-				.checkCombinations(selectedCards);
+
+		boolean combinationConfirmed = gState.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
 		// TODO 2 knöpfe bereits deaktiviren
 	}

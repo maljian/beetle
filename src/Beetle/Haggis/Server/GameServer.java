@@ -142,6 +142,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	public void logic(GameState playerState, PlayedAction action) {
 		// TOTO LL 1. logick definiren; 2. programieren
 		int playerTurns = playerState.getPlayerTurns();
+		PlayedAction playedAction = PlayedAction.CARDS;
 
 		switch (action) {
 		case PASS:
@@ -178,7 +179,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				playerState.setGamePot(0);
 
 				if (aktuelPlayer.getPoints() >= targetPoint) {
-					// TODO 2 LL Beetles: Inform game win, end game
+					playedAction = PlayedAction.WINN;
 				}
 
 				if (remainingPlayer > 1) {
@@ -212,7 +213,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				+ playerState.getPlayerTurns());
 		state = playerState;
 		// state.setLastPlayedCards(playerState.getLastPlayedCards());
-		message.newMessage(state);
+		message = new Message(state, MessageType.CONFIRM, playedAction);
 
 		// message.newMessage(playerState);
 		// System.out.println("server state version:" + state.getVersion());

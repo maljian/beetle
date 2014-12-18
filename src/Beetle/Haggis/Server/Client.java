@@ -13,6 +13,7 @@ import Beetle.Haggis.Client.JoinGameModel;
 import Beetle.Haggis.Client.NewGame;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
+import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Message.MessageInterface;
 
 /**
@@ -80,7 +81,12 @@ public class Client extends Thread {
 						|| m.getGameState().getVersion() > state.getVersion()) {
 					state = m.getGameState();
 
-					gfModel.actualizeView(state);
+					if (m.getPlayedAction() == PlayedAction.WINN){
+						gfModel.anounceWinner(state);
+					}else{
+						gfModel.actualizeView(state);
+					}
+
 				}
 				// btn Pass Aktivieren
 			} catch (RemoteException | InterruptedException e) {
