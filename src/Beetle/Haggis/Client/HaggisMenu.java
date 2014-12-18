@@ -43,7 +43,7 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		menu.add(getInfo());
 		menu.addSeparator();
 		menu.add(getExit());
-		JMenu background = new JMenu("Hintergrund");
+		JMenu background = new JMenu("Hintergrundfarbe");
 		add(background);
 		background.add(green);
 		background.add(red);
