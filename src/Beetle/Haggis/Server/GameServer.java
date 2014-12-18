@@ -172,7 +172,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 				playerState.setGamePot(0);
 
 				if (aktuelPlayer.getPoints() >= targetPoint) {
-					playedAction = PlayedAction.WINN;
+					playedAction = PlayedAction.WIN;
 				}
 
 				if (remainingPlayer > 1) {

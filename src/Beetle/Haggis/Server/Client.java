@@ -79,7 +79,7 @@ public class Client extends Thread {
 						|| m.getGameState().getVersion() > state.getVersion()) {
 					state = m.getGameState();
 
-					if (m.getPlayedAction() == PlayedAction.WINN) {
+					if (m.getPlayedAction() == PlayedAction.WIN) {
 						gfModel.anounceWinner(state);
 					} else {
 						gfModel.actualizeView(state);

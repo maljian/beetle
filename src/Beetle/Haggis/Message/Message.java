@@ -10,7 +10,7 @@ public class Message implements Serializable {
 
 
 	public enum PlayedAction {
-		CARDS, PASS, STATE, WINN
+		CARDS, PASS, STATE, WIN
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +20,6 @@ public class Message implements Serializable {
 	/**
 	 * 
 	 * @param gameState
-	 * @param messageType
 	 * @param playedAction
 	 */
 	public Message(GameState gameState, 
