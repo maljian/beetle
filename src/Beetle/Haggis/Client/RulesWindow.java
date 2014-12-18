@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 /**
  * 
  * @author Nadine Töpfer
@@ -30,9 +31,9 @@ public class RulesWindow extends JFrame {
 		
 		setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
-		JScrollPane vBar = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-		 
+		JScrollPane vBar = new JScrollPane(panel,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		try {
 			ClassLoader classLoader = Thread.currentThread()
@@ -52,8 +53,6 @@ public class RulesWindow extends JFrame {
 		setVisible(true);
 		setSize(1260, 660);
 		setResizable(false);
-				
-
 	}
 
 }

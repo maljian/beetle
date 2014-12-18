@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 /**
  * 
  * @author Nadine Töpfer
@@ -43,5 +44,5 @@ public class CombinationWindow extends JFrame {
 		setVisible(true);
 		setResizable(false);
 	}
-	
+
 }

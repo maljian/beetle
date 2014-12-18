@@ -23,29 +23,28 @@ import Beetle.Haggis.Message.MessageInterface;
  */
 public class Client extends Thread {
 
-	private int id; // PlayerID starting 0
+	private int id;
 	public static JoinGame m_JoinGame;
 	public static NewGame m_NewGame;
-	/**
-	 * 
-	 * Start the Server in a new Thread Only one of the player gets the server
-	 */
-	private GameServer server;
 	private GameState state;
 	private Registry registry;
 	private MessageInterface mi;
 	private boolean connected = true;
 	private GameFieldModel gfModel;
 
+	/**
+	 * 
+	 * @param name
+	 * @param serverIP
+	 * @return
+	 */
 	public boolean connect(String name, String serverIP) {
 
-		// String host = "127.0.0.1";
 		boolean connected = false;
 		if (serverIP == null || serverIP.length() == 0) {
 			JOptionPane.showMessageDialog(null,
 					"Bitte geben Sie eine gültige IP-Adresse an.",
 					"Information", JOptionPane.INFORMATION_MESSAGE);
-			// new JoinGameModel(gfModel);
 			return false;
 		}
 		try {
@@ -75,28 +74,27 @@ public class Client extends Thread {
 			Message m;
 			try {
 				m = mi.receiveMessage();
-				// System.out.println(m.getGameState().getVersion());
 				Thread.sleep(1000);
 				if (state == null
 						|| m.getGameState().getVersion() > state.getVersion()) {
 					state = m.getGameState();
 
-					if (m.getPlayedAction() == PlayedAction.WINN){
+					if (m.getPlayedAction() == PlayedAction.WINN) {
 						gfModel.anounceWinner(state);
-					}else{
+					} else {
 						gfModel.actualizeView(state);
 					}
-
 				}
-				// btn Pass Aktivieren
 			} catch (RemoteException | InterruptedException e) {
-				// e.printStackTrace();
+				e.printStackTrace();
 			}
-
 		}
-
 	}
 
+	/**
+	 * 
+	 * @param m
+	 */
 	public void sendMessage(Message m) {
 		try {
 			mi.sendMessage(m);

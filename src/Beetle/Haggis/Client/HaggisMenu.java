@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 public class HaggisMenu extends JMenuBar implements ActionListener {
-	
+
 	/**
 	 * 
 	 */
@@ -23,18 +23,18 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 	private GameFieldModel gfModel;
 	private RulesWindow rw;
 	private InformationWindow iw;
-	
+
 	/**
 	 * 
 	 * @param gfm
 	 */
-	public HaggisMenu(GameFieldModel gfm){
-		gfModel=gfm;
+	public HaggisMenu(GameFieldModel gfm) {
+		gfModel = gfm;
 		createMenuBar();
-		
+
 	}
-	
-	void createMenuBar(){		
+
+	void createMenuBar() {
 		JMenu menu = new JMenu("Menü");
 		menu.setMnemonic(KeyEvent.VK_M);
 		add(menu);
@@ -65,57 +65,61 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 		bordeaux.addActionListener(this);
 
 	}
-	
-	public void actionPerformed(ActionEvent e){
-		if(e.getSource() == green){
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == green) {
 			gfModel.setBackgroundColor(gfModel.view.green);
-		} 
-		if(e.getSource() == red){
+		}
+		if (e.getSource() == red) {
 			gfModel.setBackgroundColor(gfModel.view.red);
 		}
-		if(e.getSource() == purple){
+		if (e.getSource() == purple) {
 			gfModel.setBackgroundColor(gfModel.view.purple);
 		}
-		if(e.getSource() == black){
+		if (e.getSource() == black) {
 			gfModel.setBackgroundColor(gfModel.view.black);
 		}
-		if(e.getSource() == blue){
+		if (e.getSource() == blue) {
 			gfModel.setBackgroundColor(gfModel.view.blue);
 		}
-		if(e.getSource() == bordeaux){
+		if (e.getSource() == bordeaux) {
 			gfModel.setBackgroundColor(gfModel.view.bordeaux);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
-	private JMenuItem getRules(){
+	private JMenuItem getRules() {
 		menuItemR = new JMenuItem("Spielregeln");
-		menuItemR.addActionListener(new ActionListener(){
+		menuItemR.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				if (rw == null) {
 					rw = new RulesWindow();
 				} else {
 					rw.dispose();
 					rw = null;
-				
+
 				}
 			}
 		});
 		menuItemR.setMnemonic(KeyEvent.VK_R);
-		
+
 		return menuItemR;
 	}
-	
-	private JMenuItem getInfo(){
-		menuItemI = new JMenuItem ("Spielinformation");
-		menuItemI.addActionListener(new ActionListener(){
+
+	/**
+	 * 
+	 * @return
+	 */
+	private JMenuItem getInfo() {
+		menuItemI = new JMenuItem("Spielinformation");
+		menuItemI.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
-				if (iw == null){
+			public void actionPerformed(ActionEvent e) {
+				if (iw == null) {
 					iw = new InformationWindow(gfModel.getgState());
 				} else {
 					iw.dispose();
@@ -124,55 +128,55 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 			}
 		});
 		menuItemI.setMnemonic(KeyEvent.VK_I);
-		
+
 		return menuItemI;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
-	private JMenuItem getStart(){
+	private JMenuItem getStart() {
 		menuItemS = new JMenuItem("Start");
-		menuItemS.addActionListener(new ActionListener(){
+		menuItemS.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
-				new StartWindow(gfModel).setVisible(true);{
-					
+			public void actionPerformed(ActionEvent e) {
+				new StartWindow(gfModel).setVisible(true);
+				{
+
 				}
 			}
 		});
 		menuItemS.setMnemonic(KeyEvent.VK_S);
-		
+
 		return menuItemS;
 	}
-	
+
 	/**
 	 * 
 	 * @return
 	 */
-	private JMenuItem getExit(){
+	private JMenuItem getExit() {
 		menuItemE = new JMenuItem("Exit");
-		menuItemE.addActionListener(new ActionListener(){
+		menuItemE.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
-				System.exit(0);{
-					
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				{
+
 				}
 			}
 		});
 		menuItemE.setMnemonic(KeyEvent.VK_E);
 		return menuItemE;
 	}
-	
-	JMenuItem background = new JMenuItem("Hintergrundfarbe");
+
 	ButtonGroup buttonGroup = new ButtonGroup();
-	
 	JRadioButtonMenuItem green = new JRadioButtonMenuItem("Grün", true);
 	JRadioButtonMenuItem red = new JRadioButtonMenuItem("Rot");
 	JRadioButtonMenuItem purple = new JRadioButtonMenuItem("Lila");
 	JRadioButtonMenuItem black = new JRadioButtonMenuItem("Schwarz");
 	JRadioButtonMenuItem blue = new JRadioButtonMenuItem("Blau");
 	JRadioButtonMenuItem bordeaux = new JRadioButtonMenuItem("Bordeaux");
-	
+
 }

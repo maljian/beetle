@@ -10,8 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author Nadine Töpfer
+ *
+ */
 public class ProgressWindow extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,6 +44,5 @@ public class ProgressWindow extends JFrame {
 		setVisible(true);
 		setResizable(false);
 	}
-
 
 }

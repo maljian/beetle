@@ -13,7 +13,7 @@ import Beetle.Haggis.Message.MessageInterface;
 
 /**
  * @author Nadine Töpfer
- * @version 1.0
+ * 
  */
 public class EventHandlerServer implements MessageInterface {
 
@@ -43,20 +43,14 @@ public class EventHandlerServer implements MessageInterface {
 
 		// Bind the remote object's stub in the registry
 		String registeryName= "MessageInterface";
-		// Registry problems solved with  portNr: http://hirt.se/blog/?p=289
-		// http://stackoverflow.com/questions/14265232/java-rmi-registry-port-change-issue
-		//registry= LocateRegistry.getRegistry(10243);
-		
 		registry = LocateRegistry.createRegistry(1099); 
 		LocateRegistry.getRegistry();
 		registry.bind(registeryName, stub);
 		
-
 		System.out.println("Startserver ready");
 
 	}
 
-	// muss noch aufgerufen werden
 	public void stopServer() {
 		try {
 			registry.unbind("MessageInterface");
@@ -67,12 +61,6 @@ public class EventHandlerServer implements MessageInterface {
 		}
 
 	}
-
-	// // An alle Clients Message schicken mit aktuellen Stand
-	// public void updateCilent(){
-	//
-	//
-	// }
 
 	/**
 	 * This is a remote method which is executed by the client. It will block
@@ -98,20 +86,8 @@ public class EventHandlerServer implements MessageInterface {
 	}
 
 	public int init(String name) throws RemoteException {
-		// return main.initPlayer(name);
 		return gameServer.initPlayer(name);
-
-		// Spieler muss sich beim GameServer irgendwie anmelden
-		// Hier muss sich der Client dann bei irgendwem anmelden.
-		// wichtig ist, dass das Objekt, wo sich der Client anmelden muss,
-		// dieser Klasse hier bekannt ist und über alle Instanzen geshart wird.
-		// D.h. es muss static sein.
-		// Für jede neue Netzwerkverbindung wird ein neues Objekt des Typs
-		// GameServer angelegt, dieses hat alle statischen Felder der Klasse
-		// auch.
-		// Die nichtstatischen Felder, wie z.B. die queues, sind privat für die
-		// entsprechende Netzwerkverbindung.
 
 	}
 
-}// end EventHandlerServer
+}
