@@ -95,6 +95,14 @@ public class GameState implements Serializable {
 			answer = false;
 			
 		}
+		if( lastPlayedCards!=null ){
+			if(cards.get(0).getNumber()<= lastPlayedCards.get(0).getNumber()|| cards.size() != lastPlayedCards.size()){
+				answer =false;
+			}
+			
+		}
+		
+		
 		return answer;
 	}
 
