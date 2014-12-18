@@ -3,6 +3,7 @@ package Beetle.Haggis.Client;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Beetle.Haggis.Message.GameState;
+import Beetle.Haggis.Server.Player;
 
 /**
  * @author Faruk
@@ -20,7 +22,6 @@ import Beetle.Haggis.Message.GameState;
  */
 
 public class InformationWindow extends JFrame {
-	private NewGameModel NGM;
 	private GameState gState;
 	/**
 	 * 
@@ -32,13 +33,13 @@ public class InformationWindow extends JFrame {
 	private JTextField tfAdresse;
 	private JTextField tfAmountPlayer;
 	private JTextField tfTargetPoint;
-	
 
 	/**
 	 * Create the frame.
 	 */
-	public InformationWindow() {
+	public InformationWindow(GameState gs) {
 		super("Spielinformationen");
+		gState = gs;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
@@ -70,87 +71,61 @@ public class InformationWindow extends JFrame {
 				"/Beetle/Resources/Haggis_Logo_v10.jpg")));
 
 		logoPanel.add(logoLabel, BorderLayout.CENTER);
-		
+
 		JLabel lblTargetPoint = new JLabel("Ziel:");
 		lblTargetPoint.setForeground(Color.WHITE);
 		lblTargetPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblTargetPoint.setBounds(475, 140, 97, 20);
 		contentPane.add(lblTargetPoint);
-		
+
 		JLabel lblSpieler = new JLabel("Spieler");
 		lblSpieler.setForeground(Color.WHITE);
 		lblSpieler.setFont(new Font("Arial", Font.BOLD, 12));
 		lblSpieler.setBounds(475, 200, 97, 20);
 		contentPane.add(lblSpieler);
-		
+
 		JLabel lblPunktzahl = new JLabel("Punktzahl");
 		lblPunktzahl.setForeground(Color.WHITE);
 		lblPunktzahl.setFont(new Font("Arial", Font.BOLD, 12));
 		lblPunktzahl.setBounds(582, 200, 97, 20);
 		contentPane.add(lblPunktzahl);
-		
-		JLabel lblPlayer1 = new JLabel("Spieler1");
-		lblPlayer1.setForeground(Color.WHITE);
-		lblPlayer1.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPlayer1.setBounds(475, 231, 97, 20);
-		contentPane.add(lblPlayer1);
-		
-		JLabel lblPlayer3 = new JLabel("Spieler3");
-		lblPlayer3.setForeground(Color.WHITE);
-		lblPlayer3.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPlayer3.setBounds(475, 293, 97, 20);
-		contentPane.add(lblPlayer3);
-		
-		JLabel lblPlayer2 = new JLabel("Spieler2");
-		lblPlayer2.setForeground(Color.WHITE);
-		lblPlayer2.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPlayer2.setBounds(475, 262, 97, 20);
-		contentPane.add(lblPlayer2);
-		
-//		tfAdresse = new JTextField();
-//		tfAdresse.setText(NGM.getIpAdress());
-//		tfAdresse.setEditable(false);
-//		tfAdresse.setBounds(582, 80, 160, 20);
-//		contentPane.add(tfAdresse);
-//		tfAdresse.setColumns(10);
-//		
-//		String playerCount = "";
-//		try {
-//			playerCount += gState.getPlayers().length;
-//		} catch (NullPointerException e) {
-//
-//		}
-//		tfAmountPlayer = new JTextField();
-//		tfAmountPlayer.setText(playerCount);
-//		tfAmountPlayer.setEditable(false);
-//		tfAmountPlayer.setColumns(10);
-//		tfAmountPlayer.setBounds(582, 110, 160, 20);
-//		contentPane.add(tfAmountPlayer);
-//		
-//		tfTargetPoint = new JTextField();
-//		tfTargetPoint.setText(NGM.targetP);
-//		tfTargetPoint.setEditable(false);
-//		tfTargetPoint.setColumns(10);
-//		tfTargetPoint.setBounds(582, 141, 160, 20);
-//		contentPane.add(tfTargetPoint);
-		
-		JLabel lblPoint1 = new JLabel("PointsOfPlayer1");
-		lblPoint1.setForeground(Color.WHITE);
-		lblPoint1.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPoint1.setBounds(582, 231, 97, 20);
-		contentPane.add(lblPoint1);
-		
-		JLabel lblPoint2 = new JLabel("PointsOfPlayer2");
-		lblPoint2.setForeground(Color.WHITE);
-		lblPoint2.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPoint2.setBounds(582, 262, 97, 20);
-		contentPane.add(lblPoint2);
-		
-		JLabel lblPoint3 = new JLabel("PointsOfPlayer3");
-		lblPoint3.setForeground(Color.WHITE);
-		lblPoint3.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblPoint3.setBounds(582, 293, 97, 20);
-		contentPane.add(lblPoint3);
+
+		ArrayList<JLabel> lblPlayers = new ArrayList<JLabel>();
+
+		for (Player p : gState.getPlayers()) {
+			JLabel lblPlayer = new JLabel(p.getName());
+			lblPlayer.setForeground(Color.WHITE);
+			lblPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
+			lblPlayer.setBounds(475, 231, 97, 20);
+			lblPlayers.add(lblPlayer);
+			contentPane.add(lblPlayer);
+		}
+
+		tfAmountPlayer = new JTextField();
+		tfAmountPlayer.setText(gState.getPlayers().length + "");
+		tfAmountPlayer.setEditable(false);
+		tfAmountPlayer.setColumns(10);
+		tfAmountPlayer.setBounds(582, 110, 160, 20);
+		contentPane.add(tfAmountPlayer);
+		//
+		// tfTargetPoint = new JTextField();
+		// tfTargetPoint.setText(NGM.targetP);
+		// tfTargetPoint.setEditable(false);
+		// tfTargetPoint.setColumns(10);
+		// tfTargetPoint.setBounds(582, 141, 160, 20);
+		// contentPane.add(tfTargetPoint);
+
+		ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
+
+		for (Player p : gState.getPlayers()) {
+			JLabel lblPoint = new JLabel(p.getPoints()+"");
+			lblPoint.setForeground(Color.WHITE);
+			lblPoint.setFont(new Font("Arial", Font.PLAIN, 12));
+			lblPoint.setBounds(582, 231, 97, 20);
+			lblPoints.add(lblPoint);
+			contentPane.add(lblPoint);
+
+		}
 
 		setVisible(true);
 	}

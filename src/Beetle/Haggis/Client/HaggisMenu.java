@@ -116,7 +116,7 @@ public class HaggisMenu extends JMenuBar implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e){
 				if (iw == null){
-					iw = new InformationWindow();
+					iw = new InformationWindow(gfModel.getgState());
 				} else {
 					iw.dispose();
 					iw = null;
