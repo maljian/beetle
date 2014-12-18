@@ -89,20 +89,12 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		registeredPlayer = new ArrayList<String>(10);
 		state = new GameState(players);
 		message = new Message(state, MessageType.REGISTER, PlayedAction.CARDS);
-		startNewRound(0);
-
-	}
-
-	/**
-	 * Create a new Card stack and distribute the cards to the player.
-	 * 
-	 * @param payerTurn
-	 *            With player start the next round
-	 */
-	private void startNewRound(int playerTurn) {
 		state = distributeCards(state);
 		state.newRound();
+		
+
 	}
+
 
 	/**
 	 * Give new cards to the Players. the old cards are not saved.
@@ -156,6 +148,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 
 			} else {
 				playerState.newRound();
+				
 			}
 			message.newMessage(playerState);
 
@@ -258,7 +251,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		return cardStack;
 	}
 
-	// Remot conection from Client
+	// RMI: Remot conection from Client
 	@Override
 	public Message receiveMessage() throws RemoteException {
 		return message;

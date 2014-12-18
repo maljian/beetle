@@ -176,7 +176,7 @@ public class GameState implements Serializable {
 
 			if (playerPlayed[i] == true) {
 				playerTurns = i;
-				players[i].addPoint(gamePot);
+				
 				gamePot = 0;
 			} else {
 				playerPlayed[i] = true;
