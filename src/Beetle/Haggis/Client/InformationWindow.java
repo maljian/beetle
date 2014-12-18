@@ -30,9 +30,8 @@ public class InformationWindow extends JFrame {
 	protected JPanel contentPane;
 	private JPanel logoPanel;
 	private JLabel logoLabel;
-	private JTextField tfAdresse;
-	private JTextField tfAmountPlayer;
-	private JTextField tfTargetPoint;
+	private JLabel lblAmount;
+	private JLabel lblPoints;
 
 	/**
 	 * Create the frame.
@@ -49,14 +48,14 @@ public class InformationWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblAdresse = new JLabel("IP-Adresse:");
-		lblAdresse.setForeground(new Color(255, 255, 255));
-		lblAdresse.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblAdresse.setBounds(475, 81, 97, 17);
-		contentPane.add(lblAdresse);
+//		JLabel lblAdresse = new JLabel("IP-Adresse:");
+//		lblAdresse.setForeground(new Color(255, 255, 255));
+//		lblAdresse.setFont(new Font("Arial", Font.PLAIN, 12));
+//		lblAdresse.setBounds(475, 81, 97, 17);
+//		contentPane.add(lblAdresse);
 
 		JLabel lblAmountPlayer = new JLabel("Anzahl Spieler:");
-		lblAmountPlayer.setForeground(new Color(255, 255, 255));
+		lblAmountPlayer.setForeground(Color.WHITE);
 		lblAmountPlayer.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblAmountPlayer.setBounds(475, 109, 97, 20);
 		contentPane.add(lblAmountPlayer);
@@ -101,19 +100,22 @@ public class InformationWindow extends JFrame {
 			contentPane.add(lblPlayer);
 		}
 
-		tfAmountPlayer = new JTextField();
-		tfAmountPlayer.setText(gState.getPlayers().length + "");
-		tfAmountPlayer.setEditable(false);
-		tfAmountPlayer.setColumns(10);
-		tfAmountPlayer.setBounds(582, 110, 160, 20);
-		contentPane.add(tfAmountPlayer);
+		lblAmount = new JLabel();
+		lblAmount.setText(gState.getPlayers().length + "");
+		lblAmount.setForeground(Color.WHITE);
+//		tfAmountPlayer.setEditable(false);
+//		tfAmountPlayer.setColumns(10);
+		lblAmount.setBounds(582, 110, 160, 20);
+		contentPane.add(lblAmount);
 		//
-		// tfTargetPoint = new JTextField();
-		// tfTargetPoint.setText(NGM.targetP);
-		// tfTargetPoint.setEditable(false);
-		// tfTargetPoint.setColumns(10);
-		// tfTargetPoint.setBounds(582, 141, 160, 20);
-		// contentPane.add(tfTargetPoint);
+		
+		 lblPoints = new JLabel();
+//		 lblPoints.setText(ge;
+		 lblPoints.setForeground(Color.WHITE);
+//		 lblPoints.setEditable(false);
+//		 lblPoints.setColumns(10);
+		 lblPoints.setBounds(582, 141, 160, 20);
+		 contentPane.add(lblTargetPoint);
 
 		ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
 
@@ -123,6 +125,7 @@ public class InformationWindow extends JFrame {
 			lblPoint.setFont(new Font("Arial", Font.PLAIN, 12));
 			lblPoint.setBounds(582, 231, 97, 20);
 			lblPoints.add(lblPoint);
+			contentPane.add(lblPoint);
 			contentPane.add(lblPoint);
 
 		}
