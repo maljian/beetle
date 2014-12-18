@@ -53,6 +53,9 @@ public class GameFieldModel {
 		view.cardsToCheck.clear();
 		gState = gs;
 		Player[] p = gState.getPlayers();
+
+		gState.setPlayerPlayed(true, id);
+		
 		Stack<Card> playerHandCards = p[id].getCards();
 
 		ArrayList<ButtonCard> btnPlayerCards = new ArrayList<ButtonCard>();
