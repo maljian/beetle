@@ -15,7 +15,7 @@ public class Message implements Serializable {
 	}
 
 	public enum PlayedAction {
-		CARDS, PASS, STATE
+		CARDS, PASS, STATE, WINN
 	}
 	
 	private static final long serialVersionUID = 1L;
