@@ -39,7 +39,7 @@ public class NewGameModel extends JoinGameModel {
 			String ipv4 = InetAddress.getLocalHost().toString();
 			String[] ip = ipv4.split("/");
 			m_View.txtIpAdress.setText(ip[1]);
-			ip[1] = ipAdress;
+			ipAdress += ip[1];
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
