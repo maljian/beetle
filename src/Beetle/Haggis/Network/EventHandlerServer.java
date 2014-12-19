@@ -47,8 +47,6 @@ public class EventHandlerServer implements MessageInterface {
 		LocateRegistry.getRegistry();
 		registry.bind(registeryName, stub);
 		
-		System.out.println("Startserver ready");
-
 	}
 
 	public void stopServer() {

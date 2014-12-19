@@ -46,7 +46,6 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		} else {
 			id = -1;
 		}
-		System.out.println("Player-ID: " + id);
 		return id;
 	}
 
@@ -183,8 +182,6 @@ public class GameServer implements MessageInterface { // Remote{ // {
 					return; // Replace the else part to avoid having
 							// to many steps in.
 				}
-				// TODO
-
 				playerState = distributeCards(playerState);
 				playerState.setActualCombination(Combination.NEWTURN);
 				int minPoint = targetPoint;
@@ -203,8 +200,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 			break;
 		}
 		playerState.versionCounter();
-		System.out.println("GmSe, logic, playersturn: "
-				+ playerState.getPlayerTurns());
+//		System.out.println("GmSe, logic, playersturn: "
+//				+ playerState.getPlayerTurns());
 		state = playerState;
 		// state.setLastPlayedCards(playerState.getLastPlayedCards());
 		message = new Message(state,  playedAction); //MessageType.CONFIRM,

@@ -55,7 +55,7 @@ public class Client extends Thread {
 
 		} catch (RemoteException | NotBoundException e) {
 			System.err.println("Client exception: " + e.toString());
-			e.printStackTrace();
+			//e.printStackTrace();
 			connected = true;
 			JOptionPane
 					.showMessageDialog(
@@ -86,7 +86,7 @@ public class Client extends Thread {
 					}
 				}
 			} catch (RemoteException | InterruptedException e) {
-				e.printStackTrace();
+			//	e.printStackTrace();
 			}
 		}
 	}

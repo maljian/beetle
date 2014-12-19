@@ -169,7 +169,7 @@ public class GameFieldModel {
 
 		boolean combinationConfirmed = gState.checkCombinations(selectedCards);
 		view.btnLegen.setEnabled(combinationConfirmed && playerIsOnTurn);
-		// TODO 2 knöpfe bereits deaktiviren
+
 	}
 
 	public void layCards() {
@@ -188,9 +188,8 @@ public class GameFieldModel {
 			}
 			gState.getPlayers()[id].setCards((Stack<Card>) playerCards.clone());
 
-			System.out.println(gState.getLastPlayedCards().size() + " ");
 			Message m = new Message(gState,
-					PlayedAction.CARDS);// MessageType.CONFIRM,
+					PlayedAction.CARDS);
 			client.sendMessage(m);
 		} else {
 			JOptionPane
