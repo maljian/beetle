@@ -1,11 +1,11 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
-import Beetle.Haggis.Server.EventHandlerServer;
+import Beetle.Haggis.Network.EventHandlerServer;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.Network;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

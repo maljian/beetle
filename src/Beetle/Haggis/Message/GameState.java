@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
-import Beetle.Haggis.Server.Card;
-import Beetle.Haggis.Server.Player;
+import Beetle.Haggis.Network.Card;
+import Beetle.Haggis.Network.Player;
 
 /**
  * @author Loïc Lavanchy

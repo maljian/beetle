@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,11 +21,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Beetle.Haggis.Server.Card;
-import Beetle.Haggis.Server.Card.Colour;
-import Beetle.Haggis.Server.EventHandlerServer;
+import Beetle.Haggis.Network.Card;
+import Beetle.Haggis.Network.EventHandlerServer;
+import Beetle.Haggis.Network.Card.Colour;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 
 /**

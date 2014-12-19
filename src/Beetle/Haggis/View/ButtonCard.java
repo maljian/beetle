@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 import java.awt.Dimension;
 
@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
-import Beetle.Haggis.Server.Card;
+import Beetle.Haggis.Network.Card;
 
 /**
  * @author Marco Mancuso

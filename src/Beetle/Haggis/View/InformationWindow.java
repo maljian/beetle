@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Beetle.Haggis.Message.GameState;
-import Beetle.Haggis.Server.Player;
+import Beetle.Haggis.Network.Player;
 
 /**
  * @author Faruk

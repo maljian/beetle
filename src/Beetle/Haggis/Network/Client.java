@@ -1,4 +1,4 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.Network;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -7,14 +7,14 @@ import java.rmi.registry.Registry;
 
 import javax.swing.JOptionPane;
 
-import Beetle.Haggis.Client.GameFieldModel;
-import Beetle.Haggis.Client.JoinGame;
-import Beetle.Haggis.Client.JoinGameModel;
-import Beetle.Haggis.Client.NewGame;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Message.MessageInterface;
+import Beetle.Haggis.View.GameFieldModel;
+import Beetle.Haggis.View.JoinGame;
+import Beetle.Haggis.View.JoinGameModel;
+import Beetle.Haggis.View.NewGame;
 
 /**
  * 

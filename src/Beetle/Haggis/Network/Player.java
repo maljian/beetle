@@ -1,4 +1,4 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.Network;
 
 import java.io.Serializable;
 import java.util.Stack;

@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 /**
  * @author Faruk

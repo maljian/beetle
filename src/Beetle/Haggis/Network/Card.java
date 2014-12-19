@@ -1,4 +1,4 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.Network;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

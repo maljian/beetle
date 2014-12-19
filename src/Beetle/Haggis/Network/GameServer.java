@@ -1,4 +1,4 @@
-package Beetle.Haggis.Server;
+package Beetle.Haggis.Network;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import Beetle.Haggis.Message.Message;
 //import Beetle.Haggis.Message.Message.MessageType;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Message.MessageInterface;
-import Beetle.Haggis.Server.Card.Colour;
+import Beetle.Haggis.Network.Card.Colour;
 
 /**
  * @author Loïc Lavanchy

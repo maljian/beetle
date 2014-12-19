@@ -1,4 +1,4 @@
-package Beetle.Haggis.Client;
+package Beetle.Haggis.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
