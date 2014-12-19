@@ -74,7 +74,7 @@ public class Player implements Serializable{
 			if (c.getNumber() == 11) {
 				joker += "J ";
 			} else if (c.getNumber() == 12) {
-				joker += "B ";
+				joker += "Q ";
 			} else if (c.getNumber() == 13) {
 				joker += "K ";
 			}
