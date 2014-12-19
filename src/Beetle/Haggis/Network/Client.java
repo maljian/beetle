@@ -7,14 +7,14 @@ import java.rmi.registry.Registry;
 
 import javax.swing.JOptionPane;
 
+import Beetle.Haggis.Client.GameFieldModel;
+import Beetle.Haggis.Client.JoinGame;
+import Beetle.Haggis.Client.JoinGameModel;
+import Beetle.Haggis.Client.NewGame;
 import Beetle.Haggis.Message.GameState;
 import Beetle.Haggis.Message.Message;
 import Beetle.Haggis.Message.Message.PlayedAction;
 import Beetle.Haggis.Message.MessageInterface;
-import Beetle.Haggis.View.GameFieldModel;
-import Beetle.Haggis.View.JoinGame;
-import Beetle.Haggis.View.JoinGameModel;
-import Beetle.Haggis.View.NewGame;
 
 /**
  * 
@@ -31,6 +31,7 @@ public class Client extends Thread {
 	private MessageInterface mi;
 	private boolean connected = true;
 	private GameFieldModel gfModel;
+	private JoinGameModel joinGameModel;
 
 	/**
 	 * 
@@ -46,6 +47,8 @@ public class Client extends Thread {
 					"Bitte geben Sie eine gültige IP-Adresse an.",
 					"Information", JOptionPane.INFORMATION_MESSAGE);
 			return false;
+		} else {
+			joinGameModel.joinGame();
 		}
 		try {
 			registry = LocateRegistry.getRegistry(serverIP);

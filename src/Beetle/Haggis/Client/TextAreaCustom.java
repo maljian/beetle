@@ -1,4 +1,4 @@
-package Beetle.Haggis.View;
+package Beetle.Haggis.Client;
 
 import java.awt.Color;
 import java.awt.Font;
