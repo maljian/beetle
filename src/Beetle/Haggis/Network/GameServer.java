@@ -183,6 +183,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 							// to many steps in.
 				}
 				playerState = distributeCards(playerState);
+				playerState.newRound();
 				playerState.setActualCombination(Combination.NEWTURN);
 				int minPoint = targetPoint;
 				Player[] players = playerState.getPlayers();

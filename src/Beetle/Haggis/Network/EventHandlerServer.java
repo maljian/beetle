@@ -47,6 +47,7 @@ public class EventHandlerServer implements MessageInterface {
 		LocateRegistry.getRegistry();
 		registry.bind(registeryName, stub);
 		
+
 	}
 
 	public void stopServer() {

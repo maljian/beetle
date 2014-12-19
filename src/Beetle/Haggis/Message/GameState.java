@@ -89,20 +89,21 @@ public class GameState implements Serializable {
 
 		}
 
-		if (answer  && curentCombination != Combination.NEWTURN
+		if (answer
+				&& curentCombination != Combination.NEWTURN
 				&& cards.get(0).getNumber() < lastPlayedCards.get(0)
 						.getNumber()) {
 			answer = false;
-			
+
 		}
-		if( lastPlayedCards!=null ){
-			if(cards.get(0).getNumber()<= lastPlayedCards.get(0).getNumber()|| cards.size() != lastPlayedCards.size()){
-				answer =false;
+		if (lastPlayedCards != null && lastPlayedCards.size()==0) {
+			if (cards.get(0).getNumber() <= lastPlayedCards.get(0).getNumber()
+					|| cards.size() != lastPlayedCards.size()) {
+				answer = false;
 			}
-			
+
 		}
-		
-		
+
 		return answer;
 	}
 
@@ -176,14 +177,14 @@ public class GameState implements Serializable {
 
 			if (playerPlayed[i] == true) {
 				playerTurns = i;
-				
+
 				gamePot = 0;
 			} else {
 				playerPlayed[i] = true;
 			}
 		}
 		lastPlayedCards = null;
-
+		curentCombination = Combination.NEWTURN;
 	}
 
 	public GameState(Player[] players) {
@@ -216,7 +217,6 @@ public class GameState implements Serializable {
 		}
 		lastPlayedCards = cards;
 	}
-
 
 	public int getPlayerTurns() {
 		return playerTurns;
@@ -339,7 +339,5 @@ public class GameState implements Serializable {
 	public void setTargetpoint(int targetpoint) {
 		this.targetpoint = targetpoint;
 	}
-	
-	
 
 }

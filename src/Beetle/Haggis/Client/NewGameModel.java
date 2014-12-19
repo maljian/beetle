@@ -53,6 +53,9 @@ public class NewGameModel extends JoinGameModel {
 		targetP = "" + targetPoint;
 		boolean bet = false; // Preparation for future version
 		boolean bombs = false; // Preparation for future version
+		if (ehs != null){
+			ehs.stopServer();
+		}
 		ehs = new EventHandlerServer();
 		gfModel.setEventHandlerServer(ehs);
 		try {

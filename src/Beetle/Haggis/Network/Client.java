@@ -54,7 +54,7 @@ public class Client extends Thread {
 			gfModel.setId(id);
 
 		} catch (RemoteException | NotBoundException e) {
-			System.err.println("Client exception: " + e.toString());
+		//	System.err.println("Client exception: " + e.toString());
 			//e.printStackTrace();
 			connected = true;
 			JOptionPane
@@ -99,7 +99,7 @@ public class Client extends Thread {
 		try {
 			mi.sendMessage(m);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		;
 	}
