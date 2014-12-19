@@ -101,6 +101,11 @@ public class InformationWindow extends JFrame {
 			lblAmount.setForeground(Color.WHITE);
 			lblAmount.setBounds(582, 82, 160, 20);
 			contentPane.add(lblAmount);
+			
+			JLabel lblTargetPointVal = new JLabel(gs.getTargetpoint()+"");
+			lblTargetPointVal.setForeground(Color.WHITE);
+			lblTargetPointVal.setBounds(584, 114, 56, 16);
+			contentPane.add(lblTargetPointVal);
 
 			ArrayList<JLabel> lblPoints = new ArrayList<JLabel>();
 			int yPoint = 231;

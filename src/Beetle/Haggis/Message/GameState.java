@@ -34,6 +34,7 @@ public class GameState implements Serializable {
 	private int playerTurns = 0;
 	private boolean[] playerPlayed;
 	private int version = 0;
+	private int targetpoint = 10;
 
 	/**
 	 * after distributing cards. player first finish get this point, next gets 0
@@ -330,5 +331,15 @@ public class GameState implements Serializable {
 	public Combination getCurentCombination() {
 		return curentCombination;
 	}
+
+	public int getTargetpoint() {
+		return targetpoint;
+	}
+
+	public void setTargetpoint(int targetpoint) {
+		this.targetpoint = targetpoint;
+	}
+	
+	
 
 }

@@ -76,8 +76,8 @@ public class GameServer implements MessageInterface { // Remote{ // {
 	 * @param playerNr
 	 *            Amount of players in the game, 2 or 3. Default are 2
 	 */
-	public GameServer(int _targetPoint, boolean bet, boolean bombs, int playerNr) {
-		targetPoint = _targetPoint;
+	public GameServer(int targetPoint, boolean bet, boolean bombs, int playerNr) {
+		this.targetPoint = targetPoint;
 		playerNr = playerNr == 2 || playerNr == 3 ? playerNr : 2;
 		Player[] players = new Player[playerNr];
 
@@ -88,6 +88,7 @@ public class GameServer implements MessageInterface { // Remote{ // {
 		}
 		registeredPlayer = new ArrayList<String>(10);
 		state = new GameState(players);
+		state.setTargetpoint(targetPoint);
 		message = new Message(state,  PlayedAction.CARDS); //
 		state = distributeCards(state);
 		state.newRound();
