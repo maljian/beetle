@@ -31,7 +31,6 @@ public class Client extends Thread {
 	private MessageInterface mi;
 	private boolean connected = true;
 	private GameFieldModel gfModel;
-	private JoinGameModel joinGameModel;
 
 	/**
 	 * 
@@ -47,9 +46,7 @@ public class Client extends Thread {
 					"Bitte geben Sie eine gültige IP-Adresse an.",
 					"Information", JOptionPane.INFORMATION_MESSAGE);
 			return false;
-		} else {
-			joinGameModel.joinGame();
-		}
+		} 
 		try {
 			registry = LocateRegistry.getRegistry(serverIP);
 			mi = (MessageInterface) registry.lookup("MessageInterface");
